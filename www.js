@@ -5,7 +5,7 @@
  */
 
 var app = require('./app');
-var debug = require('debug')('coursestest:server');
+var debug = require('debug')('planhub:server');
 var http = require('http');
 
 /**
