@@ -279,7 +279,15 @@ html
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
 							h4 View feedback
-							h5 Under construction!
+							div(class="row")
+								div(class="col-md-4")
+									ul(id="admin-feedback-list")
+								div(class="col-md-8")
+									h3(id="admin-feedback-content") Select feedback on the left to see it here!
+									h5
+										span(id="admin-feedback-name") 
+										span(id="admin-feedback-username")
+									h5(id="admin-feedback-time")
 								
 					if user.canAnnouncements > 0
 						div(id="admin-announcements", class="page")

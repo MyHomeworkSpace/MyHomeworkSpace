@@ -68,6 +68,21 @@ global.getUserRecord = function(req, res, next) {
 	});*/
 };
 
+global.requireViewFeedback = function(req, res, next) {
+	if (res.locals.user.canFeedback != 1) {
+		if (global.isApiPath(req.url)) {
+			res.json({
+				status: "forbidden",
+				message: "You are not permitted to access this resource."
+			});
+		} else {
+			res.redirect(global.basePath + "/login");
+		}
+	} else {
+		next();
+	}
+};
+
 global.apiCall = function(req, res, next) {
 	next();
 };
@@ -107,6 +122,7 @@ var appRouter = require('./routes/app');
 
 var api_main = require('./routes/api_main');
 var api_planner = require('./routes/api_planner');
+var api_admin = require('./routes/api_admin');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -139,6 +155,7 @@ app.use(basePath + '/app', appRouter);
 
 app.use(basePath + '/api/v1/', api_main);
 app.use(basePath + '/api/v1/planner', api_planner);
+app.use(basePath + '/api/v1/admin', api_admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
