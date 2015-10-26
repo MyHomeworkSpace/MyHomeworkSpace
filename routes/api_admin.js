@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/feedback/get/:id', global.apiCall, global.requireUser, global.getUserRecord, global.requireFeedbackView, function(req, res, next) {
+router.get('/feedback/get/:id', global.apiCall, global.requireUser, global.getUserRecord, global.requireViewFeedback, function(req, res, next) {
 	res.json({
 		status: "ok",
 		version: "1"
