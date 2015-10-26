@@ -1,0 +1,5 @@
+.hwView-done {
+	color: gray;
+	text-decoration: line-through;
+	font-style: italic;
+}

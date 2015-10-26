@@ -1,0 +1,179 @@
+#planner th {
+	border: solid 1px black;
+
+	font-size: 1.2em;
+	width: 150px;
+
+	text-align: center;
+}
+.subjectRow td {
+	border: solid 1px black;
+	height: 100px;
+}
+.subjectCell {
+	font-size: 1.1em;
+	text-align: right;
+	padding-right: 10px;
+}
+#planner table .subjectCell, .no-border {
+	border: none !important;
+}
+.editCell, .editArea {
+	padding: 0;
+	width: 150px;
+	height: 100px;
+	resize: none;
+	box-sizing: border-box;
+}
+.editArea {
+	border: none;
+	position: relative;
+	top: 2px;
+    font-size: 1.15em;
+}
+.add-subject {
+	background: gray;
+	border: solid 1px black;
+	color: white;
+	cursor: pointer;
+	font-style: italic;
+	font-size: 1.1em;
+	height: 20px;
+	padding-left: 5px;
+	transition: background 0.2s;
+}
+.add-subject:hover {
+	background: darkgray;
+}
+.subjectControls {
+	opacity: 0;
+	transition: opacity 0.4s;
+}
+.announcement-row th {
+	height: 20px;
+}
+#planner-controls-wrapper {
+	margin-left: 150px;
+	width: 756px;
+}
+#planner-controls {
+	text-align: center;
+}
+.planner-dow {
+	font-size: 0.9em;
+	margin-right: 2px;
+	font-weight: normal;
+}
+.planner-day {
+	font-weight: normal;
+}
+.planner-current-week {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.checkBtn {
+	opacity: 0;
+	position: absolute;
+	top: 83px;
+	left: 130px;
+	width: 16px;
+	height: 16px;
+	transition: opacity 0.3s;
+}
+.editCell {
+	position: relative;
+	background-clip: padding-box;
+	transition: background 0.2s;
+}
+.editCell textarea {
+	background: transparent;
+}
+.editCell.hover .checkBtn {
+	opacity: 1;
+}
+.editCell.done {
+	background: lightgray;
+	background-clip: padding-box
+}
+.editCell.done textarea {
+	text-decoration: line-through;
+}
+
+.magic-input-container {
+	width: 100%;
+	height: auto;
+	position: relative;
+	float: left;
+}
+
+.magic-input-container .first-word {
+	transition: opacity 0.25s ease-in-out, background-color 0.25s ease-in-out;
+	top: 8px;
+	position: absolute;
+	margin: -5px 0 0 0;
+}
+
+.first-word {
+	display: block;
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	box-shadow: none;
+	padding: 0px 1px;
+	border: 0px;
+	border-radius: 0px;
+	color: #FFF;
+	opacity: 1;
+	font-size: 1.15em;
+}
+
+/* for HW view */
+.col-md-4 li .first-word {
+	display: inline;
+}
+
+.hiddenThing {
+	opacity: 0 !important;
+}
+
+.cal_hw {
+	background-color:#4c6c9b !important;
+	color: #FFF;
+}
+.cal_quiz {
+	background-color:#ffa500 !important;
+	color: #FFF;
+}
+.cal_project {
+	background-color:#9ACD32 !important;
+	color: #FFF;
+}
+.cal_test {
+	background-color:#DC143C !important;
+	color: #FFF;
+}
+.cal_paper {
+	background-color:#FFD700 !important;
+	color: #FFF;
+}
+.cal_ica {
+	background-color:#2ac0f1 !important;
+	color: #FFF;
+}
+.cal_lab {
+	background-color:#2af15e !important;
+	color: #FFF;
+}
+.cal_dismissal {
+	background-color:#FF0 !important;
+	color: #FFF;
+}
+.cal_no_prefix {
+	background-color: #FFD3BD;
+	color: black !important;
+}
+
+.feedback-btn {
+	font-size: 1.5em;
+}

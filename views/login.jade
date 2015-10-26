@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1= title
+	if error
+		p(class="alert alert-danger")
+			strong Oh no! 
+			span= error
+	form(action="#{global.basePath}/login", method="POST")
+		input(type="text", name="username", class="form-control", placeholder="Username")
+		input(type="password", name="password", class="form-control", placeholder="Password")
+		input(type="submit", value="Log in", class="btn btn-primary")
+
+	br
+	p(class="alert alert-info")
+		strong Your password is never stored. It's only used to sign you in and download your schedule and homework.

@@ -1,0 +1,272 @@
+doctype html
+html
+	head
+		title= title
+
+		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet", integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==",crossorigin="anonymous")
+		link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css", rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous")
+		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==", crossorigin="anonymous")
+
+		script(src="https://code.jquery.com/jquery-2.1.4.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
+
+		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
+		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
+		link(rel="stylesheet", href="#{global.basePath}/css/hwView.css")
+
+		script(type="text/javascript", src="#{global.basePath}/js/moment.min.js")
+
+		script(type="text/javascript", src="#{global.basePath}/js/utils.js")
+		script(type="text/javascript", src="#{global.basePath}/js/page.js")
+
+		script(type="text/javascript", src="#{global.basePath}/js/api.js")
+
+		script(type="text/javascript", src="#{global.basePath}/js/overview.js")
+		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
+		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
+
+	body
+		div(id="basePath", class="hidden")= global.basePath
+		div(id="username", class="hidden")= user.username
+		nav(class="navbar navbar-default navbar-fixed-top")
+			div(class="container-fluid")
+				div(class="navbar-header")
+					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
+						span(class="sr-only") Toggle navigation
+						span(class="icon-bar")
+						span(class="icon-bar")
+						span(class="icon-bar")
+					a(class="navbar-brand", href="#") yay
+				
+				div(class="collapse navbar-collapse", id="navbar-collapse")
+					ul(class="nav navbar-nav navbar-right")
+						li(class="feedback-btn")
+							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Liked something? Send us a smile.")
+								i(class="fa fa-smile-o")
+						li(class="feedback-btn")
+							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Hate something? Send us a frown.")
+								i(class="fa fa-frown-o")
+						li(class="navbar-text user-name")= user.name
+						li
+							a(href="#{basePath}/logout") Log out
+
+		div(class="loadOverlay")
+			i(class="fa fa-refresh fa-spin")
+			span  Loading...
+
+		div(id="feedback-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title")
+							span Send a 
+							span(class="feedback-type") 
+					
+					div(class="modal-body")
+						p(class="feedback-desc")
+						textarea(id="feedback-msg", placeholder="Write your message here...")
+						strong The following information will be sent with your feedback:
+						ul
+							li
+								span Your name (
+								span= user.name
+								span )
+							li
+								span Your username (
+								span= user.username
+								span )
+							li
+								input(type="checkbox", id="feedback-snapshot", checked="checked")
+								span  (optional) A snapshot of the web page so we can see what you are talking about! This might contain information you are looking at, like your planner events. You don't have to include it if you don't want to.
+						p Thanks for the feedback! Click "Submit" to send it!
+					
+					div(class="modal-footer feedback-footer-normal")
+						button(type="button", class="btn btn-default", data-dismiss="modal") Close without submitting
+						button(type="button", class="btn btn-primary", id="feedback-submit") Submit
+
+					div(class="modal-footer feedback-footer-load hidden")
+						i(class="fa fa-refresh fa-spin")
+						span  Loading...
+		div(class="mainContainer")
+			ul(class="tabs")
+				li(data-page="overview") Overview
+				li(data-page="planner") Planner
+				li(data-page="schedule") Schedule
+				li(data-page="hwView") HW View
+				if user.level > 0
+					li(data-page="admin") Admin
+
+			div(class="pages")
+				div(id="overview", class="page open-page")
+					h3
+						span Today is 
+						span(class="overview-date") a day
+						span .
+					p 
+
+				div(id="planner", class="page")
+					div(id="planner-upsell", class="upsell row", data-feature="planner")
+						div(class="col-md-3")
+							h1 Planner
+							h3 Keep track of your assignments online.
+
+							br
+
+							button(class="btn btn-primary upsell-btn", data-feature="planner") Enable
+
+						div(class="col-md-9")
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9")
+									h4 Synced to the cloud
+									p You can't lose your planner anymore - assignments you write are saved to your Dalton account. Sign back in and your assignments will be right where you left them - even if you're using another device.
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-3")
+									img(src="#{basePath}/images/planner02.png", class="upsell-picture")
+								div(class="col-md-9")
+									h4 Tag your assignments
+									p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9")
+									h4 hi
+									p hi
+
+					div(id="planner-status") Saved. THIS IS AN ALPHA VERSION THING BE CAREFUL STUFF MIGHT BREAK
+					div(id="planner-controls-wrapper")
+						div(id="planner-controls")
+							button(id="planner-prev", class="btn btn-default btn-xs")
+								i(class="fa fa-arrow-left") 
+
+							span(class="planner-current-week")
+								span Week of 
+								span(id="planner-week")  
+
+							button(id="planner-next", class="btn btn-default btn-xs")
+								i(class="fa fa-arrow-right")
+
+					table
+						thead
+							tr
+								th(class="no-border")
+								th
+									span(class="planner-dow") Monday
+									span(class="planner-day") 
+								th
+									span(class="planner-dow") Tuesday
+									span(class="planner-day") 
+								th
+									span(class="planner-dow") Wednesday
+									span(class="planner-day") 
+								th
+									span(class="planner-dow") Thursday
+									span(class="planner-day") 
+								th
+									span(class="planner-dow planner-dow-friday") Friday
+									span(class="planner-day") 
+							tr(class="announcement-row")
+								th(class="no-border")
+								th 
+								th 
+								th 
+								th 
+								th 
+						tbody
+						tfoot
+							tr
+								td(class="no-border")
+								td(class="add-subject", colspan="5") 
+									i(class="fa fa-plus")
+									span &nbsp;&nbsp;Add subject
+
+				div(id="schedule", class="page")
+					div(id="schedule-upsell", class="upsell row", data-feature="schedule")
+						div(class="col-md-3")
+							h1 Schedule
+							h3 View your schedule and share it with others.
+
+							br
+
+							button(class="btn btn-primary upsell-btn", data-feature="schedule") Enable
+
+						div(class="col-md-9")
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9") Description
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9") Description
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9") Description
+
+				div(id="hwView", class="page")
+					div(id="hwView-upsell", class="upsell row", data-feature="hwView")
+						div(class="col-md-3")
+							h1 Homework View
+							h3 See what assignments you've got in a simple interface.
+
+							br
+
+							button(class="btn btn-primary upsell-btn", data-feature="hwView") Enable
+
+						div(class="col-md-9")
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9")
+									h4 Don't get caught by surprise
+									p Homework View shows you tests, quizzes, and other long-term assignments ahead of time - that way, you'll always be on top of what you have to do.
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9")
+									h4 Gets data from your planner
+									p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your homework into yet another program.
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-3") Image
+								div(class="col-md-9")
+									h4 hi
+									p hi
+
+					div(class="row")
+						div(class="col-md-4 hwView-tomorrow")
+							h3 Due 
+								span(class="tomorrow-or-monday") tomorrow
+							ul
+						div(class="col-md-4 hwView-soon")
+							h3 Due soon
+							ul
+						div(class="col-md-4 hwView-longterm")
+							h3 Long-term
+							ul
+
+				if user.level > 0
+					div(id="admin", class="page")
+						h1 Administrative panel
+						h4 Select a task
+						ul
+							li(id="admin-announcements")
+								a(href="#admin") Change announcements
+							li(id="admin-stats")
+								a(href="#admin") Statistics
+							li(id="admin-about")
+								a(href="#admin") About server

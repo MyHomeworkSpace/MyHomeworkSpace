@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300italic,400italic,700italic,400,300,700");
+html, body, .mainContainer {
+	width: 100%;
+	height: 100%;
+	font-family: Lato, sans-serif;
+}
+nav {
+	background: white;
+	border-bottom: solid 1px black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999 !important; /* please stay on top */
+	/*height: 70px;*/
+}
+.mainContainer {
+	padding-top: 45px;
+}
+.tabs {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 100%;
+	padding-top: 45px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	list-style-type: none;
+	border-right: solid 1px black;
+	z-index: 998;
+}
+.tabs li {
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+
+	text-align: center;
+
+	font-size: 1em;
+
+	position: relative;
+	left: -20px;
+
+	border: solid 1px black;
+	border-bottom: none;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+	width: 90px;
+	height: 110px;
+
+	cursor: pointer;
+}
+.tabs li:hover {
+	background: lightblue;
+}
+.pages {
+	width: 100%;
+	height: 100%;
+	padding-left: 50px;
+}
+.page {
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 55px;
+	padding-left: 60px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transition: opacity 0.2s;
+	overflow-y: scroll;
+}
+.open-page {
+	opacity: 1;
+	z-index: 997;
+}
+
+.upsell {
+	background: white;
+	position: fixed;
+	width: 96%;
+	height: 100%;
+	z-index: 2;
+	padding-left: 10px;
+}
+.upsell-row {
+	background: lightgray;
+}
+.upsell-btn {
+	width: 100%;
+}
+
+.loadOverlay {
+	background: black;
+	color: white;
+	font-size: 2em;
+	position: fixed;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+	padding-top: 150px;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	z-index: 9999999999999999999999999999999999 !important; /* please be above the nav */
+}
+
+.modal {
+	z-index: 999999999999999999999999999999999 !important; /* please be above everything but the loading thing */
+}
+
+.smileBtn, .frownBtn {
+	cursor: pointer;
+}
+
+#feedback-msg {
+	width: 100%;
+	height: 100px;
+	resize: none;
+}
