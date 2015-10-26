@@ -264,9 +264,35 @@ html
 						h1 Administrative panel
 						h4 Select a task
 						ul
-							li(id="admin-announcements")
-								a(href="#admin") Change announcements
-							li(id="admin-stats")
-								a(href="#admin") Statistics
-							li(id="admin-about")
-								a(href="#admin") About server
+							if user.canFeedback > 0
+								li(id="admin-feedback", class="admin-link")
+									a(href="#admin-feedback") View feedback
+							if user.canAnnouncements > 0
+								li(id="admin-announcements", class="admin-link")
+									a(href="#admin-announcements") Change announcements
+							li(id="admin-stats", class="admin-link")
+								a(href="#admin-stats") Statistics
+							li(id="admin-about", class="admin-link")
+								a(href="#admin-about") About server
+								
+					if user.canFeedback > 0
+						div(id="admin-stats", class="page")
+							h1 Administrative panel
+							h4 View feedback
+							h5 Under construction!
+								
+					if user.canAnnouncements > 0
+						div(id="admin-stats", class="page")
+							h1 Administrative panel
+							h4 Change announcements
+							h5 Under construction!
+
+					div(id="admin-stats", class="page")
+						h1 Administrative panel
+						h4 Statistics
+						h5 Under construction!
+
+					div(id="admin-about", class="page")
+						h1 Administrative panel
+						h4 About server
+						h5 Under construction!

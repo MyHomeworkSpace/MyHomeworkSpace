@@ -66,6 +66,10 @@ $(document).ready(function() {
 		setPage($(this).attr("data-page"));
 	});
 
+	$(".admin-link").click(function() {
+		setPage($(this).attr("id"));
+	});
+
 	$(".upsell-btn").click(function() {
 		var feature = $(this).attr("data-feature");
 
