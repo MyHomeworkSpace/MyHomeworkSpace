@@ -5,17 +5,25 @@ function setPage(newPage) {
 	window.location.hash = newPage;
 }
 
-window.page = {};
+window.page = {
+	loadTimeout: 0
+};
 window.page.getBasePath = function() {
 	return $("#basePath").text();
 };
 
 window.page.showLoading = function() {
-	$(".loadOverlay").show();
+	window.page.loadTimeout = setTimeout(function() {
+		$(".loadOverlay").show();
+	}, 100);
 };
 
 window.page.hideLoading = function() {
 	$(".loadOverlay").hide();
+	if (window.page.loadTimeout != 0) {
+		cancelTimeout(window.page.loadTimeout);
+	}
+	window.page.loadTimeout = 0;
 };
 
 window.page.getFeatures = function(callback) {
