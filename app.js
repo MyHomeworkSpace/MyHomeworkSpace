@@ -9,7 +9,7 @@ var KnexSessionStore = require('connect-session-knex')(session);
 
 var app = express();
 
-var basePath = "/";
+var basePath = "";
 global.basePath = basePath;
 
 var env = "development";
