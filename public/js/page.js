@@ -21,7 +21,7 @@ window.page.showLoading = function() {
 window.page.hideLoading = function() {
 	$(".loadOverlay").hide();
 	if (window.page.loadTimeout != 0) {
-		cancelTimeout(window.page.loadTimeout);
+		clearTimeout(window.page.loadTimeout);
 	}
 	window.page.loadTimeout = 0;
 };
