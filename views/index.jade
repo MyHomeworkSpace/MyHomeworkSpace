@@ -1,5 +1,12 @@
 extends layout
 
+block precontent
+	div(class="jumbotron")
+		div(class="container")
+			h1 Your homework, everywhere you go.
+			p PlanHub is an online planner that organizes your homework into one place.
+			p
+				a(href="#{basePath}/login", class="btn btn-lg btn-primary") Get started
+
 block content
-	h1 Yay it works
-	p Welcome to #{title}
+	

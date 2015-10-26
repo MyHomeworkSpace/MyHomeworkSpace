@@ -7,7 +7,7 @@ var parseXmlString = require('xml2js').parseString;
 
 /* GET home page. */
 router.get('/', global.getOptionalUserRecord, function(req, res, next) {
-	res.render('index', { title: 'Express' });
+	res.render('index', { title: 'PlanHub' });
 });
 
 router.get('/logout', global.requireUser, function(req, res, next) {
