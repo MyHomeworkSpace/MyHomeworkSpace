@@ -117,8 +117,8 @@ $(document).ready(function() {
 
 		if (window.location.hash != "") {
 			setPage(window.location.hash.substr(1));
+		} else {
+			setPage("overview");
 		}
 	});
-
-	setPage("overview");
 });
