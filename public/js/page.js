@@ -67,7 +67,7 @@ $(document).ready(function() {
 	});
 
 	$(".admin-link").click(function() {
-		setPage($(this).attr("id"));
+		setPage($(this).attr("data-page"));
 	});
 
 	$(".upsell-btn").click(function() {
