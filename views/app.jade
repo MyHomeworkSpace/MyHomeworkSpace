@@ -93,7 +93,7 @@ html
 			ul(class="tabs")
 				li(data-page="overview") Overview
 				li(data-page="planner") Planner
-				li(data-page="schedule") Schedule
+				li(data-page="myDay") My Day
 				li(data-page="hwView") HW View
 				if user.level > 0
 					li(data-page="admin") Admin
@@ -187,15 +187,15 @@ html
 									i(class="fa fa-plus")
 									span &nbsp;&nbsp;Add subject
 
-				div(id="schedule", class="page")
-					div(id="schedule-upsell", class="upsell row", data-feature="schedule")
+				div(id="myDay", class="page")
+					div(id="myDay-upsell", class="upsell row", data-feature="myDay")
 						div(class="col-md-3")
-							h1 Schedule
-							h3 View your schedule and share it with others.
+							h1 My Day
+							h3 Plan out your life easily and efficently.
 
 							br
 
-							button(class="btn btn-primary upsell-btn", data-feature="schedule") Enable
+							button(class="btn btn-primary upsell-btn", data-feature="myDay") Enable
 
 						div(class="col-md-9")
 							div(class="upsell-row row")
