@@ -95,6 +95,10 @@ window.hwView.loadStep = function() {
 	window.hwView.loadCount += 1;
 	if (window.hwView.loadCount >= (1 + (14 * window.hwView.subjects.length))) {
 		window.page.hideLoading();
+		if ($(".hwView-tomorrow ul").text() == "" && $(".hwView-soon ul").text() == "" && $(".hwView-longterm ul").text() == "") {
+			// empty!
+			alert("You don't have any homework in your planner! Click on the Planner tab and type in your homework. Once you've written some assignments in, come back here.");
+		}
 	}
 };
 
