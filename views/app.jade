@@ -265,24 +265,24 @@ html
 						h4 Select a task
 						ul
 							if user.canFeedback > 0
-								li(id="admin-feedback", class="admin-link")
+								li(data-page="admin-feedback", class="admin-link")
 									a(href="#admin-feedback") View feedback
 							if user.canAnnouncements > 0
-								li(id="admin-announcements", class="admin-link")
+								li(data-page="admin-announcements", class="admin-link")
 									a(href="#admin-announcements") Change announcements
-							li(id="admin-stats", class="admin-link")
+							li(data-page="admin-stats", class="admin-link")
 								a(href="#admin-stats") Statistics
-							li(id="admin-about", class="admin-link")
+							li(data-page="admin-about", class="admin-link")
 								a(href="#admin-about") About server
 								
 					if user.canFeedback > 0
-						div(id="admin-stats", class="page")
+						div(id="admin-feedback", class="page")
 							h1 Administrative panel
 							h4 View feedback
 							h5 Under construction!
 								
 					if user.canAnnouncements > 0
-						div(id="admin-stats", class="page")
+						div(id="admin-announcements", class="page")
 							h1 Administrative panel
 							h4 Change announcements
 							h5 Under construction!
