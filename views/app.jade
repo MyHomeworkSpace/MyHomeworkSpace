@@ -41,7 +41,7 @@ html
 				div(class="collapse navbar-collapse", id="navbar-collapse")
 					ul(class="nav navbar-nav navbar-right")
 						li(class="feedback-btn")
-							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Liked something? Send us a smile.")
+							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Like something? Send us a smile.")
 								i(class="fa fa-smile-o")
 						li(class="feedback-btn")
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Hate something? Send us a frown.")
@@ -93,7 +93,7 @@ html
 			ul(class="tabs")
 				li(data-page="overview") Overview
 				li(data-page="planner") Planner
-				li(data-page="schedule") Schedule
+				li(data-page="myDay") My Day
 				li(data-page="hwView") HW View
 				if user.level > 0
 					li(data-page="admin") Admin
@@ -187,15 +187,15 @@ html
 									i(class="fa fa-plus")
 									span &nbsp;&nbsp;Add subject
 
-				div(id="schedule", class="page")
-					div(id="schedule-upsell", class="upsell row", data-feature="schedule")
+				div(id="myDay", class="page")
+					div(id="myDay-upsell", class="upsell row", data-feature="myDay")
 						div(class="col-md-3")
-							h1 Schedule
-							h3 View your schedule and share it with others.
+							h1 My Day
+							h3 Plan out your life easily and efficently.
 
 							br
 
-							button(class="btn btn-primary upsell-btn", data-feature="schedule") Enable
+							button(class="btn btn-primary upsell-btn", data-feature="myDay") Enable
 
 						div(class="col-md-9")
 							div(class="upsell-row row")
@@ -264,9 +264,35 @@ html
 						h1 Administrative panel
 						h4 Select a task
 						ul
-							li(id="admin-announcements")
-								a(href="#admin") Change announcements
-							li(id="admin-stats")
-								a(href="#admin") Statistics
-							li(id="admin-about")
-								a(href="#admin") About server
+							if user.canFeedback > 0
+								li(id="admin-feedback", class="admin-link")
+									a(href="#admin-feedback") View feedback
+							if user.canAnnouncements > 0
+								li(id="admin-announcements", class="admin-link")
+									a(href="#admin-announcements") Change announcements
+							li(id="admin-stats", class="admin-link")
+								a(href="#admin-stats") Statistics
+							li(id="admin-about", class="admin-link")
+								a(href="#admin-about") About server
+								
+					if user.canFeedback > 0
+						div(id="admin-stats", class="page")
+							h1 Administrative panel
+							h4 View feedback
+							h5 Under construction!
+								
+					if user.canAnnouncements > 0
+						div(id="admin-stats", class="page")
+							h1 Administrative panel
+							h4 Change announcements
+							h5 Under construction!
+
+					div(id="admin-stats", class="page")
+						h1 Administrative panel
+						h4 Statistics
+						h5 Under construction!
+
+					div(id="admin-about", class="page")
+						h1 Administrative panel
+						h4 About server
+						h5 Under construction!
