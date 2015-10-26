@@ -119,4 +119,6 @@ $(document).ready(function() {
 			setPage(window.location.hash.substr(1));
 		}
 	});
+
+	setPage("overview");
 });
