@@ -10,6 +10,10 @@ router.get('/', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('index', { title: 'PlanHub' });
 });
 
+router.get('/about', function(req, res, next) {
+	res.render('about', { title: 'About' });
+});
+
 router.get('/logout', global.requireUser, function(req, res, next) {
 	req.session.loggedIn = false;
 	req.session.username = "logged out";
