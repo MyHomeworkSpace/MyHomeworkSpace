@@ -74,6 +74,21 @@ global.getUserRecord = function(req, res, next) {
 	});*/
 };
 
+global.requireNonZeroLevel = function(req, res, next) {
+	if (res.locals.user.level > 0) {
+		if (global.isApiPath(req.url)) {
+			res.json({
+				status: "forbidden",
+				message: "You are not permitted to access this resource."
+			});
+		} else {
+			res.redirect(global.basePath + "/login");
+		}
+	} else {
+		next();
+	}
+};
+
 global.requireViewFeedback = function(req, res, next) {
 	if (res.locals.user.canFeedback != 1) {
 		if (global.isApiPath(req.url)) {
