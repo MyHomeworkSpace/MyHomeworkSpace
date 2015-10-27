@@ -106,7 +106,9 @@ global.requireEditAnnouncements = function(req, res, next) {
 
 global.apiCall = function(req, res, next) {
 	res.locals.apiCall = true;
-	/*if (!req.session.nonces) {
+	/*
+	TODO: reenable nonces
+	if (!req.session.nonces) {
 		req.session.nonces = [];
 	}
 	if (req.session.nonces.indexOf(req.param("nonce")) > 0) {
