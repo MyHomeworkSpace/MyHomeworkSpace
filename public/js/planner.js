@@ -36,7 +36,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						if (confirm("Sure you want to delete '" + subjectName + "'?")) {
 							window.page.showLoading();
 							window.api.post("planner/sections/remove", {
-								subjectIndex: subjectIndex
+								sectionIndex: subjectIndex
 							}, function() {
 								window.location.reload();
 							});
