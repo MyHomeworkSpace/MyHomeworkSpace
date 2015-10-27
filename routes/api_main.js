@@ -13,7 +13,7 @@ router.get('/csrf', function(req, res, next) { // DO NOT PUT global.apiCall HERE
 		req.session.nonces = [];
 	}
 
-	var token = require("crypto").randomBytes(64).toString('hex');
+	var token = require("crypto").randomBytes(16).toString('hex');
 
 	res.json({
 		status: "ok",
