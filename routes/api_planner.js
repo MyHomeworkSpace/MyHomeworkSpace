@@ -268,7 +268,8 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 			error: "Missing or invalid section index parameter!"
 		});
 		return;
-	}if (req.body.newName == undefined) {
+	}
+	if (req.body.newName == undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid new name parameter!"
