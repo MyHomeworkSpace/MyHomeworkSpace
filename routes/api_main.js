@@ -8,6 +8,20 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.get('/csrf', function(req, res, next) { // DO NOT PUT global.apiCall HERE OR ELSE YOU WILL NEED A NONCE TO GET A NONCE
+	if (!req.session.nonces) {
+		req.session.nonces = [];
+	}
+
+	var token = crypto.randomBytes(64).toString('hex');
+
+	res.json({
+		status: "ok",
+		version: "1",
+		nonce: token
+	});
+});
+
 router.get('/features/get/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("users").select("*").where({
 		id: res.locals.user.id
