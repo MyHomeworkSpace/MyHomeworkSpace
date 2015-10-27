@@ -1,3 +1,8 @@
+/*
+	PlanHub
+	Licensed under the MIT License.
+*/
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
