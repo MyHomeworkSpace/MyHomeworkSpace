@@ -260,7 +260,10 @@ window.planner.loadWeek = function(startDate) {
 	});
 	window.planner.loadStep();
 
-	// DO NOT RESET CURRENTDATE - it should already be friday!
+	// CURRENT DATE SHOULD BE SUNDAY
+	// STEP BACK TWICE
+	currentDate.setDate(currentDate.getDate() - 1);
+	currentDate.setDate(currentDate.getDate() - 1);
 
 	// get friday
 	currentDate.setDate(currentDate.getDate() - 1);
