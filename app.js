@@ -89,6 +89,21 @@ global.requireViewFeedback = function(req, res, next) {
 	}
 };
 
+global.requireEditAnnouncements = function(req, res, next) {
+	if (res.locals.user.canAnnouncements != 1) {
+		if (global.isApiPath(req.url)) {
+			res.json({
+				status: "forbidden",
+				message: "You are not permitted to modify this resource."
+			});
+		} else {
+			res.redirect(global.basePath + "/login");
+		}
+	} else {
+		next();
+	}
+};
+
 global.apiCall = function(req, res, next) {
 	next();
 };
