@@ -19,6 +19,7 @@ window.planner.showSaved = function() {
 
 window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 	var $row = $('<tr class="subjectRow"></tr>');
+		$row.attr("data-subjectName", subjectName);
 		$row.attr("data-subjectIndex", subjectIndex);
 
 		var $subjectCell = $('<td class="subjectCell"></td>');
@@ -29,6 +30,18 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$controls.append($move);
 
 				var $deleteBtn = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>');
+					$deleteBtn.click(function() {
+						var subjectName = $(this).parent().parent().parent().attr("data-subjectName");
+						var subjectIndex = $(this).parent().parent().parent().attr("data-subjectIndex");
+						if (confirm("Sure you want to delete '" + subjectName + "'?")) {
+							window.page.showLoading();
+							window.api.post("planner/sections/remove", {
+								subjectIndex: subjectIndex
+							}, function() {
+								window.location.reload();
+							});
+						}
+					});
 				$controls.append($deleteBtn);
 			$subjectCell.append($controls);
 
