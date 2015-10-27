@@ -54,7 +54,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 		$row.append($subjectCell);
 
 		var monday = window.planner.findThisMonday();
-		for (var i = 0; i < 7; i++) {
+		for (var i = 0; i < 5; i++) {
 			var $editCell = $('<td class="editCell"><textarea class="editArea"></textarea></td>')
 				$editCell.attr("data-date", window.utils.formatDate_api(monday));
 				var $checkBtn = $('<input type="checkbox" class="checkBtn" />');
@@ -186,7 +186,7 @@ window.planner.loadSubjectDay = function(date, subjectIndex) {
 
 window.planner.loadStep = function() {
 	window.planner.loadState++;
-	if (window.planner.loadState == (1 + 1 + (7 * window.planner.subjectCount))) { // one step plus friday step plus 7 days per subject
+	if (window.planner.loadState == (1 + 1 + (5 * window.planner.subjectCount))) { // one step plus friday step plus 5 days per subject
 		window.page.hideLoading(); // done
 	}
 };
@@ -267,7 +267,7 @@ window.planner.loadWeek = function(startDate) {
 		var index = $(this).attr("data-subjectIndex");
 		var thisDate = new Date(startDate);
 
-		for (var i = 0; i < 7; i++) {
+		for (var i = 0; i < 5; i++) {
 			window.planner.loadSubjectDay(thisDate, index);
 			thisDate.setDate(thisDate.getDate() + 1);
 		};
