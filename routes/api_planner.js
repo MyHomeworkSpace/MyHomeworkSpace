@@ -106,6 +106,40 @@ router.get('/events/get/:date/:section_index', global.apiCall, global.requireUse
 	});
 });
 
+router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.params.date == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid date parameter!"
+		});
+		return;
+	}
+	if (req.params.section_index == undefined || parseInt(req.params.section_index) == NaN) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid section index parameter!"
+		});
+		return;
+	}
+	knex("planner_events").select("*").where({
+		userId: res.locals.user.id,
+		date: req.params.date,
+		sectionIndex: req.params.section_index
+	}).then(function(obj) {
+		res.json({
+			status: "ok",
+			date: req.params.date,
+			events: obj
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			date: req.params.date,
+			error: "Unknown database error"
+		});
+	});
+});
+
 router.post('/events/post/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.date == undefined) {
 		res.json({
