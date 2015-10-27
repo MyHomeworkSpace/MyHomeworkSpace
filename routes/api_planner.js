@@ -296,7 +296,8 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 		res.json({
 			status: "ok"
 		});
-	}).catch(function() {
+	}).catch(function(e) {
+		console.log(e);
 		res.json({
 			status: "error",
 			error: "Unknown database error."
