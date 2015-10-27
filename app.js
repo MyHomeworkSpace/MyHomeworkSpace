@@ -110,11 +110,12 @@ global.apiCall = function(req, res, next) {
 		req.session.nonces.splice(req.session.nonces.indexOf(req.param("nonce")), 1);
 		next();
 	} else {
-		res.json({
+		/*res.json({
 			status: "error",
 			error: "The nonce is invalid."
-		});
+		});*/
 	}
+	next();
 };
 
 global.getOptionalUserRecord = function(req, res, next) {
