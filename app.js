@@ -105,6 +105,10 @@ global.requireEditAnnouncements = function(req, res, next) {
 };
 
 global.apiCall = function(req, res, next) {
+	res.locals.apiCall = true;
+	if (req.session.nonces.indexOf(req.param("nonce"))) {
+		console.log("nonce success");
+	}
 	next();
 };
 
