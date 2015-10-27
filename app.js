@@ -116,8 +116,8 @@ global.apiCall = function(req, res, next) {
 		/*res.json({
 			status: "error",
 			error: "The nonce is invalid."
-		});*/
-	}
+		});
+	}*/
 	next();
 };
 
