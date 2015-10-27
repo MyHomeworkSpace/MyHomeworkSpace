@@ -1,5 +1,6 @@
 /*
 	PlanHub
+	https://planhub.me
 	Licensed under the MIT License.
 */
 
