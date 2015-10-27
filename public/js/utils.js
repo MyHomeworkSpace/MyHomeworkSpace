@@ -107,6 +107,9 @@ window.utils.getPrefixClass = function(prefix) {
 		case "lab":
 			return "cal_lab";
 
+		case "hex":
+			return "cal_hex";
+
 		default:
 			return "cal_no_prefix";
 	}

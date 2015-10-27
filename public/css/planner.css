@@ -169,6 +169,10 @@
 	background-color:#FF0 !important;
 	color: #FFF;
 }
+.cal_hex {
+	background-color:#000000 !important;
+	color: #00FF00;
+}
 .cal_no_prefix {
 	background-color: #FFD3BD;
 	color: black !important;
