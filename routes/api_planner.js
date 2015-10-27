@@ -275,26 +275,19 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 		});
 		return;
 	}
-	// use a transaction for consistency
-	knex.transaction(function(trx) {
-		return trx("planner_sections").select("*").where({
-			userId: res.locals.user.id,
-			sectionIndex: req.body.sectionIndex
-		}).then(function(obj) {
-			var itm = obj[0];
-			return trx("planner_sections").where({
-				sectionGid: itm.sectionGid
-			}).update({
-				name: newName
-			}).then(function() {
-				res.json({
-					status: "ok"
-				});
+	knex("planner_sections").select("*").where({
+		userId: res.locals.user.id,
+		sectionIndex: req.body.sectionIndex
+	}).then(function(obj) {
+		var itm = obj[0];
+		knex("planner_sections").where({
+			sectionGid: itm.sectionGid
+		}).update({
+			name: newName
+		}).then(function() {
+			res.json({
+				status: "ok"
 			});
-		});
-	}).then(function() {
-		res.json({
-			status: "ok"
 		});
 	}).catch(function(e) {
 		console.log(e);
