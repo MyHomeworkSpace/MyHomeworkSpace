@@ -261,6 +261,49 @@ router.post('/sections/add', global.apiCall, global.requireUser, global.getUserR
 	});
 });
 
+router.post('/sections/rename', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.sectionIndex == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid section index parameter!"
+		});
+		return;
+	}if (req.body.newName == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid new name parameter!"
+		});
+		return;
+	}
+	// use a transaction for consistency
+	knex.transaction(function(trx) {
+		return trx("planner_sections").select("*").where({
+			userId: res.locals.user.id,
+			sectionIndex: req.body.sectionIndex
+		}).then(function(obj) {
+			var itm = obj[0];
+			return trx("planner_sections").where({
+				sectionGid: itm.sectionGid
+			}).update({
+				name: newName
+			}).then(function() {
+				res.json({
+					status: "ok"
+				});
+			});
+		});
+	}).then(function() {
+		res.json({
+			status: "ok"
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error."
+		});
+	});
+});
+
 router.post('/sections/remove', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.sectionIndex == undefined) {
 		res.json({

@@ -29,6 +29,23 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
 				$controls.append($move);
 
+				var $renameBtn = $('<button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></button>');
+					$renameBtn.click(function() {
+						var subjectName = $(this).parent().parent().parent().attr("data-subjectName");
+						var subjectIndex = $(this).parent().parent().parent().attr("data-subjectIndex");
+						var newName = prompt("What do you want to rename '" + subjectName + "' to?");
+						if (newName != "" && newName != undefined) {
+							window.page.showLoading();
+							window.api.post("planner/sections/rename", {
+								sectionIndex: subjectIndex,
+								newName: newName
+							}, function() {
+								window.location.reload();
+							});
+						}
+					});
+				$controls.append($renameBtn);
+
 				var $deleteBtn = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>');
 					$deleteBtn.click(function() {
 						var subjectName = $(this).parent().parent().parent().attr("data-subjectName");
