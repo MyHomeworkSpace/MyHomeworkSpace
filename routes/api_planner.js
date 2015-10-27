@@ -205,7 +205,7 @@ router.post('/sections/add', global.apiCall, global.requireUser, global.getUserR
 		userId: res.locals.user.id
 	}).then(function(obj) {
 		knex("planner_sections").insert({
-			sectionIndex: obj[obj.length - 1].sectionIndex,
+			sectionIndex: obj[obj.length - 1].sectionIndex + 1,
 			name: req.body.sectionName,
 			userId: res.locals.user.id
 		}).then(function() {
