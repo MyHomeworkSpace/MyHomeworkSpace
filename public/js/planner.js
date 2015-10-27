@@ -104,6 +104,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						$element.removeClass("cal_test");
 						$element.removeClass("cal_ica");
 						$element.removeClass("cal_lab");
+						$element.removeClass("cal_docid");
 						$element.removeClass("cal_hex");
 
 						$element.addClass(window.utils.getPrefixClass(prefix));
