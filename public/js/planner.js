@@ -113,7 +113,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				var prefixFunction = function () {
 					var $ev = $(this).children("div").children("textarea");
 					if (($ev.val().length) && ($ev.val().split(' ').length)) {
-						var prefix = $ev.val().split(' ')[0];
+						var prefix = $ev.val().split(' ')[0].trim();
 						var $element = $(this).find('.first-word');
 						$element.text(prefix);
 						//prefix = prefix.toLowerCase();
