@@ -57,7 +57,7 @@ global.requireUser = function(req, res, next) {
 };
 
 global.getUserRecord = function(req, res, next) {
-	// TODO: error on api pages?
+	// TODO: errors on api pages?
 	global.knex("users").select("*").where({ username: req.session.username }).then(function(obj) {
 		if (obj.length > 1) {
 			res.render("error", { title: "Error", msg: "A database error has occurred, and there is a duplicate user record. Please contact us for assistance." });

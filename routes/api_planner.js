@@ -121,20 +121,22 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 		});
 		return;
 	}
+	var endOfWeek = req.params.date;
+	endOfWeek.setDate(endOfWeek.getDate() + 7);
 	knex("planner_events").select("*").where({
 		userId: res.locals.user.id,
 		date: req.params.date,
 		sectionIndex: req.params.section_index
-	}).then(function(obj) {
+	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function(obj) {
 		res.json({
 			status: "ok",
-			date: req.params.date,
+			startDate: req.params.date,
 			events: obj
 		});
 	}).catch(function() {
 		res.json({
 			status: "error",
-			date: req.params.date,
+			startDate: req.params.date,
 			error: "Unknown database error"
 		});
 	});
