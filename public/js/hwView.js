@@ -1,5 +1,5 @@
 window.hwView = {
-	subjects: [],
+	subjects: {},
 	loadCount: 0
 };
 
@@ -49,7 +49,7 @@ window.hwView.addEventToList = function(ev, list) {
 };
 
 window.hwView.loadList = function(date, list, callback) {
-	for (var i = 0; i < window.hwView.subjects.length; i++) {
+	for (var i = 0; i < Object.keys(window.hwView.subjects).length; i++) {
 		window.api.get("planner/events/get/" + window.utils.formatDate_api(date) + "/" + i, function(data) {
 			var ev = data.events;
 			window.hwView.loadStep();
@@ -68,9 +68,12 @@ window.hwView.loadList = function(date, list, callback) {
 };
 
 window.hwView.loadSubjects = function(callback) {
-	window.hwView.subjects = [];
+	window.hwView.subjects = {};
 	window.api.get("planner/sections/get/", function(data) {
-		window.hwView.subjects = data.sections;
+		for (var i = 0; i < data.sections.length; i++) {
+			var itm = data.sections[i];
+			window.hwView.subjects[itm.sectionIndex] = itm;
+		};
 		callback(data.sections);
 	});
 };
@@ -93,7 +96,7 @@ window.hwView.findNextDay = function(offset) {
 
 window.hwView.loadStep = function() {
 	window.hwView.loadCount += 1;
-	if (window.hwView.loadCount >= (1 + (14 * window.hwView.subjects.length))) {
+	if (window.hwView.loadCount >= (1 + (14 * Object.keys(window.hwView.subjects).length))) {
 		window.page.hideLoading();
 		if ($(".hwView-tomorrow ul").text() == "" && $(".hwView-soon ul").text() == "" && $(".hwView-longterm ul").text() == "") {
 			// empty!
