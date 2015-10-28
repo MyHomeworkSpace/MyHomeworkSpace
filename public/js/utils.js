@@ -92,11 +92,13 @@ window.utils.getPrefixClass = function(prefix) {
 		case "essay":
 		case "paper":
 			return "cal_paper";
-
+		
+		case "popquiz":
 		case "quiz":
 			return "cal_quiz";
 
 		case "test":
+		case "final":
 		case "exam":
 		case "midterm":
 			return "cal_test";
@@ -110,6 +112,7 @@ window.utils.getPrefixClass = function(prefix) {
 		case "docid":
 			return "cal_docid";
 
+		case "trojun":
 		case "hex":
 			return "cal_hex";
 
