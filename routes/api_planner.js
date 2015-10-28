@@ -121,7 +121,7 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 		});
 		return;
 	}
-	var endOfWeek = req.params.date;
+	var endOfWeek = new Date(req.params.date);
 	endOfWeek.setDate(endOfWeek.getDate() + 7);
 	knex("planner_events").select("*").where({
 		userId: res.locals.user.id,
