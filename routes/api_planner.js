@@ -282,11 +282,10 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 		sectionIndex: req.body.sectionIndex
 	}).then(function(obj) {
 		var itm = obj[0];
-		console.log(itm);
 		knex("planner_sections").where({
 			sectionGid: itm.sectionGid
 		}).update({
-			name: newName
+			name: req.body.newName
 		}).then(function() {
 			res.json({
 				status: "ok"
