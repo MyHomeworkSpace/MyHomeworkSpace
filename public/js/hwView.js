@@ -49,8 +49,8 @@ window.hwView.addEventToList = function(ev, list) {
 };
 
 window.hwView.loadList = function(date, list, callback) {
-	for (var i = 0; i < Object.keys(window.hwView.subjects).length; i++) {
-		window.api.get("planner/events/get/" + window.utils.formatDate_api(date) + "/" + i, function(data) {
+	for (var subjectIndex in window.hwView.subjects; i++) {
+		window.api.get("planner/events/get/" + window.utils.formatDate_api(date) + "/" + subjectIndex, function(data) {
 			var ev = data.events;
 			window.hwView.loadStep();
 			if (ev.length == 0) {
