@@ -69,7 +69,7 @@ global.getUserRecord = function(req, res, next) {
 		}
 		res.locals.user = obj[0];
 		next();
-	});/*.catch(fction() {
+	});/*.catch(function() {
 		res.render("error", { title: "Error", msg: "A database communication error has occurred. Please try to log out and log back in. If you have lost data, please contact us as soon as possible."});
 	});*/
 };
