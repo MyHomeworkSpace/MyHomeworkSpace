@@ -202,25 +202,9 @@ window.planner.loadSubjectDay = function(date, subjectIndex) {
 	});
 };
 
-window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
-	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
-
-	window.api.get("planner/events/getWeek/" + window.utils.formatDate_api(startDate) + "/" + subjectIndex, function(data) {
-		var evList = data.events;
-		for (var evIndex in evList) {
-			var ev = evList[evIndex];
-			var $cell = $row.children(".editCell[data-date=" + ev.date.split("T")[0] + "]");
-			$cell.children(".magic-input-container").children("div").children("textarea").val(ev.text);
-			$cell.children(".checkBtn").prop("checked", ev.done);
-			$cell.children(".checkBtn").change();
-		};
-		window.planner.loadStep();
-	});
-};
-
 window.planner.loadStep = function() {
 	window.planner.loadState++;
-	if (window.planner.loadState == (1 + 1 + (1 * window.planner.subjectCount))) { // one step plus friday step plus 1 week per subject
+	if (window.planner.loadState == (1 + 1 + (7 * window.planner.subjectCount))) { // one step plus friday step plus 7 days per subject
 		window.page.hideLoading(); // done
 	}
 };
@@ -304,13 +288,8 @@ window.planner.loadWeek = function(startDate) {
 		var index = $(this).attr("data-subjectIndex");
 		var thisDate = new Date(startDate);
 
-		window.planner.loadSubjectWeek(thisDate, index);
-
-		thisDate = new Date(startDate);
 		for (var i = 0; i < 7; i++) {
-			//window.planner.loadSubjectDay(thisDate, index);
-			var $cell = $row.children(".editCell[data-date=" + window.utils.formatDate_api(thisDate) + "]");
-			$cell.children(".magic-input-container").change();
+			window.planner.loadSubjectDay(thisDate, index);
 			thisDate.setDate(thisDate.getDate() + 1);
 		};
 	});
