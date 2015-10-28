@@ -214,6 +214,8 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 			$cell.children(".checkBtn").prop("checked", ev.done);
 			$cell.children(".checkBtn").change();
 		};
+		var $mic = $row.children(".editCell .magic-input-container");
+		$mic.change();
 		window.planner.loadStep();
 	});
 };
@@ -305,14 +307,6 @@ window.planner.loadWeek = function(startDate) {
 		var thisDate = new Date(startDate);
 
 		window.planner.loadSubjectWeek(thisDate, index);
-
-		thisDate = new Date(startDate);
-		for (var i = 0; i < 7; i++) {
-			// window.planner.loadSubjectDay(thisDate, index);
-			var $mic = $(".subjectRow .editCell[data-date=" + window.utils.formatDate_api(thisDate) + "] .magic-input-container");
-			$mic.change();
-			thisDate.setDate(thisDate.getDate() + 1);
-		};
 	});
 
 	startDate_obj = new Date(startDate);
