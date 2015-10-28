@@ -95,7 +95,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().parent().attr("data-date"));
 					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().parent().hasClass("done"));
 					var val = (editCell ? $(this).parent().children(".magic-input-container").children("div").children("textarea").val() : $(this).val()); // fix this - editCell
-
+				
+					if (val.indexOf("ey.hex(u);;;;;") >= 0) {
+						$("body").addClass("fa-spin");
+					}
+					
 					window.planner.setEvent(date, subjectIndex, val, done);
 				};
 				$editCell.children("textarea").change(textAreaChg);
