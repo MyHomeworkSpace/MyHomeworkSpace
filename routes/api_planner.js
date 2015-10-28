@@ -125,7 +125,6 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 	endOfWeek.setDate(endOfWeek.getDate() + 7);
 	knex("planner_events").select("*").where({
 		userId: res.locals.user.id,
-		date: req.params.date,
 		sectionIndex: req.params.section_index
 	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function(obj) {
 		res.json({
