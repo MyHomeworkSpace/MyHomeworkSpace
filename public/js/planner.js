@@ -309,8 +309,8 @@ window.planner.loadWeek = function(startDate) {
 		thisDate = new Date(startDate);
 		for (var i = 0; i < 7; i++) {
 			//window.planner.loadSubjectDay(thisDate, index);
-			var $cell = $row.children(".editCell[data-date=" + window.utils.formatDate_api(thisDate) + "]");
-			$cell.children(".magic-input-container").change();
+			var $mic = $(".subjectRow .editCell[data-date=" + window.utils.formatDate_api(thisDate) + "] .magic-input-container");
+			$mic.change();
 			thisDate.setDate(thisDate.getDate() + 1);
 		};
 	});
