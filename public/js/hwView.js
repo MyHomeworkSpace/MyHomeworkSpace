@@ -49,7 +49,7 @@ window.hwView.addEventToList = function(ev, list) {
 };
 
 window.hwView.loadList = function(date, list, callback) {
-	for (var subjectIndex in window.hwView.subjects; i++) {
+	for (var subjectIndex in window.hwView.subjects) {
 		window.api.get("planner/events/get/" + window.utils.formatDate_api(date) + "/" + subjectIndex, function(data) {
 			var ev = data.events;
 			window.hwView.loadStep();
