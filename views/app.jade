@@ -140,8 +140,38 @@ html
 									img(src="#{basePath}/images/planner03.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Add or remove subjects
-									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or renames your sections&mdash;it's your planner!
+									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
 
+					div(id="planner-move-modal", class="modal fade")
+						div(class="modal-dialog")
+							div(class="modal-content")
+								div(class="modal-header")
+									button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+										span(aria-hidden="true") &times;
+									h4(class="modal-title")
+										span Swap subject
+								
+								div(class="modal-body")
+									p(class="feedback-desc")
+									textarea(id="feedback-msg", placeholder="Write your message here...")
+									strong The following information will be sent with your feedback:
+									ul
+										li
+											span Your name (
+											span= user.name
+											span )
+										li
+											span Your username (
+											span= user.username
+											span )
+										li
+											input(type="checkbox", id="feedback-snapshot", checked="checked")
+											span  (optional) A snapshot of the web page so we can see what you are talking about! This might contain information you are looking at, like your planner events. You don't have to include it if you don't want to.
+									p Thanks for the feedback! Click "Submit" to send it!
+								
+								div(class="modal-footer feedback-footer-normal")
+									button(type="button", class="btn btn-default", data-dismiss="modal") Close without submitting
+									button(type="button", class="btn btn-primary", id="feedback-submit") Submit
 					div(id="planner-status") Saved. THIS IS AN ALPHA VERSION THING BE CAREFUL STUFF MIGHT BREAK
 					div(id="planner-controls-wrapper")
 						div(id="planner-controls")
