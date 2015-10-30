@@ -121,7 +121,7 @@ global.requireEditAnnouncements = function(req, res, next) {
 };
 
 global.apiCall = function(req, res, next) {
-	if (!req.session.nonces) {
+	/*if (!req.session.nonces) {
 		req.session.nonces = [];
 	}
 	if (req.session.nonces.indexOf(req.param("nonce")) >= 0) {
@@ -133,7 +133,7 @@ global.apiCall = function(req, res, next) {
 			error: "The nonce is invalid."
 		});
 		return;
-	}
+	}*/
 	next();
 };
 
