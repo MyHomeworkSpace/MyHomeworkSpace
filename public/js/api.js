@@ -3,9 +3,9 @@ window.api = {
 };
 
 window.api.getNonce = function(callback, err) {
-	//$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrf", function(ret) {
-		callback("0"); //ret.nonce);
-	//});
+	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrf", function(ret) {
+		callback(ret.nonce);
+	});
 };
 
 window.api.get = function(path, done, err) {
