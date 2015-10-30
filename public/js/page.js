@@ -1,7 +1,9 @@
 function setPage(newPage) {
 	$(".page.open-page").removeClass("open-page");
 	$("#" + newPage).addClass("open-page");
-	$("#" + newPage).trigger("tabOpened");
+	if ($(".upsell[data-feature=" + newPage + "]").length == 0) {
+		$("#" + newPage).trigger("tabOpened");
+	}
 	window.location.hash = newPage;
 }
 
