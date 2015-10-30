@@ -123,7 +123,9 @@ global.requireEditAnnouncements = function(req, res, next) {
 global.apiCall = function(req, res, next) {
 	knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).select("*").then(function(rst) {
 		if (rst.length > 0) {
-			next();
+			knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).del().then(function() {
+				next();
+			});
 		} else {
 			res.json({
 				status: "error",
