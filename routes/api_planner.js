@@ -299,7 +299,63 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 		});
 	});
 });
+/*
+router.get('/sections/swap/:first/:second', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.params.first == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid first index parameter!"
+		});
+		return;
+	}
+	if (req.params.second == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid second index parameter!"
+		});
+		return;
+	}
+	knex("planner_sections").select("*").where("sectionIndex", req.params.first).orWhere("sectionIndex", req.params.second).then(function(obj) {
+		if (obj.length != 2) {
+			res.json({
+				status: "error",
+				error: "Missing or invalid indexes!"
+			});
+			return;
+		}
 
+		knex.transaction(function(trx) {
+			return trx("planner_sections").where({
+				sectionGid: obj[0].sectionGid
+			}).update({
+				sectionIndex: obj[1].sectionIndex
+			}).then(function() {
+				return trx("planner_sections").where({
+					sectionGid: obj[1].sectionGid
+				}).update({
+					sectionIndex: obj[0].sectionIndex
+				}).then
+			});
+		}).then(function() {
+			res.json({
+				status: "ok"
+			});
+		}).catch(function(e) {
+			console.log(e);
+			res.json({
+				status: "error",
+				error: "Unknown database error."
+			});
+		});
+	}).catch(function(e) {
+		console.log(e);
+		res.json({
+			status: "error",
+			error: "Unknown database error."
+		});
+	});
+});
+*/
 router.post('/sections/remove', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.sectionIndex == undefined) {
 		res.json({

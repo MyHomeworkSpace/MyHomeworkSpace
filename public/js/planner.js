@@ -26,8 +26,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 			$subjectCell.text(subjectName);
 
 			var $controls = $('<div class="subjectControls"></div>');
-				var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
-				$controls.append($move);
+				/*var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
+					$move.click(function() {
+
+					});
+				$controls.append($move);*/
 
 				var $renameBtn = $('<button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></button>');
 					$renameBtn.click(function() {
