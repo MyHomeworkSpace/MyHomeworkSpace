@@ -124,7 +124,7 @@ global.apiCall = function(req, res, next) {
 	if (!req.session.nonces) {
 		req.session.nonces = [];
 	}
-	if (req.session.nonces.indexOf(req.param("nonce")) > 0) {
+	if (req.session.nonces.indexOf(req.param("nonce")) >= 0) {
 		req.session.nonces.splice(req.session.nonces.indexOf(req.param("nonce")), 1);
 		//next();
 	} else {
