@@ -337,6 +337,7 @@ window.planner.addSubject = function(name) {
 };
 
 $(document).ready(function() {
+	alert("Warning, this site is still in beta. PLEASE BEWARE THE HEX");
 	$("#planner").on("tabOpened", function() {
 		$(".subjectRow").remove(); // clear the grid
 		window.planner.subjectCount = 0;
