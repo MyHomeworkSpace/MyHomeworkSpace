@@ -121,20 +121,16 @@ global.requireEditAnnouncements = function(req, res, next) {
 };
 
 global.apiCall = function(req, res, next) {
-	/*if (!req.session.nonces) {
-		req.session.nonces = [];
-	}
-	if (req.session.nonces.indexOf(req.param("nonce")) >= 0) {
-		req.session.nonces.splice(req.session.nonces.indexOf(req.param("nonce")), 1);
-		//next();
-	} else {
-		res.json({
-			status: "error",
-			error: "The nonce is invalid."
-		});
-		return;
-	}*/
-	next();
+	knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).select("*").then(function(rst) {
+		if (rst.length > 0) {
+			next();
+		} else {
+			res.json({
+				status: "error",
+				error: "The nonce is invalid."
+			});
+		}
+	});
 };
 
 global.getOptionalUserRecord = function(req, res, next) {

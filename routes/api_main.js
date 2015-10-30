@@ -14,15 +14,13 @@ router.get('/csrf', function(req, res, next) { // DO NOT PUT global.apiCall HERE
 	}
 
 	var token = require("crypto").randomBytes(16).toString('hex');
-	req.session.nonces.push(token);
-	if (req.session.nonces.length > 75) {
-		req.session.nonces.pop();
-	}
-
-	res.json({
-		status: "ok",
-		version: "1",
-		nonce: token
+	console.log("New token: " + token);
+	knex("nonces").insert({ nonce: token, sid: req.session.id }).then(function() {
+		res.json({
+			status: "ok",
+			version: "1",
+			nonce: token
+		});
 	});
 });
 
