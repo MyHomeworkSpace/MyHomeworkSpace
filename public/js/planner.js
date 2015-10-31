@@ -94,45 +94,72 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				});
 				var textAreaChg = function() {
 					var editCell = $(this).parent().hasClass("editCell");
+
 					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().parent().attr("data-subjectIndex"));
 					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().parent().attr("data-date"));
 					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().parent().hasClass("done"));
 					var val = (editCell ? $(this).parent().children(".magic-input-container").children("div").children("textarea").val() : $(this).val()); // fix this - editCell
-				
+					var $micDiv = (editCell ? $(this).children("div:not(.first-word)") : $(this).parent());
+
 					if (val.indexOf("ey.hex(u);;;;;") >= 0) {
 						$("body").addClass("fa-spin");
 					}
 					
-					window.planner.setEvent(date, subjectIndex, val, done);
+					if ($micDiv.attr("data-donePass")) {
+						var doneArr = $micDiv.attr("data-donePass").split("");
+						// tbd
+					}
+
+					var texts = val.split("\n");
+					for (var textIndex in texts) {
+						window.planner.setEvent(date, subjectIndex, texts[textIndex], done, textIndex);
+					}
 				};
 				$editCell.children("textarea").change(textAreaChg);
 				$editCell.children(".checkBtn").change(textAreaChg);
 
 				var $mic = $('<div class="magic-input-container"></div>');
 
-				var $firstword = $('<div class="form-control first-word hiddenThing"></div>');
-				$mic.prepend($firstword);
 				$mic.prepend("<div></div>");
 				var prefixFunction = function () {
 					var $ev = $(this).children("div").children("textarea");
+					var $mic = $ev.parent().parent();
 					if (($ev.val().length) && ($ev.val().split(' ').length)) {
-						var prefix = $ev.val().split(' ')[0].trim();
-						var $element = $(this).find('.first-word');
-						$element.text(prefix);
-						//prefix = prefix.toLowerCase();
-						$element.removeClass("cal_no_prefix");
-						$element.removeClass("cal_hw");
-						$element.removeClass("cal_project");
-						$element.removeClass("cal_paper");
-						$element.removeClass("cal_quiz");
-						$element.removeClass("cal_test");
-						$element.removeClass("cal_ica");
-						$element.removeClass("cal_lab");
-						$element.removeClass("cal_docid");
-						$element.removeClass("cal_hex");
+						var eventNumber = $ev.val().trim().split("\n").length;
+						var recreate = (
+										$mic.children(".first-word").length == 0 || // if there are no first-words
+										$mic.attr("data-events") != eventNumber // or if the number of events has changed
+										);
+						if (recreate) {
+							$mic.children(".first-word").remove();
+							for (var i = 0; i < eventNumber; i++) {
+								var $firstword = $('<div class="form-control first-word hiddenThing"></div>');
+									$firstword.css("top", (8+(i*18))+"px");
+									$firstword.attr("data-eventIndex", i);
+								$mic.append($firstword);
+							};
+						}
 
-						$element.addClass(window.utils.getPrefixClass(prefix));
-						$(this).find('.first-word').removeClass("hiddenThing");
+						for (var i = 0; i < eventNumber; i++) {	
+							var prefix = $ev.val().split('\n')[i].split(' ')[0].trim();
+							var $element = $(this).find('.first-word[data-eventIndex=' + i + ']');
+							$element.text(prefix);
+							//prefix = prefix.toLowerCase();
+							$element.removeClass("cal_no_prefix");
+							$element.removeClass("cal_hw");
+							$element.removeClass("cal_project");
+							$element.removeClass("cal_paper");
+							$element.removeClass("cal_quiz");
+							$element.removeClass("cal_test");
+							$element.removeClass("cal_ica");
+							$element.removeClass("cal_lab");
+							$element.removeClass("cal_docid");
+							$element.removeClass("cal_hex");
+
+							$element.addClass(window.utils.getPrefixClass(prefix));
+							$element.removeClass("hiddenThing");
+							$mic.attr("data-events", eventNumber);
+						};
 					}
 					else { 
 						$(this).find('.first-word').addClass("hiddenThing");
@@ -164,13 +191,14 @@ window.planner.calculateEventGridDates = function() {
 	});
 };
 
-window.planner.setEvent = function(date, subjectIndex, text, done) {
+window.planner.setEvent = function(date, subjectIndex, text, done, subId) {
 	window.planner.showSaving();
 	window.api.post("planner/events/post/", {
 		date: date,
 		subjectIndex: subjectIndex,
 		text: text,
-		done: (done ? 1 : 0)
+		done: (done ? 1 : 0),
+		subId: subId
 	}, function(data) {
 		window.planner.showSaved();
 		console.log(data);
@@ -193,6 +221,8 @@ window.planner.getAnnouncement = function(date, callback) {
 	});
 };
 
+/*
+deprecated, use loadSubjectWeek
 window.planner.loadSubjectDay = function(date, subjectIndex) {
 	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
 
@@ -207,19 +237,38 @@ window.planner.loadSubjectDay = function(date, subjectIndex) {
 		$cell.children(".magic-input-container").change(); // call this always just in case the textarea has been cleared
 		window.planner.loadStep();
 	});
-};
+};*/
 
 window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
 
 	window.api.get("planner/events/getWeek/" + window.utils.formatDate_api(startDate) + "/" + subjectIndex, function(data) {
 		var evList = data.events;
+		var eventMap = {};
 		for (var evIndex in evList) {
 			var ev = evList[evIndex];
-			var $cell = $row.children(".editCell[data-date=" + ev.date.split("T")[0] + "]");
-			$cell.children(".magic-input-container").children("div").children("textarea").val(ev.text);
-			$cell.children(".checkBtn").prop("checked", ev.done);
-			$cell.children(".checkBtn").change();
+			var happyDate = ev.date.split("T")[0];
+			if (eventMap[happyDate]) {
+				eventMap[happyDate].push(ev);
+			} else {
+				eventMap[happyDate] = [];
+				eventMap[happyDate].push(ev);
+			}
+		};
+		for (var eventMapIndex in eventMap) {
+			var evs = eventMap[eventMapIndex];
+			var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
+			var cellText = "";
+			var doneStr = "";
+			for (var evsIndex in evs) {
+				cellText += evs[evsIndex].text;
+				cellText += "\n";
+				doneStr += evs[evsIndex].done;
+			};
+			$cell.children(".magic-input-container").children("div").children("textarea").val(cellText);
+			$cell.children(".magic-input-container").children("div").attr("data-donePass", doneStr);
+			//$cell.children(".checkBtn").prop("checked", ev.done);
+			//$cell.children(".checkBtn").change();
 		};
 		window.planner.loadStep();
 	});
