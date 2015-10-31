@@ -170,9 +170,17 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 		});
 		return;
 	}
+	if (req.body.subId == undefined || parseInt(req.body.subId) == NaN) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid subId parameter!"
+		});
+		return;
+	}
 	knex("planner_events").select("*").where({
 		userId: res.locals.user.id,
 		date: req.body.date,
+		subId: req.body.subId,
 		sectionIndex: req.body.subjectIndex
 	}).then(function(obj) {
 		if (obj.length == 0) {
@@ -182,6 +190,7 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 				userId: res.locals.user.id,
 				date: req.body.date,
 				text: req.body.text,
+				subId: req.body.subId,
 				done: req.body.done
 			}).then(function() {
 				res.json({
