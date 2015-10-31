@@ -267,8 +267,8 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 			};
 			$cell.children(".magic-input-container").children("div").children("textarea").val(cellText);
 			$cell.children(".magic-input-container").children("div").attr("data-donePass", doneStr);
-			//$cell.children(".checkBtn").prop("checked", ev.done);
-			//$cell.children(".checkBtn").change();
+			$cell.children(".checkBtn").prop("checked", ev.done);
+			$cell.children(".checkBtn").change();
 		};
 		window.planner.loadStep();
 	});
