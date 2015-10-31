@@ -1,3 +1,8 @@
 body {
 	padding-top: 70px;
 }
+
+.planhub-logo-nav {
+	display: inline !important;
+	margin-right: 5px;
+}
