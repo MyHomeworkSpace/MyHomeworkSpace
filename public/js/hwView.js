@@ -56,13 +56,15 @@ window.hwView.loadList = function(date, list, callback) {
 			if (ev.length == 0) {
 				return;
 			}
-			var evObj = {
-				name: ev[0].text,
-				due: new Date(data.date),
-				subject: ev[0].sectionIndex,
-				done: ev[0].done
+			for (var evIndex in ev) {
+				var evObj = {
+					name: ev[evIndex].text,
+					due: new Date(data.date),
+					subject: ev[evIndex].sectionIndex,
+					done: ev[evIndex].done
+				};
+				window.hwView.addEventToList(evObj, list);
 			};
-			window.hwView.addEventToList(evObj, list);
 		});
 	}
 };
