@@ -261,9 +261,14 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 			var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
 			var cellText = "";
 			var doneStr = "";
+			var first = true;
 			for (var evsIndex in evs) {
+				if (first) {
+					first = false; // don't put a new line for the first subId
+				} else {
+					cellText += "\n";
+				}
 				cellText += evs[evsIndex].text;
-				cellText += "\n";
 				doneStr += evs[evsIndex].done;
 			};
 			$cell.children(".magic-input-container").children("div").children("textarea").val(cellText);
