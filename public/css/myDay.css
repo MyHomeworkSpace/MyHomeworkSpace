@@ -1,0 +1,7 @@
+#myDay-welcome-form input {
+	margin-right: 5px;
+}
+
+input[name=sleepHrs] {
+	width: 75px;
+}
