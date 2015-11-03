@@ -17,7 +17,7 @@ window.page.getBasePath = function() {
 window.page.showLoading = function() {
 	window.page.loadTimeout = setTimeout(function() {
 		$(".loadOverlay").show();
-	}, 100);
+	}, 200);
 };
 
 window.page.hideLoading = function() {
