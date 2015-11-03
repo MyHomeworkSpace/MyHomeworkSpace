@@ -102,9 +102,10 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					var $micDiv = (editCell ? $(this).children("div:not(.first-word)") : $(this).parent());
 
 					if (val.indexOf("ey.hex(u);;;;;") >= 0) {
+						alert("You just typed something really dangerous.")
 						$("body").addClass("fa-spin");
 					}
-					
+
 					if ($micDiv.attr("data-donePass")) {
 						var doneArr = $micDiv.attr("data-donePass").split("");
 						// tbd
@@ -140,7 +141,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							};
 						}
 
-						for (var i = 0; i < eventNumber; i++) {	
+						for (var i = 0; i < eventNumber; i++) {
 							var prefix = $ev.val().split('\n')[i].split(' ')[0].trim();
 							var $element = $(this).find('.first-word[data-eventIndex=' + i + ']');
 							$element.text(prefix);
@@ -161,7 +162,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$mic.attr("data-events", eventNumber);
 						};
 					}
-					else { 
+					else {
 						$(this).find('.first-word').addClass("hiddenThing");
 					}
 				};
@@ -175,7 +176,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 	$("#planner table tbody").append($row);
 
 	window.planner.subjectCount++;
-	
+
 	window.planner.calculateEventGridDates();
 };
 
