@@ -45,6 +45,12 @@
 .add-subject:hover {
 	background: darkgray;
 }
+.planner-welcome .welcome-box {
+	border: solid 1px black;
+	padding: 10px;
+	padding-bottom: 20px;
+	text-align: center;
+}
 .subjectControls {
 	opacity: 0;
 	transition: opacity 0.4s;

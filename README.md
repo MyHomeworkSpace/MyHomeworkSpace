@@ -1,4 +1,6 @@
 # PlanHub
 Hi!
 
-This is a open-source planner website licensed under the MIT License. Idk where you can find that
+This is a open-source planner website licensed under the MIT License.
+
+See it online at [planhub.me](http://planhub.me).

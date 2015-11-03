@@ -58,6 +58,10 @@ nav {
 .tabs li:hover {
 	background: lightblue;
 }
+.go-dropdown li {
+	cursor: pointer;
+}
+
 .pages {
 	width: 100%;
 	height: 100%;

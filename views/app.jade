@@ -43,6 +43,25 @@ html
 						span PlanHub
 				
 				div(class="collapse navbar-collapse", id="navbar-collapse")
+					ul(class="nav navbar-nav")
+						li
+							a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+								| Go 
+								span.caret
+
+							ul.dropdown-menu.go-dropdown(role='menu')
+								li
+									a(data-page="overview") Overview
+								li
+									a(data-page="planner") Planner
+								li
+									a(data-page="hwView") Homework View
+								//li.divider
+								//li
+								//	a(href='#') Settings
+								//li
+								//	a(href='#') Admin
+
 					ul(class="nav navbar-nav navbar-right")
 						li(class="feedback-btn")
 							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Like something? Send us a smile.")
@@ -177,7 +196,7 @@ html
 								div(class="modal-footer feedback-footer-normal")
 									button(type="button", class="btn btn-default", data-dismiss="modal") Close without submitting
 									button(type="button", class="btn btn-primary", id="feedback-submit") Submit
-					div(id="planner-status") Saved. THIS IS AN ALPHA VERSION THING BE CAREFUL STUFF MIGHT BREAK
+					div(id="planner-status") Saved.
 					div(id="planner-controls-wrapper")
 						div(id="planner-controls")
 							button(id="planner-prev", class="btn btn-default btn-xs")
@@ -225,6 +244,11 @@ html
 								th 
 								th 
 						tbody
+							tr(class="planner-welcome hidden")
+								td(class="no-border")
+								td(colspan="7", class="welcome-box")
+									h1 Welcome to Planner.
+									h4 Click the "Add subject" button below to get started.
 						tfoot
 							tr
 								td(class="no-border")
