@@ -76,6 +76,10 @@ $(document).ready(function() {
 		setPage($(this).attr("data-page"));
 	});
 
+	$(".go-dropdown li a").click(function() {
+		setPage($(this).attr("data-page"));
+	});
+
 	$(".admin-link").click(function() {
 		setPage($(this).attr("data-page"));
 	});
