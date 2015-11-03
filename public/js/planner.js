@@ -391,6 +391,7 @@ window.planner.getSubjects = function(callback) {
 window.planner.addSubject = function(name) {
 	window.api.post("planner/sections/add", { sectionName: name }, function(data) {
 		window.planner.createSubjectRow(name, data.newIndex);
+		$(".planner-welcome").addClass("hidden");
 	});
 };
 
@@ -402,6 +403,10 @@ $(document).ready(function() {
 		window.planner.getSubjects(function(subjects) {
 			for (var i = 0; i < subjects.length; i++) {
 				window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
+			}
+
+			if (window.planner.subjectCount == 0) {
+				$(".planner-welcome").removeClass("hidden");
 			}
 
 			window.planner.loadWeek(window.planner.findThisMonday().toString());
