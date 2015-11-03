@@ -45,7 +45,7 @@ window.hwView.addEventToList = function(ev, list) {
 			$lineTwo.append($due);
 		$item.append($lineTwo);
 
-	$(".hwView-").append($item).append("ul" + list);
+	$(".hwView-" + list + " ul").append($item);
 };
 
 window.hwView.loadList = function(date, list, callback) {
