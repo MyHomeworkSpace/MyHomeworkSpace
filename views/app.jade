@@ -41,6 +41,21 @@ html
 					a(class="navbar-brand", href="#")
 						img(src="../images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
 						span PlanHub
+						a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+							| Go 
+							span.caret
+								ul.dropdown-menu(role='menu')
+									li
+										a(href='#') Overview
+									li
+										a(href='#') Planner
+									li
+										a(href='#') Homework View
+									li.divider
+									li
+										a(href='#') Settings
+									li
+										a(href='#') Admin
 				
 				div(class="collapse navbar-collapse", id="navbar-collapse")
 					ul(class="nav navbar-nav navbar-right")
