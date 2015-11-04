@@ -7,10 +7,13 @@ html
 		link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css", rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==", crossorigin="anonymous")
 
+		link(href="#{basePath}/css/time-polyfill.css", rel="stylesheet")
+
 		link(href="#{basePath}/css/style.css", rel="stylesheet")
 
 		script(src="https://code.jquery.com/jquery-2.1.4.min.js")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
+		script(src="#{basePath}/js/modernizer.js")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
@@ -18,6 +21,7 @@ html
 		link(rel="stylesheet", href="#{global.basePath}/css/myDay.css")
 
 		script(type="text/javascript", src="#{global.basePath}/js/moment.min.js")
+		script(type="text/javascript", src="#{global.basePath}/js/time-polyfill.min.js")
 
 		script(type="text/javascript", src="#{global.basePath}/js/utils.js")
 		script(type="text/javascript", src="#{global.basePath}/js/page.js")
