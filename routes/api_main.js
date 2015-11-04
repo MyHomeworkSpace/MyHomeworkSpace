@@ -63,6 +63,10 @@ router.post('/features/add/', global.apiCall, global.requireUser, global.getUser
 			feature = "hwView";
 			break;
 
+		case "myDay":
+			feature = "myDay";
+			break;
+
 		default:
 			res.json({
 				status: "error",

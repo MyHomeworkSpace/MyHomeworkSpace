@@ -15,6 +15,7 @@ html
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/hwView.css")
+		link(rel="stylesheet", href="#{global.basePath}/css/myDay.css")
 
 		script(type="text/javascript", src="#{global.basePath}/js/moment.min.js")
 
@@ -264,7 +265,7 @@ html
 
 							br
 
-							button(class="btn btn-primary btn-disabled upsell-btn", data-feature="myDay", disabled="disabled") Coming soon!
+							button(class="btn btn-primary btn-disabled upsell-btn", data-feature="myDay") Enable
 
 						div(class="col-md-9")
 							div(class="upsell-row row")
@@ -282,6 +283,13 @@ html
 							div(class="upsell-row row")
 								div(class="col-md-4") Image
 								div(class="col-md-8") Description
+
+					div(id="myDay-welcome")
+						h1 Welcome!
+						p(class="lead") Please answer these short questions so we can build your personal schedule. The answers to these questions can always be changed later.
+						form(id="myDay-welcome-form")
+							input(type="number", name="sleepHrs")
+							span Ideally, but realistically, how many of hours of sleep would you like to get each night? 
 
 				div(id="hwView", class="page")
 					div(id="hwView-upsell", class="upsell row", data-feature="hwView")
