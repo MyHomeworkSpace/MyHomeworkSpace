@@ -99,7 +99,7 @@
 	opacity: 1;
 }
 .editCell.done {
-	background: lightgray;
+	background: orange;
 	background-clip: padding-box
 }
 .editCell.done textarea {
