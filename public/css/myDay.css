@@ -2,6 +2,6 @@
 	margin-right: 5px;
 }
 
-input[name=sleepHrs] {
+input[type=number] {
 	width: 75px;
 }
