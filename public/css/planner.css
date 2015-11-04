@@ -99,8 +99,9 @@
 	opacity: 1;
 }
 .editCell.done {
-	background: lightgray;
+	background: #3597da;
 	background-clip: padding-box
+	color: #ff6e1f;
 }
 .editCell.done textarea {
 	text-decoration: line-through;
