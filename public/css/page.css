@@ -4,8 +4,8 @@ html, body, .mainContainer {
 	height: 100%;
 	font-family: Lato, sans-serif;
 }
-nav {
-	background: white;
+nav {    
+	background: orange;
 	border-bottom: solid 1px black;
 	position: fixed;
 	top: 0;
