@@ -17,9 +17,8 @@ window.myDay.loadClubs = function(target, callback) {
 };
 
 $(document).ready(function() {
-	$(".myDay-club-select").chosen();
 	window.myDay.loadClubs($(".myDay-club-select"), function() {
-
+		$(".myDay-club-select").chosen();
 	});
 	$("#myDay").on("tabOpened", function() {
 		
