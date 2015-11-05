@@ -8,4 +8,11 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.get('/clubs/getAll/', function(req, res, next) {
+	res.json({
+		status: "ok",
+		clubs: []
+	})
+});
+
 module.exports = router;
