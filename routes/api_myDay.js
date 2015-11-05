@@ -11,8 +11,14 @@ router.get('/', function(req, res, next) {
 router.get('/clubs/getAll/', function(req, res, next) {
 	res.json({
 		status: "ok",
-		clubs: []
-	})
+		clubs: [
+			{
+				clubId: 0,
+				name: "Fake club",
+				meetings: "B(MF1)"
+			}
+		]
+	});
 });
 
 module.exports = router;
