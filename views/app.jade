@@ -304,19 +304,22 @@ html
 						h1 Welcome!
 						p(class="lead") Please answer these short questions so we can build your personal schedule. The answers to these questions can always be changed later.
 						form(id="myDay-welcome-form")
+							
+
+							span Ideally, but realistically, how many of hours of sleep would you like to get each night?
 							input(type="number", name="sleepHrs")
-							span Ideally, but realistically, how many of hours of sleep would you like to get each night? 
-
+							
 							br
 
-							input(type="time", name="WakeUpTime")
 							span When do you need to wake up in the morning? 
+							input(type="time", name="WakeUpTime")
+							
 
 							br
 
-							input(type="address", name="Address")
 							span What is your address? 
 								strong We will never use it for anything other than calculating travel time.
+							input(type="address", name="Address")
 
 							br
 
@@ -326,9 +329,11 @@ html
 
 
 							br 
+							
 
-							input(type="text", name="School")
 							span What school do you go to?
+							input(type="text", name="School")
+							
 
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
 
