@@ -5,3 +5,6 @@
 input[type=number] {
 	width: 75px;
 }
+input[type=time] {
+	width: 75px;
+}
