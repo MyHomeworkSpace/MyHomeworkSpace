@@ -8,6 +8,7 @@ html
 		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==", crossorigin="anonymous")
 
 		link(href="#{basePath}/css/time-polyfill.css", rel="stylesheet")
+		link(href="#{basePath}/chosen/chosen.min.css", rel="stylesheet")
 
 		link(href="#{basePath}/css/style.css", rel="stylesheet")
 
@@ -22,6 +23,7 @@ html
 
 		script(type="text/javascript", src="#{global.basePath}/js/moment.min.js")
 		script(type="text/javascript", src="#{global.basePath}/js/time-polyfill.min.js")
+		script(type="text/javascript", src="#{global.basePath}/chosen/chosen.jquery.min.js")
 
 		script(type="text/javascript", src="#{global.basePath}/js/utils.js")
 		script(type="text/javascript", src="#{global.basePath}/js/page.js")
@@ -31,6 +33,7 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/overview.js")
 		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
+		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
 
 	body
 		div(id="basePath", class="hidden")= global.basePath
@@ -301,26 +304,39 @@ html
 						h1 Welcome!
 						p(class="lead") Please answer these short questions so we can build your personal schedule. The answers to these questions can always be changed later.
 						form(id="myDay-welcome-form")
+							
+
+							span Ideally, but realistically, how many of hours of sleep would you like to get each night?
 							input(type="number", name="sleepHrs")
-							span Ideally, but realistically, how many of hours of sleep would you like to get each night? 
-
+							
 							br
 
-							input(type="time", name="WakeUpTime")
 							span When do you need to wake up in the morning? 
+							input(type="time", name="WakeUpTime")
+							
 
 							br
 
-							input(type="address", name="Address")
-							span What is your addresss?
+							span What is your address? 
 								strong We will never use it for anything other than calculating travel time.
+							input(type="address", name="Address")
 
 							br
 
-							input(type="text", name="Clubs")
-							span What Clubs are you are part of at Dalton? Note: Please separate using commas!
+							span Which clubs are you a part of? Multiple clubs are allowed
+							select(name="clubs", data-placeholder="Choose a club", multiple="multiple", class="myDay-club-select")
+								option(value="")
+
+
+							br 
+							
+
+							span What school do you go to?
+							input(type="text", name="School", value="Dalton", disabled="disabled")
+							
 
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
+
 
 				div(id="hwView", class="page")
 					div(id="hwView-upsell", class="upsell row", data-feature="hwView")
@@ -347,7 +363,7 @@ html
 									img(src="#{basePath}/images/hwView02.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Gets data from your planner
-									p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your homework into yet another program.
+									p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your ho,,,mework into yet another program.
 
 							br
 
