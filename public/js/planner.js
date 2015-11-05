@@ -98,10 +98,10 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode  == 90) { //Tab key's keycode
 						if($(this).attr("data-tabs") == undefined) {
-							$editCell.children("textarea").attr("data-tabs", -1);
+							$(this).attr("data-tabs", -1);
 						}
 						var prefxs = ["hw", "read", "reading", "project", "report", "essay", "paper", "popquiz", "quiz", "test", "final", "exam", "midterm", "lab", "docid"];
-						if(parseInt($editCell.children("textarea").attr("data-tabs")) < 15) {
+						if(parseInt($(this).attr("data-tabs")) < 15) {
 							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
 						} else {
 							$(this).attr("data-tabs", 0);
