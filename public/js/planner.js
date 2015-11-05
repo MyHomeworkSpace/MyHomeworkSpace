@@ -96,7 +96,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.children("textarea").keypress(function (evt) {
 					
 					var keycode = evt.charCode || evt.keyCode;
-					if (keycode  == 7) { //Tab key's keycode
+					if (keycode  == 18) { //Tab key's keycode
 						if($(this).attr("data-tabs") == undefined) {
 							$(this).attr("data-tabs", -1);
 						}
