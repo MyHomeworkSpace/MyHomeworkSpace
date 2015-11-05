@@ -100,8 +100,8 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						if($(this).attr("data-tabs") == undefined) {
 							$(this).attr("data-tabs", -1);
 						}
-						var prefxs = ["hw", "read", "reading", "project", "report", "essay", "paper", "popquiz", "quiz", "test", "final", "exam", "midterm", "lab", "docid"];
-						if(parseInt($(this).attr("data-tabs")) < 14) {
+						var prefxs = ["HW", "Read", "Reading", "Project", "Report", "Essay", "Paper", "Quiz", "Test", "Final", "Exam", "Midterm", "Lab", "DocID"];
+						if(parseInt($(this).attr("data-tabs")) < 13) {
 							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
 						} else {
 							$(this).attr("data-tabs", 0);
