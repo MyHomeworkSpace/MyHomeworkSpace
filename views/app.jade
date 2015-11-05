@@ -324,7 +324,7 @@ html
 							br
 
 							span Which clubs are you a part of? Multiple clubs are allowed
-							select(data-placeholder="Choose a club", multiple="multiple", class="myDay-club-select")
+							select(name="clubs", data-placeholder="Choose a club", multiple="multiple", class="myDay-club-select")
 								option(value="")
 
 
@@ -332,7 +332,7 @@ html
 							
 
 							span What school do you go to?
-							input(type="text", name="School")
+							input(type="text", name="School", value="Dalton", disabled="disabled")
 							
 
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
