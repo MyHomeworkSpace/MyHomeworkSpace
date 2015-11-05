@@ -78,6 +78,10 @@ window.utils.formatDate_english = function(date) {
 	return window.utils.getDayOfWeek(date.getDay()) + ", " + window.utils.getMonthName(date.getMonth()) + " " + date.getDate() + ", " + (date.getYear() + 1900);
 };
 
+window.utils.getPrefix = function(text) {
+	return text.split(' ')[0].trim().substr(0, 12); // limit to 12 chars
+};
+
 window.utils.getPrefixClass = function(prefix) {
 	switch (prefix.toLowerCase()) {
 		case "hw":
