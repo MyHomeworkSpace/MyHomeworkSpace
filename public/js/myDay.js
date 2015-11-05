@@ -1,8 +1,9 @@
 window.myDay = {
-	
+
 };
 
 $(document).ready(function() {
+	$(".myDay-club-select").chosen();
 	$("#myDay").on("tabOpened", function() {
 		
 	});
