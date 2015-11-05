@@ -97,7 +97,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode  == 90) { //Tab key's keycode
-						if($editCell.children("textarea").attr("data-tabs") == undefined) {
+						if($(this).attr("data-tabs") == undefined) {
 							$editCell.children("textarea").attr("data-tabs", -1);
 						}
 						var prefxs = ["hw", "read", "reading", "project", "report", "essay", "paper", "popquiz", "quiz", "test", "final", "exam", "midterm", "lab", "docid"];
