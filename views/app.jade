@@ -317,8 +317,11 @@ html
 
 							br
 
-							input(type="text", name="Clubs")
-							span What Clubs are you are part of at Dalton? Note: Please separate using commas!
+							select(data-placeholder="Choose a club", multiple="multiple")
+            option(value="")
+            option(value="something") something
+            option(value="other_club") other club
+            … etc ...
 
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
 
