@@ -142,7 +142,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						}
 
 						for (var i = 0; i < eventNumber; i++) {
-							var prefix = $ev.val().split('\n')[i].split(' ')[0].trim();
+							var prefix = window.utils.getPrefix($ev.val().split('\n')[i]);
 							var $element = $(this).find('.first-word[data-eventIndex=' + i + ']');
 							$element.text(prefix);
 							//prefix = prefix.toLowerCase();

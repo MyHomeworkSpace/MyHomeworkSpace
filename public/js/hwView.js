@@ -4,7 +4,7 @@ window.hwView = {
 };
 
 window.hwView.addEventToList = function(ev, list) {
-	var tag = ev.name.split(" ")[0];
+	var tag = window.utils.getPrefix(ev.name);
 	var name = ev.name.split(" ");
 	name.splice(0, 1);
 	name = name.join(" ");
