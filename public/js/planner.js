@@ -92,7 +92,9 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.mouseleave(function() {
 					$(this).removeClass("hover");
 				});
-				$editCell.children("textarea").attr("data-tabs", -1);
+				if($editCell.children("textarea").attr("data-tabs") == undefined) {
+					$editCell.children("textarea").attr("data-tabs", -1);
+				}
 				$editCell.children("textarea").keypress(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode  == 90) { //Tab key's keycode
