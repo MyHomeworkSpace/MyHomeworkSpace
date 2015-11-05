@@ -92,17 +92,17 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.mouseleave(function() {
 					$(this).removeClass("hover");
 				});
-				$editCell.children("textarea").attr("data-variable-name", -1);
+				$editCell.children("textarea").attr("data-tabs", -1);
 				$editCell.children("textarea").keypress(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode  == 9) { //Tab key's keycode
 						var prefxs = ["hw", "read", "reading", "project", "report", "essay", "paper", "popquiz", "quiz", "test", "final", "exam", "midterm", "lab", "docid"];
-						if(parseInt($editCell.children("textarea").attr("data-variable-name")) < 15) {
-							$(this).attr("tabs", parseInt($(this).attr("tabs")) + 1);
+						if(parseInt($editCell.children("textarea").attr("data-tabs")) < 15) {
+							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
 						} else {
-							$(this).attr("tabs", 0);
+							$(this).attr("data-tabs", 0);
 						}
-						$(this).val($(this).val().replace(window.utils.getPrefix($(this).val()), prefxs[parseInt($(this).attr("tabs"))]));
+						$(this).val($(this).val().replace(window.utils.getPrefix($(this).val()), prefxs[parseInt($(this).attr("data-tabs"))]));
 						return false;
 					}
 				});
