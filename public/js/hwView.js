@@ -189,7 +189,7 @@ $(document).ready(function() {
 				window.hwView.clr = (val == "1");
 				window.hwView.loadEvents(function() {
 				});
-			}
+			});
 			
 		});
 	});
