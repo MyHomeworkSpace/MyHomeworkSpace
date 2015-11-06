@@ -185,7 +185,7 @@ $(document).ready(function() {
 		}
 		window.prefs.get("name-subj", function(val) {
 			window.hwView.swapOrder = (val == "1");
-			window.prefs.get("titleclr"), function(val) {
+			window.prefs.get("titleclr", function(val) {
 				window.hwView.clr = (val == "1");
 				window.hwView.loadEvents(function() {
 				});
