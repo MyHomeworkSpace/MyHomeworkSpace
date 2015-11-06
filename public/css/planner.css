@@ -27,6 +27,8 @@
 }
 #planner-hacky-text-measure-thing {
 	height: auto;
+	position: absolute;
+	top: -1000px;
 }
 .editArea {
 	border: none;

@@ -212,6 +212,7 @@ window.planner.calculateEventGridDates = function() {
 
 window.planner.getNumberOfLines = function(text) {
 	$("#planner-hacky-text-measure-thing").text(text);
+	return $("#planner-hacky-text-measure-thing").height() / 21;
 };
 
 window.planner.setEvent = function(date, subjectIndex, text, done, subId) {
