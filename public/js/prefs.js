@@ -20,7 +20,7 @@ $(document).ready(function() {
   });
   $("#usr-btn").click(function() {
     var usrname = $("#usr-name").val();
-    window.api.post("prefs/setName", { name: "#{usrname}" }, function() {
+    window.api.post("prefs/setName", { name: usrname }, function() {
       window.page.showLoading();
       window.location.reload();
     });
