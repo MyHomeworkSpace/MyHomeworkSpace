@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/prefs/get/:name', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.get('/get/:name', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("prefs").select("*").where({
 		name: req.params.name,
 		userId: res.locals.user.id
@@ -26,7 +26,7 @@ router.get('/prefs/get/:name', global.apiCall, global.requireUser, global.getUse
 	});
 });
 
-router.post('/prefs/set/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.name == undefined) {
 		res.json({
 			status: "error",
@@ -76,7 +76,7 @@ router.post('/prefs/set/', global.apiCall, global.requireUser, global.getUserRec
 	});
 });
 
-router.post('/prefs/setName/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.post('/setName/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.name == undefined) {
 		res.json({
 			status: "error",
