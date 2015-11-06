@@ -29,7 +29,11 @@ window.hwView.addEventToList = function(ev, list) {
 				if (tag.toLowerCase() == "read") {
 					tag = tag + "ing";
 				}
-				$tag.addClass(window.utils.getPrefixClass(tag));
+				if(window.hwView.clr) {
+				} else {
+					$tag.addClass(window.utils.getPrefixClass(tag));
+				}
+				
 				$tag.text(tag);
 			$lineTwo.append($tag);
 
@@ -181,9 +185,12 @@ $(document).ready(function() {
 		}
 		window.prefs.get("name-subj", function(val) {
 			window.hwView.swapOrder = (val == "1");
-			window.hwView.loadEvents(function() {
-
-			});
+			window.prefs.get("titleclr"), function(val) {
+				window.hwView.clr = (val == "1");
+				window.hwView.loadEvents(function() {
+				});
+			}
+			
 		});
 	});
 });
