@@ -34,10 +34,10 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 		});
 		return;
 	}
-	if (req.body.val == undefined) {
+	if (req.body.value == undefined) {
 		res.json({
 			status: "error",
-			error: "Missing or invalid val parameter."
+			error: "Missing or invalid value parameter."
 		});
 		return;
 	}
@@ -49,7 +49,7 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 		if (obj.length == 0){
 			knex("prefs").insert({
 				name: req.body.name,
-				val: req.body.val,
+				val: req.body.value,
 				userId: res.locals.user.id
 			}).then(function() {
 				res.json({
