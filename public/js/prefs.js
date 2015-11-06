@@ -10,9 +10,15 @@ window.prefs.openModal = function(feature) {
 	});
 };
 
+window.prefs.get = function(name, callback) {
+	window.api.get("prefs/get/" + name, function(data) {
+		callback(data.val);
+	});
+};
+
 $(document).ready(function() {
-	window.api.get("prefs/get/name-subj", function(data) {
-		var btnTrue = data.val;
+	window.prefs.get("name-subj", function(val) {
+		var btnTrue = val;
 		if(btnTrue == "1") {
 			$("#prefs-hwView-swap").prop("checked", true);
 		}
