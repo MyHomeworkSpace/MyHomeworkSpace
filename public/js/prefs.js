@@ -16,5 +16,12 @@ $(document).ready(function() {
       };
       window.api.post("prefs/set", { name: "name-subj", value: btnTrue}, function() {});
     });
+    alert("buttonstuff!");
+  });
+  $("#usr-btn").click(function() {
+    var usrname = $("#usr-name").val();
+    window.api.post("prefs/setName", { name: "#{usrname}" }, function() {
+      alert("maybe this worked!");
+    });
   });
 });
