@@ -21,9 +21,9 @@ window.prefs.btn = function(name, id) {
 	window.prefs.get(name, function(val) {
 		var btnTrue = val;
 		if(btnTrue == "1") {
-			$("#{id}").prop("checked", true);
+			$("#" + id).prop("checked", true);
 		}
-		$("#{id}").change(function() {
+		$("#" + id).change(function() {
 			if(btnTrue == "1") {
 				btnTrue = "0";
 			} else {
