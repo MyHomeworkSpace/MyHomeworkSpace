@@ -76,6 +76,9 @@ html
 
 					ul(class="nav navbar-nav navbar-right")
 						li(class="feedback-btn")
+							a(class="ideaBtn", data-toggle="tooltip", data-placement="bottom", title="Have a great new idea? Send it to us.")
+								i(class="fa fa-lightbulb-o")
+						li(class="feedback-btn")
 							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Like something? Send us a smile.")
 								i(class="fa fa-smile-o")
 						li(class="feedback-btn")
@@ -96,7 +99,7 @@ html
 						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
 							span(aria-hidden="true") &times;
 						h4(class="modal-title")
-							span Send a 
+							span(id="feedback-modal-title-first") Send a 
 							span(class="feedback-type") 
 					
 					div(class="modal-body")
@@ -133,6 +136,12 @@ html
 							span(id="prefs-feature-name")
 							span  Preferences
 
+					div(class="modal-body prefs-modal-body", id="prefs-overview-body")
+						p This feature does not have any preferences you can change.
+
+					div(class="modal-body prefs-modal-body", id="prefs-planner-body")
+						p This feature does not have any preferences you can change.
+
 					div(class="modal-body prefs-modal-body", id="prefs-hwView-body")
 						input(type="checkbox", id="prefs-hwView-swap")
 						label(for="prefs-hwView-swap") Swap order of name and subject
@@ -140,7 +149,13 @@ html
 						br
 
 						input(type="checkbox", id="prefs-hwView-color")
-						labal(for="prefs-hwView-color") Disable title coloring
+						label(for="prefs-hwView-color") Disable title coloring
+
+					div(class="modal-body prefs-modal-body", id="prefs-myDay-body")
+						p This feature does not have any preferences you can change.
+
+					div(class="modal-body prefs-modal-body", id="prefs-admin-body")
+						p This feature does not have any preferences you can change.
 
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", id="prefs-done") Done
@@ -162,6 +177,9 @@ html
 					li(data-page="admin")
 						i(class="fa fa-cog") 
 						span  Admin
+
+			button(id="page-pref-btn", class="btn btn-default")
+				i(class="fa fa-cog")
 
 			div(class="pages")
 				div(id="overview", class="page")
@@ -371,6 +389,12 @@ html
 
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
 
+					div(class="row hidden")
+						div(class="col-md-8")
+							h1 schedule here
+
+						div(class="col-md-4")
+							h1 HW stuff goes here
 
 				div(id="hwView", class="page")
 					div(id="hwView-upsell", class="upsell row", data-feature="hwView")

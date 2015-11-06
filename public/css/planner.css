@@ -107,7 +107,7 @@
 }
 .editCell.done {
 	background: lightgray;
-	background-clip: padding-box
+	background-clip: padding-box;
 }
 .editCell.done textarea {
 	text-decoration: line-through;
