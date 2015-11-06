@@ -29,6 +29,7 @@
 	height: auto;
 	position: absolute;
 	top: -1000px;
+	word-wrap: break-word;
 }
 .editArea {
 	border: none;
