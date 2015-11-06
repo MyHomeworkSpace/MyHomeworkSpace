@@ -16,7 +16,7 @@ router.get('/get/:name', global.apiCall, global.requireUser, global.getUserRecor
 		res.json({
 			status: "ok",
 			name: req.params.name,
-			val: obj[0].val
+			val: obj[0].value
 		})
 	}).catch(function() {
 		res.json({
