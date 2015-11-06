@@ -4,6 +4,7 @@ window.prefs.openModal = function(feature) {
 	$("#prefs-feature-name").text(window.utils.getLongNameForFeature(feature));
 	$(".prefs-modal-body").addClass("hidden");
 	$("#prefs-" + feature + "-body").removeClass("hidden");
+	$("#prefs-modal").attr("data-feature", feature);
 	$("#prefs-modal").modal({
 		backdrop: "static",
 		keyboard: false
@@ -17,6 +18,10 @@ window.prefs.get = function(name, callback) {
 };
 
 $(document).ready(function() {
+	$("#prefs-done").click(function() {
+		$("#prefs-modal").modal("hide");
+		setPage($("#prefs-modal").attr("data-feature"));
+	});
 	window.prefs.get("name-subj", function(val) {
 		var btnTrue = val;
 		if(btnTrue == "1") {
