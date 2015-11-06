@@ -86,7 +86,7 @@ router.post('/setName/', global.apiCall, global.requireUser, global.getUserRecor
 	}
 
 	knex("users").where({
-		userId: res.locals.user.id
+		id: res.locals.user.id
 	}).update({
 		name: req.body.name
 	}).then(function() {
