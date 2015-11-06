@@ -61,4 +61,5 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 	});
+	window.prefs.btn("titleclr", "prefs-hwView-color");
 });
