@@ -18,7 +18,7 @@ router.get('/get/:name', global.apiCall, global.requireUser, global.getUserRecor
 			name: req.params.name,
 			val: obj[0].value
 		})
-	}).catch(function() {
+	}).catch(function(e) {
 		res.json({
 			status: "error",
 			error: "Unknown database error"
