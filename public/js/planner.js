@@ -210,6 +210,10 @@ window.planner.calculateEventGridDates = function() {
 	});
 };
 
+window.planner.getNumberOfLines = function(text) {
+	$("#planner-hacky-text-measure-thing").text(text);
+};
+
 window.planner.setEvent = function(date, subjectIndex, text, done, subId) {
 	window.planner.showSaving();
 	window.api.post("planner/events/post/", {

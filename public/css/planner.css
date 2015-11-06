@@ -18,12 +18,15 @@
 #planner table .subjectCell, .no-border {
 	border: none !important;
 }
-.editCell, .editArea {
+.editCell, .editArea, #planner-hacky-text-measure-thing {
 	padding: 0;
 	width: 150px;
 	height: 100px;
 	resize: none;
 	box-sizing: border-box;
+}
+#planner-hacky-text-measure-thing {
+	height: auto;
 }
 .editArea {
 	border: none;
