@@ -47,11 +47,27 @@ router.post('/prefs/set/', global.apiCall, global.requireUser, global.getUserRec
 		userId: res.locals.user.id
 	}).select("*").then(function(obj) {
 		if (obj.length == 0){
-
+			knex("prefs").insert({
+				name: req.body.name,
+				val: req.body.val,
+				userId: res.locals.user.id
+			}).then(function() {
+				res.json({
+					status: "ok"
+				});
+			});
+		} else {
+			knex("prefs").where({
+				name: req.body.name
+			}).update({
+				val: req.body.val,
+				userId: res.locals.user.id
+			}).then(function() {
+				res.json({
+					status: "ok"
+				});
+			});
 		}
-		res.json({
-			status: "ok"
-		});
 	}).catch(function() {
 		res.json({
 			status: "error",
