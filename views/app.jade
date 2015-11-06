@@ -35,8 +35,6 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
 
-		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
-
 	body
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
@@ -396,8 +394,8 @@ html
 						input(type="checkbox", id="prefs-hwView-swap")
 						label(for="prefs-hwView-swap") Swap order of name and subject
 					div(id="prefs-name")
-						input(type="text" value="#{user.name}")
-						button(class="btn btn-primary") change
+						input(type="text", id="usr-name" value="#{user.name}")
+						button(class="btn btn-primary", id="usr-btn") change
 					
 
 				if user.level > 0
