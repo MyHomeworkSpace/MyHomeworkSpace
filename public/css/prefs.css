@@ -1,0 +1,6 @@
+.prefs-modal-body, .prefs-modal-body label {
+	font-size: .95em !important;
+}
+.prefs-modal-body input {
+	margin-right: 5px;
+}

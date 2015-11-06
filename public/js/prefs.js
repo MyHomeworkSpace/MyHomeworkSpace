@@ -2,7 +2,12 @@ window.prefs = {};
 
 window.prefs.openModal = function(feature) {
 	$("#prefs-feature-name").text(window.utils.getLongNameForFeature(feature));
-	$("#prefs-modal").modal();
+	$(".prefs-modal-body").addClass("hidden");
+	$("#prefs-" + feature + "-body").removeClass("hidden");
+	$("#prefs-modal").modal({
+		backdrop: "static",
+		keyboard: false
+	});
 };
 
 $(document).ready(function() {
