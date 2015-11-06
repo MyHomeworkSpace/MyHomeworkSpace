@@ -122,6 +122,21 @@ html
 					div(class="modal-footer feedback-footer-load hidden")
 						i(class="fa fa-circle-o-notch fa-spin")
 						span  Loading...
+
+		div(id="prefs-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						h4
+							span(id="prefs-feature-name")
+							span  Preferences
+
+					div(class="modal-body", id="prefs-hwView-body")
+
+
+					div(class="modal-footer")
+						button(type="button", class="btn btn-primary", id="prefs-done") Done
+
 		div(class="mainContainer")
 			ul(class="tabs")
 				li(data-page="overview") Overview
