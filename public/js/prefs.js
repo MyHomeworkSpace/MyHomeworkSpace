@@ -15,7 +15,7 @@ $(document).ready(function() {
         btnTrue = "1";
       };
       window.api.post("prefs/set", { name: "name-subj", value: btnTrue}, function() {});
-      alert("buttonstuff);
+      alert("buttonstuff");
       alert(btnTrue);
     });
     
