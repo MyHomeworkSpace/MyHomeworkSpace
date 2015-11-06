@@ -136,6 +136,12 @@ html
 							span(id="prefs-feature-name")
 							span  Preferences
 
+					div(class="modal-body prefs-modal-body", id="prefs-overview-body")
+						p This feature does not have any preferences you can change.
+
+					div(class="modal-body prefs-modal-body", id="prefs-planner-body")
+						p This feature does not have any preferences you can change.
+
 					div(class="modal-body prefs-modal-body", id="prefs-hwView-body")
 						input(type="checkbox", id="prefs-hwView-swap")
 						label(for="prefs-hwView-swap") Swap order of name and subject
@@ -144,6 +150,12 @@ html
 
 						input(type="checkbox", id="prefs-hwView-color")
 						label(for="prefs-hwView-color") Disable title coloring
+
+					div(class="modal-body prefs-modal-body", id="prefs-myDay-body")
+						p This feature does not have any preferences you can change.
+
+					div(class="modal-body prefs-modal-body", id="prefs-admin-body")
+						p This feature does not have any preferences you can change.
 
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", id="prefs-done") Done
@@ -165,6 +177,9 @@ html
 					li(data-page="admin")
 						i(class="fa fa-cog") 
 						span  Admin
+
+			button(id="page-pref-btn", class="btn btn-default")
+				i(class="fa fa-cog")
 
 			div(class="pages")
 				div(id="overview", class="page")

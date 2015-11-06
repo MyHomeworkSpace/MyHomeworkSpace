@@ -40,6 +40,10 @@ window.page.addFeature = function(feature, callback) {
 	});
 };
 
+window.page.getOpenPage = function() {
+	return $(".page.open-page").attr("id");
+};
+
 window.page.sendFeedback = function(type, msg, name, username, webpage, callback) {
 	// if the user does not want to send the webpage, the variable will be set to undefined, so don't do any checks here.
 	window.api.post("feedback/post/", {
@@ -88,6 +92,10 @@ $(document).ready(function() {
 
 	$(".admin-link").click(function() {
 		setPage($(this).attr("data-page"));
+	});
+
+	$("#page-pref-btn").click(function() {
+		window.prefs.openModal(window.page.getOpenPage());
 	});
 
 	$(".upsell-btn").click(function() {

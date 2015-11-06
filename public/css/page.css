@@ -136,3 +136,10 @@ nav {
 	height: 100px;
 	resize: none;
 }
+
+#page-pref-btn {
+	position: absolute;
+	bottom: 0;
+	left: 50px;
+	z-index: 999;
+}
