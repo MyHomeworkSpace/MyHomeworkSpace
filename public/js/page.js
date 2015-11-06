@@ -53,14 +53,18 @@ window.page.sendFeedback = function(type, msg, name, username, webpage, callback
 	});
 };
 
-window.page.openFeedbackModal = function(happy) {
-	var type = "smile";
+window.page.openFeedbackModal = function(type) {
 	var desc = "Liked a feature? Found something helpful? Tell us what you like! We'd love to hear it, and your feedback helps us make even better things in the future!";
-	if (!happy) {
-		type = "frown";
-		desc = "Annoyed by something? Found a glitch? Hate how something works? Tell us! We'd love to help you and improve the site.";
+	if (type == "frown") {
+		desc = "Annoyed by something? Found a glitch? Hate how something works? Tell us! We'd love to help you and improve PlanHub.";
+	} else if (type == "idea") {
+		desc = "Have an idea for a new feature? Something that helps you? A tweak to make your life easier? Tell us! We'd love to include it and make PlanHub even better!";
 	}
 
+	$("#feedback-modal-title-first").text("Send a ");
+	if (type == "idea") {
+		$("#feedback-modal-title-first").text("Send an ");
+	}
 	$(".feedback-type").text(type);
 	$(".feedback-desc").text(desc);
 
@@ -70,7 +74,9 @@ window.page.openFeedbackModal = function(happy) {
 $(document).ready(function() {
 	window.page.showLoading();
 
-	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-toggle="tooltip"]').tooltip({
+		container: 'body'
+	});
 
 	$(".tabs li").click(function() {
 		setPage($(this).attr("data-page"));
@@ -97,12 +103,16 @@ $(document).ready(function() {
 		//$(".upsell[data-feature=" + feature + "]").remove();
 	});
 
+	$(".ideaBtn").click(function() {
+		window.page.openFeedbackModal("idea");
+	});
+
 	$(".smileBtn").click(function() {
-		window.page.openFeedbackModal(true);
+		window.page.openFeedbackModal("smile");
 	});
 
 	$(".frownBtn").click(function() {
-		window.page.openFeedbackModal(false);
+		window.page.openFeedbackModal("frown");
 	});
 
 	$("#feedback-submit").click(function() {

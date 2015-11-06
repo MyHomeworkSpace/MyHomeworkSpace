@@ -127,7 +127,7 @@ nav {
 	z-index: 999999999999999999999999999999999 !important; /* please be above everything but the loading thing */
 }
 
-.smileBtn, .frownBtn {
+.smileBtn, .frownBtn, .ideaBtn {
 	cursor: pointer;
 }
 
