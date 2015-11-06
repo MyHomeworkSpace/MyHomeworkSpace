@@ -171,7 +171,7 @@ var appRouter = require('./routes/app');
 var api_main = require('./routes/api_main');
 var api_myDay = require('./routes/api_myDay');
 var api_planner = require('./routes/api_planner');
-var api_planner = require('./routes/api_prefs');
+var api_prefs = require('./routes/api_prefs');
 var api_admin = require('./routes/api_admin');
 
 // view engine setup
