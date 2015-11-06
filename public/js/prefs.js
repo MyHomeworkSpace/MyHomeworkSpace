@@ -15,15 +15,14 @@ $(document).ready(function() {
         btnTrue = "1";
       };
       window.api.post("prefs/set", { name: "name-subj", value: btnTrue}, function() {});
-      alert("buttonstuff");
-      alert(btnTrue);
     });
     
   });
   $("#usr-btn").click(function() {
     var usrname = $("#usr-name").val();
     window.api.post("prefs/setName", { name: "#{usrname}" }, function() {
-      alert($("#usr-name").val());
+      window.page.showLoading();
+      window.location.reload();
     });
   });
 });
