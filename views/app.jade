@@ -142,13 +142,21 @@ html
 
 		div(class="mainContainer")
 			ul(class="tabs")
-				li(data-page="overview") Overview
-				li(data-page="planner") Planner
+				li(data-page="overview")
+					i(class="fa fa-calendar") 
+					span  Overview
+				li(data-page="planner")
+					i(class="fa fa-book")  
+					span  Planner
 				<!-- li(data-page="myDay") My Day -->
-				li(data-page="hwView") HW View
+				li(data-page="hwView")
+					i(class="fa fa-file-text") 
+					span  HW View
 				<!-- li(data-page="prefs") Preferences -->
 				if user.level > 0
-					li(data-page="admin") Admin
+					li(data-page="admin")
+						i(class="fa fa-cog") 
+						span  Admin
 
 			div(class="pages")
 				div(id="overview", class="page")
