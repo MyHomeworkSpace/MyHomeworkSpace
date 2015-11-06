@@ -49,7 +49,7 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 		if (obj.length == 0){
 			knex("prefs").insert({
 				name: req.body.name,
-				val: req.body.value,
+				value: req.body.value,
 				userId: res.locals.user.id
 			}).then(function() {
 				res.json({
@@ -60,7 +60,7 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 			knex("prefs").where({
 				name: req.body.name
 			}).update({
-				val: req.body.val,
+				value: req.body.value,
 				userId: res.locals.user.id
 			}).then(function() {
 				res.json({
