@@ -17,6 +17,23 @@ window.prefs.get = function(name, callback) {
 	});
 };
 
+window.prefs.btn = function(name, id) {
+	window.prefs.get(name, function(val) {
+		var btnTrue = val;
+		if(btnTrue == "1") {
+			$("#{id}").prop("checked", true);
+		}
+		$("#{id}").change(function() {
+			if(btnTrue == "1") {
+				btnTrue = "0";
+			} else {
+				btnTrue = "1";
+			}
+			window.api.post("prefs/set", { name: name, value: btnTrue}, function() {});
+		});
+	});
+};
+
 $(document).ready(function() {
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
