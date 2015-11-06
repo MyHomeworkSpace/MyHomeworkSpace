@@ -46,7 +46,10 @@ router.post('/prefs/set/', global.apiCall, global.requireUser, global.getUserRec
 		name: req.body.name,
 		userId: res.locals.user.id
 	}).select("*").then(function(obj) {
-		if (obj.length == res.json({
+		if (obj.length == 0){
+
+		}
+		res.json({
 			status: "ok"
 		});
 	}).catch(function() {
