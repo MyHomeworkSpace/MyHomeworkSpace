@@ -58,6 +58,9 @@ nav {
 .tabs li:hover {
 	background: lightblue;
 }
+.tabs li .fa {
+	margin-right: 1px;
+}
 .go-dropdown li {
 	cursor: pointer;
 }

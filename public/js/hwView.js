@@ -1,6 +1,7 @@
 window.hwView = {
 	subjects: {},
-	loadCount: 0
+	loadCount: 0,
+	swapOrder: false
 };
 
 window.hwView.addEventToList = function(ev, list) {
@@ -20,7 +21,7 @@ window.hwView.addEventToList = function(ev, list) {
 		}
 		var $name = $('<h4></h4>');
 			$name.text(name);
-		$item.append($name);
+		// append comes later
 
 		var $lineTwo = $('<h4></h4>');
 			var $tag = $('<span></span>');
@@ -43,7 +44,15 @@ window.hwView.addEventToList = function(ev, list) {
 				}
 				$due.text(" " + keyword + " " + window.utils.formatDate_pretty(moment(ev.due).add(1, "day").toDate())); // timezones. and off-by-one errors.
 			$lineTwo.append($due);
-		$item.append($lineTwo);
+		// append comes later
+
+		if (window.hwView.swapOrder) {
+			$item.append($lineTwo);
+			$item.append($name);
+		} else {
+			$item.append($name);
+			$item.append($lineTwo);
+		}
 
 	$(".hwView-" + list + " ul").append($item);
 };
@@ -170,8 +179,11 @@ $(document).ready(function() {
 		} else {
 			$(".tomorrow-or-monday").text("tomorrow");
 		}
-		window.hwView.loadEvents(function() {
+		window.prefs.get("name-subj", function(val) {
+			window.hwView.swapOrder = (val == "1");
+			window.hwView.loadEvents(function() {
 
+			});
 		});
 	});
 });

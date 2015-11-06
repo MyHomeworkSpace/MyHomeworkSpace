@@ -151,11 +151,13 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 										);
 						if (recreate) {
 							$mic.children(".first-word").remove();
+							var lines = 0;
 							for (var i = 0; i < eventNumber; i++) {
 								var $firstword = $('<div class="form-control first-word hiddenThing"></div>');
-									$firstword.css("top", (8+(i*18))+"px");
+									$firstword.css("top", (8+(lines*18))+"px");
 									$firstword.attr("data-eventIndex", i);
 								$mic.append($firstword);
+								lines += window.planner.getNumberOfLines($ev.val().split('\n')[i]);
 							};
 						}
 
@@ -208,6 +210,11 @@ window.planner.calculateEventGridDates = function() {
 			offset = 0;
 		}
 	});
+};
+
+window.planner.getNumberOfLines = function(text) {
+	$("#planner-hacky-text-measure-thing").text(text);
+	return $("#planner-hacky-text-measure-thing").height() / 21;
 };
 
 window.planner.setEvent = function(date, subjectIndex, text, done, subId) {

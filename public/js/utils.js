@@ -6,6 +6,19 @@ window.utils.b64EncodeUnicode = function(str) {
     }));
 };
 
+window.utils.getLongNameForFeature = function(feature) {
+	switch (feature) {
+		case "planner":
+			return "Planner";
+
+		case "hwView":
+			return "Homework View";
+
+		case "myDay":
+			return "My Day";
+	}
+};
+
 window.utils.getMonthName = function(month) {
 	switch (month) {
 		case 0:
