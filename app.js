@@ -171,6 +171,7 @@ var appRouter = require('./routes/app');
 var api_main = require('./routes/api_main');
 var api_myDay = require('./routes/api_myDay');
 var api_planner = require('./routes/api_planner');
+var api_prefs = require('./routes/api_prefs');
 var api_admin = require('./routes/api_admin');
 
 // view engine setup
@@ -205,6 +206,7 @@ app.use(basePath + '/app', appRouter);
 app.use(basePath + '/api/v1/', api_main);
 app.use(basePath + '/api/v1/myDay', api_myDay);
 app.use(basePath + '/api/v1/planner', api_planner);
+app.use(basePath + '/api/v1/prefs', api_prefs);
 app.use(basePath + '/api/v1/admin', api_admin);
 
 // catch 404 and forward to error handler
