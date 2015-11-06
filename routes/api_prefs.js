@@ -76,4 +76,29 @@ router.post('/prefs/set/', global.apiCall, global.requireUser, global.getUserRec
 	});
 });
 
+router.post('/prefs/setName/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.name == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid name parameter."
+		});
+		return;
+	}
+
+	knex("users").where({
+		userId: res.locals.user.id
+	}).update({
+		name: req.body.name
+	}).then(function() {
+		res.json({
+			status: "ok"
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error"
+		});
+	});
+});
+
 module.exports = router;
