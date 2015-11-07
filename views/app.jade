@@ -36,6 +36,9 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
+		
+		if user.level > 0
+			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
 
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 
