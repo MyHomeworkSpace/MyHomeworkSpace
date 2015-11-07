@@ -8,13 +8,13 @@ $(document).ready(function() {
 				var feedbackItem = resp.feedback[feedbackIndex];
 				var $feedbackLi = $('<li></li>');
 					var $feedbackDesc = $('<div></div>');
-						$feedbackDesc.text(feedbackItem.msg.substr(0, 75));
+						$feedbackDesc.text(" " + feedbackItem.msg.substr(0, 75));
 						var $icon = $('<i class="fa"></i>');
 							if (feedbackItem.type == "smile") {
 								$icon.addClass("fa-smile-o");
 							} else if (feedbackItem.type == "frown") {
 								$icon.addClass("fa-frown-o");
-							} else if (feedbackItem.type == "lightbulb") {
+							} else if (feedbackItem.type == "idea") {
 								$icon.addClass("fa-lightbulb-o");
 							}
 						$feedbackDesc.prepend($icon);
