@@ -17,6 +17,19 @@ window.planner.showSaved = function() {
 	$("#planner").attr("data-exitPrompt", "");
 };
 
+window.planner.drag = function(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+};
+
+window.planner.drop = function(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+};
+
+window.planner.allowDrop = function(ev) {
+    ev.preventDefault();
+};
 window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 	var $row = $('<tr class="subjectRow"></tr>');
 		$row.attr("data-subjectName", subjectName);
@@ -26,11 +39,13 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 			$subjectCell.text(subjectName);
 
 			var $controls = $('<div class="subjectControls"></div>');
-				/*var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
+				var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
+					$move.attr("data-subjectIndex", subjectIndex);
 					$move.click(function() {
-
+						$(this).parent().parent().parent().attr("draggable", true);
+						$(this).parent().parent().parent().attr("ondragstart", "window.planner.drag(event)");
 					});
-				$controls.append($move);*/
+				$controls.append($move);
 
 				var $renameBtn = $('<button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></button>');
 					$renameBtn.click(function() {
@@ -193,6 +208,8 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 
 			monday.setDate(monday.getDate() + 1);
 		}
+		$row.attr("ondrop", "window.planner.drop(event)");
+		$row.attr("ondragover", "allowDrop(event)");
 	$("#planner table tbody").append($row);
 
 	window.planner.subjectCount++;
@@ -420,6 +437,8 @@ window.planner.addSubject = function(name) {
 		$(".planner-welcome").addClass("hidden");
 	});
 };
+
+
 
 $(document).ready(function() {
 	$("#planner").on("tabOpened", function() {
