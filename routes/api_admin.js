@@ -14,10 +14,11 @@ router.get('/feedback/getList', global.apiCall, global.requireUser, global.getUs
 			status: "ok",
 			feedback: obj
 		});	
-	}).catch(function() {
+	}).catch(function(e) {
 		res.json({
 			status: "error",
-			error: "Unknown database error."
+			error: "Unknown database error.",
+			stack: e
 		});	
 	});
 });
