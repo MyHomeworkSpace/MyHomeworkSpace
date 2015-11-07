@@ -24,7 +24,7 @@ nav {
 	width: 50px;
 	height: 100%;
 	padding-top: 45px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 	list-style-type: none;
 	border-right: solid 1px black;
