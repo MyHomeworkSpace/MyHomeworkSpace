@@ -34,7 +34,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						$("#planner table tbody").children().click(function() {
 							$(".row[data-subjectIndex=" + window.planner.moveID + "]").attr("data-subjectIndex", $(this).attr("data-subjectIndex"));
 							$(this).attr("data-subjectIndex", window.planner.moveID);
-							window.location.reload()
+						//	window.location.reload()
 						});
 						
 					});
