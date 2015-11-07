@@ -8,7 +8,7 @@ $(document).ready(function() {
 				var feedbackItem = resp.feedback[feedbackIndex];
 				var $feedbackLi = $('<li></li>');
 					var $feedbackDesc = $('<div></div>');
-						$feedbackDesc.text(feedbackItem.desc.subStr(0, 75));
+						$feedbackDesc.text(feedbackItem.msg.substr(0, 75));
 					$feedbackLi.append($feedbackDesc);
 					var $feedbackName = $('<div></div>');
 						$feedbackName.text(feedbackItem.name);
