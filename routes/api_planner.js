@@ -364,7 +364,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 							sectionIndex: obj[0].sectionIndex
 						}).then(function() {
 							return trx("planner_sections").where({
-								sectionGid: -999
+								sectionIndex: -999
 							}).update({
 								sectionIndex: obj[1].sectionIndex
 							}).then(function() {
