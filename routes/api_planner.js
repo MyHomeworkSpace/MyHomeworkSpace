@@ -286,9 +286,9 @@ router.post('/setIndex/', global.apiCall, global.requireUser, global.getUserReco
 
 	knex("users").where({
 		id: res.locals.user.id,
-		sectionIndex: sectionIndex
+		sectionIndex: req.body.sectionIndex
 	}).update({
-		sectionIndex: newSectionIndex
+		sectionIndex: req.body.newSectionIndex
 	}).then(function() {
 		res.json({
 			status: "ok"
