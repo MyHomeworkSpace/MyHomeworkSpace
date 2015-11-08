@@ -314,7 +314,7 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 });
 
 router.post('/sections/swap', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.first == undefined || parseInt(req.body.first) == Nan) {
+	if (req.body.first == undefined || parseInt(req.body.first) == NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid first index parameter!"
