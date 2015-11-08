@@ -31,16 +31,14 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
 					$move.attr("data-subjectIndex", subjectIndex);
 					$move.click(function() {
-						window.planner.moveID = $(this).attr("data-subjectIndex");
+						window.planner.moveID = parseInt($(this).attr("data-subjectIndex"));
 						$("#planner table tbody").children().click(function() {
-							alert(window.planner.moveID);
-							window.planner.movedID = $(this).attr("data-subjectIndex");
-							alert(window.planner.movedID);
+							window.planner.movedID = parseInt($(this).attr("data-subjectIndex"));
 							window.api.post("planner/setIndex/", {
 								sectionIndex: window.planner.moveID,
 								newSectionIndex: window.planner.movedID
 							}, function() {
-						//		window.location.reload();
+								window.location.reload();
 							});
 							window.api.post("planner/setIndex/", {
 								sectionIndex: window.planner.movedID,
