@@ -364,25 +364,23 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 							userId: obj[1].userId
 						}).update({
 							sectionIndex: obj[0].sectionIndex
-						}).then(function() {
+						})/*.then(function() {
 							return trx("planner_sections").where({
 								sectionIndex: -999
 							}).update({
 								sectionIndex: obj[1].sectionIndex
 							}).then(function() {
-								console.log("qwer");
 								return trx("planner_events").where({
 									sectionIndex: -999
 								}).update({
 									sectionIndex: obj[1].sectionIndex
 								});
 							});
-						});
+						});*/
 					});
 				});
 			});
 		}).then(function() {
-			console.log("Asdf");
 			res.json({
 				status: "ok"
 			});
