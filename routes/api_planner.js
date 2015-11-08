@@ -275,6 +275,32 @@ router.post('/sections/add', global.apiCall, global.requireUser, global.getUserR
 	});
 });
 
+router.post('/setName/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.name == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid name parameter."
+		});
+		return;
+	}
+
+	knex("users").where({
+		id: res.locals.user.id,
+		sectionIndex: req.body.sectionIndex
+	}).update({
+		sectionIndex: sectionIndex
+	}).then(function() {
+		res.json({
+			status: "ok"
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error"
+		});
+	});
+});
+
 router.post('/sections/rename', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.sectionIndex == undefined) {
 		res.json({
