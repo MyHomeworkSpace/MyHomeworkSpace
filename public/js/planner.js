@@ -38,7 +38,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 								sectionIndex: window.planner.moveID,
 								newSectionIndex: window.planner.movedID
 							}, function() {
-								window.location.reload();
+						//		window.location.reload();
 							});
 							
 						});
