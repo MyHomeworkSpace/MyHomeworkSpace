@@ -229,7 +229,7 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 router.get('/sections/get/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("planner_sections").select("*").where({
 		userId: res.locals.user.id
-	}).then(function(obj) {
+	}).orderBy('sectionIndex', 'asc').then(function(obj) {
 		res.json({
 			status: "ok",
 			sections: obj
