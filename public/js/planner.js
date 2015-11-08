@@ -32,7 +32,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					$move.attr("data-subjectIndex", subjectIndex);
 					$move.click(function() {
 						window.planner.moveID = parseInt($(this).attr("data-subjectIndex"));
-						$(this).detach();
+						$(this).parent().parent().parent().detach();
 						$("#planner table tbody").children().click(function() {
 							window.planner.movedID = parseInt($(this).attr("data-subjectIndex"));
 							window.api.post("planner/setIndex/", {
