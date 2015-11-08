@@ -33,6 +33,9 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					$move.click(function() {
 						window.planner.moveID = parseInt($(this).attr("data-subjectIndex"));
 						$(this).parent().parent().parent().detach();
+						$("#planner table tbody").find(".planner-subject-handle").detach();
+						$(body).css("background-color", "black");
+						$("#planner table tbody").children().css("background-color", "white");
 						$("#planner table tbody").children().click(function() {
 							window.planner.movedID = parseInt($(this).attr("data-subjectIndex"));
 							window.api.post("planner/setIndex/", {
