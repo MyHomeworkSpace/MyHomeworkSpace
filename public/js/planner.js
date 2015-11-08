@@ -40,6 +40,12 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							}, function() {
 						//		window.location.reload();
 							});
+							window.api.post("/setIndex/", {
+								sectionIndex: window.planner.movedID,
+								newSectionIndex: window.planner.moveID
+							}, function() {
+						//		window.location.reload();
+							});
 							
 						});
 						
