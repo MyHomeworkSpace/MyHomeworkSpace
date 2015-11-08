@@ -336,7 +336,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 		if (obj.length != 2) {
 			res.json({
 				status: "error",
-				error: "Missing or invalid indexes!"
+				error: "Missing or invalid indexes! " + obj.length
 			});
 			return;
 		}
