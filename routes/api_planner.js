@@ -370,12 +370,12 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 							}).update({
 								sectionIndex: obj[1].sectionIndex
 							}).then(function() {
+								console.log("qwer");
 								return trx("planner_events").where({
 									sectionIndex: -999
 								}).update({
 									sectionIndex: obj[1].sectionIndex
 								});
-								console.log("qwer");
 							});
 						});
 					});
