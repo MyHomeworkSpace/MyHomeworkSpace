@@ -329,7 +329,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 		return;
 	}
 	// verify both sections exist
-	knex("planner_sections").select("*").where("userId", req.locals.user.id).
+	knex("planner_sections").select("*").where("userId", res.locals.user.id).
 		where(function() {
 			this.where("sectionIndex", req.params.first).orWhere("sectionIndex", req.params.second)
 		}).then(function(obj) {
