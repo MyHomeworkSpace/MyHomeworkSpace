@@ -313,7 +313,7 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 	});
 });
 
-router.get('/sections/swap/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.post('/sections/swap', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.first == undefined) {
 		res.json({
 			status: "error",
