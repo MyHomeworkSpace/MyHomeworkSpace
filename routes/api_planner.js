@@ -314,14 +314,14 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 });
 
 router.post('/sections/swap', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.first == undefined || parseInt(req.params.first) == undefined) {
+	if (req.body.first == undefined || parseInt(req.body.first) == Nan) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid first index parameter!"
 		});
 		return;
 	}
-	if (req.body.second == undefined || parseInt(req.params.second) == undefined) {
+	if (req.body.second == undefined || parseInt(req.body.second) == NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid second index parameter!"
@@ -331,7 +331,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 	// verify both sections exist
 	knex("planner_sections").select("*").where("userId", res.locals.user.id).
 		where(function() {
-			this.where("sectionIndex", parseInt(req.params.first)).orWhere("sectionIndex", parseInt(req.params.second))
+			this.where("sectionIndex", parseInt(req.body.first)).orWhere("sectionIndex", parseInt(req.body.second))
 		}).then(function(obj) {
 		if (obj.length != 2) {
 			res.json({
