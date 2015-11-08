@@ -38,19 +38,12 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						$("#planner table tbody").children().css("background-color", "white");
 						$("#planner table tbody").children().click(function() {
 							window.planner.movedID = parseInt($(this).attr("data-subjectIndex"));
-							window.api.post("planner/setIndex/", {
-								sectionIndex: window.planner.moveID,
-								newSectionIndex: window.planner.movedID
+							window.api.post("planner/sections/swap", {
+								first: window.planner.moveID,
+								second: window.planner.movedID
 							}, function() {
 								window.location.reload();
 							});
-							window.api.post("planner/setIndex/", {
-								sectionIndex: window.planner.movedID,
-								newSectionIndex: window.planner.moveID
-							}, function() {
-						//		window.location.reload();
-							});
-							
 						});
 						
 					});
