@@ -3,6 +3,7 @@ window.planner = {
 	loadState: 0,
 	subjectCount: 0,
 	saving: false,
+	movedID: 0,
 	moveID: 0
 };
 
@@ -32,9 +33,14 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					$move.click(function() {
 						window.planner.moveID = $(this).attr("data-subjectIndex");
 						$("#planner table tbody").children().click(function() {
-							$(".subjectRow[data-subjectIndex=" + window.planner.moveID + "]").attr("data-subjectIndex", $(this).attr("data-subjectIndex"));
-							$(this).attr("data-subjectIndex", window.planner.moveID);
-						//	window.location.reload()
+							window.planner.movedID = $(this).attr("data-subjectIndex");
+							window.api.post("/setIndex/", {
+								sectionIndex: window.planner.moveID,
+								newSectionIndex: window.planner.movedID
+							}, function() {
+								window.location.reload();
+							});
+							
 						});
 						
 					});
