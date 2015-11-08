@@ -359,7 +359,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 						sectionIndex: obj[0].sectionIndex
 					}).then(function() {
 						return trx("planner_events").where({
-							sectionGid: obj[1].sectionGid
+							sectionIndex: obj[1].sectionIndex
 						}).update({
 							sectionIndex: obj[0].sectionIndex
 						}).then(function() {
@@ -369,7 +369,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 								sectionIndex: obj[1].sectionIndex
 							}).then(function() {
 								return trx("planner_events").where({
-									sectionGid: -999
+									sectionIndex: -999
 								}).update({
 									sectionIndex: obj[1].sectionIndex
 								});
