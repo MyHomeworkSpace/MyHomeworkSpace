@@ -34,17 +34,17 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						window.planner.moveID = $(this).attr("data-subjectIndex");
 						$("#planner table tbody").children().click(function() {
 							window.planner.movedID = $(this).attr("data-subjectIndex");
-							window.api.post("/setIndex/", {
+							window.api.post("planner/setIndex/", {
 								sectionIndex: window.planner.moveID,
 								newSectionIndex: window.planner.movedID
 							}, function() {
-						//		window.location.reload();
+								window.location.reload();
 							});
-							window.api.post("/setIndex/", {
+							window.api.post("planner/setIndex/", {
 								sectionIndex: window.planner.movedID,
 								newSectionIndex: window.planner.moveID
 							}, function() {
-						//		window.location.reload();
+								window.location.reload();
 							});
 							
 						});
