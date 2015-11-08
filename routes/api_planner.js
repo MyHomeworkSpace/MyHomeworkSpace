@@ -275,7 +275,7 @@ router.post('/sections/add', global.apiCall, global.requireUser, global.getUserR
 	});
 });
 
-router.post('/setName/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.post('/setIndex/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.name == undefined) {
 		res.json({
 			status: "error",
@@ -286,9 +286,9 @@ router.post('/setName/', global.apiCall, global.requireUser, global.getUserRecor
 
 	knex("users").where({
 		id: res.locals.user.id,
-		sectionIndex: req.body.sectionIndex
-	}).update({
 		sectionIndex: sectionIndex
+	}).update({
+		sectionIndex: newSectionIndex
 	}).then(function() {
 		res.json({
 			status: "ok"
