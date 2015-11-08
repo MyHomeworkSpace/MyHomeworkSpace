@@ -349,7 +349,8 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 				sectionIndex: -999 // use this for swapping
 			}).then(function() {
 				return trx("planner_events").where({
-					sectionIndex: obj[0].sectionIndex
+					sectionIndex: obj[0].sectionIndex,
+					userId: obj[0].userId
 				}).update({
 					sectionIndex: -999
 				}).then(function() {
@@ -359,7 +360,8 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 						sectionIndex: obj[0].sectionIndex
 					}).then(function() {
 						return trx("planner_events").where({
-							sectionIndex: obj[1].sectionIndex
+							sectionIndex: obj[1].sectionIndex,
+							userId: obj[1].userId
 						}).update({
 							sectionIndex: obj[0].sectionIndex
 						}).then(function() {
@@ -373,12 +375,14 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 								}).update({
 									sectionIndex: obj[1].sectionIndex
 								});
+								console.log("qwer");
 							});
 						});
 					});
 				});
 			});
 		}).then(function() {
+			console.log("Asdf");
 			res.json({
 				status: "ok"
 			});
