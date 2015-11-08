@@ -328,10 +328,12 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 		});
 		return;
 	}
+	var first = parseInt(req.body.first);
+	var second = parseInt(req.body.second);
 	// verify both sections exist
 	knex("planner_sections").select("*").where("userId", res.locals.user.id).
 		where(function() {
-			this.where("sectionIndex", parseInt(req.body.first)).orWhere("sectionIndex", parseInt(req.body.second))
+			this.where("sectionIndex", first).orWhere("sectionIndex", second)
 		}).then(function(obj) {
 		if (obj.length != 2) {
 			res.json({
@@ -364,7 +366,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 							userId: obj[1].userId
 						}).update({
 							sectionIndex: obj[0].sectionIndex
-						})/*.then(function() {
+						}).then(function() {
 							return trx("planner_sections").where({
 								sectionIndex: -999
 							}).update({
@@ -376,7 +378,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 									sectionIndex: obj[1].sectionIndex
 								});
 							});
-						});*/
+						});
 					});
 				});
 			});
