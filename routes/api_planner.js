@@ -229,7 +229,7 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 router.get('/sections/get/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("planner_sections").select("*").where({
 		userId: res.locals.user.id
-	}).then(function(obj) {
+	}).orderBy('sectionIndex', 'asc').then(function(obj) {
 		res.json({
 			status: "ok",
 			sections: obj
@@ -312,42 +312,75 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 		});
 	});
 });
-/*
-router.get('/sections/swap/:first/:second', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.params.first == undefined) {
+
+router.post('/sections/swap', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.first == undefined || parseInt(req.body.first) == NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid first index parameter!"
 		});
 		return;
 	}
-	if (req.params.second == undefined) {
+	if (req.body.second == undefined || parseInt(req.body.second) == NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid second index parameter!"
 		});
 		return;
 	}
-	knex("planner_sections").select("*").where("sectionIndex", req.params.first).orWhere("sectionIndex", req.params.second).then(function(obj) {
+	var first = parseInt(req.body.first);
+	var second = parseInt(req.body.second);
+	// verify both sections exist
+	knex("planner_sections").select("*").where("userId", res.locals.user.id).
+		where(function() {
+			this.where("sectionIndex", first).orWhere("sectionIndex", second)
+		}).then(function(obj) {
 		if (obj.length != 2) {
 			res.json({
 				status: "error",
-				error: "Missing or invalid indexes!"
+				error: "Missing or invalid indexes! " + obj.length
 			});
 			return;
 		}
 
+		// use a transaction so things don't get inconsistent
 		knex.transaction(function(trx) {
 			return trx("planner_sections").where({
 				sectionGid: obj[0].sectionGid
 			}).update({
-				sectionIndex: obj[1].sectionIndex
+				sectionIndex: -999 // use this for swapping
 			}).then(function() {
-				return trx("planner_sections").where({
-					sectionGid: obj[1].sectionGid
+				return trx("planner_events").where({
+					sectionIndex: obj[0].sectionIndex,
+					userId: obj[0].userId
 				}).update({
-					sectionIndex: obj[0].sectionIndex
-				}).then
+					sectionIndex: -999
+				}).then(function() {
+					return trx("planner_sections").where({
+						sectionGid: obj[1].sectionGid
+					}).update({
+						sectionIndex: obj[0].sectionIndex
+					}).then(function() {
+						return trx("planner_events").where({
+							sectionIndex: obj[1].sectionIndex,
+							userId: obj[1].userId
+						}).update({
+							sectionIndex: obj[0].sectionIndex
+						}).then(function() {
+							return trx("planner_sections").where({
+								sectionIndex: -999
+							}).update({
+								sectionIndex: obj[1].sectionIndex
+							}).then(function() {
+								return trx("planner_events").where({
+									sectionIndex: -999
+								}).update({
+									sectionIndex: obj[1].sectionIndex
+								});
+							});
+						});
+					});
+				});
 			});
 		}).then(function() {
 			res.json({
@@ -368,7 +401,7 @@ router.get('/sections/swap/:first/:second', global.apiCall, global.requireUser, 
 		});
 	});
 });
-*/
+
 router.post('/sections/remove', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.sectionIndex == undefined) {
 		res.json({

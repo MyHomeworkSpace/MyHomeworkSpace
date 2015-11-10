@@ -2,7 +2,9 @@ window.planner = {
 	currentStartDate: null,
 	loadState: 0,
 	subjectCount: 0,
-	saving: false
+	saving: false,
+	movedID: 0,
+	moveID: 0
 };
 
 window.planner.showSaving = function() {
@@ -26,11 +28,26 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 			$subjectCell.text(subjectName);
 
 			var $controls = $('<div class="subjectControls"></div>');
-				/*var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
+			/*	var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
+					$move.attr("data-subjectIndex", subjectIndex);
 					$move.click(function() {
-
+						window.planner.moveID = parseInt($(this).attr("data-subjectIndex"));
+						$(this).parent().parent().parent().detach();
+						$("#planner table tbody").find(".planner-subject-handle").detach();
+						$("body").css("background-color", "black");
+						$("#planner table tbody").children().css("background-color", "white");
+						$("#planner table tbody").children().click(function() {
+							window.planner.movedID = parseInt($(this).attr("data-subjectIndex"));
+							window.api.post("planner/sections/swap", {
+								first: window.planner.moveID,
+								second: window.planner.movedID
+							}, function() {
+								window.location.reload();
+							});
+						});
+						
 					});
-				$controls.append($move);*/
+				$controls.append($move); */
 
 				var $renameBtn = $('<button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></button>');
 					$renameBtn.click(function() {
@@ -193,6 +210,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 
 			monday.setDate(monday.getDate() + 1);
 		}
+	
 	$("#planner table tbody").append($row);
 
 	window.planner.subjectCount++;
@@ -420,6 +438,8 @@ window.planner.addSubject = function(name) {
 		$(".planner-welcome").addClass("hidden");
 	});
 };
+
+
 
 $(document).ready(function() {
 	$("#planner").on("tabOpened", function() {
