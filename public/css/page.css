@@ -148,13 +148,16 @@ nav {
 }
 
 .loadWarn {
-	background: black;
+	background: rgba(0, 0, 0, 0.65);
 	font-size: 0.7em;
+	margin: 0 auto;
 	opacity: 1;
+	padding: 5px;
+	width: 300px;
 }
 
 .loadWarn button {
-	background: gray;
+	background: rgba(150, 150, 150, 0.95);
 	border: none;
 	border-radius: 2px;
 	font-size: 0.9em;
