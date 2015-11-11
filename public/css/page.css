@@ -164,7 +164,7 @@ nav {
 	transition: opacity 0.2s;
 }
 
-.loadWarn.showingLoadWarn {
+.showLoadOverlay .loadWarn.showingLoadWarn {
 	opacity: 1;
 }
 
