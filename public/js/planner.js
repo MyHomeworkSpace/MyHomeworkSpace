@@ -36,7 +36,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var subjList = $.map($(".subjectRow"), function(val) {
 							return { name: $(val).attr("data-subjectName"), index: $(val).attr("data-subjectIndex") };
 						});
-						$("#swap-subj-list").text();
+						$("#swap-subj-list").text("");
 						for (var slIndex in subjList) {
 							var item = subjList[slIndex];
 							var $item = $('<li></li>');

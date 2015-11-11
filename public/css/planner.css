@@ -209,4 +209,9 @@
 	padding: 10px 10px 10px 20px;
 	margin-bottom: 5px;
 	width: 300px;
+	transition: all 0.2s;
+}
+#swap-subj-list li:hover {
+	background: lightblue;
+	margin-left: 2px;
 }
