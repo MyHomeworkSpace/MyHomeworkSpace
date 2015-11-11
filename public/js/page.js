@@ -19,10 +19,10 @@ window.page.getBasePath = function() {
 window.page.showLoading = function() {
 	window.page.loadTimeout = setTimeout(function() {
 		$(".loadOverlay").show();
-		$(".loadWarn").addClass("hidden");
+		$(".loadWarn").addClass("showingLoadWarn");
 		window.page.loadWarnTimeout = setTimeout(function() {
 			console.warn("Loading is taking time...");
-			$(".loadWarn").removeClass("hidden");
+			$(".loadWarn").removeClass("showingLoadWarn");
 		}, 10000);
 	}, 200);
 };

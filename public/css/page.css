@@ -154,6 +154,12 @@ nav {
 	opacity: 1;
 	padding: 5px;
 	width: 300px;
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.loadWarn.showingLoadWarn {
+	opacity: 1;
 }
 
 .loadWarn button {
@@ -161,4 +167,9 @@ nav {
 	border: none;
 	border-radius: 2px;
 	font-size: 0.9em;
+	transition: background 0.2s;
+}
+
+.loadWarn button:hover {
+	background: rgba(100, 100, 100, 0.95);
 }
