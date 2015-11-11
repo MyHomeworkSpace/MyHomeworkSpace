@@ -238,26 +238,16 @@ html
 										span Swap subject
 								
 								div(class="modal-body")
-									p(class="feedback-desc")
-									textarea(id="feedback-msg", placeholder="Write your message here...")
-									strong The following information will be sent with your feedback:
-									ul
-										li
-											span Your name (
-											span= user.name
-											span )
-										li
-											span Your username (
-											span= user.username
-											span )
-										li
-											input(type="checkbox", id="feedback-snapshot", checked="checked")
-											span  (optional) A snapshot of the web page so we can see what you are talking about! This might contain information you are looking at, like your planner events. You don't have to include it if you don't want to.
-									p Thanks for the feedback! Click "Submit" to send it!
+									p
+										span Click on the subject you want to swap '
+										span(id="swap-subj-name") 
+										span ' with.
+									ul(id="swap-subj-list")
+										li test
+										li test
 								
 								div(class="modal-footer feedback-footer-normal")
-									button(type="button", class="btn btn-default", data-dismiss="modal") Close without submitting
-									button(type="button", class="btn btn-primary", id="feedback-submit") Submit
+									button(type="button", class="btn btn-default", data-dismiss="modal") Close without saving
 					div(id="planner-hacky-text-measure-thing")
 					div(id="planner-status") Saved.
 					div(id="planner-controls-wrapper")
