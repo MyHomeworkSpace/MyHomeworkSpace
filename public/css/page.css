@@ -104,7 +104,7 @@ nav {
 }
 
 .loadOverlay {
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0);
 	color: white;
 	font-size: 2em;
 	position: fixed;
@@ -120,6 +120,12 @@ nav {
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
+	z-index: -1 !important; /* hide */
+	transition: background 0.1s;
+}
+
+.showLoadOverlay {
+	background: rgba(0, 0, 0, 0.5);
 	z-index: 99999 !important; /* please be above the nav */
 }
 

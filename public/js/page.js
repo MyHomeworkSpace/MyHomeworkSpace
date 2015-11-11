@@ -18,7 +18,7 @@ window.page.getBasePath = function() {
 
 window.page.showLoading = function() {
 	window.page.loadTimeout = setTimeout(function() {
-		$(".loadOverlay").show();
+		$(".loadOverlay").addClass("showLoadOverlay");
 		$(".loadWarn").removeClass("showingLoadWarn");
 		window.page.loadWarnTimeout = setTimeout(function() {
 			console.warn("Loading is taking time...");
@@ -28,7 +28,7 @@ window.page.showLoading = function() {
 };
 
 window.page.hideLoading = function() {
-	$(".loadOverlay").hide();
+	$(".loadOverlay").removeClass("showLoadOverlay");
 	if (window.page.loadTimeout != null) {
 		clearTimeout(window.page.loadTimeout);
 	}
