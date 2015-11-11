@@ -84,7 +84,7 @@ nav {
 }
 .open-page {
 	opacity: 1;
-	z-index: 9999;
+	z-index: 998;
 }
 
 .upsell {
@@ -120,11 +120,14 @@ nav {
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
-	z-index: 9999999999999999999999999999999999 !important; /* please be above the nav */
+	z-index: 99999 !important; /* please be above the nav */
 }
 
 .modal {
-	z-index: 999999999999999999999999999999999 !important; /* please be above everything but the loading thing */
+	z-index: 9999 !important; /* please be above everything but the loading thing */
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .smileBtn, .frownBtn, .ideaBtn {
@@ -141,5 +144,5 @@ nav {
 	position: absolute;
 	bottom: 0;
 	left: 50px;
-	z-index: 999999;
+	z-index: 1041;
 }
