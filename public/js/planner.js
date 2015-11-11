@@ -57,19 +57,6 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$("#swap-subj-list").append($item);
 						};
 						$("#planner-move-modal").modal();
-						/*$(this).parent().parent().parent().detach();
-						$("#planner table tbody").find(".planner-subject-handle").detach();
-						$("body").css("background-color", "black");
-						$("#planner table tbody").children().css("background-color", "white");
-						$("#planner table tbody").children().click(function() {
-							window.planner.movedID = parseInt($(this).attr("data-subjectIndex"));
-							window.api.post("planner/sections/swap", {
-								first: window.planner.moveID,
-								second: window.planner.movedID
-							}, function() {
-								window.location.reload();
-							});
-						});*/
 					});
 				$controls.append($move);
 
