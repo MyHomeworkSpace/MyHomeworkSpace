@@ -276,24 +276,6 @@ window.planner.getAnnouncement = function(date, callback) {
 	});
 };
 
-/*
-deprecated, use loadSubjectWeek
-window.planner.loadSubjectDay = function(date, subjectIndex) {
-	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
-
-	window.api.get("planner/events/get/" + window.utils.formatDate_api(date) + "/" + subjectIndex, function(data) {
-		var ev = data.events;
-		var $cell = $row.children(".editCell[data-date=" + data.date.split("T")[0] + "]");
-		if (ev.length > 0) {
-			$cell.children(".magic-input-container").children("div").children("textarea").val(ev[0].text);
-			$cell.children(".checkBtn").prop("checked", ev[0].done);
-			$cell.children(".checkBtn").change();
-		}
-		$cell.children(".magic-input-container").change(); // call this always just in case the textarea has been cleared
-		window.planner.loadStep();
-	});
-};*/
-
 window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
 
