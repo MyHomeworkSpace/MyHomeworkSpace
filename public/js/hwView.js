@@ -47,7 +47,11 @@ window.hwView.addEventToList = function(ev, list) {
 				if (tag.toLowerCase() == "test" || tag.toLowerCase() == "exam" || tag.toLowerCase() == "midterm" || tag.toLowerCase() == "quiz" || tag.toLowerCase() == "ica" || tag.toLowerCase() == "lab") {
 					keyword = "on";
 				}
-				$due.text(" " + keyword + " " + window.utils.formatDate_pretty(moment(ev.due).add(1, "day").toDate())); // timezones. and off-by-one errors.
+				var dueText = window.utils.formatDate_pretty(moment(ev.due).add(1, "day").toDate());
+				if (moment(ev.due).add(1, "day").weekYear() == moment().weekYear()) {
+					dueText = window.utils.getDayOfWeek(moment(ev.due).add(1, "day").day());
+				}
+				$due.text(" " + keyword + " " + dueText);
 			$lineTwo.append($due);
 		// append comes later
 
