@@ -42,6 +42,15 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							var $item = $('<li></li>');
 								$item.text(item.name);
 								$item.attr("data-subjectIndex", item.index);
+								$item.click(function() {
+									window.page.showLoading();
+									window.api.post("planner/sections/swap", {
+										first: window.planner.moveID,
+										second: $(this).attr("data-subjectIndex")
+									}, function() {
+										window.location.reload();
+									});
+								});
 							$("#swap-subj-list").append($item);
 						};
 						$("#planner-move-modal").modal();

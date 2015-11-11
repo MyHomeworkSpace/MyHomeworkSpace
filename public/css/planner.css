@@ -213,5 +213,6 @@
 }
 #swap-subj-list li:hover {
 	background: lightblue;
-	margin-left: 2px;
+	cursor: pointer;
+	margin-left: 4px;
 }
