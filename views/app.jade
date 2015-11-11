@@ -163,6 +163,27 @@ html
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", id="prefs-done") Done
 
+		div(id="planner-move-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title")
+							span Swap subject
+					
+					div(class="modal-body")
+						p
+							span Click on the subject you want to swap '
+							span(id="swap-subj-name") 
+							span ' with.
+						ul(id="swap-subj-list")
+							li test
+							li test
+					
+					div(class="modal-footer feedback-footer-normal")
+						button(type="button", class="btn btn-default", data-dismiss="modal") Close without saving
+
 		div(class="mainContainer")
 			ul(class="tabs")
 				li(data-page="overview")
@@ -228,26 +249,6 @@ html
 									h4 Add or remove subjects
 									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
 
-					div(id="planner-move-modal", class="modal fade")
-						div(class="modal-dialog")
-							div(class="modal-content")
-								div(class="modal-header")
-									button(type="button", class="close", data-dismiss="modal", aria-label="Close")
-										span(aria-hidden="true") &times;
-									h4(class="modal-title")
-										span Swap subject
-								
-								div(class="modal-body")
-									p
-										span Click on the subject you want to swap '
-										span(id="swap-subj-name") 
-										span ' with.
-									ul(id="swap-subj-list")
-										li test
-										li test
-								
-								div(class="modal-footer feedback-footer-normal")
-									button(type="button", class="btn btn-default", data-dismiss="modal") Close without saving
 					div(id="planner-hacky-text-measure-thing")
 					div(id="planner-status") Saved.
 					div(id="planner-controls-wrapper")
