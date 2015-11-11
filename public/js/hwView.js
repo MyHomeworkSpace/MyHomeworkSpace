@@ -48,7 +48,7 @@ window.hwView.addEventToList = function(ev, list) {
 					keyword = "on";
 				}
 				var dueText = window.utils.formatDate_pretty(moment(ev.due).add(1, "day").toDate());
-				if (moment(ev.due).add(1, "day").weekYear() == moment().weekYear()) {
+				if (moment(ev.due).add(1, "day").week() == moment().week()) {
 					dueText = window.utils.getDayOfWeek(moment(ev.due).add(1, "day").day());
 				}
 				$due.text(" " + keyword + " " + dueText);
