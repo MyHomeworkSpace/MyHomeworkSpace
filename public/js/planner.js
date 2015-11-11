@@ -33,7 +33,19 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					$move.click(function() {
 						window.planner.moveID = parseInt($(this).attr("data-subjectIndex"));
 						$("#swap-subj-name").text($(this).parent().parent().text());
-						$(this).parent().parent().parent().detach();
+						var subjList = $.map($(".subjectRow"), function(val) {
+							return { name: $(val).attr("data-subjectName"), index: $(val).attr("data-subjectIndex") };
+						});
+						$("#swap-subj-list").text();
+						for (var slIndex in subjList) {
+							var item = subjList[slIndex];
+							var $item = $('<li></li>');
+								$item.text(item.name);
+								$item.attr("data-subjectIndex", item.index);
+							$("#swap-subj-list").append($item);
+						};
+						$("#planner-move-modal").modal();
+						/*$(this).parent().parent().parent().detach();
 						$("#planner table tbody").find(".planner-subject-handle").detach();
 						$("body").css("background-color", "black");
 						$("#planner table tbody").children().css("background-color", "white");
@@ -45,7 +57,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							}, function() {
 								window.location.reload();
 							});
-						});
+						});*/
 					});
 				$controls.append($move);
 
