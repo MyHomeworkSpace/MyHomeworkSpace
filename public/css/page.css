@@ -121,7 +121,7 @@ nav {
 	-o-user-select: none;
 	user-select: none;
 	z-index: -1 !important; /* hide */
-	transition: background 0.1s;
+	transition: background 0.2s;
 }
 
 .showLoadOverlay {
