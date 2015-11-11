@@ -39,6 +39,9 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						$("#swap-subj-list").text("");
 						for (var slIndex in subjList) {
 							var item = subjList[slIndex];
+							if (item.index == window.planner.moveID) {
+								continue; // don't add self to list!
+							}
 							var $item = $('<li></li>');
 								$item.text(item.name);
 								$item.attr("data-subjectIndex", item.index);
