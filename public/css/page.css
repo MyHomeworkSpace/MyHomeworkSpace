@@ -104,13 +104,13 @@ nav {
 }
 
 .loadOverlay {
-	background: black;
+	background: rgba(255, 255, 255, 0.5);
 	color: white;
 	font-size: 2em;
 	position: fixed;
 	top: 0;
 	left: 0;
-	opacity: 0.5;
+	/*opacity: 0.5;*/
 	padding-top: 150px;
 	text-align: center;
 	width: 100%;
@@ -149,7 +149,7 @@ nav {
 
 .loadWarn {
 	background: black;
-	font-size: 1.1em;
+	font-size: 0.7em;
 	opacity: 1;
 }
 
@@ -157,5 +157,5 @@ nav {
 	background: gray;
 	border: none;
 	border-radius: 2px;
-	font-size: 1.2em;
+	font-size: 0.9em;
 }

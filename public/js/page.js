@@ -134,6 +134,10 @@ $(document).ready(function() {
 		window.page.openFeedbackModal("frown");
 	});
 
+	$(".loadWarn button").click(function() {
+		window.location.reload();
+	})
+
 	$("#feedback-submit").click(function() {
 		var webpage = undefined;
 		if ($("#feedback-snapshot").prop("checked")) {
