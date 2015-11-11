@@ -11,7 +11,7 @@ nav {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 9998 !important; /* please stay on top */
+	z-index: 998 !important; /* please stay on top */
 	/*height: 70px;*/
 }
 .mainContainer {
@@ -28,7 +28,7 @@ nav {
 	overflow-x: hidden;
 	list-style-type: none;
 	border-right: solid 1px black;
-	z-index: 9997;
+	z-index: 997;
 }
 .tabs li {
 	-webkit-transform: rotate(-90deg);
