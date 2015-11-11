@@ -146,3 +146,16 @@ nav {
 	left: 50px;
 	z-index: 1040;
 }
+
+.loadWarn {
+	background: black;
+	font-size: 1.1em;
+	opacity: 1;
+}
+
+.loadWarn button {
+	background: gray;
+	border: none;
+	border-radius: 2px;
+	font-size: 1.2em;
+}

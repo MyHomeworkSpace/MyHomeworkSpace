@@ -8,8 +8,8 @@ function setPage(newPage) {
 }
 
 window.page = {
-	loadTimeout: 0,
-	loadWarnTimeout: 0
+	loadTimeout: null,
+	loadWarnTimeout: null
 };
 
 window.page.getBasePath = function() {
@@ -19,8 +19,10 @@ window.page.getBasePath = function() {
 window.page.showLoading = function() {
 	window.page.loadTimeout = setTimeout(function() {
 		$(".loadOverlay").show();
+		$(".loadWarn").addClass("hidden");
 		window.page.loadWarnTimeout = setTimeout(function() {
 			console.warn("Loading is taking time...");
+			$(".loadWarn").removeClass("hidden");
 		}, 10000);
 	}, 200);
 };
