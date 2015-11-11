@@ -8,8 +8,10 @@ function setPage(newPage) {
 }
 
 window.page = {
-	loadTimeout: 0
+	loadTimeout: 0,
+	loadWarnTimeout: 0
 };
+
 window.page.getBasePath = function() {
 	return $("#basePath").text();
 };
@@ -17,6 +19,9 @@ window.page.getBasePath = function() {
 window.page.showLoading = function() {
 	window.page.loadTimeout = setTimeout(function() {
 		$(".loadOverlay").show();
+		window.page.loadWarnTimeout = setTimeout(function() {
+			console.warn("Loading is taking time...");
+		}, 10000);
 	}, 200);
 };
 
@@ -25,7 +30,11 @@ window.page.hideLoading = function() {
 	if (window.page.loadTimeout != 0) {
 		clearTimeout(window.page.loadTimeout);
 	}
+	if (window.page.loadWarnTimeout != 0) {
+		clearTimeout(window.page.loadWarnTimeout);
+	}
 	window.page.loadTimeout = 0;
+	window.page.loadWarnTimeout = 0;
 };
 
 window.page.getFeatures = function(callback) {
