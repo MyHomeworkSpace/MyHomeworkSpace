@@ -8,24 +8,35 @@ function setPage(newPage) {
 }
 
 window.page = {
-	loadTimeout: 0
+	loadTimeout: null,
+	loadWarnTimeout: null
 };
+
 window.page.getBasePath = function() {
 	return $("#basePath").text();
 };
 
 window.page.showLoading = function() {
 	window.page.loadTimeout = setTimeout(function() {
-		$(".loadOverlay").show();
+		$(".loadOverlay").addClass("showLoadOverlay");
+		$(".loadWarn").removeClass("showingLoadWarn");
+		window.page.loadWarnTimeout = setTimeout(function() {
+			console.warn("Loading is taking time...");
+			$(".loadWarn").addClass("showingLoadWarn");
+		}, 10000);
 	}, 200);
 };
 
 window.page.hideLoading = function() {
-	$(".loadOverlay").hide();
-	if (window.page.loadTimeout != 0) {
+	$(".loadOverlay").removeClass("showLoadOverlay");
+	if (window.page.loadTimeout != null) {
 		clearTimeout(window.page.loadTimeout);
 	}
+	if (window.page.loadWarnTimeout != null) {
+		clearTimeout(window.page.loadWarnTimeout);
+	}
 	window.page.loadTimeout = 0;
+	window.page.loadWarnTimeout = 0;
 };
 
 window.page.getFeatures = function(callback) {
@@ -122,6 +133,10 @@ $(document).ready(function() {
 	$(".frownBtn").click(function() {
 		window.page.openFeedbackModal("frown");
 	});
+
+	$(".loadWarn button").click(function() {
+		window.location.reload();
+	})
 
 	$("#feedback-submit").click(function() {
 		var webpage = undefined;

@@ -28,26 +28,37 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 			$subjectCell.text(subjectName);
 
 			var $controls = $('<div class="subjectControls"></div>');
-			var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
+				var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
 					$move.attr("data-subjectIndex", subjectIndex);
 					$move.click(function() {
 						window.planner.moveID = parseInt($(this).attr("data-subjectIndex"));
-						$(this).parent().parent().parent().detach();
-						$("#planner table tbody").find(".planner-subject-handle").detach();
-						$("body").css("background-color", "black");
-						$("#planner table tbody").children().css("background-color", "white");
-						$("#planner table tbody").children().click(function() {
-							window.planner.movedID = parseInt($(this).attr("data-subjectIndex"));
-							window.api.post("planner/sections/swap", {
-								first: window.planner.moveID,
-								second: window.planner.movedID
-							}, function() {
-								window.location.reload();
-							});
+						$("#swap-subj-name").text($(this).parent().parent().text());
+						var subjList = $.map($(".subjectRow"), function(val) {
+							return { name: $(val).attr("data-subjectName"), index: $(val).attr("data-subjectIndex") };
 						});
-						
+						$("#swap-subj-list").text("");
+						for (var slIndex in subjList) {
+							var item = subjList[slIndex];
+							if (item.index == window.planner.moveID) {
+								continue; // don't add self to list!
+							}
+							var $item = $('<li></li>');
+								$item.text(item.name);
+								$item.attr("data-subjectIndex", item.index);
+								$item.click(function() {
+									window.page.showLoading();
+									window.api.post("planner/sections/swap", {
+										first: window.planner.moveID,
+										second: $(this).attr("data-subjectIndex")
+									}, function() {
+										window.location.reload();
+									});
+								});
+							$("#swap-subj-list").append($item);
+						};
+						$("#planner-move-modal").modal();
 					});
-				$controls.append($move); 
+				$controls.append($move);
 
 				var $renameBtn = $('<button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></button>');
 					$renameBtn.click(function() {
@@ -265,24 +276,6 @@ window.planner.getAnnouncement = function(date, callback) {
 	});
 };
 
-/*
-deprecated, use loadSubjectWeek
-window.planner.loadSubjectDay = function(date, subjectIndex) {
-	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
-
-	window.api.get("planner/events/get/" + window.utils.formatDate_api(date) + "/" + subjectIndex, function(data) {
-		var ev = data.events;
-		var $cell = $row.children(".editCell[data-date=" + data.date.split("T")[0] + "]");
-		if (ev.length > 0) {
-			$cell.children(".magic-input-container").children("div").children("textarea").val(ev[0].text);
-			$cell.children(".checkBtn").prop("checked", ev[0].done);
-			$cell.children(".checkBtn").change();
-		}
-		$cell.children(".magic-input-container").change(); // call this always just in case the textarea has been cleared
-		window.planner.loadStep();
-	});
-};*/
-
 window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
 
@@ -443,9 +436,9 @@ window.planner.addSubject = function(name) {
 
 $(document).ready(function() {
 	$("#planner").on("tabOpened", function() {
-		$(".subjectRow").remove(); // clear the grid
 		window.planner.subjectCount = 0;
 		window.page.showLoading();
+		$(".subjectRow").remove(); // clear the grid
 		window.planner.getSubjects(function(subjects) {
 			for (var i = 0; i < subjects.length; i++) {
 				window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);

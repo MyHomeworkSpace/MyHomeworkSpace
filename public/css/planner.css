@@ -198,3 +198,21 @@
 .feedback-btn {
 	font-size: 1.5em;
 }
+
+#swap-subj-list {
+	list-style-type: none;
+	padding-left: 20px;
+}
+#swap-subj-list li {
+	border: solid 1px black;
+	font-size: 1.2em;
+	padding: 10px 10px 10px 20px;
+	margin-bottom: 5px;
+	width: 300px;
+	transition: all 0.2s;
+}
+#swap-subj-list li:hover {
+	background: lightblue;
+	cursor: pointer;
+	margin-left: 4px;
+}
