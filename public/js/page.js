@@ -27,10 +27,10 @@ window.page.showLoading = function() {
 
 window.page.hideLoading = function() {
 	$(".loadOverlay").hide();
-	if (window.page.loadTimeout != 0) {
+	if (window.page.loadTimeout != null) {
 		clearTimeout(window.page.loadTimeout);
 	}
-	if (window.page.loadWarnTimeout != 0) {
+	if (window.page.loadWarnTimeout != null) {
 		clearTimeout(window.page.loadWarnTimeout);
 	}
 	window.page.loadTimeout = 0;
