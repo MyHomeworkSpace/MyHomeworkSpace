@@ -436,9 +436,9 @@ window.planner.addSubject = function(name) {
 
 $(document).ready(function() {
 	$("#planner").on("tabOpened", function() {
-		$(".subjectRow").remove(); // clear the grid
 		window.planner.subjectCount = 0;
 		window.page.showLoading();
+		$(".subjectRow").remove(); // clear the grid
 		window.planner.getSubjects(function(subjects) {
 			for (var i = 0; i < subjects.length; i++) {
 				window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
