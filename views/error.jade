@@ -1,7 +1,8 @@
 extends layout
 
 block content
-	h1 Error
+	h1 Whoops! It looks like we have run into an error.
+	p Click the frowny face in the corner to report this error.
 	if error
 		h2= error.status
 		pre #{error.stack}
