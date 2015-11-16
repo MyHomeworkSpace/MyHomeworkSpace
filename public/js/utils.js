@@ -124,6 +124,7 @@ window.utils.getPrefixClass = function(prefix) {
 			return "cal_ica";
 
 		case "lab":
+		case "study":
 			return "cal_lab";
 
 		case "docid":
