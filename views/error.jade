@@ -1,9 +1,12 @@
 extends layout
 
 block content
-	h1 Error
+	h1 Whoops! It looks like we have run into an error.
+	p
+		| Don't worry, chances are you didn't break anything. 
+		a(href='mailto:hello@planhub.me?subject=PlanHub%20Error&body=#{error.stack}') Report this error
 	if error
-		h2= error.status
+		p= error.status
 		pre #{error.stack}
 	else if msg
 		h2= msg
