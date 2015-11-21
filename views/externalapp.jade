@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h1 {name} is requetsting access to your PlanHub account.
+	p(class="lead"){name} will be able to:
+		ul
+			li
+				p permission 1
+			li
+				p permission 2
+			li
+				p etc
+		a.btn.btn-danger(href='#') Allow Access
+		a.btn.btn-default(href='#') Deny Access
+		span PlanHub is open-source software licensed under the MIT License. You can see the code that runs it on
