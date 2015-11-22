@@ -169,6 +169,7 @@ var routes = require('./routes/index');
 var appRouter = require('./routes/app');
 
 var api_main = require('./routes/api_main');
+var api_ext = require('./routes/api_ext');
 var api_myDay = require('./routes/api_myDay');
 var api_planner = require('./routes/api_planner');
 var api_prefs = require('./routes/api_prefs');
