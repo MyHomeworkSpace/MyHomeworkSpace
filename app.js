@@ -204,6 +204,7 @@ app.use(basePath + '/', routes);
 app.use(basePath + '/app', appRouter);
 
 app.use(basePath + '/api/v1/', api_main);
+app.use(basePath + '/api/v1/ext', api_ext);
 app.use(basePath + '/api/v1/myDay', api_myDay);
 app.use(basePath + '/api/v1/planner', api_planner);
 app.use(basePath + '/api/v1/prefs', api_prefs);
