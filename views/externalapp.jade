@@ -1,14 +1,14 @@
 extends layout
 
 block content
-	h1 {name} is requetsting access to your PlanHub account.
-	p(class="lead"){name} will be able to:
+	h1 #{appName} is requetsting access to your PlanHub account.
+	p(class="lead") #{appName} will be able to:
 		ul
 			li
-				p permission 1
+				p See information about your account.
 			li
-				p permission 2
+				p View and edit your planner events.
 			li
-				p etc
-		a.btn.btn-danger(href='#') Allow Access
+				p See your Homework View page.
+		a.btn.btn-primary(href='#') Allow Access
 		a.btn.btn-default(href='#') Deny Access
