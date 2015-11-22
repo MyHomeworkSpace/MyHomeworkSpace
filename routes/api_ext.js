@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/getAuthPage', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.get('/getAuthPage', global.apiCall, function(req, res, next) {
 	res.json({
 		status: "ok",
 		authPage: "https://planhub.me/api/v1/ext/appAuth/" + "asdf"
@@ -16,7 +16,7 @@ router.get('/getAuthPage', global.apiCall, global.requireUser, global.getUserRec
 });
 
 router.get("/appAuth/:token", function(req, res, next) {
-
+	res.render("externalapp");
 });
 
 module.exports = router;
