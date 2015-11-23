@@ -34,7 +34,7 @@ window.hwView.addEventToList = function(ev, list) {
 				} else {
 					$tag.addClass(window.utils.getPrefixClass(tag));
 				}
-				
+
 				$tag.text(tag);
 			$lineTwo.append($tag);
 
@@ -120,7 +120,7 @@ window.hwView.loadStep = function() {
 		window.page.hideLoading();
 		if ($(".hwView-tomorrow ul").text() == "" && $(".hwView-soon ul").text() == "" && $(".hwView-longterm ul").text() == "") {
 			// empty!
-			alert("You don't have any homework in your planner! Click on the Planner tab and type in your homework. Once you've written some assignments in, come back here.");
+			swal("You don't have any homework in your planner!", " Once you've written some assignments in, come back here.", "warning")
 		}
 	}
 };
@@ -195,7 +195,7 @@ $(document).ready(function() {
 				window.hwView.loadEvents(function() {
 				});
 			});
-			
+
 		});
 	});
 });
