@@ -113,7 +113,7 @@
 	text-decoration: line-through;
 }
 
-.magic-input-container {
+/*.magic-input-container {
 	width: 100%;
 	height: auto;
 	position: relative;
@@ -139,7 +139,7 @@
 	color: #FFF;
 	opacity: 1;
 	font-size: 1.15em;
-}
+}*/
 
 /* for HW view */
 .col-md-4 li .first-word {
