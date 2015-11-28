@@ -319,7 +319,7 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 			cellText = cellText.trim();
 			$cell.children(".highlightTextarea").children("textarea").val(cellText);
 			$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
-			$cell.children(".checkBtn").change();
+			$cell.children(".checkBtn").trigger("input");
 		};
 		window.planner.loadStep();
 	});

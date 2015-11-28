@@ -216,3 +216,6 @@
 	cursor: pointer;
 	margin-left: 4px;
 }
+.highlightTextarea-container {
+	font-size: 1.15em;
+}
