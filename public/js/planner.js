@@ -120,6 +120,12 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.mouseleave(function() {
 					$(this).removeClass("hover");
 				});
+
+				$editCell.highlightTextarea({
+					words: window.utils.getPrefixes(),
+					firstWord: true,
+					caseSensitive: false 
+				});
 				
 				$editCell.children("textarea").keydown(function (evt) {
 					
@@ -169,7 +175,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 
 				$mic.prepend("<div></div>");
 				var prefixFunction = function () {
-					var $ev = $(this).children("div").children("textarea");
+					/*var $ev = $(this).children("div").children("textarea");
 					var $mic = $ev.parent().parent();
 					if (($ev.val().length) && ($ev.val().split(' ').length)) {
 						var eventNumber = $ev.val().trim().split("\n").length;
@@ -212,7 +218,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					}
 					else {
 						$(this).find('.first-word').addClass("hiddenThing");
-					}
+					}*/
 				};
 				$mic.on('keydown keyup change', prefixFunction);
 

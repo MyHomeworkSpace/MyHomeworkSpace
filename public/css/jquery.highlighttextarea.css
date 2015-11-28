@@ -1,0 +1,86 @@
+/*!
+ * jQuery highlightTextarea
+ * Copyright 2014-2015 Damien "Mistic" Sorel (http://www.strangeplanet.fr)
+ * Licensed under MIT (http://opensource.org/licenses/MIT)
+ */
+
+.highlightTextarea {
+  position:relative;
+}
+.highlightTextarea .highlightTextarea-container {
+  position:absolute;
+  margin:0;
+  overflow:hidden;
+}
+.highlightTextarea .highlightTextarea-highlighter {
+  position:relative;
+  border:none;
+  padding:0;
+  margin:0;
+  color:transparent;
+  cursor:text;
+  overflow:hidden;
+  white-space:pre-wrap;
+  word-wrap:break-word;
+}
+.highlightTextarea.debug .highlightTextarea-highlighter {
+  color:#f00;
+  border:1px solid #f00;
+  margin:-1px;
+}
+.highlightTextarea mark {
+  line-height:inherit;
+  margin:0;
+  padding: 1px 1px 1px 0; /*0;*/
+  opacity: 0;
+  /*transition: opacity 0.2s;*/
+  position: relative;
+  z-index: 1;
+}
+.highlightTextarea mark.fade {
+  line-height:inherit;
+  margin:0;
+  padding:0;
+  opacity: 1;
+}
+.highlightTextarea textarea,
+.highlightTextarea input {
+  position:absolute;
+  left:0;
+  top:0;
+  resize:none;
+  white-space:pre-wrap;
+  word-wrap:break-word;
+}
+.highlightTextarea .ui-wrapper {
+  margin:0 !important;
+}
+.highlightTextarea .ui-resizable-se {
+  bottom:15px;
+  right:0px;
+}
+.text-highlight {
+  background-color: #ff0;
+  color: black;
+}
+.text-highlight-alt {
+  background-color: #adf0ff;
+  color: black;
+}
+
+.highlightTextarea-containerTop mark {
+  background-color: transparent !important;
+}
+.highlightTextarea-container:not(.highlightTextarea-containerTop) mark {
+  color: transparent !important;
+}
+
+.highlightTextarea-container:not(.highlightTextarea-containerTop) {
+  z-index: -1;
+}
+
+.highlightTextarea-containerTop {
+  z-index: 2;
+  background: transparent !important;
+  pointer-events: none;
+}
