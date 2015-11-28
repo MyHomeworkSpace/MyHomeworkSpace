@@ -121,7 +121,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					$(this).removeClass("hover");
 				});
 
-				$editCell.highlightTextarea({
+				$editCell.children("textarea").highlightTextarea({
 					words: window.utils.getPrefixes(),
 					firstWord: true,
 					caseSensitive: false 
