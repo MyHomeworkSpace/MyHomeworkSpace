@@ -147,11 +147,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				var textAreaChg = function() {
 					var editCell = $(this).parent().hasClass("editCell");
 
-					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().parent().attr("data-subjectIndex"));
-					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().parent().attr("data-date"));
-					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().parent().hasClass("done"));
-					var val = (editCell ? $(this).parent().children(".highlightTextarea").children("div").children("textarea").val() : $(this).val()); // fix this - editCell
-					var $micDiv = (editCell ? $(this).children("div:not(.first-word)") : $(this).parent());
+					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().attr("data-subjectIndex"));
+					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().attr("data-date"));
+					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().hasClass("done"));
+					var val = (editCell ? $(this).parent().children(".highlightTextarea").children("textarea").val() : $(this).val()); // fix this - editCell
+					var $micDiv = (editCell ? $(this).parent().children(".highlightTextarea") : $(this).parent());
 
 					if (val.indexOf("ey.hex(u);;;;;") >= 0) {
 						alert("You just typed something really dangerous.")
@@ -315,8 +315,8 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 				$cell.children(".checkBtn").prop("checked", (evs[evsIndex].done || $cell.children(".checkBtn").prop("checked")));
 			};
 			cellText = cellText.trim();
-			$cell.children(".highlightTextarea").children("div").children("textarea").val(cellText);
-			$cell.children("highlightTextarea").children("div").attr("data-donePass", doneStr);
+			$cell.children(".highlightTextarea").children("textarea").val(cellText);
+			$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
 			$cell.children(".checkBtn").change();
 		};
 		window.planner.loadStep();
