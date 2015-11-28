@@ -319,7 +319,7 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 			cellText = cellText.trim();
 			$cell.children(".highlightTextarea").children("textarea").val(cellText);
 			$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
-			$cell.children(".checkBtn").trigger("input");
+			$cell.children(".checkBtn").change();
 		};
 		window.planner.loadStep();
 	});
@@ -329,7 +329,7 @@ window.planner.loadStep = function() {
 	window.planner.loadState++;
 	if (window.planner.loadState == (1 + 1 + (1 * window.planner.subjectCount))) { // one step plus friday step plus 1 week per subject
 		var $mic = $(".editCell .highlightTextarea"); // tags
-		$mic.change();
+		$mic.trigger("input");
 		window.page.hideLoading(); // done
 	}
 };
