@@ -106,7 +106,7 @@
 	opacity: 1;
 }
 .editCell.done {
-	background: lightgray;
+	/*background: lightgray;*/
 	background-clip: padding-box;
 }
 .editCell.done textarea {
@@ -222,3 +222,14 @@
 /*.highlightTextarea-container mark {
 	text-shadow: 0 0 white;
 }*/
+.editCell .highlightTextarea::before {
+    content: "";
+    background: white;
+    padding: 0px 150px 100px 0;
+    position: absolute;
+    z-index: -1;
+    transition: background 0.1s;
+}
+.editCell.done .highlightTextarea::before {
+    background: lightgray;
+}
