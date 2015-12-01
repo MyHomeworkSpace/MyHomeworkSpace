@@ -169,8 +169,8 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						window.planner.setEvent(date, subjectIndex, texts[textIndex], done, textIndex);
 					}
 				};
-				$editCell.children("textarea").change(textAreaChg);
-				$editCell.children(".checkBtn").change(textAreaChg);
+				$editCell.find("textarea").change(textAreaChg);
+				$editCell.find(".checkBtn").change(textAreaChg);
 
 				var $mic = $('<div class="magic-input-container"></div>');
 
