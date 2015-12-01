@@ -95,6 +95,47 @@ window.utils.getPrefix = function(text) {
 	return text.split(' ')[0].trim().substr(0, 12); // limit to 12 chars
 };
 
+window.utils.getPrefixes = function() {
+	return [
+		{
+			color: "cal_hw",
+			words: ["hw", "read", "reading"]
+		},
+		{
+			color: "cal_project",
+			words: ["project"]
+		},
+		{
+			color: "cal_paper",
+			words: ["report", "essay", "paper"]
+		},
+		{
+			color: "cal_quiz",
+			words: ["popquiz", "quiz"]
+		},
+		{
+			color: "cal_test",
+			words: ["test", "final", "exam", "midterm"]
+		},
+		{
+			color: "cal_ica",
+			words: ["ica"]
+		},
+		{
+			color: "cal_lab",
+			words: ["lab", "study"]
+		},
+		{
+			color: "cal_docid",
+			words: ["docid"]
+		},
+		{
+			color: "cal_hex",
+			words: ["trojun", "hex"]
+		}
+	];
+};
+
 window.utils.getPrefixClass = function(prefix) {
 	switch (prefix.toLowerCase()) {
 		case "hw":

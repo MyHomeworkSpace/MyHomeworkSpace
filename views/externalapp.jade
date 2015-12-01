@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	h1 #{appName} is requetsting access to your PlanHub account.
+	p(class="lead") #{appName} will be able to:
+		ul
+			li
+				p See information about your account.
+			li
+				p View and edit your planner events.
+			li
+				p See your Homework View page.
+		a.btn.btn-primary(href='#') Allow Access
+		a.btn.btn-default(href='#') Deny Access

@@ -113,7 +113,7 @@
 	text-decoration: line-through;
 }
 
-.magic-input-container {
+/*.magic-input-container {
 	width: 100%;
 	height: auto;
 	position: relative;
@@ -139,7 +139,7 @@
 	color: #FFF;
 	opacity: 1;
 	font-size: 1.15em;
-}
+}*/
 
 /* for HW view */
 .col-md-4 li .first-word {
@@ -216,3 +216,9 @@
 	cursor: pointer;
 	margin-left: 4px;
 }
+.highlightTextarea-container {
+	font-size: 1.15em;
+}
+/*.highlightTextarea-container mark {
+	text-shadow: 0 0 white;
+}*/

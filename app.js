@@ -169,6 +169,7 @@ var routes = require('./routes/index');
 var appRouter = require('./routes/app');
 
 var api_main = require('./routes/api_main');
+var api_ext = require('./routes/api_ext');
 var api_myDay = require('./routes/api_myDay');
 var api_planner = require('./routes/api_planner');
 var api_prefs = require('./routes/api_prefs');
@@ -204,6 +205,7 @@ app.use(basePath + '/', routes);
 app.use(basePath + '/app', appRouter);
 
 app.use(basePath + '/api/v1/', api_main);
+app.use(basePath + '/api/v1/ext', api_ext);
 app.use(basePath + '/api/v1/myDay', api_myDay);
 app.use(basePath + '/api/v1/planner', api_planner);
 app.use(basePath + '/api/v1/prefs', api_prefs);

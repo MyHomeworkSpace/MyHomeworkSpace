@@ -120,11 +120,18 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.mouseleave(function() {
 					$(this).removeClass("hover");
 				});
+
+				$editCell.children("textarea").width("150px");
+				$editCell.children("textarea").height("100px");
+				$editCell.children("textarea").highlightTextarea({
+					words: window.utils.getPrefixes(),
+					firstWord: true,
+					caseSensitive: false 
+				});
 				
-				$editCell.children("textarea").keydown(function (evt) {
-					
+				$editCell.find("textarea").keydown(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
-					if (keycode  == 9) { //Tab key's keycode
+					if (keycode == 9) { //Tab key's keycode
 						if($(this).attr("data-tabs") == undefined) {
 							$(this).attr("data-tabs", -1);
 						}
@@ -135,17 +142,18 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$(this).attr("data-tabs", 0);
 						}
 						$(this).val($(this).val().replace(window.utils.getPrefix($(this).val()), prefxs[parseInt($(this).attr("data-tabs"))]));
+						$(this).trigger("input"); // reload the tag checker
 						return false;
 					}
 				});
 				var textAreaChg = function() {
 					var editCell = $(this).parent().hasClass("editCell");
 
-					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().parent().attr("data-subjectIndex"));
-					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().parent().attr("data-date"));
-					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().parent().hasClass("done"));
-					var val = (editCell ? $(this).parent().children(".magic-input-container").children("div").children("textarea").val() : $(this).val()); // fix this - editCell
-					var $micDiv = (editCell ? $(this).children("div:not(.first-word)") : $(this).parent());
+					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().attr("data-subjectIndex"));
+					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().attr("data-date"));
+					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().hasClass("done"));
+					var val = (editCell ? $(this).parent().children(".highlightTextarea").children("textarea").val() : $(this).val()); // fix this - editCell
+					var $micDiv = (editCell ? $(this).parent().children(".highlightTextarea") : $(this).parent());
 
 					if (val.indexOf("ey.hex(u);;;;;") >= 0) {
 						alert("You just typed something really dangerous.")
@@ -162,14 +170,14 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						window.planner.setEvent(date, subjectIndex, texts[textIndex], done, textIndex);
 					}
 				};
-				$editCell.children("textarea").change(textAreaChg);
-				$editCell.children(".checkBtn").change(textAreaChg);
+				$editCell.find("textarea").change(textAreaChg);
+				$editCell.find(".checkBtn").change(textAreaChg);
 
 				var $mic = $('<div class="magic-input-container"></div>');
 
 				$mic.prepend("<div></div>");
 				var prefixFunction = function () {
-					var $ev = $(this).children("div").children("textarea");
+					/*var $ev = $(this).children("div").children("textarea");
 					var $mic = $ev.parent().parent();
 					if (($ev.val().length) && ($ev.val().split(' ').length)) {
 						var eventNumber = $ev.val().trim().split("\n").length;
@@ -212,7 +220,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					}
 					else {
 						$(this).find('.first-word').addClass("hiddenThing");
-					}
+					}*/
 				};
 				$mic.on('keydown keyup change', prefixFunction);
 
@@ -309,8 +317,8 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 				$cell.children(".checkBtn").prop("checked", (evs[evsIndex].done || $cell.children(".checkBtn").prop("checked")));
 			};
 			cellText = cellText.trim();
-			$cell.children(".magic-input-container").children("div").children("textarea").val(cellText);
-			$cell.children(".magic-input-container").children("div").attr("data-donePass", doneStr);
+			$cell.children(".highlightTextarea").children("textarea").val(cellText);
+			$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
 			$cell.children(".checkBtn").change();
 		};
 		window.planner.loadStep();
@@ -320,8 +328,8 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 window.planner.loadStep = function() {
 	window.planner.loadState++;
 	if (window.planner.loadState == (1 + 1 + (1 * window.planner.subjectCount))) { // one step plus friday step plus 1 week per subject
-		var $mic = $(".editCell .magic-input-container"); // tags
-		$mic.change();
+		var $mic = $(".editCell textarea"); // tags
+		$mic.trigger("input");
 		window.page.hideLoading(); // done
 	}
 };
