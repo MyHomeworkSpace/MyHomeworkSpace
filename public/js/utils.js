@@ -107,7 +107,7 @@ window.utils.getPrefixes = function() {
 		},
 		{
 			color: "cal_paper",
-			words: ["paper"]
+			words: ["report", "essay", "paper"]
 		},
 		{
 			color: "cal_quiz",
