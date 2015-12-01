@@ -222,7 +222,7 @@
 /*.highlightTextarea-container mark {
 	text-shadow: 0 0 white;
 }*/
-.editCell.done .highlightTextarea::before {
+.editCell .highlightTextarea::before {
     content: "";
     background: white;
     padding: 0px 150px 100px 0;
