@@ -131,7 +131,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				
 				$editCell.find("textarea").keydown(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
-					if (keycode  == 9) { //Tab key's keycode
+					if (keycode == 9) { //Tab key's keycode
 						if($(this).attr("data-tabs") == undefined) {
 							$(this).attr("data-tabs", -1);
 						}
@@ -142,6 +142,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$(this).attr("data-tabs", 0);
 						}
 						$(this).val($(this).val().replace(window.utils.getPrefix($(this).val()), prefxs[parseInt($(this).attr("data-tabs"))]));
+						$(this).trigger("input"); // reload the tag checker
 						return false;
 					}
 				});
