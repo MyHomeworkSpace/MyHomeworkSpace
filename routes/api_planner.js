@@ -247,7 +247,7 @@ router.post('/sections/add', global.apiCall, global.requireUser, global.getUserR
 	}
 	knex("planner_sections").select("*").where({
 		userId: res.locals.user.id
-	}).then(function(obj) {
+	}).orderBy('sectionIndex', 'asc').then(function(obj) {
 		var newSectionId = 0;
 		if (obj.length > 0) {
 			newSectionId = obj[obj.length - 1].sectionIndex + 1;
