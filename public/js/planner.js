@@ -129,8 +129,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					caseSensitive: false 
 				});
 				
-				$editCell.children("textarea").keydown(function (evt) {
-					
+				$editCell.find("textarea").keydown(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode  == 9) { //Tab key's keycode
 						if($(this).attr("data-tabs") == undefined) {
