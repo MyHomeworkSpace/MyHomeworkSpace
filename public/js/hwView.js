@@ -143,8 +143,8 @@ window.hwView.loadEvents = function(callback) {
 				};
 				var list = "longterm";
 				var dueMoment = moment(evObj.due).utcOffset(0);
-				var tomorrow = moment(window.hwView.findNextDay(1)).subtract(1, "day").utcOffset(0).hour(0).minute(0).second(0);
-				if (dueMoment.utcOffset(0).isSame(tomorrow)) {
+				var tomorrow = moment(window.hwView.findNextDay(1)).date();
+				if (dueMoment.date() == tomorrow) {
 					list = "tomorrow";
 				} else if (dueMoment.isBefore(moment(window.hwView.findNextDay(5)).subtract(1, "day"))) {
 					list = "soon";
