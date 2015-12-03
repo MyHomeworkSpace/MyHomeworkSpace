@@ -476,8 +476,8 @@ $(document).ready(function() {
 	});
 
 	$("#planner-jumpTo").click(function() {
-		$("body").datepicker("dialog", moment().toDate(), function() {
-			alert("test");
+		$("body").datepicker("dialog", moment().toDate(), function(dateStr) {
+			alert("test " + dateStr);
 		});
 	});
 });

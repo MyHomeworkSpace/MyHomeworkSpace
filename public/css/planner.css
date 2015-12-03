@@ -234,6 +234,6 @@
     background: lightgray;
 }
 
-.ui-datepicker-dialog {
+.ui-datepicker {
 	z-index: 1000 !important;
 }
