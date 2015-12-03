@@ -116,7 +116,7 @@ window.hwView.findNextDay = function(offset) {
 
 window.hwView.loadStep = function() {
 	window.hwView.loadCount += 1;
-	if (window.hwView.loadCount >= (1 + (14 * Object.keys(window.hwView.subjects).length))) {
+	if (window.hwView.loadCount >= 2) { //(1 + (14 * Object.keys(window.hwView.subjects).length))) {
 		window.page.hideLoading();
 		if ($(".hwView-tomorrow ul").text() == "" && $(".hwView-soon ul").text() == "" && $(".hwView-longterm ul").text() == "") {
 			// empty!
@@ -128,6 +128,32 @@ window.hwView.loadStep = function() {
 window.hwView.loadEvents = function(callback) {
 	window.hwView.loadSubjects(function(data) {
 		window.hwView.loadStep();
+		window.api.get("hwView/getHw?date=" + moment().format('YYYY-MM-DD'), function(data) {
+			var ev = data.events;
+			if (ev.length == 0) {
+				window.hwView.loadStep();
+				return;
+			}
+			for (var evIndex in ev) {
+				var evObj = {
+					name: ev[evIndex].text,
+					due: new Date(ev[evIndex].date.split("T")[0]),
+					subject: ev[evIndex].sectionIndex,
+					done: ev[evIndex].done
+				};
+				var list = "longterm";
+				var dueMoment = moment(evObj.due).utcOffset(0);
+				var tomorrow = moment(window.hwView.findNextDay(1)).date();
+				if (dueMoment.date() == tomorrow) {
+					list = "tomorrow";
+				} else if (dueMoment.isBefore(moment(window.hwView.findNextDay(5)).subtract(1, "day"))) {
+					list = "soon";
+				}
+				window.hwView.addEventToList(evObj, list);
+			};
+			window.hwView.loadStep();
+		});
+		/*window.hwView.loadStep();
 		window.hwView.loadList(window.hwView.findNextDay(1), "tomorrow", function() {
 
 		});
@@ -169,7 +195,7 @@ window.hwView.loadEvents = function(callback) {
 		});
 		window.hwView.loadList(window.hwView.findNextDay(14), "longterm", function() {
 
-		});
+		});*/
 	});
 	callback();
 };

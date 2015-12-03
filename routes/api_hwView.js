@@ -8,17 +8,20 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/clubs/getAll/', function(req, res, next) {
-	knex("clubs").select("*").then(function(data) {
+router.get('/getHw/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.query.date == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid date parameter!"
+		});
+		return;
+	}
+	knex("planner_events").select("*").where({
+		userId: res.locals.user.id
+	}).where("date", ">", new Date(req.query.date)).where(knex.raw("WEEKDAY(date)"), "!=", 5).where(knex.raw("WEEKDAY(date)"), "!=", 6).then(function(data) {
 		res.json({
 			status: "ok",
-			clubs: data/*[
-				{
-					clubId: 0,
-					name: "Fake club",
-					meetings: "B(MF1)"
-				}
-			]*/
+			events: data
 		});
 	});
 });

@@ -33,7 +33,7 @@
   margin:0;
   padding: 1px 1px 1px 0; /*0;*/
   opacity: 1;
-  /*transition: opacity 0.2s;*/
+  transition: opacity 0.2s;
   position: relative;
   z-index: 1;
 }
