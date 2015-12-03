@@ -18,7 +18,7 @@ router.get('/logout', global.requireUser, function(req, res, next) {
 	req.session.loggedIn = false;
 	req.session.username = "logged out";
 	req.session.destroy();
-	res.redirect(global.basePath);
+	res.redirect(global.basePath + "/");
 });
 
 router.get('/login', function(req, res, next) {
