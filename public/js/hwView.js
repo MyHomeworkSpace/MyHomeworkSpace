@@ -142,7 +142,7 @@ window.hwView.loadEvents = function(callback) {
 					done: ev[evIndex].done
 				};
 				var list = "longterm";
-				if (moment(evObj.due).isSame(moment(window.hwView.findNextDay(1)).subtract(1, "day"))) {
+				if (moment(evObj.due).isSame(moment(window.hwView.findNextDay(1)).subtract(1, "day").utcOffset(0).hour(0).minute(0).second(0))) {
 					list = "tomorrow";
 				} else if (moment(evObj.due).isBefore(moment(window.hwView.findNextDay(5)).subtract(1, "day"))) {
 					list = "soon";
