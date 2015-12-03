@@ -9,9 +9,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/getHw/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.params.date == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid date parameter!"
+		});
+		return;
+	}
 	knex("planner_events").select("*").where({
 		userId: res.locals.user.id
-	}).where("date", ">=", new Date()).where(knex.raw("WEEKDAY(date)"), "!=", 5).where(knex.raw("WEEKDAY(date)"), "!=", 6).then(function(data) {
+	}).where("date", ">=", new Date(req.params.date)).where(knex.raw("WEEKDAY(date)"), "!=", 5).where(knex.raw("WEEKDAY(date)"), "!=", 6).then(function(data) {
 		res.json({
 			status: "ok",
 			events: data
