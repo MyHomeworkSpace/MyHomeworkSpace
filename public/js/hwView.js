@@ -137,7 +137,7 @@ window.hwView.loadEvents = function(callback) {
 			for (var evIndex in ev) {
 				var evObj = {
 					name: ev[evIndex].text,
-					due: new Date(data.date),
+					due: new Date(ev[evIndex].date),
 					subject: ev[evIndex].sectionIndex,
 					done: ev[evIndex].done
 				};
