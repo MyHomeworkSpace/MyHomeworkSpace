@@ -233,3 +233,7 @@
 .editCell.done .highlightTextarea::before {
     background: lightgray;
 }
+
+.ui-datepicker-dialog {
+	z-index: 1000;
+}
