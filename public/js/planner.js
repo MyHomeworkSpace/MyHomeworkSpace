@@ -474,4 +474,10 @@ $(document).ready(function() {
 	$("#planner-next").click(function() {
 		window.planner.loadWeek(moment(window.planner.currentStartDate).add(7, "days").toDate());
 	});
+
+	$("#planner-jumpTo").click(function() {
+		$("body").datepicker("dialog", moment().toDate(), function() {
+			alert("test");
+		});
+	});
 });
