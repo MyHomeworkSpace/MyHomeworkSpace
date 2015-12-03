@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/getHw/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.params.date == undefined) {
+	if (req.query.date == undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
