@@ -299,29 +299,31 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 			}
 			eventMap[ev.sectionIndex][happyDate].push(ev);
 		};
-		for (var eventMapIndex in eventMap) {
-			var evs = eventMap[eventMapIndex];
-			var $row = $(".subjectRow[data-subjectIndex=" + evs[0].sectionIndex + "]");
-			var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
-			var cellText = "";
-			var doneStr = "";
-			var first = true;
-			for (var evsIndex in evs) {
-				if (first) {
-					first = false; // don't put a new line for the first subId
-				} else {
-					cellText += "\n";
-				}
-				cellText += evs[evsIndex].text;
-				doneStr += evs[evsIndex].done;
-				$cell.children(".checkBtn").prop("checked", (evs[evsIndex].done || $cell.children(".checkBtn").prop("checked")));
+		for (var evSectionIndex in eventMap) {
+			for (var eventMapIndex in eventMap[evSectionIndex]) {
+				var evs = eventMap[evSectionIndex][eventMapIndex];
+				var $row = $(".subjectRow[data-subjectIndex=" + evSectionIndex + "]");
+				var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
+				var cellText = "";
+				var doneStr = "";
+				var first = true;
+				for (var evsIndex in evs) {
+					if (first) {
+						first = false; // don't put a new line for the first subId
+					} else {
+						cellText += "\n";
+					}
+					cellText += evs[evsIndex].text;
+					doneStr += evs[evsIndex].done;
+					$cell.children(".checkBtn").prop("checked", (evs[evsIndex].done || $cell.children(".checkBtn").prop("checked")));
+				};
+				cellText = cellText.trim();
+				$cell.children(".highlightTextarea").children("textarea").val(cellText);
+				$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
+				$cell.children(".checkBtn").change();
 			};
-			cellText = cellText.trim();
-			$cell.children(".highlightTextarea").children("textarea").val(cellText);
-			$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
-			$cell.children(".checkBtn").change();
-		};
-		window.planner.loadStep();
+			window.planner.loadStep();
+		}		
 	});
 };
 
