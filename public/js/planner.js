@@ -300,9 +300,9 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 			eventMap[ev.sectionIndex][happyDate].push(ev);
 		};
 		for (var evSectionIndex in eventMap) {
+			var $row = $(".subjectRow[data-subjectIndex=" + evSectionIndex + "]");
 			for (var eventMapIndex in eventMap[evSectionIndex]) {
 				var evs = eventMap[evSectionIndex][eventMapIndex];
-				var $row = $(".subjectRow[data-subjectIndex=" + evSectionIndex + "]");
 				var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
 				var cellText = "";
 				var doneStr = "";
@@ -320,10 +320,10 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 				cellText = cellText.trim();
 				$cell.children(".highlightTextarea").children("textarea").val(cellText);
 				$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
-				$cell.children(".highlightTextarea").trigger("input");
+				$cell.find(".editArea").trigger("input");
 			};
-			window.planner.loadStep();
-		}		
+		}
+		window.planner.loadStep();	
 	});
 };
 
