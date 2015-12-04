@@ -321,6 +321,9 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 					cellText += evs[evsIndex].text;
 					doneStr += evs[evsIndex].done;
 					$cell.children(".checkBtn").prop("checked", (evs[evsIndex].done || $cell.children(".checkBtn").prop("checked")));
+					if ($cell.children(".checkBtn").prop("checked") && !$cell.hasClass("done")) {
+						$cell.addClass("done");
+					}
 				};
 				cellText = cellText.trim();
 				$cell.children(".highlightTextarea").children("textarea").val(cellText);
