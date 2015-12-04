@@ -320,7 +320,7 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 				cellText = cellText.trim();
 				$cell.children(".highlightTextarea").children("textarea").val(cellText);
 				$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
-				$cell.children(".checkBtn").change();
+				$cell.children(".highlightTextarea").trigger("input");
 			};
 			window.planner.loadStep();
 		}		
