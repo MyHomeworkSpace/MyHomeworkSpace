@@ -141,6 +141,33 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 	});
 });
 
+router.get('/events/getWholeWeek/:date', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.params.date == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid date parameter!"
+		});
+		return;
+	}
+	var endOfWeek = new Date(req.params.date);
+	endOfWeek.setDate(endOfWeek.getDate() + 7);
+	knex("planner_events").select("*").where({
+		userId: res.locals.user.id
+	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function(obj) {
+		res.json({
+			status: "ok",
+			startDate: req.params.date,
+			events: obj
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			startDate: req.params.date,
+			error: "Unknown database error"
+		});
+	});
+});
+
 router.post('/events/post/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.date == undefined) {
 		res.json({
