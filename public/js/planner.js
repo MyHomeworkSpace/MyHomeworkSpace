@@ -284,10 +284,8 @@ window.planner.getAnnouncement = function(date, callback) {
 	});
 };
 
-window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
-	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
-
-	window.api.get("planner/events/getWeek/" + window.utils.formatDate_api(startDate) + "/" + subjectIndex, function(data) {
+window.planner.loadWholeWeek = function(startDate, subjectIndex) {
+	window.api.get("planner/events/getWholeWeek/" + window.utils.formatDate_api(startDate), function(data) {
 		var evList = data.events;
 		var eventMap = {};
 		for (var evIndex in evList) {
@@ -302,6 +300,7 @@ window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
 		};
 		for (var eventMapIndex in eventMap) {
 			var evs = eventMap[eventMapIndex];
+			var $row = $(".subjectRow[data-subjectIndex=" + evs.sectionIndex + "]");
 			var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
 			var cellText = "";
 			var doneStr = "";
@@ -408,13 +407,13 @@ window.planner.loadWeek = function(startDate) {
 	$(".checkBtn").prop("checked", false);
 
 	// load events
-	startDate_obj = new Date(startDate);
+	/*startDate_obj = new Date(startDate);
 	$(".subjectRow").each(function() {
-		var index = $(this).attr("data-subjectIndex");
+		var index = $(this).attr("data-subjectIndex");*/
 		var thisDate = new Date(startDate);
 
-		window.planner.loadSubjectWeek(thisDate, index);
-	});
+		window.planner.loadWholeWeek(thisDate); //, index);
+	//});
 
 	startDate_obj = new Date(startDate);
 };
