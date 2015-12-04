@@ -31,8 +31,6 @@ router.get('/announcements/get/:date', global.apiCall, function(req, res, next) 
 			});
 		}
 	}).catch(function(error) {
-		console.error("DB ERROR!");
-		console.error(error);
 		res.json({
 			status: "error",
 			error: "Database error"
@@ -154,10 +152,15 @@ router.get('/events/getWholeWeek/:date', global.apiCall, global.requireUser, glo
 	knex("planner_events").select("*").where({
 		userId: res.locals.user.id
 	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function(obj) {
-		res.json({
-			status: "ok",
-			startDate: req.params.date,
-			events: obj
+		knex.select('*').from('planner_announcements').where({
+			date: req.params.date
+		}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function (data) {
+			res.json({
+				status: "ok",
+				startDate: req.params.date,
+				announcements: data,
+				events: obj
+			});
 		});
 	}).catch(function() {
 		res.json({
