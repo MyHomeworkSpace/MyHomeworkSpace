@@ -294,7 +294,7 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 			if (!eventMap[ev.sectionIndex]) {
 				eventMap[ev.sectionIndex] = {};
 			}
-			if (eventMap[ev.sectionIndex][happyDate]) {
+			if (!eventMap[ev.sectionIndex][happyDate]) {
 				eventMap[ev.sectionIndex][happyDate] = [];
 			}
 			eventMap[ev.sectionIndex][happyDate].push(ev);
