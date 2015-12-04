@@ -24,7 +24,7 @@ window.page.showLoading = function() {
 			console.warn("Loading is taking time...");
 			$(".loadWarn").addClass("showingLoadWarn");
 		}, 10000);
-	}, 200);
+	}, 400);
 };
 
 window.page.hideLoading = function() {

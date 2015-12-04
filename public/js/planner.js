@@ -284,50 +284,57 @@ window.planner.getAnnouncement = function(date, callback) {
 	});
 };
 
-window.planner.loadSubjectWeek = function(startDate, subjectIndex) {
-	var $row = $(".subjectRow[data-subjectIndex=" + subjectIndex + "]");
-
-	window.api.get("planner/events/getWeek/" + window.utils.formatDate_api(startDate) + "/" + subjectIndex, function(data) {
+window.planner.loadWholeWeek = function(startDate, subjectIndex) {
+	window.api.get("planner/events/getWholeWeek/" + window.utils.formatDate_api(startDate), function(data) {
+		for (var announcementIndex in data.announcements) {
+			var announcement = data.announcements[announcementIndex];
+			var date = announcement.date.split("T")[0];
+			$("thead .announcement-row th[data-date=" + date + "]").text(announcement.text);
+		}
 		var evList = data.events;
 		var eventMap = {};
 		for (var evIndex in evList) {
 			var ev = evList[evIndex];
 			var happyDate = ev.date.split("T")[0];
-			if (eventMap[happyDate]) {
-				eventMap[happyDate].push(ev);
-			} else {
-				eventMap[happyDate] = [];
-				eventMap[happyDate].push(ev);
+			if (!eventMap[ev.sectionIndex]) {
+				eventMap[ev.sectionIndex] = {};
 			}
+			if (!eventMap[ev.sectionIndex][happyDate]) {
+				eventMap[ev.sectionIndex][happyDate] = [];
+			}
+			eventMap[ev.sectionIndex][happyDate].push(ev);
 		};
-		for (var eventMapIndex in eventMap) {
-			var evs = eventMap[eventMapIndex];
-			var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
-			var cellText = "";
-			var doneStr = "";
-			var first = true;
-			for (var evsIndex in evs) {
-				if (first) {
-					first = false; // don't put a new line for the first subId
-				} else {
-					cellText += "\n";
-				}
-				cellText += evs[evsIndex].text;
-				doneStr += evs[evsIndex].done;
-				$cell.children(".checkBtn").prop("checked", (evs[evsIndex].done || $cell.children(".checkBtn").prop("checked")));
+		for (var evSectionIndex in eventMap) {
+			var $row = $(".subjectRow[data-subjectIndex=" + evSectionIndex + "]");
+			for (var eventMapIndex in eventMap[evSectionIndex]) {
+				var evs = eventMap[evSectionIndex][eventMapIndex];
+				var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
+				var cellText = "";
+				var doneStr = "";
+				var first = true;
+				for (var evsIndex in evs) {
+					if (first) {
+						first = false; // don't put a new line for the first subId
+					} else {
+						cellText += "\n";
+					}
+					cellText += evs[evsIndex].text;
+					doneStr += evs[evsIndex].done;
+					$cell.children(".checkBtn").prop("checked", (evs[evsIndex].done || $cell.children(".checkBtn").prop("checked")));
+				};
+				cellText = cellText.trim();
+				$cell.children(".highlightTextarea").children("textarea").val(cellText);
+				$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
+				$cell.find(".editArea").trigger("input");
 			};
-			cellText = cellText.trim();
-			$cell.children(".highlightTextarea").children("textarea").val(cellText);
-			$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
-			$cell.children(".checkBtn").change();
-		};
-		window.planner.loadStep();
+		}
+		window.planner.loadStep();	
 	});
 };
 
 window.planner.loadStep = function() {
 	window.planner.loadState++;
-	if (window.planner.loadState == (1 + 1 + (1 * window.planner.subjectCount))) { // one step plus friday step plus 1 week per subject
+	if (window.planner.loadState == (1 + 1 + 1)) { // one step plus friday step plus week load
 		var $mic = $(".editCell textarea"); // tags
 		$mic.trigger("input");
 		window.page.hideLoading(); // done
@@ -363,10 +370,10 @@ window.planner.loadWeek = function(startDate) {
 		var prettyDate = window.utils.formatDate_pretty(currentDate);
 		$(this).attr("data-date", apiDate);
 
-		window.planner.getAnnouncement(apiDate, function(announcement, date) {
+		/*window.planner.getAnnouncement(apiDate, function(announcement, date) {
 			$("thead .announcement-row th[data-date=" + date + "]").text(announcement.text);
 			window.planner.loadStep();
-		});
+		});*/
 
 		currentDate.setDate(currentDate.getDate() + 1);
 	});
@@ -408,13 +415,13 @@ window.planner.loadWeek = function(startDate) {
 	$(".checkBtn").prop("checked", false);
 
 	// load events
-	startDate_obj = new Date(startDate);
+	/*startDate_obj = new Date(startDate);
 	$(".subjectRow").each(function() {
-		var index = $(this).attr("data-subjectIndex");
+		var index = $(this).attr("data-subjectIndex");*/
 		var thisDate = new Date(startDate);
 
-		window.planner.loadSubjectWeek(thisDate, index);
-	});
+		window.planner.loadWholeWeek(thisDate); //, index);
+	//});
 
 	startDate_obj = new Date(startDate);
 };

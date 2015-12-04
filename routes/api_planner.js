@@ -31,8 +31,6 @@ router.get('/announcements/get/:date', global.apiCall, function(req, res, next) 
 			});
 		}
 	}).catch(function(error) {
-		console.error("DB ERROR!");
-		console.error(error);
 		res.json({
 			status: "error",
 			error: "Database error"
@@ -131,6 +129,36 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 			status: "ok",
 			startDate: req.params.date,
 			events: obj
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			startDate: req.params.date,
+			error: "Unknown database error"
+		});
+	});
+});
+
+router.get('/events/getWholeWeek/:date', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.params.date == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid date parameter!"
+		});
+		return;
+	}
+	var endOfWeek = new Date(req.params.date);
+	endOfWeek.setDate(endOfWeek.getDate() + 7);
+	knex("planner_events").select("*").where({
+		userId: res.locals.user.id
+	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function(obj) {
+		knex.select('*').from('planner_announcements').where("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function (data) {
+			res.json({
+				status: "ok",
+				startDate: req.params.date,
+				announcements: data,
+				events: obj
+			});
 		});
 	}).catch(function() {
 		res.json({
