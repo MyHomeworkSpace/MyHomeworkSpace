@@ -152,9 +152,7 @@ router.get('/events/getWholeWeek/:date', global.apiCall, global.requireUser, glo
 	knex("planner_events").select("*").where({
 		userId: res.locals.user.id
 	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function(obj) {
-		knex.select('*').from('planner_announcements').where({
-			date: req.params.date
-		}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function (data) {
+		knex.select('*').from('planner_announcements').where("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function (data) {
 			res.json({
 				status: "ok",
 				startDate: req.params.date,
