@@ -291,16 +291,17 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 		for (var evIndex in evList) {
 			var ev = evList[evIndex];
 			var happyDate = ev.date.split("T")[0];
-			if (eventMap[happyDate]) {
-				eventMap[happyDate].push(ev);
-			} else {
-				eventMap[happyDate] = [];
-				eventMap[happyDate].push(ev);
+			if (!eventMap[ev.sectionIndex]) {
+				eventMap[ev.sectionIndex] = {};
 			}
+			if (eventMap[ev.sectionIndex][happyDate]) {
+				eventMap[ev.sectionIndex][happyDate] = [];
+			}
+			eventMap[ev.sectionIndex][happyDate].push(ev);
 		};
 		for (var eventMapIndex in eventMap) {
 			var evs = eventMap[eventMapIndex];
-			var $row = $(".subjectRow[data-subjectIndex=" + evs.sectionIndex + "]");
+			var $row = $(".subjectRow[data-subjectIndex=" + evs[0].sectionIndex + "]");
 			var $cell = $row.children(".editCell[data-date=" + eventMapIndex + "]");
 			var cellText = "";
 			var doneStr = "";
