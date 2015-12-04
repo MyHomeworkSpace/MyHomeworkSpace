@@ -286,6 +286,11 @@ window.planner.getAnnouncement = function(date, callback) {
 
 window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 	window.api.get("planner/events/getWholeWeek/" + window.utils.formatDate_api(startDate), function(data) {
+		for (var announcementIndex in data.announcements) {
+			var announcement = data.announcements[announcementIndex];
+			var date = announcement.date.split("T")[0];
+			$("thead .announcement-row th[data-date=" + date + "]").text(announcement.text);
+		}
 		var evList = data.events;
 		var eventMap = {};
 		for (var evIndex in evList) {
@@ -365,10 +370,10 @@ window.planner.loadWeek = function(startDate) {
 		var prettyDate = window.utils.formatDate_pretty(currentDate);
 		$(this).attr("data-date", apiDate);
 
-		window.planner.getAnnouncement(apiDate, function(announcement, date) {
+		/*window.planner.getAnnouncement(apiDate, function(announcement, date) {
 			$("thead .announcement-row th[data-date=" + date + "]").text(announcement.text);
 			window.planner.loadStep();
-		});
+		});*/
 
 		currentDate.setDate(currentDate.getDate() + 1);
 	});
