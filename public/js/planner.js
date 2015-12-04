@@ -477,7 +477,11 @@ $(document).ready(function() {
 
 	$("#planner-jumpTo").click(function() {
 		$("body").datepicker("dialog", moment().toDate(), function(dateStr) {
-			alert("test " + dateStr);
+			var monday = moment(dateStr);
+			while (monday.day() != 1) {
+				monday.subtract(1, "day");
+			}
+			window.planner.loadWeek(monday.toDate());
 		});
 	});
 });
