@@ -144,7 +144,7 @@ window.hwView.loadEvents = function(callback) {
 				var list = "longterm";
 				var dueMoment = moment(evObj.due).utcOffset(0);
 				var tomorrow = moment(window.hwView.findNextDay(1)).date();
-				if (dueMoment.date() == tomorrow) {
+				if (dueMoment.date() == tomorrow && dueMoment.month() == moment(window.hwView.findNextDay(1)).month() && dueMoment.year() == moment(window.hwView.findNextDay(1)).year()) { // moment.isSame didn't work here. /shrug
 					list = "tomorrow";
 				} else if (dueMoment.isBefore(moment(window.hwView.findNextDay(5)).subtract(1, "day"))) {
 					list = "soon";

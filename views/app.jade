@@ -10,6 +10,7 @@ html
 		link(href="#{basePath}/css/time-polyfill.css", rel="stylesheet")
 		link(href="#{basePath}/chosen/chosen.min.css", rel="stylesheet")
 		link(href="#{basePath}/css/jquery.highlighttextarea.css", rel="stylesheet")
+		link(href="#{basePath}/css/jquery-ui.min.css", rel="stylesheet")
 		link(href="#{basePath}/css/sweetalert.css", rel="stylesheet")
 
 		link(href="#{basePath}/css/style.css", rel="stylesheet")
@@ -18,6 +19,7 @@ html
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
 		script(src="#{basePath}/js/modernizer.js")
 		script(src="#{basePath}/js/jquery.highlighttextarea.js")
+		script(src="#{basePath}/js/jquery-ui.min.js")
 		script(src="#{basePath}/js/sweetalert.min.js")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
@@ -89,7 +91,7 @@ html
 							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Like something? Send us a smile.")
 								i(class="fa fa-smile-o")
 						li(class="feedback-btn")
-							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Hate something? Send us a frown.")
+							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
 						li(class="navbar-text user-name")= user.name
 						li
@@ -270,6 +272,9 @@ html
 							button(id="planner-next", class="btn btn-default btn-xs")
 								i(class="fa fa-arrow-right")
 
+							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
+								i(class="fa fa-external-link")
+
 					table
 						thead
 							tr
@@ -422,7 +427,7 @@ html
 									img(src="#{basePath}/images/hwView02.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Gets data from your planner
-									p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your ho,,,mework into yet another program.
+									p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your homework into yet another program.
 
 							br
 
