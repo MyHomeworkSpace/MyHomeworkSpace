@@ -326,7 +326,7 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 
 window.planner.loadStep = function() {
 	window.planner.loadState++;
-	if (window.planner.loadState == (1 + 1 + (1 * window.planner.subjectCount))) { // one step plus friday step plus 1 week per subject
+	if (window.planner.loadState == (1 + 1 + 1)) { // one step plus friday step plus week load
 		var $mic = $(".editCell textarea"); // tags
 		$mic.trigger("input");
 		window.page.hideLoading(); // done
