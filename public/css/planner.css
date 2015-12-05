@@ -190,6 +190,10 @@
 	background-color:#000000 !important;
 	color: #00FF00;
 }
+.cal_subjectName {
+	backgroudn-color:#009900 !important;
+	color: #FFF;
+}
 .cal_no_prefix {
 	background-color: #FFD3BD;
 	color: black !important;
