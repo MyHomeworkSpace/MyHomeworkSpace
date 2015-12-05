@@ -123,11 +123,18 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 
 				$editCell.children("textarea").width("150px");
 				$editCell.children("textarea").height("100px");
-				$editCell.children("textarea").highlightTextarea({
-					words: window.utils.getPrefixes(),
+				var realWords = window.utils.getPrefixes()
+				realWords.push({color:"suprTitle", words:[$row.attr("data-subjectName")]})
+				$editCell.children("textarea").highlightTextArea({
+					words: realWords,
+					firstWord: true,
+					caseSensitive: false
+				});
+				/*$editCell.children("textarea").highlightTextarea({
+					words: realWords,
 					firstWord: true,
 					caseSensitive: false 
-				});
+				}); */
 				
 				$editCell.find("textarea").keydown(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
