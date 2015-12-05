@@ -124,7 +124,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.children("textarea").width("150px");
 				$editCell.children("textarea").height("100px");
 				var realWords = window.utils.getPrefixes()
-				realWords.push({color:"subjectName", words:[subjectName]})
+				realWords.push({color:"cal_subjectName", words:[subjectName]})
 				$editCell.children("textarea").highlightTextarea({
 					words: realWords,
 					firstWord: true,
