@@ -494,7 +494,7 @@ $(document).ready(function() {
 	});
 
 	$("#planner-jumpTo").click(function() {
-		$("body").datepicker("dialog", window.planner.currentStartDate.toDate(), function(dateStr) {
+		$("body").datepicker("dialog", window.planner.currentStartDate, function(dateStr) {
 			var monday = moment(dateStr);
 			while (monday.day() != 1) {
 				monday.subtract(1, "day");
