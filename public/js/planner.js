@@ -5,6 +5,7 @@ window.planner = {
 	saving: false,
 	movedID: 0,
 	moveID: 0
+	
 };
 
 window.planner.showSaving = function() {
@@ -493,7 +494,7 @@ $(document).ready(function() {
 	});
 
 	$("#planner-jumpTo").click(function() {
-		$("body").datepicker("dialog", moment().toDate(), function(dateStr) {
+		$("body").datepicker("dialog", window.planner.currentStartDate.toDate(), function(dateStr) {
 			var monday = moment(dateStr);
 			while (monday.day() != 1) {
 				monday.subtract(1, "day");
