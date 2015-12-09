@@ -123,7 +123,7 @@ window.utils.getPrefixes = function() {
 		},
 		{
 			color: "cal_lab",
-			words: ["lab", "study"]
+			words: ["lab", "study", "memorize"]
 		},
 		{
 			color: "cal_docid",
@@ -166,6 +166,7 @@ window.utils.getPrefixClass = function(prefix) {
 
 		case "lab":
 		case "study":
+		case "memorize"
 			return "cal_lab";
 
 		case "docid":
