@@ -15,10 +15,10 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 		});
 		return;
 	}
-	if(req.body.wake == undefined || moment(req.body.wake).format('h:mm:ss a') == "Invalid date") {
+	if(req.body.wake == undefined) {
 		res.json({
 			status: "error",
-			error: "Missing or invalid wake parameter!"
+			error: "Missing wake parameter!"
 		});
 		return;
 	}
