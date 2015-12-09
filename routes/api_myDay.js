@@ -63,6 +63,16 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 		});
 	});
 });
+router.get('/info/read', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	knex("myDay").select("*").where({
+		userId: res.locals.user.id
+	}).then(function(obj) {
+		res.json({
+			status: "ok",
+			output: obj
+		});
+	});
+});
 router.get('/clubs/getAll/', function(req, res, next) {
 	knex("clubs").select("*").then(function(data) {
 		res.json({
