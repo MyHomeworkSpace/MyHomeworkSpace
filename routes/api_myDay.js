@@ -61,7 +61,7 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 			error: "Unknown database error."
 		});
 	});
-}
+});
 router.get('/clubs/getAll/', function(req, res, next) {
 	knex("clubs").select("*").then(function(data) {
 		res.json({
