@@ -50,10 +50,10 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 			res.json({
 				status: "ok",
 			});
-		}).catch(function() {
+		}).catch(function(error) {
 			res.json({
 				status: "error",
-				error: "Unknown database error."
+				error: "Unknown database error. " + error.toString()
 			});
 		});
 	}).catch(function() {
