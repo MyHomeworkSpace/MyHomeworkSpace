@@ -254,6 +254,44 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 	});*/
 });
 
+router.post('/events/purgeLine/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.date == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid date parameter!"
+		});
+		return;
+	}
+	if (req.body.subjectIndex == undefined || parseInt(req.body.subjectIndex) == NaN) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid section index parameter!"
+		});
+		return;
+	}
+	if (req.body.lines == undefined || parseInt(req.body.lines) == NaN) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid subId parameter!"
+		});
+		return;
+	}
+	knex("planner_events").where({
+		userId: res.locals.user.id,
+		date: req.body.date,
+		sectionIndex: req.body.subjectIndex
+	}).andWhere("subId", ">", (req.body.lines - 1)).delete().then(function(obj) {
+		res.json({
+			status: "ok"
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error"
+		});
+	});
+});
+
 router.get('/sections/get/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("planner_sections").select("*").where({
 		userId: res.locals.user.id
