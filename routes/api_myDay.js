@@ -38,24 +38,44 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 	}
 	knex("myDay").select("*").where({
 		userId: res.locals.user.id
-	}).then(function() {
-		knex("myDay").insert({
-			userId: res.locals.user.id,
-			sleep: parseInt(req.body.sleep),
-			wake: req.body.wake,
-			address: req.body.address,
-			clubs: req.body.clubs,
-			schoolId: parseInt(req.body.schoolId)
-		}).then(function() {
-			res.json({
-				status: "ok",
+	}).then(function(selects) {
+		if(!selects) {
+			knex("myDay").insert({
+				userId: res.locals.user.id,
+				sleep: parseInt(req.body.sleep),
+				wake: req.body.wake,
+				address: req.body.address,
+				clubs: req.body.clubs,
+				schoolId: parseInt(req.body.schoolId)
+			}).then(function() {
+				res.json({
+					status: "ok",
+				});
+			}).catch(function(error) {
+				res.json({
+					status: "error",
+					error: "Unknown database error. " + error.toString()
+				});
 			});
-		}).catch(function(error) {
-			res.json({
-				status: "error",
-				error: "Unknown database error. " + error.toString()
+		}
+		else {
+			knex("myDay").update({
+				sleep: parseInt(req.body.sleep),
+				wake: req.body.wake,
+				address: req.body.address,
+				clubs: req.body.clubs,
+				schoolId: parseInt(req.body.schoolId)
+			}).then(function() {
+				res.json({
+					status: "ok",
+				});
+			}).catch(function(error) {
+				res.json({
+					status: "error",
+					error: "Unknown database error. " + error.toString()
+				});
 			});
-		});
+		}
 	}).catch(function() {
 		res.json({
 			status: "error",
