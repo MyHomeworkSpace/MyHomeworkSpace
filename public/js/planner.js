@@ -173,9 +173,12 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					}
 
 					var texts = val.split("\n");
+					var lines = 0;
 					for (var textIndex in texts) {
 						window.planner.setEvent(date, subjectIndex, texts[textIndex], done, textIndex);
+						lines += 1;
 					}
+					window.planner.purgeDay(date, subjectIndex, lines);
 				};
 				$editCell.find("textarea").change(textAreaChg);
 				$editCell.find(".checkBtn").change(textAreaChg);
@@ -269,6 +272,18 @@ window.planner.setEvent = function(date, subjectIndex, text, done, subId) {
 		text: text,
 		done: (done ? 1 : 0),
 		subId: subId
+	}, function(data) {
+		window.planner.showSaved();
+		console.log(data);
+	});
+};
+
+window.planner.purgeDay = function(date, subjectIndex, lines) {
+	window.planner.showSaving();
+	window.api.post("planner/events/purgeLine/", {
+		date: date,
+		subjectIndex: subjectIndex,
+		lines: lines
 	}, function(data) {
 		window.planner.showSaved();
 		console.log(data);
