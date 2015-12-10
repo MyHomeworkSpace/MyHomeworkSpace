@@ -24,15 +24,13 @@ $(document).ready(function() {
 		
 	});
 	$("#myDay-welcome-submit").click(function() {
-		alert("Doesn't work yet!");
+		alert("Maybe Works!");
 		var prefs = {};
-		prefs.sleepLength = $("input[name=sleepHrs]").val();
-		prefs.wakeUpTime = $("input[name=WakeUpTime]").val();
+		prefs.sleep = $("input[name=sleepHrs]").val();
+		prefs.wake = $("input[name=WakeUpTime]").val();
 		prefs.address = $("input[name=Address]").val();
-		prefs.clubs = $("select[name=clubs]").val();
-		prefs.school = $("input[name=school]").val();
-		window.api.post("myDay/updatePrefs", prefs, function(resp) {
-
-		});
+		prefs.clubs = "notsureifthisworkssoimputtingastringhere";
+		prefs.schoolId = 42;
+		window.api.post("myDay/info/set", prefs, function(resp) {});
 	});
 });
