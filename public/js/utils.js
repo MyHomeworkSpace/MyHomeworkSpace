@@ -166,7 +166,7 @@ window.utils.getPrefixClass = function(prefix) {
 
 		case "lab":
 		case "study":
-		case "memorize"
+		case "memorize":
 			return "cal_lab";
 
 		case "docid":
