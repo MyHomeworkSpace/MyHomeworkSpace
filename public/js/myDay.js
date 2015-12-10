@@ -31,6 +31,6 @@ $(document).ready(function() {
 		prefs.address = $("input[name=Address]").val();
 		prefs.clubs = "notsureifthisworkssoimputtingastringhere";
 		prefs.schoolId = 42;
-		window.api.post("myDay/info/write", prefs, function(resp) {});
+		window.api.post("myDay/info/set", prefs, function(resp) {});
 	});
 });
