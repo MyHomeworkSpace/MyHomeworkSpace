@@ -39,7 +39,7 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 	knex("myDay").select("*").where({
 		userId: res.locals.user.id
 	}).then(function(selects) {
-		if(!selects) {
+		if(selects.length == 0) {
 			knex("myDay").insert({
 				userId: res.locals.user.id,
 				sleep: parseInt(req.body.sleep),
