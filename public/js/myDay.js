@@ -29,8 +29,8 @@ $(document).ready(function() {
 		prefs.sleep = $("input[name=sleepHrs]").val();
 		prefs.wake = $("input[name=WakeUpTime]").val();
 		prefs.address = $("input[name=Address]").val();
-		prefs.clubs = $("select[name=clubs]").val();
-		prefs.schoolId = $("input[name=school]").val();
+		prefs.clubs = "notsureifthisworkssoimputtingastringhere";
+		prefs.schoolId = 42;
 		window.api.post("myDay/info/write", prefs, function(resp) {});
 	});
 });
