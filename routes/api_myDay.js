@@ -54,7 +54,7 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 			}).catch(function(error) {
 				res.json({
 					status: "error",
-					error: "Unknown database error. " + error.toString()
+					error: "Unknown database error. "
 				});
 			});
 		}
@@ -72,7 +72,7 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 			}).catch(function(error) {
 				res.json({
 					status: "error",
-					error: "Unknown database error. " + error.toString()
+					error: "Unknown database error. "
 				});
 			});
 		}
