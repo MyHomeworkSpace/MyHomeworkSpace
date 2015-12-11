@@ -8,6 +8,9 @@ window.utils.b64EncodeUnicode = function(str) {
 
 window.utils.getLongNameForFeature = function(feature) {
 	switch (feature) {
+		case "overview":
+			return "Overview";
+		
 		case "planner":
 			return "Planner";
 
@@ -16,6 +19,18 @@ window.utils.getLongNameForFeature = function(feature) {
 
 		case "myDay":
 			return "My Day";
+			
+		case "admin":
+			return "Administrative panel";
+			
+		case "admin-feedback":
+			return "Feedback";
+			
+		case "admin-stats":
+			return "Statistics";
+			
+		case "admin-about":
+			return "About server";
 	}
 };
 
