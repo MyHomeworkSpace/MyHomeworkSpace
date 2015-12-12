@@ -199,7 +199,7 @@
     color: gray !important;
 }
 .highlightTextarea-container .cal_no_hw {
-	padding: 1000px !important;
+	padding: 100% !important;
 	text-decoration: line-through !important;
 	background: lightgray !important;
 }
