@@ -196,7 +196,6 @@ window.utils.getPrefixClass = function(prefix) {
 			return "cal_hex";
 
     case "nohw":
-    case "nohomework":
     case "none":
       return "cal_no_hw";
 
