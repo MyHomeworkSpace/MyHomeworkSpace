@@ -147,7 +147,11 @@ window.utils.getPrefixes = function() {
 		{
 			color: "cal_hex",
 			words: ["trojun", "hex"]
-		}
+		},
+    {
+      color: "cal_no_hw",
+      words: ["nohw", "none"]
+    }
 	];
 };
 
@@ -192,7 +196,6 @@ window.utils.getPrefixClass = function(prefix) {
 			return "cal_hex";
 
     case "nohw":
-    case "no":
     case "none":
       return "cal_no_hw";
 

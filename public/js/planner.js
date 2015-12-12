@@ -108,7 +108,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.attr("data-date", window.utils.formatDate_api(monday));
 				var $checkBtn = $('<input type="checkbox" class="checkBtn" />');
 					$checkBtn.change(function() {
-						if ($(this).prop('checked') || ~doneCheck.indexOf('nohw') || ~doneCheck.indexOf('no') || ~doneCheck.indexOf('none')) {
+						if ($(this).prop('checked') || ~doneCheck.indexOf('no') || ~doneCheck.indexOf('none')) {
 							$(this).parent().addClass("done");
 						} else {
 							$(this).parent().removeClass("done");
@@ -143,7 +143,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						if($(this).attr("data-tabs") == undefined) {
 							$(this).attr("data-tabs", -1);
 						}
-						var prefxs = ["HW", "Read", "Reading", "Project", "Report", "Essay", "Paper", "Quiz", "Test", "Final", "Exam", "Midterm", "Lab", "Study", "DocID", "None", "No", "NoHW", subjectName];
+						var prefxs = ["HW", "Read", "Reading", "Project", "Report", "Essay", "Paper", "Quiz", "Test", "Final", "Exam", "Midterm", "Lab", "Study", "DocID", "None", "NoHW", subjectName];
 						if(parseInt($(this).attr("data-tabs")) < prefxs.length - 1) {
 							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
 						} else {
