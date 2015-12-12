@@ -109,7 +109,7 @@
 	/*background: lightgray;*/
 	background-clip: padding-box;
 }
-.editCell.done textarea {
+.cal_no_hw textarea, .editCell.done textarea {
 	text-decoration: line-through;
 }
 
@@ -234,7 +234,7 @@
     z-index: -1;
     transition: background 0.1s;
 }
-.editCell.done .highlightTextarea::before {
+.cal_no_hw .highlightTextarea::before, .editCell.done .highlightTextarea::before {
     background: lightgray;
 }
 
