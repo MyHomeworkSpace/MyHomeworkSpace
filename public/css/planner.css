@@ -195,8 +195,10 @@
 	color: #FFF;
 }
 .cal_no_hw {
-    background:lightgray !important;
-    color: gray !important;
+	background:lightgray !important;
+	color: gray !important;
+	text-decoration: line-through !important;
+    text
 }
 .highlightTextarea-container:not(.highlightTextarea-containerTop) .cal_no_hw {
 	padding: 100% !important;
