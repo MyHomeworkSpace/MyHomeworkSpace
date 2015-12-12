@@ -102,12 +102,13 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 		$row.append($subjectCell);
 
 		var monday = window.planner.findThisMonday();
+		var doneCheck = $('.editArea').val();
 		for (var i = 0; i < 7; i++) {
 			var $editCell = $('<td class="editCell"><textarea class="editArea"></textarea></td>')
 				$editCell.attr("data-date", window.utils.formatDate_api(monday));
 				var $checkBtn = $('<input type="checkbox" class="checkBtn" />');
 					$checkBtn.change(function() {
-						if ($(this).prop('checked')) {
+						if ($(this).prop('checked') || ~doneCheck.indexOf('no') || ~doneCheck.indexOf('none')) {
 							$(this).parent().addClass("done");
 						} else {
 							$(this).parent().removeClass("done");
@@ -133,16 +134,16 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				/*$editCell.children("textarea").highlightTextarea({
 					words: realWords,
 					firstWord: true,
-					caseSensitive: false 
+					caseSensitive: false
 				}); */
-				
+
 				$editCell.find("textarea").keydown(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode == 9) { //Tab key's keycode
 						if($(this).attr("data-tabs") == undefined) {
 							$(this).attr("data-tabs", -1);
 						}
-						var prefxs = ["HW", "Read", "Reading", "Project", "Report", "Essay", "Paper", "Quiz", "Test", "Final", "Exam", "Midterm", "Lab", "Study", "DocID" , subjectName];
+						var prefxs = ["HW", "Read", "Reading", "Project", "Report", "Essay", "Paper", "Quiz", "Test", "Final", "Exam", "Midterm", "Lab", "Study", "DocID", "None", "NoHW", subjectName];
 						if(parseInt($(this).attr("data-tabs")) < prefxs.length - 1) {
 							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
 						} else {
@@ -222,6 +223,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$element.removeClass("cal_lab");
 							$element.removeClass("cal_docid");
 							$element.removeClass("cal_hex");
+							$element.removeClass("cal_no_hw")
 
 							$element.addClass(window.utils.getPrefixClass(prefix));
 							$element.removeClass("hiddenThing");
@@ -239,7 +241,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 
 			monday.setDate(monday.getDate() + 1);
 		}
-	
+
 	$("#planner table tbody").append($row);
 
 	window.planner.subjectCount++;
@@ -353,7 +355,7 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 				$cell.find(".editArea").trigger("input");
 			};
 		}
-		window.planner.loadStep();	
+		window.planner.loadStep();
 	});
 };
 

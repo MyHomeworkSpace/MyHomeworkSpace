@@ -11,6 +11,9 @@ window.hwView.addEventToList = function(ev, list) {
 	name = name.join(" ");
 	var done = (ev.done == 1 ? true : false);
 
+	if (tag.toLowerCase() == "none" || tag.toLowerCase() == "nohw") {
+		return;
+	}
 	if (name.trim() == "") {
 		return;
 	}
