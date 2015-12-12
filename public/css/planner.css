@@ -109,7 +109,7 @@
 	/*background: lightgray;*/
 	background-clip: padding-box;
 }
-.cal_no_hw textarea, .editCell.done textarea {
+.editCell.done textarea {
 	text-decoration: line-through;
 }
 
@@ -199,6 +199,11 @@
 	color: black !important;
 }
 
+.cal_no_hw {
+	background-color: lightgray;
+	color: gray !important;
+}
+
 .feedback-btn {
 	font-size: 1.5em;
 }
@@ -234,7 +239,7 @@
     z-index: -1;
     transition: background 0.1s;
 }
-.cal_no_hw .highlightTextarea::before, .editCell.done .highlightTextarea::before {
+.editCell.done .highlightTextarea::before {
     background: lightgray;
 }
 
