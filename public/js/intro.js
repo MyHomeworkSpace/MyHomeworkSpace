@@ -1152,9 +1152,11 @@
     //set height
     elementPosition.height = element.offsetHeight;
     
+    var isTab = false;
     if ($(element).parent().hasClass("tabs")) { // super hexy way of getting intro.js to rotate
       elementPosition.width = element.offsetHeight;
       elementPosition.height = element.offsetWidth;
+      isTab = true;
     }
 
     //calculate element top and left
@@ -1170,7 +1172,7 @@
     //set left
     elementPosition.left = _x;
     
-    if ($(element).parent().hasClass("tabs")) { // super hexy way of getting intro.js to work
+    if (isTab) { // super hexy way of getting intro.js to work
       elementPosition.top = _y - 50;
       elementPosition.left = _x + 25;
     }
