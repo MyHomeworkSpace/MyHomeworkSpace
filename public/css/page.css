@@ -55,6 +55,8 @@ nav {
 	height: 40px;
 
 	cursor: pointer;
+	
+	margin-bottom: 60px;
 }
 .tabs li:hover {
 	background: lightblue;
