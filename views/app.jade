@@ -1,5 +1,5 @@
 doctype html
-html(data-step="7", data-intro="Hope you enjoy PlanHub! -PlanHub Team")
+html
 	head
 		title= title
 
@@ -50,7 +50,7 @@ html(data-step="7", data-intro="Hope you enjoy PlanHub! -PlanHub Team")
 
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 
-	body
+	body(data-step="7", data-intro="We hope you enjoy PlanHub!")
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
 		nav(class="navbar navbar-default navbar-fixed-top")
