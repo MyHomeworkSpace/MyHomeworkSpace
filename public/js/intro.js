@@ -1151,6 +1151,11 @@
 
     //set height
     elementPosition.height = element.offsetHeight;
+    
+    if ($(element).parent().hasClass("tabs")) { // super hexy way of getting intro.js to rotate
+      elementPosition.width = element.offsetHeight;
+      elementPosition.height = element.offsetWidth;
+    }
 
     //calculate element top and left
     var _x = 0;
