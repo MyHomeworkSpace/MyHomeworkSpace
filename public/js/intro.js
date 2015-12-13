@@ -1169,6 +1169,11 @@
     elementPosition.top = _y;
     //set left
     elementPosition.left = _x;
+    
+    if ($(element).parent().hasClass("tabs")) { // super hexy way of getting intro.js to work
+      elementPosition.top = _y - 50;
+      elementPosition.left = _x + 25;
+    }
 
     return elementPosition;
   }
