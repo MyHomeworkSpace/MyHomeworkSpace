@@ -47,8 +47,11 @@ window.hwView.addEventToList = function(ev, list) {
 
 			var $due = $('<span></span>');
 				var keyword = "due";
-				if (tag.toLowerCase() == "test" || tag.toLowerCase() == "exam" || tag.toLowerCase() == "midterm" || tag.toLowerCase() == "quiz" || tag.toLowerCase() == "ica" || tag.toLowerCase() == "lab" || tag.toLowerCase() == "study") {
-					keyword = "by";
+				if (tag.toLowerCase() == "test" || tag.toLowerCase() == "exam" || tag.toLowerCase() == "midterm" || tag.toLowerCase() == "quiz" || tag.toLowerCase() == "ica" || tag.toLowerCase() == "lab") {
+					keyword = "on";
+				}
+				if (tag.toLowerCase() == "study") {
+					keyword = "by"
 				}
 				var dueText = window.utils.formatDate_pretty(moment(ev.due).add(1, "day").toDate());
 				if (moment(ev.due).add(1, "day").week() == moment().week()) {
