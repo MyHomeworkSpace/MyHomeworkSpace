@@ -50,7 +50,7 @@ html
 
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 
-	body(data-step="7", data-intro="We hope you enjoy PlanHub!")
+	body
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
 		nav(class="navbar navbar-default navbar-fixed-top")
@@ -99,7 +99,7 @@ html
 						li
 							a(href="#{basePath}/logout") Log out
 
-		div(class="loadOverlay")
+		div(class="loadOverlay", data-step="7", data-intro="We hope you enjoy PlanHub!")
 			i(class="fa fa-circle-o-notch fa-spin")
 			span  Loading...
 			div(class="loadWarn")
