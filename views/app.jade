@@ -55,7 +55,7 @@ html
 		div(id="username", class="hidden")= user.username
 		nav(class="navbar navbar-default navbar-fixed-top")
 			div(class="container-fluid")
-				div(class="navbar-header")
+				div(class="navbar-header", data-step="7", data-intro="We hope you enjoy PlanHub!")
 					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
 						span(class="sr-only") Toggle navigation
 						span(class="icon-bar")
@@ -99,7 +99,7 @@ html
 						li
 							a(href="#{basePath}/logout") Log out
 
-		div(class="loadOverlay", data-step="7", data-intro="We hope you enjoy PlanHub!")
+		div(class="loadOverlay")
 			i(class="fa fa-circle-o-notch fa-spin")
 			span  Loading...
 			div(class="loadWarn")
