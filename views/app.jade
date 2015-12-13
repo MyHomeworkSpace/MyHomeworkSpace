@@ -21,6 +21,7 @@ html
 		script(src="#{basePath}/js/jquery.highlighttextarea.js")
 		script(src="#{basePath}/js/jquery-ui.min.js")
 		script(src="#{basePath}/js/sweetalert.min.js")
+		script(src="#{basePath}/js/intro.js")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
@@ -195,14 +196,14 @@ html
 
 		div(class="mainContainer")
 			ul(class="tabs")
-				li(data-page="overview")
+				li(data-step="1", data-intro="This is Overview. This is a work in progress page.", data-page="overview")
 					i(class="fa fa-calendar") 
 					span  Overview
-				li(data-page="planner")
+				li(data-step="2", data-intro="This is Planner. This is where you enter all your homework, and where the magic happens.", data-page="planner")
 					i(class="fa fa-book")  
 					span  Planner
 				<!-- li(data-page="myDay") My Day -->
-				li(data-page="hwView")
+				li(data-step="3", data-intro="This is HW View. All of your homework gets laid out here in a fancy way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					span  HW View
 				<!-- li(data-page="prefs") Preferences -->
