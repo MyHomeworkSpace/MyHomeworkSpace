@@ -1173,7 +1173,7 @@
     elementPosition.left = _x;
     
     if (isTab) { // super hexy way of getting intro.js to work
-      elementPosition.top = _y - 50;
+      elementPosition.top = _y - 25;
       elementPosition.left = _x + 25;
     }
 
