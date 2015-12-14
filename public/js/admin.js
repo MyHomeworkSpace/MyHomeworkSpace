@@ -22,7 +22,6 @@ $(document).ready(function() {
 					var $feedbackName = $('<div></div>');
 						$feedbackName.text(feedbackItem.name);
 					$feedbackLi.append($feedbackName);
-					$feedbackLi.append($feedbackId);
 				$("#admin-feedback-list").append($feedbackLi);
 			};
 		});
