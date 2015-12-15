@@ -197,12 +197,12 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				};
 				$editCell.find("textarea").change(textAreaChg);
 				$editCell.find(".checkBtn").change(textAreaChg);
-				$editCell.find("textarea").bind('click', function(clicky) {
-					if(event.altKey) {
+				$editCell.find("textarea").click(function(clicky) {
+					if(clicky.altKey) {
 						$(this).parent().children(".highlightTextarea").text("none");
 						console.log("testing");
 					};
-				})
+				});
 				var $mic = $('<div class="magic-input-container"></div>');
 
 				$mic.prepend("<div></div>");
