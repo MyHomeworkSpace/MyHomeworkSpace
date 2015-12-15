@@ -8,7 +8,7 @@ $(document).ready(function() {
 				var feedbackItem = resp.feedback[feedbackIndex];
 				var $feedbackLi = $('<li></li>');
 					var $feedbackDesc = $('<div></div>');
-						$feedbackDesc.text(" " + feedbackItem.msg);
+						$feedbackDesc.text(" #" + feedbackItem.feedbackId + " " + feedbackItem.msg);
 						var $icon = $('<i class="fa"></i>');
 							if (feedbackItem.type == "smile") {
 								$icon.addClass("fa-smile-o");
