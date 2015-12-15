@@ -167,5 +167,9 @@ $(document).ready(function() {
 		} else {
 			setPage("overview");
 		}
+		
+		if (features.length == 0) {
+			introJs().setOption("showStepNumbers", false).start();
+		}
 	});
 });

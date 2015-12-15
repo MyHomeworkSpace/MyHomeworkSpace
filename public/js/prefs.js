@@ -17,19 +17,16 @@ window.prefs.get = function(name, callback) {
 	});
 };
 
-window.prefs.btn = function(name, id) {
-	window.prefs.get(name, function(val) {
-		var btnTrue = val;
-		if(btnTrue == "1") {
-			$("#" + id).prop("checked", true);
+window.prefs.checkToggle = function($checkbox, prefsId) {
+	window.prefs.get(prefsId, function(result) {
+		var toggled = false;
+		if (parseInt(result) == 1) {
+			toggled = true;
 		}
-		$("#" + id).change(function() {
-			if(btnTrue == "1") {
-				btnTrue = "0";
-			} else {
-				btnTrue = "1";
-			}
-			window.api.post("prefs/set", { name: name, value: btnTrue}, function() {});
+		$checkbox.prop("checked", toggled);
+		$checkbox.change(function() {
+			var prefsVal = ($(this).prop("checked") ? "1" : "0");	
+			window.api.post("prefs/set", { name: prefsId, value: prefsVal}, function() {});
 		});
 	});
 };
@@ -39,21 +36,6 @@ $(document).ready(function() {
 		$("#prefs-modal").modal("hide");
 		setPage($("#prefs-modal").attr("data-feature"));
 	});
-	window.prefs.get("name-subj", function(val) {
-		var btnTrue = val;
-		if(btnTrue == "1") {
-			$("#prefs-hwView-swap").prop("checked", true);
-		}
-		$("#prefs-hwView-swap").change(function() {
-			if(btnTrue == "1") {
-				btnTrue = "0";
-			} else {
-				btnTrue = "1";
-			};
-			window.api.post("prefs/set", { name: "name-subj", value: btnTrue}, function() {});
-		});
-		
-	});
 	$("#usr-btn").click(function() {
 		var usrname = $("#usr-name").val();
 		window.api.post("prefs/setName", { name: usrname }, function() {
@@ -61,5 +43,8 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 	});
-	window.prefs.btn("titleclr", "prefs-hwView-color");
+	
+	// Homework View
+	window.prefs.checkToggle($("#prefs-hwView-swap"), "name-subj");
+	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
 });

@@ -12,6 +12,7 @@ html
 		link(href="#{basePath}/css/jquery.highlighttextarea.css", rel="stylesheet")
 		link(href="#{basePath}/css/jquery-ui.min.css", rel="stylesheet")
 		link(href="#{basePath}/css/sweetalert.css", rel="stylesheet")
+		link(href="#{basePath}/css/introjs.css", rel="stylesheet")
 
 		link(href="#{basePath}/css/style.css", rel="stylesheet")
 
@@ -21,6 +22,7 @@ html
 		script(src="#{basePath}/js/jquery.highlighttextarea.js")
 		script(src="#{basePath}/js/jquery-ui.min.js")
 		script(src="#{basePath}/js/sweetalert.min.js")
+		script(src="#{basePath}/js/intro.js")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
@@ -53,7 +55,7 @@ html
 		div(id="username", class="hidden")= user.username
 		nav(class="navbar navbar-default navbar-fixed-top")
 			div(class="container-fluid")
-				div(class="navbar-header")
+				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy PlanHub! To get started, click Done below, and then select a tab.")
 					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
 						span(class="sr-only") Toggle navigation
 						span(class="icon-bar")
@@ -84,13 +86,13 @@ html
 								//	a(href='#') Admin
 
 					ul(class="nav navbar-nav navbar-right")
-						li(class="feedback-btn")
+						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for PlanHub? Send it to us with this button!")
 							a(class="ideaBtn", data-toggle="tooltip", data-placement="bottom", title="Have a great new idea? Send it to us.")
 								i(class="fa fa-lightbulb-o")
-						li(class="feedback-btn")
+						li(class="feedback-btn", data-step="6", data-intro="Do you like a feature? Send us your thoughts with this button!")
 							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Like something? Send us a smile.")
 								i(class="fa fa-smile-o")
-						li(class="feedback-btn")
+						li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
 						li(class="navbar-text user-name")= user.name
@@ -195,14 +197,14 @@ html
 
 		div(class="mainContainer")
 			ul(class="tabs")
-				li(data-page="overview")
+				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
 					i(class="fa fa-calendar") 
 					span  Overview
-				li(data-page="planner")
+				li(data-step="3", data-intro="This is Planner. This is where you enter all of your homework, and where the magic happens.", data-page="planner")
 					i(class="fa fa-book")  
 					span  Planner
 				<!-- li(data-page="myDay") My Day -->
-				li(data-page="hwView")
+				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					span  HW View
 				<!-- li(data-page="prefs") Preferences -->
@@ -216,12 +218,10 @@ html
 
 			div(class="pages")
 				div(id="overview", class="page")
-					h3
+					h3(data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below)")
 						span Today is 
 						span(class="overview-date") a day
 						span .
-					p 
-
 				div(id="planner", class="page")
 					div(id="planner-upsell", class="upsell row", data-feature="planner")
 						div(class="col-md-3")

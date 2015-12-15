@@ -22,6 +22,9 @@ window.hwView.addEventToList = function(ev, list) {
 		if (done) {
 			$item.addClass("hwView-done");
 		}
+		$item.attr("data-subId", ev.subId);
+		$item.attr("data-date", window.utils.formatDate_api(ev.due));
+		$item.attr("data-sectionIndex", ev.subject);
 		var $name = $('<h4></h4>');
 			$name.text(name);
 		// append comes later
@@ -85,7 +88,8 @@ window.hwView.loadList = function(date, list, callback) {
 					name: ev[evIndex].text,
 					due: new Date(data.date),
 					subject: ev[evIndex].sectionIndex,
-					done: ev[evIndex].done
+					done: ev[evIndex].done,
+					subId: ev[evIndex].subId
 				};
 				window.hwView.addEventToList(evObj, list);
 			};
@@ -145,7 +149,8 @@ window.hwView.loadEvents = function(callback) {
 					name: ev[evIndex].text,
 					due: new Date(ev[evIndex].date.split("T")[0]),
 					subject: ev[evIndex].sectionIndex,
-					done: ev[evIndex].done
+					done: ev[evIndex].done,
+					subId: ev[evIndex].subId
 				};
 				var list = "longterm";
 				var dueMoment = moment(evObj.due).utcOffset(0);

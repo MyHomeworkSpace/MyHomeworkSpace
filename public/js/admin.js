@@ -8,7 +8,7 @@ $(document).ready(function() {
 				var feedbackItem = resp.feedback[feedbackIndex];
 				var $feedbackLi = $('<li></li>');
 					var $feedbackDesc = $('<div></div>');
-						$feedbackDesc.text(" " + feedbackItem.msg);
+						$feedbackDesc.text(" #" + feedbackItem.feedbackId + " " + feedbackItem.msg);
 						var $icon = $('<i class="fa"></i>');
 							if (feedbackItem.type == "smile") {
 								$icon.addClass("fa-smile-o");
@@ -20,8 +20,11 @@ $(document).ready(function() {
 						$feedbackDesc.prepend($icon);
 					$feedbackLi.append($feedbackDesc);
 					var $feedbackName = $('<div></div>');
-						$feedbackName.text(feedbackItem.name);
+						$feedbackName.text(feedbackItem.name + " (" + feedbackItem.username + ")");
 					$feedbackLi.append($feedbackName);
+					var $feedbackDay = $('<div><em></em></div>');
+						$feedbackDay.children("em").text("Sent " + moment(feedbackItem.timestamp).format("MM/DD/YY"));
+					$feedbackLi.append($feedbackDay);
 				$("#admin-feedback-list").append($feedbackLi);
 			};
 		});
