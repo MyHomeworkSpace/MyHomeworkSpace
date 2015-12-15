@@ -319,7 +319,7 @@ window.planner.purgeDay = function(date, subjectIndex, lines) {
 };
 
 window.planner.handleError = function(metadata) {
-	alert("Something went wrong. Reload the page and try again.");
+	swal("Error","Something went wrong. Reload the page and try again.","error");
 };
 
 window.planner.getAnnouncement = function(date, callback) {
