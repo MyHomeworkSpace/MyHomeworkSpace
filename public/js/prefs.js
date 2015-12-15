@@ -26,7 +26,7 @@ window.prefs.checkToggle = function($checkbox, prefsId) {
 		$checkbox.prop("checked", toggled);
 		$checkbox.change(function() {
 			var prefsVal = ($(this).prop("checked") ? "1" : "0");	
-			window.api.post("prefs/set", { name: name, value: prefsVal}, function() {});
+			window.api.post("prefs/set", { name: prefsId, value: prefsVal}, function() {});
 		});
 	});
 };
