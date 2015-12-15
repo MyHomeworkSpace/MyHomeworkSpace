@@ -202,11 +202,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						if($(this).val() == "none") {
 							$(this).val("");
 							$(this).trigger("input");
-							textAreaChg;
+							$(this).trigger("change");
 						} else {
 							$(this).val("none");
 							$(this).trigger("input");
-							textAreaChg;
+							$(this).trigger("change");
 						}
 					};
 				});
