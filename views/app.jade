@@ -197,14 +197,14 @@ html
 
 		div(class="mainContainer")
 			ul(class="tabs")
-				li(data-step="2", data-intro="This is Overview. This is a work in progress page.", data-page="overview")
+				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
 					i(class="fa fa-calendar") 
 					span  Overview
-				li(data-step="3", data-intro="This is Planner. This is where you enter all your homework, and where the magic happens.", data-page="planner")
+				li(data-step="3", data-intro="This is Planner. This is where you enter all of your homework, and where the magic happens.", data-page="planner")
 					i(class="fa fa-book")  
 					span  Planner
 				<!-- li(data-page="myDay") My Day -->
-				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in a fancy way!", data-page="hwView")
+				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					span  HW View
 				<!-- li(data-page="prefs") Preferences -->
@@ -217,8 +217,8 @@ html
 				i(class="fa fa-cog")
 
 			div(class="pages")
-				div(id="overview", class="page", data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different options.")
-					h3
+				div(id="overview", class="page")
+					h3(data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below)")
 						span Today is 
 						span(class="overview-date") a day
 						span .
