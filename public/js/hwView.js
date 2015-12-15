@@ -22,6 +22,9 @@ window.hwView.addEventToList = function(ev, list) {
 		if (done) {
 			$item.addClass("hwView-done");
 		}
+		$item.attr("data-subId", ev.subId);
+		$item.attr("data-date", ev.date);
+		$item.attr("data-sectionIndex", ev.sectionIndex);
 		var $name = $('<h4></h4>');
 			$name.text(name);
 		// append comes later
