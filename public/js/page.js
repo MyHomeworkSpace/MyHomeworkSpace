@@ -151,7 +151,7 @@ $(document).ready(function() {
 			$(".feedback-footer-normal").removeClass("hidden");
 			$("#feedback-msg").val("");
 			$("#feedback-modal").modal("hide");
-			alert("Your feedback has been sent successfully! We'll try to respond to you as soon as possible.");
+			swal("Awesome!", "Your feedback has been sent successfully! We'll try to respond to you as soon as possible.", "success")
 		});
 	});
 
