@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/feedback/getList', global.apiCall, global.requireUser, global.getUserRecord, global.requireViewFeedback, function(req, res, next) {
-	knex("feedback").select("feedbackId", "msg", "name", "type").then(function(obj) {
+	knex("feedback").select("feedbackId", "msg", "name", "type", "timestamp", "username", "webpage").then(function(obj) {
 		var tempArr = obj;
 		tempArr.reverse();
 		res.json({
