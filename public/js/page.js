@@ -169,7 +169,7 @@ $(document).ready(function() {
 		}
 		
 		if (features.length == 0) {
-			introJs().start();
+			introJs().setOption("showStepNumbers", false).start();
 		}
 	});
 });
