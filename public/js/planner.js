@@ -200,7 +200,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.find("textarea").click(function(clicky) {
 					if(clicky.altKey) {
 						$(this).parent().children(".highlightTextarea").text("none");
-						console.log("testing");
+						console.log($(this).parent().children(".highlightTextarea"));
 					};
 				});
 				var $mic = $('<div class="magic-input-container"></div>');
