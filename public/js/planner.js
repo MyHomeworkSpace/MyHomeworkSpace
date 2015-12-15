@@ -186,7 +186,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var doneArr = $micDiv.attr("data-donePass").split("");
 						// tbd
 					}
-
+					
 					var texts = val.split("\n");
 					var lines = 0;
 					for (var textIndex in texts) {
@@ -197,7 +197,12 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				};
 				$editCell.find("textarea").change(textAreaChg);
 				$editCell.find(".checkBtn").change(textAreaChg);
-
+				$editCell.find("textarea").bind('click', function(clicky) {
+					if(event.altKey) {
+						$(this).parent().children(".highlightTextarea").text("none");
+						console.log("testing");
+					};
+				})
 				var $mic = $('<div class="magic-input-container"></div>');
 
 				$mic.prepend("<div></div>");
