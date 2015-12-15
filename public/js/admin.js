@@ -20,7 +20,7 @@ $(document).ready(function() {
 						$feedbackDesc.prepend($icon);
 					$feedbackLi.append($feedbackDesc);
 					var $feedbackName = $('<div></div>');
-						$feedbackName.text(feedbackItem.name);
+						$feedbackName.text(feedbackItem.name + " (" + feedbackItem.username + ")");
 					$feedbackLi.append($feedbackName);
 				$("#admin-feedback-list").append($feedbackLi);
 			};
