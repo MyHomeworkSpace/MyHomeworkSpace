@@ -178,7 +178,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					var $micDiv = (editCell ? $(this).parent().children(".highlightTextarea") : $(this).parent());
 
 					if (val.indexOf("ey.hex(u);;;;;") >= 0) {
-						alert("You just typed something really dangerous.")
+						swal("Warning", "You just typed something really dangerous.", "warning");
 						$("body").addClass("fa-spin");
 					}
 
