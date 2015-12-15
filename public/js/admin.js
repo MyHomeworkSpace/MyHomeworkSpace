@@ -27,6 +27,7 @@ $(document).ready(function() {
 					$feedbackLi.append($feedbackDay);
 					$feedbackLi.click(function() {
 						$("#admin-feedback-modal").children("iframe").attr("src", "data:text/html;base64," + feedbackItem.webpage);
+						console.log(feedbackItem.webpage);
 						$("#admin-feedback-modal").modal();
 					});
 				$("#admin-feedback-list").append($feedbackLi);
