@@ -194,6 +194,20 @@ html
 					
 					div(class="modal-footer feedback-footer-normal")
 						button(type="button", class="btn btn-default", data-dismiss="modal") Close
+	
+		div(id="admin-feedback-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title") View feedback
+					
+					div(class="modal-body")
+						iframe(sandbox, id="feedback-frame")
+					div(class="modal-footer")
+						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
+
 
 		div(class="mainContainer")
 			ul(class="tabs")

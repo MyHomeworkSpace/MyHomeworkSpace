@@ -25,6 +25,11 @@ $(document).ready(function() {
 					var $feedbackDay = $('<div><em></em></div>');
 						$feedbackDay.children("em").text("Sent " + moment(feedbackItem.timestamp).format("MM/DD/YY"));
 					$feedbackLi.append($feedbackDay);
+					$feedbackLi.attr("data-webpage", feedbackItem.webpage)
+					$feedbackLi.click(function() {
+						$("#admin-feedback-modal").find("iframe").attr("src", "data:text/html;base64," + $(this).attr("data-webpage"));
+						$("#admin-feedback-modal").modal();
+					});
 				$("#admin-feedback-list").append($feedbackLi);
 			};
 		});

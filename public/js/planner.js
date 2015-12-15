@@ -122,7 +122,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.attr("data-date", window.utils.formatDate_api(monday));
 				var $checkBtn = $('<input type="checkbox" class="checkBtn" />');
 					$checkBtn.change(function() {
-						if ($(this).prop('checked') || ~doneCheck.indexOf('no') || ~doneCheck.indexOf('none')) {
+						if ($(this).prop('checked') || (doneCheck != undefined && (doneCheck.indexOf('no') || doneCheck.indexOf('none')))) {
 							$(this).parent().addClass("done");
 						} else {
 							$(this).parent().removeClass("done");
@@ -186,7 +186,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var doneArr = $micDiv.attr("data-donePass").split("");
 						// tbd
 					}
-
+					
 					var texts = val.split("\n");
 					var lines = 0;
 					for (var textIndex in texts) {
@@ -197,7 +197,17 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				};
 				$editCell.find("textarea").change(textAreaChg);
 				$editCell.find(".checkBtn").change(textAreaChg);
-
+				$editCell.find("textarea").click(function(clicky) {
+					if(clicky.altKey) {
+						if($(this).val() == "none") {
+							$(this).val("");
+							$(this).trigger("input");
+						} else {
+							$(this).val("none");
+							$(this).trigger("input");	
+						}
+					};
+				});
 				var $mic = $('<div class="magic-input-container"></div>');
 
 				$mic.prepend("<div></div>");
