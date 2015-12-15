@@ -149,7 +149,8 @@ window.hwView.loadEvents = function(callback) {
 					name: ev[evIndex].text,
 					due: new Date(ev[evIndex].date.split("T")[0]),
 					subject: ev[evIndex].sectionIndex,
-					done: ev[evIndex].done
+					done: ev[evIndex].done,
+					subId: ev[evIndex].subId
 				};
 				var list = "longterm";
 				var dueMoment = moment(evObj.due).utcOffset(0);
