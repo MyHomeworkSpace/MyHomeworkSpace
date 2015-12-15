@@ -122,7 +122,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.attr("data-date", window.utils.formatDate_api(monday));
 				var $checkBtn = $('<input type="checkbox" class="checkBtn" />');
 					$checkBtn.change(function() {
-						if ($(this).prop('checked') || (doneCheck != undefined && (doneCheck.indexOf('no') || doneCheck.indexOf('none')))) {
+						if ($(this).prop('checked') || (doneCheck != undefined && (doneCheck.indexOf('no') > -1 || doneCheck.indexOf('none') > -1))) {
 							$(this).parent().addClass("done");
 						} else {
 							$(this).parent().removeClass("done");
