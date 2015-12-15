@@ -22,6 +22,9 @@ $(document).ready(function() {
 					var $feedbackName = $('<div></div>');
 						$feedbackName.text(feedbackItem.name + " (" + feedbackItem.username + ")");
 					$feedbackLi.append($feedbackName);
+					var $feedbackDay = $('<div><em></em></div>');
+						$feedbackDay.text("Sent at " + moment(feedbackItem.timestamp).format("MM/DD/YY"));
+					$feedbackLi.append($feedbackDay);
 				$("#admin-feedback-list").append($feedbackLi);
 			};
 		});
