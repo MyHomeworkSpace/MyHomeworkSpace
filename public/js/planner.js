@@ -65,15 +65,30 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var subjectName = $(this).parent().parent().parent().attr("data-subjectName");
 						var subjectIndex = $(this).parent().parent().parent().attr("data-subjectIndex");
 						var newName = prompt("What do you want to rename '" + subjectName + "' to?");
-						if (newName != "" && newName != undefined) {
+						swal({
+							title: "Rename subject",
+							text: "Enter a new name for " + subjectName + ":",
+							type: "input",
+							showCancelButton: true,
+							closeOnConfirm: false,
+							animation: "slide-from-top",
+							inputPlaceholder: "Write something"
+						}, function(inputValue) {
+							if (inputValue === false) {
+								return false;
+							}
+							if (inputValue === "") {
+								swal.showInputError("You need to write something!");
+								return false;
+							}
 							window.page.showLoading();
 							window.api.post("planner/sections/rename", {
 								sectionIndex: subjectIndex,
-								newName: newName
+								newName: inputValue
 							}, function() {
 								window.location.reload();
 							});
-						}
+						});
 					});
 				$controls.append($renameBtn);
 
