@@ -64,7 +64,6 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					$renameBtn.click(function() {
 						var subjectName = $(this).parent().parent().parent().attr("data-subjectName");
 						var subjectIndex = $(this).parent().parent().parent().attr("data-subjectIndex");
-						var newName = prompt("What do you want to rename '" + subjectName + "' to?");
 						swal({
 							title: "Rename subject",
 							text: "Enter a new name for " + subjectName + ":",
