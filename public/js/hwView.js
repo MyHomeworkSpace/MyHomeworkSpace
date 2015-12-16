@@ -25,6 +25,11 @@ window.hwView.addEventToList = function(ev, list) {
 		$item.attr("data-subId", ev.subId);
 		$item.attr("data-date", window.utils.formatDate_api(ev.due));
 		$item.attr("data-sectionIndex", ev.subject);
+		var $checkbox = $('<input type="checkbox" class="hwView-toggleDone"></input>');
+			$checkbox.change(function() {
+				console.log("yay");
+			});
+		$item.append($checkbox);
 		var $name = $('<h4></h4>');
 			$name.text(name);
 		// append comes later
