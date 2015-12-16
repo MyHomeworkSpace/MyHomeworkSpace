@@ -28,6 +28,9 @@ window.hwView.addEventToList = function(ev, list) {
 		var $checkbox = $('<input type="checkbox" class="hwView-toggleDone"></input>');
 			$checkbox.prop("checked", done);
 			$checkbox.change(function() {
+				var subId = parseInt($item.attr("data-subId"));
+				var date = $item.attr("data-date");
+				var sectionIndex = parseInt($item.attr("data-sectionIndex"));
 				console.log("yay");
 			});
 		$item.append($checkbox);

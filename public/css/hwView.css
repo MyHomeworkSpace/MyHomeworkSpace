@@ -8,12 +8,13 @@
 }
 .hwView-toggleDone {
 	position: absolute;
-    left: -20px;
+	top: 1px;
+    left: -21px;
 
 	/* Browsers are weird things */
-	-webkit-transform: scale(2); /* Safari and Chrome */
-	-moz-transform: scale(2); /* FF */
-	-ms-transform: scale(2); /* IE */
-  	-o-transform: scale(2); /* Opera */
-  	transform: scale(2);
+	-webkit-transform: scale(1.5); /* Safari and Chrome */
+	-moz-transform: scale(1.5); /* FF */
+	-ms-transform: scale(1.5); /* IE */
+  	-o-transform: scale(1.5); /* Opera */
+  	transform: scale(1.5);
 }
