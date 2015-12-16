@@ -23,7 +23,7 @@ window.hwView.addEventToList = function(ev, list) {
 			$item.addClass("hwView-done");
 		}
 		$item.attr("data-subId", ev.subId);
-		var hexyTime = moment(ev.due).add(moment().utcOffset(), "minutes");
+		var hexyTime = moment(ev.due).subtract(moment().utcOffset(), "minutes");
 		$item.attr("data-date", window.utils.formatDate_api(hexyTime.toDate()));
 		$item.attr("data-sectionIndex", ev.subject);
 		$item.attr("data-name", ev.name);
