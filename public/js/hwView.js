@@ -25,13 +25,23 @@ window.hwView.addEventToList = function(ev, list) {
 		$item.attr("data-subId", ev.subId);
 		$item.attr("data-date", window.utils.formatDate_api(ev.due));
 		$item.attr("data-sectionIndex", ev.subject);
+		$item.attr("data-name", ev.nane);
 		var $checkbox = $('<input type="checkbox" class="hwView-toggleDone"></input>');
 			$checkbox.prop("checked", done);
 			$checkbox.change(function() {
 				var subId = parseInt($item.attr("data-subId"));
 				var date = $item.attr("data-date");
 				var sectionIndex = parseInt($item.attr("data-sectionIndex"));
-				console.log("yay");
+				var name = $item.attr("data-name");
+				var doneNow = !$(this).prop("checked");
+
+				if (doneNow) {
+					$(this).parent().addClass("done");
+				} else {
+					$(this).parent().removeClass("done");
+				}
+
+				window.planner.setEvent(date, sectionIndex, name, doneNow, subId);
 			});
 		$item.append($checkbox);
 		var $name = $('<h4></h4>');
