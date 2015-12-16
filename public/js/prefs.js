@@ -47,4 +47,5 @@ $(document).ready(function() {
 	// Homework View
 	window.prefs.checkToggle($("#prefs-hwView-swap"), "name-subj");
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
+	window.prefs.checkToggle($("#prefs-hwView-checkboxes"), "hwView-checkboxes");
 });

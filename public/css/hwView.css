@@ -3,3 +3,18 @@
 	text-decoration: line-through;
 	font-style: italic;
 }
+.hwView-item {
+	position: relative;
+}
+.hwView-toggleDone {
+	position: absolute;
+	top: 3px;
+    left: -21px;
+
+	/* Browsers are weird things */
+	-webkit-transform: scale(1.2); /* Safari and Chrome */
+	-moz-transform: scale(1.2); /* FF */
+	-ms-transform: scale(1.2); /* IE */
+  	-o-transform: scale(1.2); /* Opera */
+  	transform: scale(1.2);
+}

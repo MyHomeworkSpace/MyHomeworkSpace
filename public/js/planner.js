@@ -178,7 +178,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					var $micDiv = (editCell ? $(this).parent().children(".highlightTextarea") : $(this).parent());
 
 					if (val.indexOf("ey.hex(u);;;;;") >= 0) {
-						alert("You just typed something really dangerous.")
+						swal("Warning", "You just typed something really dangerous.", "warning");
 						$("body").addClass("fa-spin");
 					}
 
@@ -202,9 +202,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						if($(this).val() == "none") {
 							$(this).val("");
 							$(this).trigger("input");
+							$(this).trigger("change");
 						} else {
 							$(this).val("none");
-							$(this).trigger("input");	
+							$(this).trigger("input");
+							$(this).trigger("change");
 						}
 					};
 				});
@@ -317,7 +319,7 @@ window.planner.purgeDay = function(date, subjectIndex, lines) {
 };
 
 window.planner.handleError = function(metadata) {
-	alert("Something went wrong. Reload the page and try again.");
+	swal("Error","Something went wrong. Reload the page and try again.","error");
 };
 
 window.planner.getAnnouncement = function(date, callback) {

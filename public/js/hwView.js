@@ -1,7 +1,8 @@
 window.hwView = {
 	subjects: {},
 	loadCount: 0,
-	swapOrder: false
+	swapOrder: false,
+	disableChecks: false
 };
 
 window.hwView.addEventToList = function(ev, list) {
@@ -18,13 +19,35 @@ window.hwView.addEventToList = function(ev, list) {
 		return;
 	}
 
-	var $item = $('<li></li>');
+	var $item = $('<li class="hwView-item"></li>');
 		if (done) {
 			$item.addClass("hwView-done");
 		}
 		$item.attr("data-subId", ev.subId);
-		$item.attr("data-date", window.utils.formatDate_api(ev.due));
+		var hexyTime = moment(ev.due).subtract(moment().utcOffset(), "minutes");
+		$item.attr("data-date", window.utils.formatDate_api(hexyTime.toDate()));
 		$item.attr("data-sectionIndex", ev.subject);
+		$item.attr("data-name", ev.name);
+		var $checkbox = $('<input type="checkbox" class="hwView-toggleDone"></input>');
+			$checkbox.prop("checked", done);
+			$checkbox.change(function() {
+				var subId = parseInt($item.attr("data-subId"));
+				var date = $item.attr("data-date");
+				var sectionIndex = parseInt($item.attr("data-sectionIndex"));
+				var name = $item.attr("data-name");
+				var doneNow = $(this).prop("checked");
+
+				if (doneNow) {
+					$(this).parent().addClass("hwView-done");
+				} else {
+					$(this).parent().removeClass("hwView-done");
+				}
+
+				window.planner.setEvent(date, sectionIndex, name, doneNow, subId);
+			});
+		if (!window.hwView.disableChecks) {
+			$item.append($checkbox);
+		}
 		var $name = $('<h4></h4>');
 			$name.text(name);
 		// append comes later
@@ -229,7 +252,10 @@ $(document).ready(function() {
 			window.hwView.swapOrder = (val == "1");
 			window.prefs.get("titleclr", function(val) {
 				window.hwView.clr = (val == "1");
-				window.hwView.loadEvents(function() {
+				window.prefs.get("hwView-checkboxes", function(val) {
+					window.hwView.disableChecks = (val == "1");
+					window.hwView.loadEvents(function() {
+					});
 				});
 			});
 
