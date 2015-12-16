@@ -23,7 +23,8 @@ window.hwView.addEventToList = function(ev, list) {
 			$item.addClass("hwView-done");
 		}
 		$item.attr("data-subId", ev.subId);
-		$item.attr("data-date", window.utils.formatDate_api(moment(ev.due).utc().toDate()));
+		var hexyTime = moment(ev.due).add(moment().utcOffset(), "minutes");
+		$item.attr("data-date", window.utils.formatDate_api(hexyTime.toDate()));
 		$item.attr("data-sectionIndex", ev.subject);
 		$item.attr("data-name", ev.name);
 		var $checkbox = $('<input type="checkbox" class="hwView-toggleDone"></input>');
