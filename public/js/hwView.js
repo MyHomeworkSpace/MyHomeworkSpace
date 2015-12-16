@@ -18,7 +18,7 @@ window.hwView.addEventToList = function(ev, list) {
 		return;
 	}
 
-	var $item = $('<li></li>');
+	var $item = $('<li class="hwView-item"></li>');
 		if (done) {
 			$item.addClass("hwView-done");
 		}
@@ -26,6 +26,7 @@ window.hwView.addEventToList = function(ev, list) {
 		$item.attr("data-date", window.utils.formatDate_api(ev.due));
 		$item.attr("data-sectionIndex", ev.subject);
 		var $checkbox = $('<input type="checkbox" class="hwView-toggleDone"></input>');
+			$checkbox.prop("checked", done);
 			$checkbox.change(function() {
 				console.log("yay");
 			});

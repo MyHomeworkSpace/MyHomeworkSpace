@@ -3,3 +3,10 @@
 	text-decoration: line-through;
 	font-style: italic;
 }
+.hwView-item {
+	position: relative;
+}
+.hwView-toggleDone {
+	position: absolute;
+    left: -20px;
+}
