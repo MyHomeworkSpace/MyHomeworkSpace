@@ -1,7 +1,8 @@
 window.hwView = {
 	subjects: {},
 	loadCount: 0,
-	swapOrder: false
+	swapOrder: false,
+	disableChecks: false
 };
 
 window.hwView.addEventToList = function(ev, list) {
@@ -44,7 +45,9 @@ window.hwView.addEventToList = function(ev, list) {
 
 				window.planner.setEvent(date, sectionIndex, name, doneNow, subId);
 			});
-		$item.append($checkbox);
+		if (!window.hwView.disableChecks) {
+			$item.append($checkbox);
+		}
 		var $name = $('<h4></h4>');
 			$name.text(name);
 		// append comes later
@@ -249,7 +252,10 @@ $(document).ready(function() {
 			window.hwView.swapOrder = (val == "1");
 			window.prefs.get("titleclr", function(val) {
 				window.hwView.clr = (val == "1");
-				window.hwView.loadEvents(function() {
+				window.prefs.get("hwView-checkboxes", function(val) {
+					window.hwView.disableChecks = (val == "1");
+					window.hwView.loadEvents(function() {
+					});
 				});
 			});
 
