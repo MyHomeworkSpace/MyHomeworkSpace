@@ -33,7 +33,7 @@ window.hwView.addEventToList = function(ev, list) {
 				var date = $item.attr("data-date");
 				var sectionIndex = parseInt($item.attr("data-sectionIndex"));
 				var name = $item.attr("data-name");
-				var doneNow = !$(this).prop("checked");
+				var doneNow = $(this).prop("checked");
 
 				if (doneNow) {
 					$(this).parent().addClass("hwView-done");
