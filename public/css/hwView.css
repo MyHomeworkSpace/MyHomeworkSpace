@@ -9,4 +9,11 @@
 .hwView-toggleDone {
 	position: absolute;
     left: -20px;
+
+	/* Browsers are weird things */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-moz-transform: scale(2); /* FF */
+	-ms-transform: scale(2); /* IE */
+  	-o-transform: scale(2); /* Opera */
+  	transform: scale(2);
 }
