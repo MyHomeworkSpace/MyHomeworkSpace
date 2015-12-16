@@ -12,9 +12,9 @@
     left: -21px;
 
 	/* Browsers are weird things */
-	-webkit-transform: scale(1.5); /* Safari and Chrome */
-	-moz-transform: scale(1.5); /* FF */
-	-ms-transform: scale(1.5); /* IE */
-  	-o-transform: scale(1.5); /* Opera */
-  	transform: scale(1.5);
+	-webkit-transform: scale(1.2); /* Safari and Chrome */
+	-moz-transform: scale(1.2); /* FF */
+	-ms-transform: scale(1.2); /* IE */
+  	-o-transform: scale(1.2); /* Opera */
+  	transform: scale(1.2);
 }
