@@ -58,7 +58,7 @@ $(document).ready(function() {
 		for(title in val) {
 			var $titleLi = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
 				$titleLi.attr("id", val[title]);
-				var $titleWord = $('<span></span>');
+				var $titleWord = $('<input></input>');
 					$titleWord.text(val[title]);
 				$titleLi.append($titleWord);
 			$("#title-sorting").append($titleLi);
