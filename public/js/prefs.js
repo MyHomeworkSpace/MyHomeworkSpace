@@ -64,7 +64,9 @@ $(document).ready(function() {
 			$liThingy.append($inputBox);
 			var $deleteButton = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>')
 				$deleteButton.click(function() {
-					$(this).parent().remove()
+					$(this).parent().remove();
+					var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+					window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
 				});
 			$liThingy.append($deleteButton);
 		$("#title-sorting").append($liThingy)
@@ -87,6 +89,8 @@ $(document).ready(function() {
 				var $deleteThem = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>');
 					$deleteThem.click(function() {
 						$(this).parent().remove();
+						var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+						window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
 					});
 				$titleLi.append($deleteThem);
 			$("#title-sorting").append($titleLi);
