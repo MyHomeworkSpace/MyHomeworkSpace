@@ -115,7 +115,7 @@ window.hwView.loadList = function(date, list, callback) {
 					subId: ev[evIndex].subId
 				};
 				window.hwView.addEventToList(evObj, list);
-			};
+			}
 		});
 	}
 };
@@ -126,7 +126,7 @@ window.hwView.loadSubjects = function(callback) {
 		for (var i = 0; i < data.sections.length; i++) {
 			var itm = data.sections[i];
 			window.hwView.subjects[itm.sectionIndex] = itm;
-		};
+		}
 		callback(data.sections);
 	});
 };
@@ -184,7 +184,7 @@ window.hwView.loadEvents = function(callback) {
 					list = "soon";
 				}
 				window.hwView.addEventToList(evObj, list);
-			};
+			}
 			window.hwView.loadStep();
 		});
 		/*window.hwView.loadStep();
