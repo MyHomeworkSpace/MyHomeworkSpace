@@ -32,6 +32,9 @@ window.prefs.checkToggle = function($checkbox, prefsId) {
 };
 window.prefs.getJSONPref = function(name, callback) {
     window.prefs.get(name, function(val) {
+    	if (val === undefined) {
+    		callback(undefined);
+    	}
         callback(JSON.parse(val));
     });
 };
