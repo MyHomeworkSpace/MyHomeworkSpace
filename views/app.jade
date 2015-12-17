@@ -53,7 +53,7 @@ html
 	body
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
-		nav(class="navbar navbar-default navbar-fixed-top")
+		nav(class="navbar navbar-default navbar-fixed-top", data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below)")
 			div(class="container-fluid")
 				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy PlanHub! To get started, click Done below, and then select a tab.")
 					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
@@ -237,7 +237,7 @@ html
 
 			div(class="pages")
 				div(id="overview", class="page")
-					h3(data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below)")
+					h3
 						span Today is 
 						span(class="overview-date") a day
 						span .
