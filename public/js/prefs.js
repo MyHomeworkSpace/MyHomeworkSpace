@@ -52,9 +52,9 @@ $(document).ready(function() {
 		});
 	});
 	$("#title-new").click(function() {
-		$liThingy = ('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
+		$liThingy = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
 			$liThingy.attr("id", "title");
-			$inputBox = '<input></input>'
+			$inputBox = $('<input></input>')
 				$inputBox.val("title");
 				$inputBox.change(function(){
 					$(this).parent().attr("id", $(this).val());
