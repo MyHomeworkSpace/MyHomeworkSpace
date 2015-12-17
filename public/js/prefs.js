@@ -49,7 +49,7 @@ $(document).ready(function() {
 	});
 	window.prefs.getJSONPref("titleOrder", function(val) {
 		if(val == undefined) {
-			window.api.post("prefs/set", {name: "titleOrder", value:"["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]"}, function() {})
+			window.api.post("prefs/set", {name: "titleOrder", value:'["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]'}, function() {})
 			val = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
 		}
 		for(title in val) {
