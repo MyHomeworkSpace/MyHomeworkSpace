@@ -62,6 +62,8 @@ $(document).ready(function() {
 					$titleWord.val(val[title]);
 					$titleWord.change(function() {
 						$(this).parent().attr("id", $(this).val());
+						var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+						window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
 					});
 				$titleLi.append($titleWord);
 			$("#title-sorting").append($titleLi);
