@@ -34,6 +34,7 @@ window.prefs.getJSONPref = function(name, callback) {
     window.prefs.get(name, function(val) {
     	if (val === undefined) {
     		callback(undefined);
+    		return;
     	}
         callback(JSON.parse(val));
     });
