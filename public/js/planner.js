@@ -158,17 +158,18 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$(this).attr("data-tabs", -1);
 						}
 						var prefxs = [];
+						var $that = $(this);
 						window.prefs.getJSONPref("titleOrder", function(val) {
 							prefxs = val;
+							prefxs[prefxs.indexOf("subjectName")] = subjectName;
+							if(parseInt($that.attr("data-tabs")) < prefxs.length - 1) {
+								$that.attr("data-tabs", parseInt($that.attr("data-tabs")) + 1);
+							} else {
+								$that.attr("data-tabs", 0);
+							}
+							$that.val($that.val().replace(window.utils.getPrefix($that.val()), prefxs[parseInt($that.attr("data-tabs"))]));
+							$that.trigger("input"); // reload the tag checker
 						});
-						prefxs[prefxs.indexOf("subjectName")] = subjectName;
-						if(parseInt($(this).attr("data-tabs")) < prefxs.length - 1) {
-							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
-						} else {
-							$(this).attr("data-tabs", 0);
-						}
-						$(this).val($(this).val().replace(window.utils.getPrefix($(this).val()), prefxs[parseInt($(this).attr("data-tabs"))]));
-						$(this).trigger("input"); // reload the tag checker
 						return false;
 					}
 				});
