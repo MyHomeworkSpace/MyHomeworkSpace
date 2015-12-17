@@ -64,7 +64,7 @@ $(document).ready(function() {
 			$("#title-sorting").append($titleLi);
 		};
 		$("#title-sorting").sortable({
-			change: function (event, ui) {
+			over: function (event, ui) {
 				var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
 				window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
 			}
