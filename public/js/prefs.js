@@ -51,6 +51,18 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 	});
+	$("#title-new").click(function() {
+		$inputBox = '<input></input>'
+			$inputBox.val("title");
+			$inputBox.change(function(){
+				$(this).parent().attr("id", $(this).val());
+				var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+				window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+			});
+		$liThingy = ('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
+		$liThingy.attr("id", "title");
+		$liThingy.append($inputBox);
+	});
 	window.prefs.getJSONPref("titleOrder", function(val) {
 		if(val == undefined) {
 			val = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
