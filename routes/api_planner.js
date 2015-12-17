@@ -226,7 +226,7 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 				});
 			});*/
 		}
-	});.catch(function(e) {
+	}).catch(function(e) {
 		global.dbErrorHandler(e, res, req, next);
 	});
 });

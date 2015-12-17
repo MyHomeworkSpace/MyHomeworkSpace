@@ -162,8 +162,7 @@ global.dbErrorHandler = function(err, req, res, next) {
 				error: "Database error"
 			});
 		} else {
-			res.render("error", { title: "Error", msg: "A database error has occurred. Your user record is missing. Please log out and log back in. If you have lost data, please contact us as soon as possible."});
-
+			res.render("error", { title: "Error", msg: "Database error occured. Please email hello@planhub.me for assistance. Mention what you were trying to do."});
 		}
 };
 
