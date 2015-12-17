@@ -169,6 +169,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						}
 						$that.val($that.val().replace(window.utils.getPrefix($that.val()), prefxs[parseInt($that.attr("data-tabs"))]));
 						$that.trigger("input"); // reload the tag checker
+						$that.trigger("change");
 						return false;
 					}
 				});
