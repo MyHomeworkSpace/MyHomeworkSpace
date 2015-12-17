@@ -155,6 +155,18 @@ global.getOptionalUserRecord = function(req, res, next) {
 	});
 };
 
+global.dbErrorHandler = function(err, req, res, next) {
+		if (res.locals.apiCall) {
+			res.json({
+				status: "error",
+				error: "Database error"
+			});
+		} else {
+			res.render("error", { title: "Error", msg: "A database error has occurred. Your user record is missing. Please log out and log back in. If you have lost data, please contact us as soon as possible."});
+
+		}
+};
+
 if (!String.prototype.encodeHTML) {
 	String.prototype.encodeHTML = function () {
 		return this.replace(/&/g, '&amp;')

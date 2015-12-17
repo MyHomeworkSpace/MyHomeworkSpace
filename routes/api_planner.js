@@ -31,10 +31,7 @@ router.get('/announcements/get/:date', global.apiCall, function(req, res, next) 
 			});
 		}
 	}).catch(function(error) {
-		res.json({
-			status: "error",
-			error: "Database error"
-		});
+		global.dbErrorHandler(error, res, req, next);
 	});
 });
 
@@ -60,13 +57,8 @@ router.get('/fridays/get/:date', global.apiCall, function(req, res, next) {
 				friday: data[0]
 			});
 		}
-	}).catch(function(error) {
-		console.error("DB ERROR!");
-		console.error(error);
-		res.json({
-			status: "error",
-			error: "Database error"
-		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
@@ -95,12 +87,8 @@ router.get('/events/get/:date/:section_index', global.apiCall, global.requireUse
 			date: req.params.date,
 			events: obj
 		});
-	}).catch(function() {
-		res.json({
-			status: "error",
-			date: req.params.date,
-			error: "Unknown database error"
-		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
@@ -130,12 +118,8 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 			startDate: req.params.date,
 			events: obj
 		});
-	}).catch(function() {
-		res.json({
-			status: "error",
-			startDate: req.params.date,
-			error: "Unknown database error"
-		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
@@ -160,12 +144,8 @@ router.get('/events/getWholeWeek/:date', global.apiCall, global.requireUser, glo
 				events: obj
 			});
 		});
-	}).catch(function() {
-		res.json({
-			status: "error",
-			startDate: req.params.date,
-			error: "Unknown database error"
-		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
@@ -246,12 +226,9 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 				});
 			});*/
 		}
-	});/*.catch(function() {
-		res.json({
-			status: "error",
-			error: "Unknown database error"
-		});
-	});*/
+	});.catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
+	});
 });
 
 router.post('/events/purgeLine/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
@@ -284,11 +261,8 @@ router.post('/events/purgeLine/', global.apiCall, global.requireUser, global.get
 		res.json({
 			status: "ok"
 		});
-	}).catch(function() {
-		res.json({
-			status: "error",
-			error: "Unknown database error"
-		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
@@ -327,17 +301,11 @@ router.post('/sections/add', global.apiCall, global.requireUser, global.getUserR
 				status: "ok",
 				newIndex: obj.length
 			});
-		}).catch(function() {
-			res.json({
-				status: "error",
-				error: "Unknown database error."
-			});
+		}).catch(function(e) {
+			global.dbErrorHandler(e, res, req, next);
 		});
-	}).catch(function() {
-		res.json({
-			status: "error",
-			error: "Unknown database error."
-		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
@@ -371,11 +339,7 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 			});
 		});
 	}).catch(function(e) {
-		console.log(e);
-		res.json({
-			status: "error",
-			error: "Unknown database error."
-		});
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
@@ -453,11 +417,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 				status: "ok"
 			});
 		}).catch(function(e) {
-			console.log(e);
-			res.json({
-				status: "error",
-				error: "Unknown database error."
-			});
+			global.dbErrorHandler(e, res, req, next);
 		});
 	}).catch(function(e) {
 		console.log(e);
@@ -502,11 +462,8 @@ router.post('/sections/remove', global.apiCall, global.requireUser, global.getUs
 		res.json({
 			status: "ok"
 		});
-	}).catch(function() {
-		res.json({
-			status: "error",
-			error: "Unknown database error."
-		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
 	});
 });
 
