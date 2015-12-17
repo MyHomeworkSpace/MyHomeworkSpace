@@ -60,9 +60,15 @@ $(document).ready(function() {
 				var $titleWord = $('<span></span>');
 					$titleWord.text(val[title]);
 				$titleLi.append($titleWord);
+				$titleLi.attr("id", val[title]);
 			$("#title-sorting").append($titleLi);
 		};
-		$("#title-sorting").sortable();
+		$("#title-sorting").sortable({
+			change: function (event, ui) {
+				var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+				window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+			}
+		});
 		$("#title-sorting").disableSelection();
 	});
 	// Homework View
