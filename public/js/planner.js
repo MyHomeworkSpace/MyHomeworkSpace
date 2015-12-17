@@ -4,7 +4,7 @@ window.planner = {
 	subjectCount: 0,
 	saving: false,
 	movedID: 0,
-	moveID: 0
+	moveID: 0,
 };
 
 window.planner.showSaving = function() {
@@ -157,7 +157,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						if($(this).attr("data-tabs") == undefined) {
 							$(this).attr("data-tabs", -1);
 						}
-						var prefxs = ["HW", "Read", "Reading", "Project", "Report", "Essay", "Paper", "Quiz", "Test", "Final", "Exam", "Midterm", "Lab", "Study", "DocID", "None", "NoHW", subjectName];
+						var prefxs = [];
+						window.prefs.getJSONPref("titleOrder", function(val) {
+							prefxs = val;
+						});
+						prefxs[prefxs.indexOf("subjectName")] = subjectName;
 						if(parseInt($(this).attr("data-tabs")) < prefxs.length - 1) {
 							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
 						} else {
@@ -170,7 +174,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				});
 				var textAreaChg = function() {
 					var editCell = $(this).parent().hasClass("editCell");
-
+3
 					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().attr("data-subjectIndex"));
 					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().attr("data-date"));
 					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().hasClass("done"));
