@@ -114,92 +114,70 @@ window.utils.getPrefixes = function() {
 	return [
 		{
 			color: "cal_hw",
-			words: ["hw", "read", "reading"]
+			words: ["hw", "read", "reading"],
+			tabSystem: true
 		},
 		{
 			color: "cal_project",
-			words: ["project"]
+			words: ["project"],
+			tabSystem: true
 		},
 		{
 			color: "cal_paper",
-			words: ["report", "essay", "paper"]
+			words: ["report", "essay", "paper"],
+			tabSystem: true
 		},
 		{
 			color: "cal_quiz",
-			words: ["popquiz", "quiz"]
+			words: ["quiz"],
+			tabSystem: true
+		},
+		{
+			color: "cal_quiz",
+			words: ["popquiz"],
+			tabSystem: false
 		},
 		{
 			color: "cal_test",
-			words: ["test", "final", "exam", "midterm"]
+			words: ["test", "final", "exam", "midterm"],
+			tabSystem: true
 		},
 		{
 			color: "cal_ica",
-			words: ["ica"]
+			words: ["ica"],
+			tabSystem: true
 		},
 		{
 			color: "cal_lab",
-			words: ["lab", "study", "memorize"]
+			words: ["lab", "study", "memorize"],
+			tabSystem: true
 		},
 		{
 			color: "cal_docid",
-			words: ["docid"]
+			words: ["docid"],
+			tabSystem: true
 		},
 		{
 			color: "cal_hex",
-			words: ["trojun", "hex"]
+			words: ["trojun", "hex"],
+			tabSystem: false
 		},
-    {
-      color: "cal_no_hw",
-      words: ["nohw", "none"]
-    }
+		{
+			color: "cal_no_hw",
+			words: ["nohw", "none"],
+			tabSystem: true
+		}
 	];
 };
 
 window.utils.getPrefixClass = function(prefix) {
-	switch (prefix.toLowerCase()) {
-		case "hw":
-		case "read":
-		case "reading":
-			return "cal_hw";
-
-		case "project":
-			return "cal_project";
-
-		case "report":
-		case "essay":
-		case "paper":
-			return "cal_paper";
-
-		case "popquiz":
-		case "quiz":
-			return "cal_quiz";
-
-		case "test":
-		case "final":
-		case "exam":
-		case "midterm":
-			return "cal_test";
-
-		case "ica":
-			return "cal_ica";
-
-		case "lab":
-		case "study":
-		case "memorize":
-			return "cal_lab";
-
-		case "docid":
-			return "cal_docid";
-
-		case "trojun":
-		case "hex":
-			return "cal_hex";
-
-    case "nohw":
-    case "none":
-      return "cal_no_hw";
-
-		default:
-			return "cal_no_prefix";
+	var chkPrefix = prefix.toLowerCase();
+	var prefixes = window.utils.getPrefixes();
+	for (var prefixIndex in prefixes) {
+		var prefix = prefixes[prefixIndex];
+		if (prefix.indexOf(chkPrefix) > -1) {
+			return prefix.color;
+		}
 	}
+	return "cal_no_prefix";
 };
