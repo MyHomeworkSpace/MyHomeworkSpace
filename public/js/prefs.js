@@ -51,7 +51,7 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 	});
-	$("#title-new").click(function() {
+	$("#titles-new").click(function() {
 		$liThingy = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
 			$liThingy.attr("id", "title");
 			$inputBox = $('<input></input>')
