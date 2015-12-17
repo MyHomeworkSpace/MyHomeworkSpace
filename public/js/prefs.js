@@ -62,7 +62,7 @@ $(document).ready(function() {
 					window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
 				});
 			$liThingy.append($inputBox);
-		$("#title-new").append($liThingy)
+		$("#title-sorting").append($liThingy)
 	});
 	window.prefs.getJSONPref("titleOrder", function(val) {
 		if(val == undefined) {
