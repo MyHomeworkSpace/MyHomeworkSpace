@@ -7,62 +7,22 @@ window.utils.b64EncodeUnicode = function(str) {
 };
 
 window.utils.getLongNameForFeature = function(feature) {
-	switch (feature) {
-		case "overview":
-			return "Overview";
-
-		case "planner":
-			return "Planner";
-
-		case "hwView":
-			return "Homework View";
-
-		case "myDay":
-			return "My Day";
-
-		case "admin":
-			return "Administrative panel";
-
-		case "admin-feedback":
-			return "Feedback";
-
-		case "admin-stats":
-			return "Statistics";
-
-		case "admin-about":
-			return "About server";
-	}
+	var features = {
+		overview: "Overview",
+		planner: "Planner",
+		hwView: "Homework View",
+		myDay: "My Day",
+		admin: "Administrative panel",
+		"admin-feedback": "Feedback",
+		"admin-stats": "Feedback",
+		"admin-about": "Feedback"
+	};
+	return features[feature];
 };
 
 window.utils.getMonthName = function(month) {
-	switch (month) {
-		case 0:
-			return "January";
-		case 1:
-			return "February";
-		case 2:
-			return "March";
-		case 3:
-			return "April";
-		case 4:
-			return "May";
-		case 5:
-			return "June";
-		case 6:
-			return "July";
-		case 7:
-			return "August";
-		case 8:
-			return "September";
-		case 9:
-			return "October";
-		case 10:
-			return "November";
-		case 11:
-			return "December";
-		default:
-			return "Unknown";
-	}
+	var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+	return months[month];
 };
 
 window.utils.getDayOfWeek = function(dow) {
