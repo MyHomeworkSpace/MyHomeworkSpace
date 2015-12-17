@@ -2,6 +2,8 @@ extends layout
 
 block content
 	h1 Log in with your Dalton account
+	p(class="alert alert-info")
+		strong Your password is never stored. It's only used to sign you in and download your schedule and homework.
 	if error
 		p(class="alert alert-danger")
 			strong Oh no! 
@@ -10,7 +12,3 @@ block content
 		input(type="text", name="username", class="form-control", placeholder="Username")
 		input(type="password", name="password", class="form-control", placeholder="Password")
 		input(type="submit", value="Log in", class="btn btn-primary")
-
-	br
-	p(class="alert alert-info")
-		strong Your password is never stored. It's only used to sign you in and download your schedule and homework.
