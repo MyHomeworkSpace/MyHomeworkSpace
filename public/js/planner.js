@@ -160,6 +160,9 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var prefxs = [];
 						var $that = $(this);
 						window.prefs.getJSONPref("titleOrder", function(val) {
+							if(val == undefined) {
+								val = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
+							}
 							prefxs = val;
 							prefxs[prefxs.indexOf("subjectName")] = subjectName;
 							if(parseInt($that.attr("data-tabs")) < prefxs.length - 1) {
