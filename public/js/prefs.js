@@ -52,15 +52,14 @@ $(document).ready(function() {
 	});
 	window.prefs.getJSONPref("titleOrder", function(val) {
 		if(val == undefined) {
-			window.api.post("prefs/set", {name: "titleOrder", value:'["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]'}, function() {})
 			val = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
 		}
 		for(title in val) {
 			var $titleLi = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
+				$titleLi.attr("id", val[title]);
 				var $titleWord = $('<span></span>');
 					$titleWord.text(val[title]);
 				$titleLi.append($titleWord);
-				$titleLi.attr("id", val[title]);
 			$("#title-sorting").append($titleLi);
 		};
 		$("#title-sorting").sortable({
