@@ -56,7 +56,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 									});
 								});
 							$("#swap-subj-list").append($item);
-						};
+						}
 						$("#planner-move-modal").modal();
 					});
 				$controls.append($move);
@@ -358,7 +358,7 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 				eventMap[ev.sectionIndex][happyDate] = [];
 			}
 			eventMap[ev.sectionIndex][happyDate].push(ev);
-		};
+		}
 		for (var evSectionIndex in eventMap) {
 			var $row = $(".subjectRow[data-subjectIndex=" + evSectionIndex + "]");
 			for (var eventMapIndex in eventMap[evSectionIndex]) {
@@ -379,12 +379,12 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 					if ($cell.children(".checkBtn").prop("checked") && !$cell.hasClass("done")) {
 						$cell.addClass("done");
 					}
-				};
+				}
 				cellText = cellText.trim();
 				$cell.children(".highlightTextarea").children("textarea").val(cellText);
 				$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
 				$cell.find(".editArea").trigger("input");
-			};
+			}
 		}
 		window.planner.loadStep();
 	});
