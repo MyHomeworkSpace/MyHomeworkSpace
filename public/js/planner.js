@@ -119,11 +119,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 		var monday = window.planner.findThisMonday();
 		var doneCheck = $('.editArea').val();
 		for (var i = 0; i < 7; i++) {
-			var $editCell = $('<td class="editCell"><textarea class="editArea"></textarea></td>')
+			var $editCell = $('<td class="editCell"><textarea class="editArea"></textarea></td>');
 				$editCell.attr("data-date", window.utils.formatDate_api(monday));
 				var $checkBtn = $('<input type="checkbox" class="checkBtn" />');
 					$checkBtn.change(function() {
-						if ($(this).prop('checked') || (doneCheck != undefined && (doneCheck.indexOf('no') > -1 || doneCheck.indexOf('none') > -1))) {
+						if ($(this).prop('checked') || (doneCheck !== undefined && (doneCheck.indexOf('no') > -1 || doneCheck.indexOf('none') > -1))) {
 							$(this).parent().addClass("done");
 						} else {
 							$(this).parent().removeClass("done");
@@ -139,8 +139,8 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 
 				$editCell.children("textarea").width("150px");
 				$editCell.children("textarea").height("100px");
-				var realWords = window.utils.getPrefixes()
-				realWords.push({color:"cal_subjectName", words:[subjectName]})
+				var realWords = window.utils.getPrefixes();
+				realWords.push({color:"cal_subjectName", words:[subjectName]});
 				$editCell.children("textarea").highlightTextarea({
 					words: realWords,
 					firstWord: true,
@@ -155,7 +155,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.find("textarea").keydown(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode == 9) { //Tab key's keycode
-						if($(this).attr("data-tabs") == undefined) {
+						if($(this).attr("data-tabs") === undefined) {
 							$(this).attr("data-tabs", -1);
 						}
 						var prefxs = [];
@@ -175,7 +175,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				});
 				var textAreaChg = function() {
 					var editCell = $(this).parent().hasClass("editCell");
-3
+					
 					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().attr("data-subjectIndex"));
 					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().attr("data-date"));
 					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().hasClass("done"));
@@ -330,7 +330,7 @@ window.planner.handleError = function(metadata) {
 window.planner.getAnnouncement = function(date, callback) {
 	window.api.get("planner/announcements/get/" + date, function(data) {
 		if (data.status == "ok") {
-			if (data.announcement != null) {
+			if (data.announcement !== null) {
 				callback(data.announcement, date);
 			}
 		} else {
@@ -458,7 +458,7 @@ window.planner.loadWeek = function(startDate) {
 	// get friday
 	currentDate.setDate(currentDate.getDate() - 1);
 	window.api.get("planner/fridays/get/" + window.utils.formatDate_api(currentDate), function(data) {
-		if (data.friday != null) {
+		if (data.friday !== null) {
 			$(".planner-dow-friday").text("Friday " + data.friday.index);
 		}
 		window.planner.loadStep();
@@ -514,8 +514,8 @@ $(document).ready(function() {
 		$(".subjectRow").remove(); // clear the grid
 		window.planner.getSubjects(function(subjects) {
 			window.prefs.getJSONPref("titleOrder", function(titleOrder) {
-				if(titleOrder == undefined) {
-					titleOrder = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
+				if(titleOrder === undefined) {
+					titleOrder = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"];
 				}
 				window.planner.titleOrder = titleOrder;
 				
@@ -523,7 +523,7 @@ $(document).ready(function() {
 					window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
 				}
 	
-				if (window.planner.subjectCount == 0) {
+				if (window.planner.subjectCount === 0) {
 					$(".planner-welcome").removeClass("hidden");
 				}
 	
@@ -534,7 +534,7 @@ $(document).ready(function() {
 
 	$(".add-subject").click(function() {
 		var name = prompt("Enter subject name");
-		if (name != "" && name != undefined) {
+		if (name !== "" && name !== undefined) {
 			window.planner.addSubject(name);
 		}
 	});
