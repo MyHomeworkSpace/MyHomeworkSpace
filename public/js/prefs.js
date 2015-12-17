@@ -52,9 +52,9 @@ $(document).ready(function() {
 		});
 	});
 	$("#titles-new").click(function() {
-		$liThingy = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
+		var $liThingy = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
 			$liThingy.attr("id", "title");
-			$inputBox = $('<input></input>')
+			var $inputBox = $('<input></input>')
 				$inputBox.val("title");
 				$inputBox.change(function(){
 					$(this).parent().attr("id", $(this).val());
@@ -62,6 +62,11 @@ $(document).ready(function() {
 					window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
 				});
 			$liThingy.append($inputBox);
+			var $deleteButton = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>')
+				$deleteButton.click(function() {
+					$(this).parent().remove()
+				});
+			$liThingy.append($deleteButton);
 		$("#title-sorting").append($liThingy)
 	});
 	window.prefs.getJSONPref("titleOrder", function(val) {
@@ -79,6 +84,11 @@ $(document).ready(function() {
 						window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
 					});
 				$titleLi.append($titleWord);
+				var $deleteThem = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>');
+					$deleteThem.click(function() {
+						$(this).parent().remove();
+					});
+				$titleLi.append($deleteThem);
 			$("#title-sorting").append($titleLi);
 		};
 		$("#title-sorting").sortable({
