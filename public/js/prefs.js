@@ -30,7 +30,11 @@ window.prefs.checkToggle = function($checkbox, prefsId) {
 		});
 	});
 };
-
+window.prefs.getJSONPref = function(name, callback) {
+    window.prefs.get(name, function(val) {
+        callback(JSON.parse(val));
+    });
+};
 $(document).ready(function() {
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
@@ -43,7 +47,21 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 	});
-	
+	window.prefs.getJSONPref("titleOrder", function(val) {
+		if(val == undefined) {
+			window.api.post("prefs/set", {name: "titleOrder", value:"["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]"}, function() {})
+			val = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
+		}
+		for(title in val) {
+			var $titleLi = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
+				var $titleWord = $('<span></span>');
+					$titleWord.text(title);
+					titleLi.append($titleWord);
+				$("#title-sorting").append($titleLi);
+		};
+		$("#title-sorting").sortable();
+		$("#title-sorting").disableSelection();
+	});
 	// Homework View
 	window.prefs.checkToggle($("#prefs-hwView-swap"), "name-subj");
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
