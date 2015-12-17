@@ -52,16 +52,17 @@ $(document).ready(function() {
 		});
 	});
 	$("#title-new").click(function() {
-		$inputBox = '<input></input>'
-			$inputBox.val("title");
-			$inputBox.change(function(){
-				$(this).parent().attr("id", $(this).val());
-				var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
-				window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
-			});
 		$liThingy = ('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
-		$liThingy.attr("id", "title");
-		$liThingy.append($inputBox);
+			$liThingy.attr("id", "title");
+			$inputBox = '<input></input>'
+				$inputBox.val("title");
+				$inputBox.change(function(){
+					$(this).parent().attr("id", $(this).val());
+					var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+					window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+				});
+			$liThingy.append($inputBox);
+		$("#title-new").append($liThingy)
 	});
 	window.prefs.getJSONPref("titleOrder", function(val) {
 		if(val == undefined) {
