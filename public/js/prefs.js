@@ -59,8 +59,8 @@ $(document).ready(function() {
 			var $titleLi = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
 				var $titleWord = $('<span></span>');
 					$titleWord.text(title);
-					$titleLi.append($titleWord);
-				$("#title-sorting").append($titleLi);
+				$titleLi.append($titleWord);
+			$("#title-sorting").append($titleLi);
 		};
 		$("#title-sorting").sortable();
 		$("#title-sorting").disableSelection();
