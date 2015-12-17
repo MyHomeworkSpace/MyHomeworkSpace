@@ -13,11 +13,18 @@ router.get('/get/:name', global.apiCall, global.requireUser, global.getUserRecor
 		name: req.params.name,
 		userId: res.locals.user.id
 	}).then(function(obj) {
+		if (obj.length === 0) {
+			res.json({
+				status: "ok",
+				name: req.params.name,
+				val: undefined
+			});	
+		}
 		res.json({
 			status: "ok",
 			name: req.params.name,
 			val: obj[0].value
-		})
+		});
 	}).catch(function(e) {
 		res.json({
 			status: "error",
