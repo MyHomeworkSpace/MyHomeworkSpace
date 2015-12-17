@@ -9,7 +9,7 @@ router.get('/', global.apiCall, function(req, res, next) {
 });
 
 router.get('/announcements/get/:date', global.apiCall, function(req, res, next) {
-	if (req.params.date == undefined) {
+	if (req.params.date === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
@@ -19,7 +19,7 @@ router.get('/announcements/get/:date', global.apiCall, function(req, res, next) 
 	global.knex.select('*').from('planner_announcements').limit(1).where({
 		date: req.params.date
 	}).then(function (data) {
-		if (data.length == 0) {
+		if (data.length === 0) {
 			res.json({
 				status: "ok",
 				announcement: null
@@ -39,7 +39,7 @@ router.get('/announcements/get/:date', global.apiCall, function(req, res, next) 
 });
 
 router.get('/fridays/get/:date', global.apiCall, function(req, res, next) {
-	if (req.params.date == undefined) {
+	if (req.params.date === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
@@ -49,7 +49,7 @@ router.get('/fridays/get/:date', global.apiCall, function(req, res, next) {
 	global.knex.select('*').from('planner_fridays').limit(1).where({
 		date: req.params.date
 	}).then(function (data) {
-		if (data.length == 0) {
+		if (data.length === 0) {
 			res.json({
 				status: "ok",
 				friday: null
@@ -78,7 +78,7 @@ router.get('/events/get/:date/:section_index', global.apiCall, global.requireUse
 		});
 		return;
 	}
-	if (req.params.section_index == undefined || parseInt(req.params.section_index) == NaN) {
+	if (req.params.section_index === undefined || parseInt(req.params.section_index) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
@@ -105,14 +105,14 @@ router.get('/events/get/:date/:section_index', global.apiCall, global.requireUse
 });
 
 router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.params.date == undefined) {
+	if (req.params.date === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
 		});
 		return;
 	}
-	if (req.params.section_index == undefined || parseInt(req.params.section_index) == NaN) {
+	if (req.params.section_index === undefined || parseInt(req.params.section_index) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
@@ -140,7 +140,7 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 });
 
 router.get('/events/getWholeWeek/:date', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.params.date == undefined) {
+	if (req.params.date === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
@@ -170,35 +170,35 @@ router.get('/events/getWholeWeek/:date', global.apiCall, global.requireUser, glo
 });
 
 router.post('/events/post/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.date == undefined) {
+	if (req.body.date === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
 		});
 		return;
 	}
-	if (req.body.subjectIndex == undefined || parseInt(req.body.subjectIndex) == NaN) {
+	if (req.body.subjectIndex === undefined || parseInt(req.body.subjectIndex) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
 		});
 		return;
 	}
-	if (req.body.text == undefined) {
+	if (req.body.text === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid text parameter!"
 		});
 		return;
 	}
-	if (req.body.done == undefined || parseInt(req.body.done) == NaN || (parseInt(req.body.done) != 0 && parseInt(req.body.done) != 1)) {
+	if (req.body.done === undefined || parseInt(req.body.done) === NaN || (parseInt(req.body.done) !== 0 && parseInt(req.body.done) != 1)) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid done parameter!"
 		});
 		return;
 	}
-	if (req.body.subId == undefined || parseInt(req.body.subId) == NaN) {
+	if (req.body.subId === undefined || parseInt(req.body.subId) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid subId parameter!"
@@ -211,7 +211,7 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 		subId: req.body.subId,
 		sectionIndex: req.body.subjectIndex
 	}).then(function(obj) {
-		if (obj.length == 0) {
+		if (obj.length === 0) {
 			// no event, insert it
 			knex("planner_events").insert({
 				sectionIndex: req.body.subjectIndex,
@@ -255,21 +255,21 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 });
 
 router.post('/events/purgeLine/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.date == undefined) {
+	if (req.body.date === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
 		});
 		return;
 	}
-	if (req.body.subjectIndex == undefined || parseInt(req.body.subjectIndex) == NaN) {
+	if (req.body.subjectIndex === undefined || parseInt(req.body.subjectIndex) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
 		});
 		return;
 	}
-	if (req.body.lines == undefined || parseInt(req.body.lines) == NaN) {
+	if (req.body.lines === undefined || parseInt(req.body.lines) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid subId parameter!"
@@ -304,7 +304,7 @@ router.get('/sections/get/', global.apiCall, global.requireUser, global.getUserR
 });
 
 router.post('/sections/add', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.sectionName == undefined) {
+	if (req.body.sectionName === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section name parameter!"
@@ -342,14 +342,14 @@ router.post('/sections/add', global.apiCall, global.requireUser, global.getUserR
 });
 
 router.post('/sections/rename', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.sectionIndex == undefined) {
+	if (req.body.sectionIndex === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
 		});
 		return;
 	}
-	if (req.body.newName == undefined) {
+	if (req.body.newName === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid new name parameter!"
@@ -380,14 +380,14 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 });
 
 router.post('/sections/swap', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.first == undefined || parseInt(req.body.first) == NaN) {
+	if (req.body.first === undefined || parseInt(req.body.first) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid first index parameter!"
 		});
 		return;
 	}
-	if (req.body.second == undefined || parseInt(req.body.second) == NaN) {
+	if (req.body.second === undefined || parseInt(req.body.second) === NaN) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid second index parameter!"
@@ -399,7 +399,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 	// verify both sections exist
 	knex("planner_sections").select("*").where("userId", res.locals.user.id).
 		where(function() {
-			this.where("sectionIndex", first).orWhere("sectionIndex", second)
+			this.where("sectionIndex", first).orWhere("sectionIndex", second);
 		}).then(function(obj) {
 		if (obj.length != 2) {
 			res.json({
@@ -469,7 +469,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 });
 
 router.post('/sections/remove', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.sectionIndex == undefined) {
+	if (req.body.sectionIndex === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
