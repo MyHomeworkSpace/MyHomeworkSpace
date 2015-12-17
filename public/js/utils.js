@@ -26,24 +26,8 @@ window.utils.getMonthName = function(month) {
 };
 
 window.utils.getDayOfWeek = function(dow) {
-	switch (dow) {
-		case 0:
-			return "Sunday";
-		case 1:
-			return "Monday";
-		case 2:
-			return "Tuesday";
-		case 3:
-			return "Wednesday";
-		case 4:
-			return "Thursday";
-		case 5:
-			return "Friday";
-		case 6:
-			return "Saturday";
-		default:
-			return "Unknown";
-	}
+	var dows = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+	return dows[dow];
 };
 
 window.utils.formatDate_api = function(dateObj) {
@@ -134,9 +118,8 @@ window.utils.getPrefixClass = function(prefix) {
 	var chkPrefix = prefix.toLowerCase();
 	var prefixes = window.utils.getPrefixes();
 	for (var prefixIndex in prefixes) {
-		var prefix = prefixes[prefixIndex];
-		if (prefix.indexOf(chkPrefix) > -1) {
-			return prefix.color;
+		if (prefixes[prefixIndex].indexOf(chkPrefix) > -1) {
+			return prefixes[prefixIndex].color;
 		}
 	}
 	return "cal_no_prefix";
