@@ -60,6 +60,9 @@ $(document).ready(function() {
 				$titleLi.attr("id", val[title]);
 				var $titleWord = $('<input></input>');
 					$titleWord.val(val[title]);
+					$titleWord.change(function() {
+						$(this).parent().attr("id", $(this).val());
+					});
 				$titleLi.append($titleWord);
 			$("#title-sorting").append($titleLi);
 		};
