@@ -5,6 +5,7 @@ window.planner = {
 	saving: false,
 	movedID: 0,
 	moveID: 0,
+	titleOrder: null
 };
 
 window.planner.showSaving = function() {
@@ -159,20 +160,15 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						}
 						var prefxs = [];
 						var $that = $(this);
-						window.prefs.getJSONPref("titleOrder", function(val) {
-							if(val == undefined) {
-								val = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
-							}
-							prefxs = val;
-							prefxs[prefxs.indexOf("subjectName")] = subjectName;
-							if(parseInt($that.attr("data-tabs")) < prefxs.length - 1) {
-								$that.attr("data-tabs", parseInt($that.attr("data-tabs")) + 1);
-							} else {
-								$that.attr("data-tabs", 0);
-							}
-							$that.val($that.val().replace(window.utils.getPrefix($that.val()), prefxs[parseInt($that.attr("data-tabs"))]));
-							$that.trigger("input"); // reload the tag checker
-						});
+						prefxs = window.planner.titleOrder;
+						prefxs[prefxs.indexOf("subjectName")] = subjectName;
+						if(parseInt($that.attr("data-tabs")) < prefxs.length - 1) {
+							$that.attr("data-tabs", parseInt($that.attr("data-tabs")) + 1);
+						} else {
+							$that.attr("data-tabs", 0);
+						}
+						$that.val($that.val().replace(window.utils.getPrefix($that.val()), prefxs[parseInt($that.attr("data-tabs"))]));
+						$that.trigger("input"); // reload the tag checker
 						return false;
 					}
 				});
@@ -516,15 +512,22 @@ $(document).ready(function() {
 		window.page.showLoading();
 		$(".subjectRow").remove(); // clear the grid
 		window.planner.getSubjects(function(subjects) {
-			for (var i = 0; i < subjects.length; i++) {
-				window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
-			}
-
-			if (window.planner.subjectCount == 0) {
-				$(".planner-welcome").removeClass("hidden");
-			}
-
-			window.planner.loadWeek(window.planner.findThisMonday().toString());
+			window.prefs.getJSONPref("titleOrder", function(titleOrder) {
+				if(titleOrder == undefined) {
+					titleOrder = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
+				}
+				window.planner.titleOrder = titleOrder;
+				
+				for (var i = 0; i < subjects.length; i++) {
+					window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
+				}
+	
+				if (window.planner.subjectCount == 0) {
+					$(".planner-welcome").removeClass("hidden");
+				}
+	
+				window.planner.loadWeek(window.planner.findThisMonday().toString());
+			});
 		});
 	});
 
