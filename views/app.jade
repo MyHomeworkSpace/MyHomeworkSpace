@@ -101,9 +101,11 @@ html
 							a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
-					img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
-					span PlanHub
-					li(class="navbar-text user-name")= user.name
+					span
+						img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
+						PlanHub
+						 - 
+						span(class="user-name")= user.name
 
 						li(class="navbar-text user-name")= user.name
 		div(class="loadOverlay")
