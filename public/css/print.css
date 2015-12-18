@@ -4,6 +4,7 @@
   }
   .print-navbar {
     display: block !important;
+    text-align: center;
   }
   .page.open-page {
     position: absolute !important;
