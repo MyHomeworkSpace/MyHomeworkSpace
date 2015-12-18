@@ -130,3 +130,17 @@ window.utils.getPrefixClass = function(prefix) {
 	}
 	return "cal_no_prefix";
 };
+
+window.utils.getTabPrefixes = function() {
+	var prefixes = window.utils.getPrefixes();
+	var returnObj = [];
+
+	for (var prefixIndex in prefixes) {
+		var prefix = prefixes[prefixIndex];
+		if (prefix.tabSystem) {
+			returnObj.push(prefix);
+		}
+	}
+
+	return returnObj;
+}

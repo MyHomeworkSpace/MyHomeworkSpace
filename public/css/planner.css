@@ -256,3 +256,8 @@
 .ui-datepicker {
 	z-index: 1000 !important;
 }
+
+.ui-sortable-handle .ui-icon {
+	display: inline-block;
+	margin-right: 5px;
+}

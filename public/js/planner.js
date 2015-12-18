@@ -515,7 +515,7 @@ $(document).ready(function() {
 		window.planner.getSubjects(function(subjects) {
 			window.prefs.getJSONPref("titleOrder", function(titleOrder) {
 				if(titleOrder === undefined) {
-					titleOrder = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"];
+					titleOrder = window.utils.getTabPrefixes();
 				}
 				window.planner.titleOrder = titleOrder;
 
