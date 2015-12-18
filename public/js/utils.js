@@ -111,11 +111,12 @@ window.utils.getPrefixes = function() {
 			words: ["nohw", "none"],
 			tabSystem: true
 		},
-    {
-      color: "cal_optional_hw",
-      words: ["optionalhw", "challenge"],
-      tabSystem: true
-	];
+		{
+			color: "cal_optional_hw",
+			words: ["optionalhw", "challenge"],
+			tabSystem: true
+			
+		};
 };
 
 window.utils.getPrefixClass = function(prefix) {
