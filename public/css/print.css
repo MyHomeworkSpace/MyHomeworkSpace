@@ -1,5 +1,5 @@
 @media print {
-  .loadWarn, .loadOverlay, .tabs, .planner-status, #planner-controls-wrapper, #navbar-collapse, #page-pref-btn, #add-subject {
+  .loadWarn, .loadOverlay, .tabs, .add-subject, #planner-status, #planner-controls-wrapper, #navbar-collapse, #page-pref-btn {
     display: none !important;
   }
   .page.open-page {
