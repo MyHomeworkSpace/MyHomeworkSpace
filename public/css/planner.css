@@ -261,3 +261,6 @@
 	display: inline-block;
 	margin-right: 5px;
 }
+#title-sorting li {
+	width: 210px;
+}
