@@ -296,7 +296,7 @@ html
 
 							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
 								i(class="fa fa-external-link")
-							button(id="planner-jumpToToday", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to today", onClick="location.reload(true);")
+							button(id="planner-jumpToToday", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to today", onClick="window.planner.loadWeek(window.planner.findThisMonday().toString());")
 								i(class="fa fa-calendar-o")
 
 					table
