@@ -209,6 +209,10 @@
 	color: black !important;
 }
 
+.cal_optional_hw {
+	background-color: #5000BC !important;
+	color: white !important;
+}
 
 .feedback-btn {
 	font-size: 1.5em;

@@ -175,7 +175,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				});
 				var textAreaChg = function() {
 					var editCell = $(this).parent().hasClass("editCell");
-					
+
 					var subjectIndex = (editCell ? $(this).parent().parent().attr("data-subjectIndex") : $(this).parent().parent().parent().attr("data-subjectIndex"));
 					var date = (editCell ? $(this).parent().attr("data-date") : $(this).parent().parent().attr("data-date"));
 					var done = (editCell ? $(this).parent().hasClass("done") : $(this).parent().parent().hasClass("done"));
@@ -191,7 +191,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var doneArr = $micDiv.attr("data-donePass").split("");
 						// tbd
 					}
-					
+
 					var texts = val.split("\n");
 					var lines = 0;
 					for (var textIndex in texts) {
@@ -518,15 +518,15 @@ $(document).ready(function() {
 					titleOrder = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"];
 				}
 				window.planner.titleOrder = titleOrder;
-				
+
 				for (var i = 0; i < subjects.length; i++) {
 					window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
 				}
-	
+
 				if (window.planner.subjectCount === 0) {
 					$(".planner-welcome").removeClass("hidden");
 				}
-	
+
 				window.planner.loadWeek(window.planner.findThisMonday().toString());
 			});
 		});
