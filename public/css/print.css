@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @media print {
   .loadWarn, .loadOverlay, .tabs, .planner-status, #planner-controls-wrapper, #navbar-collapse, #page-pref-btn, #add-subject {
     display: none !important;
@@ -6,4 +7,8 @@
     position: absolute !important;
     width: 100% !important;
   }
+=======
+.loadWarn {
+  display: none !important;
+>>>>>>> 27f385973d5f2f2f81a778791c8056ac3c27cb38
 }
