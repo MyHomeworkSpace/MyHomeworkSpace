@@ -116,7 +116,7 @@ window.utils.getPrefixes = function() {
 			words: ["optionalhw", "challenge"],
 			tabSystem: true
 			
-		};
+		}
 };
 
 window.utils.getPrefixClass = function(prefix) {
