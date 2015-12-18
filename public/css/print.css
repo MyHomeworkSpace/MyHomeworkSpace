@@ -1,3 +1,9 @@
-.loadWarn {
-  display: none;
+@media print {
+  .loadWarn, .loadOverlay, .tabs, .planner-status, #planner-controls-wrapper, #navbar-collapse, #page-pref-btn, #add-subject {
+    display: none !important;
+  }
+  body {
+    position: absolute !important;
+    width: 100% !important;
+  }
 }
