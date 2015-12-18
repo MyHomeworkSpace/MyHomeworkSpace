@@ -117,7 +117,8 @@ window.utils.getPrefixes = function() {
 			tabSystem: true
 			
 		}
-};
+	]
+}
 
 window.utils.getPrefixClass = function(prefix) {
 	var chkPrefix = prefix.toLowerCase();
