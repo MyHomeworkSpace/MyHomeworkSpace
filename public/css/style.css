@@ -6,3 +6,7 @@ body {
 	display: inline !important;
 	margin-right: 5px;
 }
+
+.print-navbar {
+	display: none;
+}

@@ -1,6 +1,9 @@
 @media print {
-  .loadWarn, .loadOverlay, .tabs, .add-subject, #planner-status, #planner-controls-wrapper, #navbar-collapse, #page-pref-btn {
+  .loadWarn, .loadOverlay, .tabs, .add-subject, .web-navbar, #planner-status, #planner-controls-wrapper, #navbar-collapse, #page-pref-btn {
     display: none !important;
+  }
+  .print-navbar {
+    display: block !important;
   }
   .page.open-page {
     position: absolute !important;
