@@ -10,3 +10,7 @@ body {
 .print-navbar {
 	display: none;
 }
+
+.aboutNames h3 {
+	margin-top: 0;
+}
