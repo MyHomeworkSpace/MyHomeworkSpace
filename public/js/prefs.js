@@ -30,7 +30,15 @@ window.prefs.checkToggle = function($checkbox, prefsId) {
 		});
 	});
 };
-
+window.prefs.getJSONPref = function(name, callback) {
+    window.prefs.get(name, function(val) {
+    	if (val === undefined) {
+    		callback(undefined);
+    		return;
+    	}
+        callback(JSON.parse(val));
+    });
+};
 $(document).ready(function() {
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
@@ -43,7 +51,58 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 	});
-	
+	$("#titles-new").click(function() {
+		var $liThingy = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
+			$liThingy.attr("id", "title");
+			var $inputBox = $('<input></input>')
+				$inputBox.val("title");
+				$inputBox.change(function(){
+					$(this).parent().attr("id", $(this).val());
+					var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+					window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+				});
+			$liThingy.append($inputBox);
+			var $deleteButton = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>')
+				$deleteButton.click(function() {
+					$(this).parent().remove();
+					var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+					window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+				});
+			$liThingy.append($deleteButton);
+		$("#title-sorting").append($liThingy)
+	});
+	window.prefs.getJSONPref("titleOrder", function(val) {
+		if(val == undefined) {
+			val = ["HW","Read","Reading","Project","Report","Essay","Paper","Quiz","Test","Final","Exam","Midterm","Lab","Study","DocID","None","NoHW","subjectName"]
+		}
+		for(title in val) {
+			var $titleLi = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
+				$titleLi.attr("id", val[title]);
+				var $titleWord = $('<input></input>');
+					$titleWord.val(val[title]);
+					$titleWord.change(function() {
+						$(this).parent().attr("id", $(this).val());
+						var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+						window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+					});
+				$titleLi.append($titleWord);
+				var $deleteThem = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>');
+					$deleteThem.click(function() {
+						$(this).parent().remove();
+						var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+						window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+					});
+				$titleLi.append($deleteThem);
+			$("#title-sorting").append($titleLi);
+		};
+		$("#title-sorting").sortable({
+			stop: function (event, ui) {
+				var setList = JSON.stringify($("#title-sorting").sortable("toArray"));
+				window.api.post("prefs/set", {name: "titleOrder", value:setList}, function() {});
+			}
+		});
+		$("#title-sorting").disableSelection();
+	});
 	// Homework View
 	window.prefs.checkToggle($("#prefs-hwView-swap"), "name-subj");
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");

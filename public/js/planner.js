@@ -4,7 +4,8 @@ window.planner = {
 	subjectCount: 0,
 	saving: false,
 	movedID: 0,
-	moveID: 0
+	moveID: 0,
+	titleOrder: null
 };
 
 window.planner.showSaving = function() {
@@ -55,7 +56,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 									});
 								});
 							$("#swap-subj-list").append($item);
-						};
+						}
 						$("#planner-move-modal").modal();
 					});
 				$controls.append($move);
@@ -118,11 +119,11 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 		var monday = window.planner.findThisMonday();
 		var doneCheck = $('.editArea').val();
 		for (var i = 0; i < 7; i++) {
-			var $editCell = $('<td class="editCell"><textarea class="editArea"></textarea></td>')
+			var $editCell = $('<td class="editCell"><textarea class="editArea"></textarea></td>');
 				$editCell.attr("data-date", window.utils.formatDate_api(monday));
 				var $checkBtn = $('<input type="checkbox" class="checkBtn" />');
 					$checkBtn.change(function() {
-						if ($(this).prop('checked') || (doneCheck != undefined && (doneCheck.indexOf('no') > -1 || doneCheck.indexOf('none') > -1))) {
+						if ($(this).prop('checked') || (doneCheck !== undefined && (doneCheck.indexOf('no') > -1 || doneCheck.indexOf('none') > -1))) {
 							$(this).parent().addClass("done");
 						} else {
 							$(this).parent().removeClass("done");
@@ -138,8 +139,8 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 
 				$editCell.children("textarea").width("150px");
 				$editCell.children("textarea").height("100px");
-				var realWords = window.utils.getPrefixes()
-				realWords.push({color:"cal_subjectName", words:[subjectName]})
+				var realWords = window.utils.getPrefixes();
+				realWords.push({color:"cal_subjectName", words:[subjectName]});
 				$editCell.children("textarea").highlightTextarea({
 					words: realWords,
 					firstWord: true,
@@ -154,17 +155,21 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.find("textarea").keydown(function (evt) {
 					var keycode = evt.charCode || evt.keyCode;
 					if (keycode == 9) { //Tab key's keycode
-						if($(this).attr("data-tabs") == undefined) {
+						if($(this).attr("data-tabs") === undefined) {
 							$(this).attr("data-tabs", -1);
 						}
-						var prefxs = ["HW", "Read", "Reading", "Project", "Report", "Essay", "Paper", "Quiz", "Test", "Final", "Exam", "Midterm", "Lab", "Study", "DocID", "None", "NoHW", subjectName];
-						if(parseInt($(this).attr("data-tabs")) < prefxs.length - 1) {
-							$(this).attr("data-tabs", parseInt($(this).attr("data-tabs")) + 1);
+						var prefxs = [];
+						var $that = $(this);
+						prefxs = window.planner.titleOrder;
+						prefxs[prefxs.indexOf("subjectName")] = subjectName;
+						if(parseInt($that.attr("data-tabs")) < prefxs.length - 1) {
+							$that.attr("data-tabs", parseInt($that.attr("data-tabs")) + 1);
 						} else {
-							$(this).attr("data-tabs", 0);
+							$that.attr("data-tabs", 0);
 						}
-						$(this).val($(this).val().replace(window.utils.getPrefix($(this).val()), prefxs[parseInt($(this).attr("data-tabs"))]));
-						$(this).trigger("input"); // reload the tag checker
+						$that.val($that.val().replace(window.utils.getPrefix($that.val()), prefxs[parseInt($that.attr("data-tabs"))]));
+						$that.trigger("input"); // reload the tag checker
+						$that.trigger("change");
 						return false;
 					}
 				});
@@ -186,7 +191,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var doneArr = $micDiv.attr("data-donePass").split("");
 						// tbd
 					}
-					
+
 					var texts = val.split("\n");
 					var lines = 0;
 					for (var textIndex in texts) {
@@ -325,7 +330,7 @@ window.planner.handleError = function(metadata) {
 window.planner.getAnnouncement = function(date, callback) {
 	window.api.get("planner/announcements/get/" + date, function(data) {
 		if (data.status == "ok") {
-			if (data.announcement != null) {
+			if (data.announcement !== null) {
 				callback(data.announcement, date);
 			}
 		} else {
@@ -353,7 +358,7 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 				eventMap[ev.sectionIndex][happyDate] = [];
 			}
 			eventMap[ev.sectionIndex][happyDate].push(ev);
-		};
+		}
 		for (var evSectionIndex in eventMap) {
 			var $row = $(".subjectRow[data-subjectIndex=" + evSectionIndex + "]");
 			for (var eventMapIndex in eventMap[evSectionIndex]) {
@@ -374,12 +379,12 @@ window.planner.loadWholeWeek = function(startDate, subjectIndex) {
 					if ($cell.children(".checkBtn").prop("checked") && !$cell.hasClass("done")) {
 						$cell.addClass("done");
 					}
-				};
+				}
 				cellText = cellText.trim();
 				$cell.children(".highlightTextarea").children("textarea").val(cellText);
 				$cell.children(".highlightTextarea").attr("data-donePass", doneStr);
 				$cell.find(".editArea").trigger("input");
-			};
+			}
 		}
 		window.planner.loadStep();
 	});
@@ -453,7 +458,7 @@ window.planner.loadWeek = function(startDate) {
 	// get friday
 	currentDate.setDate(currentDate.getDate() - 1);
 	window.api.get("planner/fridays/get/" + window.utils.formatDate_api(currentDate), function(data) {
-		if (data.friday != null) {
+		if (data.friday !== null) {
 			$(".planner-dow-friday").text("Friday " + data.friday.index);
 		}
 		window.planner.loadStep();
@@ -508,21 +513,28 @@ $(document).ready(function() {
 		window.page.showLoading();
 		$(".subjectRow").remove(); // clear the grid
 		window.planner.getSubjects(function(subjects) {
-			for (var i = 0; i < subjects.length; i++) {
-				window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
-			}
+			window.prefs.getJSONPref("titleOrder", function(titleOrder) {
+				if(titleOrder === undefined) {
+					titleOrder = window.utils.getTabPrefixes();
+				}
+				window.planner.titleOrder = titleOrder;
 
-			if (window.planner.subjectCount == 0) {
-				$(".planner-welcome").removeClass("hidden");
-			}
+				for (var i = 0; i < subjects.length; i++) {
+					window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
+				}
 
-			window.planner.loadWeek(window.planner.findThisMonday().toString());
+				if (window.planner.subjectCount === 0) {
+					$(".planner-welcome").removeClass("hidden");
+				}
+
+				window.planner.loadWeek(window.planner.findThisMonday().toString());
+			});
 		});
 	});
 
 	$(".add-subject").click(function() {
 		var name = prompt("Enter subject name");
-		if (name != "" && name != undefined) {
+		if (name !== "" && name !== undefined) {
 			window.planner.addSubject(name);
 		}
 	});

@@ -1,0 +1,14 @@
+@media print {
+  .loadWarn, .loadOverlay, .tabs, .add-subject, .web-navbar, .subjectControls, #planner-status, #planner-controls-wrapper, #navbar-collapse, #page-pref-btn {
+    display: none !important;
+  }
+  .print-navbar, .checkBtn {
+    display: block !important;
+  }
+  .page.open-page {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible;
+  }
+}

@@ -46,7 +46,7 @@ global.requireUser = function(req, res, next) {
 	if (req.session.loggedIn) {
 		next();
 	} else {
-		if (global.isApiPath(req.url)) {
+		if (res.locals.apiCall) {
 			res.json({
 				status: "auth_required",
 				message: "Authentication is required."
@@ -77,7 +77,7 @@ global.getUserRecord = function(req, res, next) {
 
 global.requireNonZeroLevel = function(req, res, next) {
 	if (res.locals.user.level > 0) {
-		if (global.isApiPath(req.url)) {
+		if (res.locals.apiCall) {
 			res.json({
 				status: "forbidden",
 				message: "You are not permitted to access this resource."
@@ -92,7 +92,7 @@ global.requireNonZeroLevel = function(req, res, next) {
 
 global.requireViewFeedback = function(req, res, next) {
 	if (res.locals.user.canFeedback != 1) {
-		if (global.isApiPath(req.url)) {
+		if (res.locals.apiCall) {
 			res.json({
 				status: "forbidden",
 				message: "You are not permitted to access this resource."
@@ -107,7 +107,7 @@ global.requireViewFeedback = function(req, res, next) {
 
 global.requireEditAnnouncements = function(req, res, next) {
 	if (res.locals.user.canAnnouncements != 1) {
-		if (global.isApiPath(req.url)) {
+		if (res.locals.apiCall) {
 			res.json({
 				status: "forbidden",
 				message: "You are not permitted to modify this resource."
@@ -121,6 +121,7 @@ global.requireEditAnnouncements = function(req, res, next) {
 };
 
 global.apiCall = function(req, res, next) {
+	res.locals.apiCall = true;
 	knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).select("*").then(function(rst) {
 		if (rst.length > 0) {
 			knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).del().then(function() {
@@ -152,6 +153,17 @@ global.getOptionalUserRecord = function(req, res, next) {
 		res.locals.user = obj[0];
 		next();
 	});
+};
+
+global.dbErrorHandler = function(err, req, res, next) {
+		if (res.locals.apiCall) {
+			res.json({
+				status: "error",
+				error: "Database error"
+			});
+		} else {
+			res.render("error", { title: "Error", msg: "Database error occured. Please email hello@planhub.me for assistance. Mention what you were trying to do."});
+		}
 };
 
 if (!String.prototype.encodeHTML) {

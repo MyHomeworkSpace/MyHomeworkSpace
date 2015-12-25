@@ -13,6 +13,7 @@ html
 		link(href="#{basePath}/css/jquery-ui.min.css", rel="stylesheet")
 		link(href="#{basePath}/css/sweetalert.css", rel="stylesheet")
 		link(href="#{basePath}/css/introjs.css", rel="stylesheet")
+		link(href="#{basePath}/css/print.css", rel="stylesheet", media="print")
 
 		link(href="#{basePath}/css/style.css", rel="stylesheet")
 
@@ -53,7 +54,7 @@ html
 	body
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
-		nav(class="navbar navbar-default navbar-fixed-top")
+		nav(class="navbar navbar-default navbar-fixed-top web-navbar", data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below)")
 			div(class="container-fluid")
 				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy PlanHub! To get started, click Done below, and then select a tab.")
 					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
@@ -98,6 +99,13 @@ html
 						li(class="navbar-text user-name")= user.name
 						li
 							a(href="#{basePath}/logout") Log out
+		nav(class="navbar navbar-fixed-top print-navbar")
+			div(class="container-fluid")
+					span
+						img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
+						PlanHub
+						span - 
+						span(class="user-name")= user.name
 
 		div(class="loadOverlay")
 			i(class="fa fa-circle-o-notch fa-spin")
@@ -154,7 +162,10 @@ html
 						p This feature does not have any preferences you can change.
 
 					div(class="modal-body prefs-modal-body", id="prefs-planner-body")
-						p This feature does not have any preferences you can change.
+						h4 Order of titles in tab system
+						p When you press the tab key in an event box, you can cycle through the available tags. This list allows you to edit and reorder the available tags.
+						ol(id="title-sorting")
+						button(type="button", class="btn btn-primary", id="titles-new") New
 
 					div(class="modal-body prefs-modal-body", id="prefs-hwView-body")
 						input(type="checkbox", id="prefs-hwView-swap")
@@ -209,7 +220,7 @@ html
 						h4(class="modal-title") View feedback
 					
 					div(class="modal-body")
-						iframe(sandbox="allow-scripts", id="feedback-frame")
+						iframe(sandbox="allow-scripts", id="feedback-frame", width="100%", height="100%", style="padding: 0; margin: 0;")
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
 
@@ -237,7 +248,7 @@ html
 
 			div(class="pages")
 				div(id="overview", class="page")
-					h3(data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below)")
+					h3
 						span Today is 
 						span(class="overview-date") a day
 						span .
@@ -293,6 +304,8 @@ html
 
 							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
 								i(class="fa fa-external-link")
+							button(id="planner-jumpToToday", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to today", onClick="window.planner.loadWeek(window.planner.findThisMonday().toString());")
+								i(class="fa fa-calendar-o")
 
 					table
 						thead

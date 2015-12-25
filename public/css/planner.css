@@ -209,6 +209,10 @@
 	color: black !important;
 }
 
+.cal_optional_hw {
+	background-color: #5000BC !important;
+	color: white !important;
+}
 
 .feedback-btn {
 	font-size: 1.5em;
@@ -251,4 +255,12 @@
 
 .ui-datepicker {
 	z-index: 1000 !important;
+}
+
+.ui-sortable-handle .ui-icon {
+	display: inline-block;
+	margin-right: 5px;
+}
+#title-sorting li {
+	width: 210px;
 }

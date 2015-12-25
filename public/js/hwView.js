@@ -15,7 +15,7 @@ window.hwView.addEventToList = function(ev, list) {
 	if (tag.toLowerCase() == "none" || tag.toLowerCase() == "nohw") {
 		return;
 	}
-	if (name.trim() == "") {
+	if (name.trim() === "") {
 		return;
 	}
 
@@ -77,7 +77,10 @@ window.hwView.addEventToList = function(ev, list) {
 					keyword = "on";
 				}
 				if (tag.toLowerCase() == "study") {
-					keyword = "by"
+					keyword = "by";
+				}
+				if (tag.toLowerCase() == "optionalhw" || tag.toLowerCase() == "challenge") {
+					keyword = "due (optional)"
 				}
 				var dueText = window.utils.formatDate_pretty(moment(ev.due).add(1, "day").toDate());
 				if (moment(ev.due).add(1, "day").week() == moment().week()) {
@@ -103,7 +106,7 @@ window.hwView.loadList = function(date, list, callback) {
 		window.api.get("planner/events/get/" + window.utils.formatDate_api(date) + "/" + subjectIndex, function(data) {
 			var ev = data.events;
 			window.hwView.loadStep();
-			if (ev.length == 0) {
+			if (ev.length === 0) {
 				return;
 			}
 			for (var evIndex in ev) {
@@ -115,7 +118,7 @@ window.hwView.loadList = function(date, list, callback) {
 					subId: ev[evIndex].subId
 				};
 				window.hwView.addEventToList(evObj, list);
-			};
+			}
 		});
 	}
 };
@@ -126,7 +129,7 @@ window.hwView.loadSubjects = function(callback) {
 		for (var i = 0; i < data.sections.length; i++) {
 			var itm = data.sections[i];
 			window.hwView.subjects[itm.sectionIndex] = itm;
-		};
+		}
 		callback(data.sections);
 	});
 };
@@ -151,9 +154,9 @@ window.hwView.loadStep = function() {
 	window.hwView.loadCount += 1;
 	if (window.hwView.loadCount >= 2) { //(1 + (14 * Object.keys(window.hwView.subjects).length))) {
 		window.page.hideLoading();
-		if ($(".hwView-tomorrow ul").text() == "" && $(".hwView-soon ul").text() == "" && $(".hwView-longterm ul").text() == "") {
+		if ($(".hwView-tomorrow ul").text() === "" && $(".hwView-soon ul").text() === "" && $(".hwView-longterm ul").text() === "") {
 			// empty!
-			swal("You don't have any homework in your planner!", " Once you've written some assignments in, come back here.", "warning")
+			swal("You don't have any homework in your planner!", "Once you've written some assignments in, come back here.", "warning");
 		}
 	}
 };
@@ -163,7 +166,7 @@ window.hwView.loadEvents = function(callback) {
 		window.hwView.loadStep();
 		window.api.get("hwView/getHw?date=" + moment().format('YYYY-MM-DD'), function(data) {
 			var ev = data.events;
-			if (ev.length == 0) {
+			if (ev.length === 0) {
 				window.hwView.loadStep();
 				return;
 			}
@@ -184,7 +187,7 @@ window.hwView.loadEvents = function(callback) {
 					list = "soon";
 				}
 				window.hwView.addEventToList(evObj, list);
-			};
+			}
 			window.hwView.loadStep();
 		});
 		/*window.hwView.loadStep();
@@ -243,7 +246,7 @@ $(document).ready(function() {
 		$(".hwView-soon ul").text("");
 		$(".hwView-longterm ul").text("");
 		// special case for checking on Friday, Saturday, or Sunday
-		if (moment().day() == 0 || moment().day() == 5 || moment().day() == 6) {
+		if (moment().day() === 0 || moment().day() == 5 || moment().day() == 6) {
 			$(".tomorrow-or-monday").text("Monday"); // the part that makes it show Monday stuff is in findNextDay().
 		} else {
 			$(".tomorrow-or-monday").text("tomorrow");

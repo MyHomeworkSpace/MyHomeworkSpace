@@ -7,83 +7,27 @@ window.utils.b64EncodeUnicode = function(str) {
 };
 
 window.utils.getLongNameForFeature = function(feature) {
-	switch (feature) {
-		case "overview":
-			return "Overview";
-
-		case "planner":
-			return "Planner";
-
-		case "hwView":
-			return "Homework View";
-
-		case "myDay":
-			return "My Day";
-
-		case "admin":
-			return "Administrative panel";
-
-		case "admin-feedback":
-			return "Feedback";
-
-		case "admin-stats":
-			return "Statistics";
-
-		case "admin-about":
-			return "About server";
-	}
+	var features = {
+		overview: "Overview",
+		planner: "Planner",
+		hwView: "Homework View",
+		myDay: "My Day",
+		admin: "Administrative panel",
+		"admin-feedback": "Feedback",
+		"admin-stats": "Feedback",
+		"admin-about": "Feedback"
+	};
+	return features[feature];
 };
 
 window.utils.getMonthName = function(month) {
-	switch (month) {
-		case 0:
-			return "January";
-		case 1:
-			return "February";
-		case 2:
-			return "March";
-		case 3:
-			return "April";
-		case 4:
-			return "May";
-		case 5:
-			return "June";
-		case 6:
-			return "July";
-		case 7:
-			return "August";
-		case 8:
-			return "September";
-		case 9:
-			return "October";
-		case 10:
-			return "November";
-		case 11:
-			return "December";
-		default:
-			return "Unknown";
-	}
+	var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+	return months[month];
 };
 
 window.utils.getDayOfWeek = function(dow) {
-	switch (dow) {
-		case 0:
-			return "Sunday";
-		case 1:
-			return "Monday";
-		case 2:
-			return "Tuesday";
-		case 3:
-			return "Wednesday";
-		case 4:
-			return "Thursday";
-		case 5:
-			return "Friday";
-		case 6:
-			return "Saturday";
-		default:
-			return "Unknown";
-	}
+	var dows = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+	return dows[dow];
 };
 
 window.utils.formatDate_api = function(dateObj) {
@@ -114,92 +58,89 @@ window.utils.getPrefixes = function() {
 	return [
 		{
 			color: "cal_hw",
-			words: ["hw", "read", "reading"]
+			words: ["hw", "read", "reading"],
+			tabSystem: true
 		},
 		{
 			color: "cal_project",
-			words: ["project"]
+			words: ["project"],
+			tabSystem: true
 		},
 		{
 			color: "cal_paper",
-			words: ["report", "essay", "paper"]
+			words: ["report", "essay", "paper"],
+			tabSystem: true
 		},
 		{
 			color: "cal_quiz",
-			words: ["popquiz", "quiz"]
+			words: ["quiz"],
+			tabSystem: true
+		},
+		{
+			color: "cal_quiz",
+			words: ["popquiz"],
+			tabSystem: false
 		},
 		{
 			color: "cal_test",
-			words: ["test", "final", "exam", "midterm"]
+			words: ["test", "final", "exam", "midterm"],
+			tabSystem: true
 		},
 		{
 			color: "cal_ica",
-			words: ["ica"]
+			words: ["ica"],
+			tabSystem: true
 		},
 		{
 			color: "cal_lab",
-			words: ["lab", "study", "memorize"]
+			words: ["lab", "study", "memorize"],
+			tabSystem: true
 		},
 		{
 			color: "cal_docid",
-			words: ["docid"]
+			words: ["docid"],
+			tabSystem: true
 		},
 		{
 			color: "cal_hex",
-			words: ["trojun", "hex"]
+			words: ["trojun", "hex"],
+			tabSystem: false
 		},
-    {
-      color: "cal_no_hw",
-      words: ["nohw", "none"]
-    }
-	];
-};
+		{
+			color: "cal_no_hw",
+			words: ["nohw", "none"],
+			tabSystem: true
+		},
+		{
+			color: "cal_optional_hw",
+			words: ["optionalhw", "challenge"],
+			tabSystem: true
+			
+		}
+	]
+}
 
 window.utils.getPrefixClass = function(prefix) {
-	switch (prefix.toLowerCase()) {
-		case "hw":
-		case "read":
-		case "reading":
-			return "cal_hw";
-
-		case "project":
-			return "cal_project";
-
-		case "report":
-		case "essay":
-		case "paper":
-			return "cal_paper";
-
-		case "popquiz":
-		case "quiz":
-			return "cal_quiz";
-
-		case "test":
-		case "final":
-		case "exam":
-		case "midterm":
-			return "cal_test";
-
-		case "ica":
-			return "cal_ica";
-
-		case "lab":
-		case "study":
-		case "memorize":
-			return "cal_lab";
-
-		case "docid":
-			return "cal_docid";
-
-		case "trojun":
-		case "hex":
-			return "cal_hex";
-
-    case "nohw":
-    case "none":
-      return "cal_no_hw";
-
-		default:
-			return "cal_no_prefix";
+	var chkPrefix = prefix.toLowerCase();
+	var prefixes = window.utils.getPrefixes();
+	for (var prefixIndex in prefixes) {
+		if (prefixes[prefixIndex].words.indexOf(chkPrefix) > -1) {
+			return prefixes[prefixIndex].color;
+		}
 	}
+	return "cal_no_prefix";
 };
+
+window.utils.getTabPrefixes = function() {
+	var prefixes = window.utils.getPrefixes();
+	var returnObj = [];
+
+	for (var prefixIndex in prefixes) {
+		var prefix = prefixes[prefixIndex];
+		if (prefix.tabSystem) {
+			returnObj.push(prefix);
+		}
+	}
+
+	return returnObj;
+}
