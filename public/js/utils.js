@@ -58,7 +58,7 @@ window.utils.getPrefixes = function() {
 	return [
 		{
 			color: "cal_hw",
-			words: ["hw", "read", "reading"],
+			words: ["HW", "read", "reading"],
 			tabSystem: true
 		},
 		{
