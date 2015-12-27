@@ -10,7 +10,7 @@ window.planner = {
 
 window.planner.showSaving = function() {
 	window.planner.saving = true;
-	$("#planner-status").html('<i class="fa fa-refresh fa-spin"></i> Saving...')p;
+	$("#planner-status").html('<i class="fa fa-refresh fa-spin"></i> Saving...');
 	$("#planner").attr("data-exitPrompt", "We're currently saving your information. Please stay on the page.");
 };
 
