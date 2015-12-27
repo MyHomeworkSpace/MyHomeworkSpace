@@ -223,7 +223,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$(this).trigger("input");
 							$(this).trigger("change");
 						}
-					};
+					}
 				});
 				var $mic = $('<div class="magic-input-container"></div>');
 
