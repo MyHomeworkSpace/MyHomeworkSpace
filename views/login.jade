@@ -14,6 +14,8 @@ block content
 		a(href='#', data-toggle="tooltip", data-placement="right", title="Your password is never stored. It's only used to sign you in and download your schedule and homework.") Privacy Information
 
 	script.
-		$('[data-toggle="tooltip"]').tooltip({
-			container: 'body'
+		$(document).ready(function() {
+			$('[data-toggle="tooltip"]').tooltip({
+				container: 'body'
+			});
 		});
