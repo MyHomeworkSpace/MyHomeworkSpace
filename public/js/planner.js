@@ -10,7 +10,7 @@ window.planner = {
 
 window.planner.showSaving = function() {
 	window.planner.saving = true;
-	$("#planner-status").html('<i class="fa fa-refresh fa-spin"></i> Saving...');
+	$("#planner-status").html('<i class="fa fa-refresh fa-spin"></i> Saving...')p;
 	$("#planner").attr("data-exitPrompt", "We're currently saving your information. Please stay on the page.");
 };
 
@@ -161,11 +161,16 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						var prefxs = [];
 						var $that = $(this);
 						for (var titleIndex in window.planner.titleOrder) {
-							var title = window.planner.titleOrder[titleIndex];
-							if (title == "subjectName") {
-								title = subjectName;
+							var titles = window.planner.titleOrder[titleIndex];
+							if (titles.tabSystem) {
+								for (var wordIndex in titles.words) {
+									var title = titles.words[wordIndex];
+									if (title == "subjectName") {
+										title = subjectName;
+									}
+									prefxs.push(title);
+								}
 							}
-							prefxs.push(title);
 						}
 						if(parseInt($that.attr("data-tabs")) < prefxs.length - 1) {
 							$that.attr("data-tabs", parseInt($that.attr("data-tabs")) + 1);
