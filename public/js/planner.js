@@ -160,8 +160,13 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 						}
 						var prefxs = [];
 						var $that = $(this);
-						prefxs = window.planner.titleOrder;
-						prefxs[prefxs.indexOf("subjectName")] = subjectName;
+						for (var titleIndex in window.planner.titleOrder) {
+							var title = window.planner.titleOrder[titleIndex];
+							if (title == "subjectName") {
+								title = subjectName;
+							}
+							prefxs.push(title);
+						}
 						if(parseInt($that.attr("data-tabs")) < prefxs.length - 1) {
 							$that.attr("data-tabs", parseInt($that.attr("data-tabs")) + 1);
 						} else {
