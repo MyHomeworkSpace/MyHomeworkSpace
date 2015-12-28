@@ -40,4 +40,21 @@ router.get('/feedback/get/:id', global.apiCall, global.requireUser, global.getUs
 	});
 });
 
+router.post('/announcements/post/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	knex("announcements").insert({
+		days: req.body.days,
+		startTime: req.body.time,
+		msg: req.body.msg,
+	}).then(function() {
+		res.json({
+			status: "ok"
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error"
+		});
+	});
+});
+
 module.exports = router;
