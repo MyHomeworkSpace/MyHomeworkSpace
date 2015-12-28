@@ -44,7 +44,7 @@ router.post('/announcements/post/', global.apiCall, global.requireUser, global.g
 	knex("announcements").insert({
 		days: req.body.days,
 		time: req.body.time,
-		msg: req.body.msg,
+		msg: req.body.msg
 	}).then(function() {
 		res.json({
 			status: "ok"
