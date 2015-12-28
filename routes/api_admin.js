@@ -43,7 +43,7 @@ router.get('/feedback/get/:id', global.apiCall, global.requireUser, global.getUs
 router.post('/announcements/post/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("announcements").insert({
 		days: req.body.days,
-		startTime: req.body.time,
+		time: req.body.time,
 		msg: req.body.msg,
 	}).then(function() {
 		res.json({
