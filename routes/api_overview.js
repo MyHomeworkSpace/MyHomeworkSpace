@@ -12,7 +12,7 @@ router.get('/announcements/get/', global.apiCall, function(req, res, next) {
 	knex("announcements").select("*").then(function(obj) {
 		res.json({
 			status: "ok",
-			feedback: obj[0]
+			feedback: obj
 		});
 	}).catch(function() {
 		res.json({
