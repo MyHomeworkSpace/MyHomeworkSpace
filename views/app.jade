@@ -224,7 +224,18 @@ html
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
 
-
+		div(id="admin-announcement-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title") Delete Announcements
+					
+					div(class="modal-body")
+						ol(id="announcement-delete-list")
+					div(class="modal-footer")
+						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
 		div(class="mainContainer")
 			ul(class="tabs")
 				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
@@ -540,7 +551,7 @@ html
 						h5 Current Annoucements
 						ul#announcementList
 							li#noAnnouncements There are currently no announcements.
-						button(class="btn", id="announcement-clear", class="btn btn-warning") Clear Announcemnts
+						button(class="btn", id="announcement-clear", class="btn btn-warning") Remove Announcemnts
 
 					div(id="admin-stats", class="page")
 						h1 Administrative panel
