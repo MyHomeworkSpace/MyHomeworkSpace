@@ -80,7 +80,13 @@ html
 									a(data-page="planner") Planner
 								li
 									a(data-page="hwView") Homework View
-								//li.divider
+								if user.level > 0
+									li.divider
+										li
+											a(data-page="admin") Admin
+										li
+											a(data-page="prefs") Preferences
+								
 								//li
 								//	a(href='#') Settings
 								//li
@@ -263,7 +269,7 @@ html
 						span Today is 
 						span(class="overview-date") a day
 						span .
-					.alert.alert-info(role='alert' width='100%')
+					.alert.alert-info.alerts-overview(role='alert', width='90%')
 						ul#announcementList
 							li#noAnnouncements There are currently no announcements.
 				div(id="planner", class="page")
