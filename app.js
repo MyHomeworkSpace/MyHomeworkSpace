@@ -76,7 +76,7 @@ global.getUserRecord = function(req, res, next) {
 };
 
 global.requireNonZeroLevel = function(req, res, next) {
-	if (res.locals.user.level > 0) {
+	if (res.locals.user.level < 0) {
 		if (res.locals.apiCall) {
 			res.json({
 				status: "forbidden",
