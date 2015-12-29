@@ -57,12 +57,14 @@ $(document).ready(function() {
 		}
 	});
 	$("#announcement-submit").click(function() {
-		var postMe = {};
-		postMe.days = $("#announcement-days").val();
-		postMe.time = window.utils.formatDate_api(moment().toDate());
-		postMe.msg = $("#announcement-msg").val();
-		window.api.post('admin/announcements/post/', postMe, function(result){});
-		swal("Yay", "Your announcment has been posted", "success");
+		if($("#announcement-msg").val().length != 0 && $("#announcement-days").val() > 0) {
+			var postMe = {};
+			postMe.days = $("#announcement-days").val();
+			postMe.time = window.utils.formatDate_api(moment().toDate());
+			postMe.msg = $("#announcement-msg").val();
+			window.api.post('admin/announcements/post/', postMe, function(result){});
+			swal("Yay", "Your announcment has been posted", "success");
+		};
 	});
 	$("#announcement-clear").click(function() {
 		$("#admin-announcement-modal").modal();
