@@ -14,7 +14,7 @@ $(document).ready(function() {
 			}
 		}
 		if($("#announcementList").children().size() < 1) {
-			$("alerts-overview").remove()
+			$("#alert-overview").remove()
 		}
 	});
 });
