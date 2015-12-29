@@ -64,4 +64,7 @@ $(document).ready(function() {
 		window.api.post('admin/announcements/post/', postMe, function(result){});
 		swal("Yay", "Your announcment has been posted", "success");
 	});
+	$("#announcement-clear").click(function() {
+		$("#admin-announcement-modal").modal();
+	});
 });
