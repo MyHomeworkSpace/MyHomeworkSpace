@@ -1,8 +1,8 @@
 doctype html
 html
+	<!--Looking under the hood? Check out our GitHub Repo at http://tinyurl.com/planhubcode or apply to work with us at http://tinyurl.com/planhubjoin-->
 	head
 		title= title
-
 		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet", integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==",crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css", rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==", crossorigin="anonymous")
@@ -80,7 +80,13 @@ html
 									a(data-page="planner") Planner
 								li
 									a(data-page="hwView") Homework View
-								//li.divider
+								if user.level > 0
+									li.divider
+										li
+											a(data-page="admin") Admin
+										li
+											a(data-page="prefs") Preferences
+								
 								//li
 								//	a(href='#') Settings
 								//li
@@ -224,7 +230,18 @@ html
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
 
-
+		div(id="admin-announcement-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title") Delete Announcements
+					
+					div(class="modal-body")
+						ol(id="announcement-delete-list")
+					div(class="modal-footer")
+						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
 		div(class="mainContainer")
 			ul(class="tabs")
 				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
@@ -252,6 +269,8 @@ html
 						span Today is 
 						span(class="overview-date") a day
 						span .
+					.alert.alert-info.alert-overview(role='alert', width='90%')
+						ul#announcementList
 				div(id="planner", class="page")
 					div(id="planner-upsell", class="upsell row", data-feature="planner")
 						div(class="col-md-3")
@@ -260,7 +279,7 @@ html
 
 							br
 
-							button(class="btn btn-primary upsell-btn", data-feature="planner") Enable
+							button(class="btn btn-primary upsell-btn", data-feature="planner") Start
 
 						div(class="col-md-9")
 							div(class="upsell-row row")
@@ -362,7 +381,7 @@ html
 
 							br
 
-							button(class="btn btn-primary btn-disabled upsell-btn", data-feature="myDay") Enable
+							button(class="btn btn-primary btn-disabled upsell-btn", data-feature="myDay") Start
 
 						div(class="col-md-9")
 							div(class="upsell-row row")
@@ -442,7 +461,7 @@ html
 
 							br
 
-							button(class="btn btn-primary upsell-btn", data-feature="hwView") Enable
+							button(class="btn btn-primary upsell-btn", data-feature="hwView") Start
 
 						div(class="col-md-9")
 							div(class="upsell-row row")
@@ -501,9 +520,8 @@ html
 							if user.canFeedback > 0
 								li(data-page="admin-feedback", class="admin-link")
 									a(href="#admin-feedback") View feedback
-							if user.canAnnouncements > 0
-								li(data-page="admin-announcements", class="admin-link")
-									a(href="#admin-announcements") Change announcements
+							li(data-page="admin-announcements", class="admin-link")
+								a(href="#admin-announcements") Change announcements
 							li(data-page="admin-stats", class="admin-link")
 								a(href="#admin-stats") Statistics
 							li(data-page="admin-about", class="admin-link")
@@ -523,11 +541,22 @@ html
 										span(id="admin-feedback-username")
 									h5(id="admin-feedback-time")
 								
-					if user.canAnnouncements > 0
-						div(id="admin-announcements", class="page")
-							h1 Administrative panel
-							h4 Change announcements
-							h5 Under construction!
+					
+					div(id="admin-announcements", class="page")
+						h1 Administrative panel
+						h4 Announcement Settings
+						h5 Post Announcement
+						p Message
+						input(type="text", id="announcement-msg")
+						p Days
+						input(type="number", id="announcement-days")
+						br
+						br
+						button(class="btn", id="announcement-submit", class="btn btn-primary") Submit your announcement
+						h5 Current Annoucements
+						ul#adminAnnouncementList
+							li#adminNoAnnouncements There are currently no announcements.
+						button(class="btn", id="announcement-clear", class="btn btn-warning") Remove Announcemnts
 
 					div(id="admin-stats", class="page")
 						h1 Administrative panel
