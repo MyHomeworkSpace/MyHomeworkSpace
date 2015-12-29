@@ -57,4 +57,19 @@ router.post('/announcements/post/', global.apiCall, global.requireUser, global.g
 	});
 });
 
+router.post('/announcements/remove/', global.apiCall, global.requireUser, global.getUserRecord, global.requireNonZeroLevel, function(req, res, next) {
+	knex("announcements").where({
+		announcementId:req.body.id
+	}).delete().then(function() {
+		res.json({
+			status: "ok"
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error"
+		});
+	});
+});
+
 module.exports = router;
