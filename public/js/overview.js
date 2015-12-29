@@ -13,7 +13,7 @@ $(document).ready(function() {
 					$("#announcementList").append($feedLi);
 			}
 		}
-		if($("#announcementList").children().size() == 0) {
+		if($("#announcementList").children().size() == 1) {
 			$(".alert-overview").remove()
 		}
 	});
