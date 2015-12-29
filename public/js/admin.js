@@ -34,4 +34,11 @@ $(document).ready(function() {
 			};
 		});
 	});
+	$("#announcement-submit").click(function() {
+		var postMe = {};
+		postMe.days = $("#announcement-days").val();
+		postMe.time = window.utils.formatDate_api(moment().toDate());
+		postMe.msg = $("#announcement-msg").val();
+		window.api.post('admin/feedback/post/', postMe, function(result){});
+	});
 });
