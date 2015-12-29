@@ -9,7 +9,7 @@ $(document).ready(function() {
 		for(feed in response) {
 			if(moment(response[feed].time).add(response[feed].days, "days").isAfter(moment())) {
 				var $feedLi = $("<li></li>");
-					$feedLi.text(response[feed].msg);
+					$feedLi.append(response[feed].msg);
 					$("#announcementList").append($feedLi);
 			}
 		}
