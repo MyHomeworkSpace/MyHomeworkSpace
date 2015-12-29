@@ -124,8 +124,10 @@ window.utils.getPrefixClass = function(prefix) {
 	var chkPrefix = prefix.toLowerCase();
 	var prefixes = window.utils.getPrefixes();
 	for (var prefixIndex in prefixes) {
-		if (prefixes[prefixIndex].words.indexOf(chkPrefix) > -1) {
-			return prefixes[prefixIndex].color;
+		for (var wordIndex in prefixes[prefixIndex].words) {
+			if (wordIndex.toLowerCase() == chkPrefix) {
+				return prefixes[prefixIndex].color;
+			}
 		}
 	}
 	return "cal_no_prefix";
