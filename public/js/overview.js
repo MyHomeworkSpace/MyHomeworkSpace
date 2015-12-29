@@ -7,9 +7,9 @@ $(document).ready(function() {
 	window.api.get('overview/announcements/get/', function(data) {
 		var response = data.feedback;
 		for(feed in response) {
-			if(moment(feed.time).add(feed.days, "days").isBefore(moment())) {
+			if(moment(response[feed].time).add(response[feed].days, "days").isBefore(moment())) {
 				var $feedLi = $("<li></li>");
-					$feedLi.text(feed.msg);
+					$feedLi.text(response[feed].msg);
 					$("#announcementList").append($feedLi);
 			}
 		}
