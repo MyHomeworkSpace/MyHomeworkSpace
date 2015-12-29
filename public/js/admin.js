@@ -40,6 +40,6 @@ $(document).ready(function() {
 		postMe.time = window.utils.formatDate_api(moment().toDate());
 		postMe.msg = $("#announcement-msg").val();
 		window.api.post('admin/announcements/post/', postMe, function(result){});
-		swal("Yay", "Your announcment has been posted", "success"))
+		swal("Yay", "Your announcment has been posted", "success");
 	});
 });
