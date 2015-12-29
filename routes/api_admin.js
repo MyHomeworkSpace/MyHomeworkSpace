@@ -40,7 +40,7 @@ router.get('/feedback/get/:id', global.apiCall, global.requireUser, global.getUs
 	});
 });
 
-router.post('/announcements/post/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.post('/announcements/post/', global.apiCall, global.requireNonZeroLevel, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("announcements").insert({
 		days: req.body.days,
 		time: req.body.time,
