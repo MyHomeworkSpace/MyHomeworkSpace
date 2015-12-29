@@ -34,6 +34,26 @@ $(document).ready(function() {
 			};
 		});
 	});
+	window.api.get('overview/announcements/get/', function(data) {
+		var response = data.feedback;
+		for(feed in response) {
+			if(moment(response[feed].time).add(response[feed].days, "days").isAfter(moment())) {
+				var $feedLi = $("<li></li>");
+					$feedLi.append(response[feed].msg);
+					$feedLi.attr("data-id", response[feed].announcementId);
+					$("#adminAnnouncementList").append($feedLi);
+					var $removeBtn = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>');
+						$removeBtn.click(function() {
+							var idThingy = $(this).parent().attr("data-id");
+							window.api.post('admin/announcements/remove', {announcementId: idThingy}, function(result){});
+						});
+					$feedLi.append($removeBtn)
+			}
+		}
+		if($("#adminAnnouncementList").children().size() > 1) {
+			$("#adminNoAnnouncements").remove()
+		}
+	});
 	$("#announcement-submit").click(function() {
 		var postMe = {};
 		postMe.days = $("#announcement-days").val();
