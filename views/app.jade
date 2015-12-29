@@ -252,7 +252,7 @@ html
 						span Today is 
 						span(class="overview-date") a day
 						span .
-					.alert.alert-info(role='alert' width='500px')
+					.alert.alert-info(role='alert' width='100%')
 						ul#announcementList
 							li#noAnnouncements There are currently no announcements.
 				div(id="planner", class="page")
@@ -504,9 +504,8 @@ html
 							if user.canFeedback > 0
 								li(data-page="admin-feedback", class="admin-link")
 									a(href="#admin-feedback") View feedback
-							if user.canAnnouncements > 0
-								li(data-page="admin-announcements", class="admin-link")
-									a(href="#admin-announcements") Change announcements
+							li(data-page="admin-announcements", class="admin-link")
+								a(href="#admin-announcements") Change announcements
 							li(data-page="admin-stats", class="admin-link")
 								a(href="#admin-stats") Statistics
 							li(data-page="admin-about", class="admin-link")
@@ -526,11 +525,15 @@ html
 										span(id="admin-feedback-username")
 									h5(id="admin-feedback-time")
 								
-					if user.canAnnouncements > 0
-						div(id="admin-announcements", class="page")
-							h1 Administrative panel
-							h4 Change announcements
-							h5 Under construction!
+					
+					div(id="admin-announcements", class="page")
+						h1 Administrative panel
+						h4 Add announcements
+						p Message
+						input(type="text", id="announcement-msg")
+						p Days
+						input(type="number", id="announcement-days")
+						button(class="btn", id="announcement-submit")
 
 					div(id="admin-stats", class="page")
 						h1 Administrative panel
