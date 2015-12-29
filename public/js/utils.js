@@ -125,7 +125,7 @@ window.utils.getPrefixClass = function(prefix) {
 	var prefixes = window.utils.getPrefixes();
 	for (var prefixIndex in prefixes) {
 		for (var wordIndex in prefixes[prefixIndex].words) {
-			if (wordIndex.toLowerCase() == chkPrefix) {
+			if (prefixes[prefixIndex].words[wordIndex].toLowerCase() == chkPrefix) {
 				return prefixes[prefixIndex].color;
 			}
 		}
