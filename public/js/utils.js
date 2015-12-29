@@ -58,62 +58,62 @@ window.utils.getPrefixes = function() {
 	return [
 		{
 			color: "cal_hw",
-			words: ["hw", "read", "reading"],
+			words: ["HW", "Read", "Reading"],
 			tabSystem: true
 		},
 		{
 			color: "cal_project",
-			words: ["project"],
+			words: ["Project"],
 			tabSystem: true
 		},
 		{
 			color: "cal_paper",
-			words: ["report", "essay", "paper"],
+			words: ["Report", "Essay", "Paper"],
 			tabSystem: true
 		},
 		{
 			color: "cal_quiz",
-			words: ["quiz"],
+			words: ["Quiz"],
 			tabSystem: true
 		},
 		{
 			color: "cal_quiz",
-			words: ["popquiz"],
+			words: ["PopQuiz"],
 			tabSystem: false
 		},
 		{
 			color: "cal_test",
-			words: ["test", "final", "exam", "midterm"],
+			words: ["Test", "Final", "Exam", "Midterm"],
 			tabSystem: true
 		},
 		{
 			color: "cal_ica",
-			words: ["ica"],
+			words: ["ICA"],
 			tabSystem: true
 		},
 		{
 			color: "cal_lab",
-			words: ["lab", "study", "memorize"],
+			words: ["Lab", "Study", "Memorize"],
 			tabSystem: true
 		},
 		{
 			color: "cal_docid",
-			words: ["docid"],
+			words: ["DocID"],
 			tabSystem: true
 		},
 		{
 			color: "cal_hex",
-			words: ["trojun", "hex"],
+			words: ["Trojun", "Hex"],
 			tabSystem: false
 		},
 		{
 			color: "cal_no_hw",
-			words: ["nohw", "none"],
+			words: ["NoHW", "None"],
 			tabSystem: true
 		},
 		{
 			color: "cal_optional_hw",
-			words: ["optionalhw", "challenge"],
+			words: ["OptionalHW", "Challenge"],
 			tabSystem: true
 			
 		}

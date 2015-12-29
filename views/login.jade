@@ -3,8 +3,6 @@ extends layout
 block content
 	h1 Log in with your Dalton account
 	p(class="lead") Currently, only Dalton students can access PlanHub. We're working to expand it for other users.
-	p(class="alert alert-info")
-		strong Your password is never stored. It's only used to sign you in and download your schedule and homework.
 	if error
 		p(class="alert alert-danger")
 			strong Oh no! 
@@ -13,3 +11,6 @@ block content
 		input(type="text", name="username", class="form-control", placeholder="Username")
 		input(type="password", name="password", class="form-control", placeholder="Password")
 		input(type="submit", value="Log in", class="btn btn-primary")
+		a(href='#', data-toggle="tooltip", data-placement="right", title="Your password is never stored. It's only used to sign you in and download your schedule and homework.", style='padding-left: 10px;') Privacy Information
+
+	script(src="#{basePath}/js/tooltips.js", defer)
