@@ -41,7 +41,8 @@ $(document).ready(function() {
 				var $feedLi = $("<li></li>");
 					$feedLi.append(response[feed].msg);
 					$feedLi.attr("data-id", response[feed].announcementId);
-					$("#adminAnnouncementList").append($feedLi);
+					var $copyLi = $feedLi;
+					$("#adminAnnouncementList").append($copyLi);
 					var $removeBtn = $('<button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></button>');
 						$removeBtn.click(function() {
 							var idThingy = $(this).parent().attr("data-id");
