@@ -528,7 +528,8 @@ html
 					
 					div(id="admin-announcements", class="page")
 						h1 Administrative panel
-						h4 Add announcements
+						h4 Announcement Settings
+						h5 Post Announcement
 						p Message
 						input(type="text", id="announcement-msg")
 						p Days
@@ -536,6 +537,10 @@ html
 						br
 						br
 						button(class="btn", id="announcement-submit", class="btn btn-primary") Submit your announcement
+						h5 Current Annoucements
+						ul#announcementList
+							li#noAnnouncements There are currently no announcements.
+						button(class="btn", id="announcement-clear", class="btn btn-warning") Clear Announcemnts
 
 					div(id="admin-stats", class="page")
 						h1 Administrative panel
