@@ -13,8 +13,8 @@ $(document).ready(function() {
 					$("#announcementList").append($feedLi);
 			}
 		}
-		if($("#announcementList").children().size() > 1) {
-			$("#alert-overview").remove()
+		if($("#announcementList").children().size() == 0) {
+			$(".alert-overview").remove()
 		}
 	});
 });
