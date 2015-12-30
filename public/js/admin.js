@@ -48,6 +48,8 @@ $(document).ready(function() {
 				var $removeBtn = $('<button class="btn btn-xs btn-danger"> <i class="fa fa-trash-o"></i> </button>');
 					$removeBtn.click(function() {
 						var idThingy = $(this).parent().attr("data-id");
+						$(this).parent().addClass("announcementDelete");
+						$(this).remove();
 						window.api.post('admin/announcements/remove', {id: idThingy}, function(result){});
 					});
 				$feedLi.append($removeBtn)
