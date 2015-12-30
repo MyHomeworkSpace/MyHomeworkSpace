@@ -45,7 +45,7 @@ $(document).ready(function() {
 				$feedLi.attr("data-id", response[feed].announcementId);
 				var $copyLi = $feedLi.clone();
 				$("#adminAnnouncementList").append($copyLi);
-				var $removeBtn = $('<button class="btn btn-xs btn-danger" style="float: right"> <i class="fa fa-trash-o"></i> </button>');
+				var $removeBtn = $('<button class="btn btn-xs btn-danger"> <i class="fa fa-trash-o"></i> </button>');
 					$removeBtn.click(function() {
 						var idThingy = $(this).parent().attr("data-id");
 						window.api.post('admin/announcements/remove', {id: idThingy}, function(result){});
