@@ -549,10 +549,10 @@ html
 						p Message
 						input(type="text", id="announcement-msg")
 						p Days
-						input(type="number", id="announcement-days")
+						input(type="number", id="announcement-days", data-toggle="tooltip", data-placement="right", title="Because of possible time zone problems, please set this to 2 days or above to make sure all users see it. Thank you!")
 						br
 						br
-						button(class="btn", id="announcement-submit", class="btn btn-primary") Submit your announcement
+						button(class="btn", id="announcement-submit", class="btn btn-primary") Send
 						h5 Current Annoucements
 						ul#adminAnnouncementList
 							li#adminNoAnnouncements There are currently no announcements.
