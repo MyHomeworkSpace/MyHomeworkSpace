@@ -37,20 +37,22 @@ $(document).ready(function() {
 	window.api.get('overview/announcements/get/', function(data) {
 		var response = data.feedback;
 		for(feed in response) {
-			if(moment(response[feed].time).add(response[feed].days, "days").isAfter(moment())) {
-				var $feedLi = $("<li></li>");
-					$feedLi.append(response[feed].msg);
-					$feedLi.attr("data-id", response[feed].announcementId);
-					var $copyLi = $feedLi.clone();
-					$("#adminAnnouncementList").append($copyLi);
-					var $removeBtn = $('<button class="btn btn-xs btn-danger" style="float: right"> <i class="fa fa-trash-o"></i> </button>');
-						$removeBtn.click(function() {
-							var idThingy = $(this).parent().attr("data-id");
-							window.api.post('admin/announcements/remove', {id: idThingy}, function(result){});
-						});
-					$feedLi.append($removeBtn)
-				$("#announcement-delete-list").append($feedLi);
-			}
+			var $feedLi = $("<li></li>");
+				$feedLi.append(response[feed].msg);
+				if(!moment(response[feed].time).add(response[feed].days, "days").isAfter(moment())) {
+					$feedLi.append(" <em>(expired)</em>");
+				}
+				$feedLi.attr("data-id", response[feed].announcementId);
+				var $copyLi = $feedLi.clone();
+				$("#adminAnnouncementList").append($copyLi);
+				var $removeBtn = $('<button class="btn btn-xs btn-danger" style="float: right"> <i class="fa fa-trash-o"></i> </button>');
+					$removeBtn.click(function() {
+						var idThingy = $(this).parent().attr("data-id");
+						window.api.post('admin/announcements/remove', {id: idThingy}, function(result){});
+					});
+				$feedLi.append($removeBtn)
+			$("#announcement-delete-list").append($feedLi);
+			
 		}
 		if($("#adminAnnouncementList").children().size() > 1) {
 			$("#adminNoAnnouncements").remove()
