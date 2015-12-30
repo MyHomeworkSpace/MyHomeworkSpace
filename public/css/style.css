@@ -14,3 +14,7 @@ body {
 .aboutNames h3 {
 	margin-top: 0;
 }
+
+.announcmentDelete {
+	text-decoration: line-through;
+}
