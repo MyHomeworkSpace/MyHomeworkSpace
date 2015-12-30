@@ -41,7 +41,7 @@ $(document).ready(function() {
 				var $feedLi = $("<li></li>");
 					$feedLi.append(response[feed].msg);
 					$feedLi.attr("data-id", response[feed].announcementId);
-					var $copyLi = $feedLi;
+					var $copyLi = $feedLi.clone();
 					$("#adminAnnouncementList").append($copyLi);
 					var $removeBtn = $('<button class="btn btn-xs btn-danger" style="float: right"> <i class="fa fa-trash-o"></i> </button>');
 						$removeBtn.click(function() {
