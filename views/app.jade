@@ -102,9 +102,10 @@ html
 						li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
-						li(class="navbar-text user-name")= user.name
-						li
-  							a(href="#{basePath}/logout") Log out
+						li(class="navbar-text user-name")
+							a.dropdown-toggle(class="navbar-text user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')= user.name
+							li
+	  							a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 					span
