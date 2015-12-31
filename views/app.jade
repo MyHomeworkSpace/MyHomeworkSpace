@@ -547,16 +547,16 @@ html
 						h4 Announcement Settings
 						h5 Post Announcement
 						p Message
-						input(type="text", id="announcement-msg")
+						input(type="text", id="announcement-msg", width="300px", data-toggle="tooltip", data-placement="right", title="You can use HTML tags for this input field!")
 						p Days
 						input(type="number", id="announcement-days", data-toggle="tooltip", data-placement="right", title="Because of possible time zone problems, please set this to 2 days or above to make sure all users see it. Thank you!")
 						br
 						br
-						button(class="btn", id="announcement-submit", class="btn btn-primary") Send
-						h5 Current Annoucements
-						ul#adminAnnouncementList
+						button(class="btn", id="announcement-submit", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Please proofread your announcement before you press this button!") Send
+						h5 Current Announcements
+						ul#adminAnnouncementList(style="-webkit-transition: text-decoration 1s; transition: text-decoration 1s;")
 							li#adminNoAnnouncements There are currently no announcements.
-						button(class="btn", id="announcement-clear", class="btn btn-warning") Remove Announcemnts
+						button(class="btn", id="announcement-clear", class="btn btn-default") Manage Announcements
 
 					div(id="admin-stats", class="page")
 						h1 Administrative panel
