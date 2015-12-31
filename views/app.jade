@@ -102,9 +102,15 @@ html
 						li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
-						li(class="navbar-text user-name")= user.name
-							if user.level > 0
-								(Administrator)
+					ul.dropdown-menu.go-dropdown(role='menu' class="navbar-text user-name")=user.name
+						if user.level > 0
+							li
+								a(data-page="admin") Admin
+							if window.location.hostname !"staging.planhub.me"
+								li
+									a(href="staging.planhub.me") Go to Beta
+						li
+							a(data-page="prefs") Prefrences
 						li
 							a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
