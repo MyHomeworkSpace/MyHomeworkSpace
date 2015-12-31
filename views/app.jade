@@ -103,7 +103,10 @@ html
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
 						li(class="navbar-text user-name")
-							ul.dropdown-toggle(class="navbar-text user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')= user.name
+							a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+								span= user.name
+								span.caret
+							ul.dropdown-menu
 								li
 									a(href="#{basePath}/logout") Log out
 								li
