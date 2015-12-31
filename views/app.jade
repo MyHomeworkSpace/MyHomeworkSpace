@@ -105,7 +105,10 @@ html
 						li(class="navbar-text user-name")
 							a.dropdown-toggle(class="navbar-text user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')= user.name
 							li
-	  							a(href="#{basePath}/logout") Log out
+								a(href="#{basePath}/logout") Log out
+							li
+								a(data-page="prefs") Prefrences
+	  						
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 					span
