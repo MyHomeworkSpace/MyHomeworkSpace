@@ -103,6 +103,8 @@ html
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
 						li(class="navbar-text user-name")= user.name
+							if user.level > 0
+								(Administrator)
 						li
 							a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
