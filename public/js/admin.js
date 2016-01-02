@@ -27,7 +27,20 @@ $(document).ready(function() {
 					$feedbackLi.append($feedbackDay);
 					$feedbackLi.attr("data-webpage", feedbackItem.webpage)
 					$feedbackLi.click(function() {
-						$("#admin-feedback-modal").find("iframe").attr("src", "data:text/html;base64," + $(this).attr("data-webpage"));
+						var iframeSrc = "";
+						if ($(this).attr("data-webpage")) {
+							iframeSrc = btoa($(this).attr("data-webpage"));
+							var $iframeSrc = $(iframeSrc);
+							$iframeSrc.find("#feedback-modal").remove();
+							$iframeSrc.find(".modal-backdrop").remove();
+							iframeSrc = $iframeSrc.html().toString();
+						} else {
+							iframeSrc = "<em>No screenshot data was included with this submission.</em>";
+						}
+						$("#admin-feedback-modal").find("iframe").attr("src", "data:text/html," + iframeSrc);
+						if ($(this).attr("data-webpage")) {
+
+						}
 						$("#admin-feedback-modal").modal();
 					});
 				$("#admin-feedback-list").append($feedbackLi);
