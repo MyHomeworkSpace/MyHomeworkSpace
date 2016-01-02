@@ -23,5 +23,5 @@ $(document).ready(function() {
 });
 
 function hello(){
-  swal("Hi!")
+  alert("Hi!")
 }
