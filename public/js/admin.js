@@ -33,6 +33,16 @@ $(document).ready(function() {
 							var $iframeSrc = $(iframeSrc);
 							$iframeSrc.find("#feedback-modal").remove();
 							$iframeSrc.find(".modal-backdrop").remove();
+							$iframeSrc.find("link[rel=stylesheet]").each(function() {
+								var oldUrl = $(this).attr("href");
+								if (oldUrl) {
+									if (oldUrl[0] == "/") {
+										// it is a relative path
+										var newUrl = window.location.protocol + "//" + window.location.host + oldUrl; // make it absolute
+										$(this).attr("href", newUrl);
+									}
+								}
+							});
 							iframeSrc = $iframeSrc.html().toString();
 						} else {
 							iframeSrc = "<em>No screenshot data was included with this submission.</em>";
