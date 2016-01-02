@@ -54,7 +54,7 @@ $(document).ready(function() {
 					});
 				$feedLi.append($removeBtn)
 			$("#announcement-delete-list").append($feedLi);
-			
+
 		}
 		if($("#adminAnnouncementList").children().size() > 1) {
 			$("#adminNoAnnouncements").remove()
@@ -68,7 +68,7 @@ $(document).ready(function() {
 			postMe.msg = $("#announcement-msg").val();
 			window.api.post('admin/announcements/post/', postMe, function(result){});
 		};
-		swal("Yay", "Your announcment has been posted", "success");
+		swal("Yay", "Your announcement has been posted", "success");
 	});
 	$("#announcement-clear").click(function() {
 		$("#admin-announcement-modal").modal();
