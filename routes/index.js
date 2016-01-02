@@ -37,7 +37,6 @@ router.post('/login', function(req, res, next) {
 		res.render('login', { title: 'Log in', error: 'Password is required.' });
 		return;
 	}
-	document.querySelector("#login-as-test-user").setAttribute("onclick", "req.session.username = "zomg_testUser"");
 	if (req.body.username == "zomg_testUser" && req.body.password == "superSecret!") {
 		// activate testing user
 		req.session.loggedIn = true;
