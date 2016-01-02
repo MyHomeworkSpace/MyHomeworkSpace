@@ -26,6 +26,7 @@ html
 		script(src="#{basePath}/js/intro.js")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
+		link(rel="stylesheet", href="#{global.basePath}/css/overview.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/hwView.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/myDay.css")
@@ -82,15 +83,10 @@ html
 									a(data-page="hwView") Homework View
 								if user.level > 0
 									li.divider
-										li
-											a(data-page="admin") Admin
-										li
-											a(data-page="prefs") Preferences
-								
-								//li
-								//	a(href='#') Settings
-								//li
-								//	a(href='#') Admin
+									li
+										a(data-page="admin") Admin
+									li
+										a(data-page="prefs") Preferences
 
 					ul(class="nav navbar-nav navbar-right")
 						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for PlanHub? Send it to us with this button!")
@@ -102,9 +98,13 @@ html
 						li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
-						li(class="navbar-text user-name")= user.name
 						li
-							a(href="#{basePath}/logout") Log out
+							a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+								span= user.name
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 					span
@@ -225,7 +225,7 @@ html
 							span(aria-hidden="true") &times;
 						h4(class="modal-title") View feedback
 					
-					div(class="modal-body")
+					div(class="modal-body", style="height: 500px")
 						iframe(sandbox="allow-scripts", id="feedback-frame", width="100%", height="100%", style="padding: 0; margin: 0;")
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
@@ -269,7 +269,7 @@ html
 						span Today is 
 						span(class="overview-date") a day
 						span .
-					.alert.alert-info.alert-overview(role='alert', width='90%')
+					div(id="announcementAlert", class="alert alert-info alert-overview", role='alert', width='90%', style="display: none")
 						ul#announcementList
 				div(id="planner", class="page")
 					div(id="planner-upsell", class="upsell row", data-feature="planner")
@@ -503,15 +503,68 @@ html
 
 				div(id="prefs", class="page")
 					h1 Preferences
-
-					div(id="prefs-hwView")
-						h3 Homework View
+					p Here, you can manage preferences for your account. Looking for preferences for a specific feature instead? Click the gray gear button in the bottom left on the feature you want to change.
+					ul(class="nav nav-tabs", role="tablist")
+						li(role="presentation", class="active")
+							a(href="#prefs-profile", role="tab", data-toggle="tab") Profile
+						li(role="presentation")
+							a(href="#prefs-security", role="tab", data-toggle="tab") Security
+						li(role="presentation")
+							a(href="#prefs-apps", role="tab", data-toggle="tab") More Apps
+				
+					div(class="tab-content")
+						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
+							p Settings about your account.
+							p Name:
+							input(type="text", id="usr-name" value="#{user.name}")
+							button(class="btn btn-primary", id="usr-btn") change
+							p
+								span Email address:
+								span= user.email
+							
+							
+						div(role="tabpanel", class="tab-pane", id="prefs-security")
+							p Settings about your account's security.
 						
-					div(id="prefs-name")
-						input(type="text", id="usr-name" value="#{user.name}")
-						button(class="btn btn-primary", id="usr-btn") change
-					
-
+						div(role="tabpanel", class="tab-pane", id="prefs-apps")
+							p More apps by the PlanHub Team
+							h4 CoursesPlus
+							h6 Free, Chrome Extension, School Laptop Ready
+							h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
+							a.btn-xs.btn-default(href="http://coursesplus.github.io") Download
+							br
+							h4 DaltonTab
+							h6 Free, Chrome Extension, School Laptop Ready
+							h5 DaltonTab is your home base for homework, classes, and your schedule. View your information from multiple sites in one central view, available at the click of a new tab.
+							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm") Download
+							br
+							h4 PlanHub Button
+							h6 Free, Chrome Extension, Pending School Laptop Approval
+							h5 A button in your toolbar that leads directly to PlanHub.
+							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/planhub-button/bgjhpfdlpnddingdjkjlefefbjdnnndm") Download
+							br
+							h4 Back to Drive
+							h6 Free, Chrome Extension, School Laptop Ready
+							h5 A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.
+							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp") Download
+							
+				div(id="labs", class="page")
+					p
+						span Welcome, 
+						if user.type == "student"
+							span= user.name.split(" ")[0]
+						else
+							span= user.name
+						span , to Labs!
+					p This is a work in progress...
+					span
+						if user.type == "student"
+							p Welcome to Lab scheduling.
+							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
+						if user.type == "teacher"
+							p Welcome to Lab scheduling.
+							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+						
 				if user.level > 0
 					div(id="admin", class="page")
 						h1 Administrative panel
@@ -522,6 +575,8 @@ html
 									a(href="#admin-feedback") View feedback
 							li(data-page="admin-announcements", class="admin-link")
 								a(href="#admin-announcements") Change announcements
+							li(data-page="admin-login", class="admin-link")
+								a(href="#admin-login") Test user accounts
 							li(data-page="admin-stats", class="admin-link")
 								a(href="#admin-stats") Statistics
 							li(data-page="admin-about", class="admin-link")
@@ -567,3 +622,17 @@ html
 						h1 Administrative panel
 						h4 About server
 						h5 Under construction!
+						
+					div(id="admin-login", class="page")
+						h1 Administrative panel
+						h4 Test user accoumts
+						p Use these accounts to test the PlanHub interface from the perspective of a student or a teacher.
+						h3 Teacher
+						ul
+							li Username: zomg_testTeacher
+							li Password: hexrSecret!
+						h3 Student
+						ul
+							li Username: zomg_testUser
+							li Password: superSecret!
+						a.btn.btn-danger(href="#{basePath}/logout", data-toggle="tooltip", data-placement="bottom", title="Warning: This will sign you out of your current session") Sign into a test user account.

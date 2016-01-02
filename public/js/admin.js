@@ -27,7 +27,30 @@ $(document).ready(function() {
 					$feedbackLi.append($feedbackDay);
 					$feedbackLi.attr("data-webpage", feedbackItem.webpage)
 					$feedbackLi.click(function() {
-						$("#admin-feedback-modal").find("iframe").attr("src", "data:text/html;base64," + $(this).attr("data-webpage"));
+						var iframeSrc = "";
+						if ($(this).attr("data-webpage")) {
+							iframeSrc = "<jqueryIsDumb>" + atob($(this).attr("data-webpage")) + "</jqueryIsDumb>";
+							var $iframeSrc = $(iframeSrc);
+							$iframeSrc.find("#feedback-modal").remove();
+							$iframeSrc.find(".modal-backdrop").remove();
+							$iframeSrc.find("link[rel=stylesheet]").each(function() {
+								var oldUrl = $(this).attr("href");
+								if (oldUrl) {
+									if (oldUrl[0] == "/") {
+										// it is a relative path
+										var newUrl = window.location.protocol + "//" + window.location.host + oldUrl; // make it absolute
+										$(this).attr("href", newUrl);
+									}
+								}
+							});
+							iframeSrc = $iframeSrc.html().toString();
+						} else {
+							iframeSrc = "<em>No screenshot data was included with this submission.</em>";
+						}
+						$("#admin-feedback-modal").find("iframe").attr("src", "data:text/html," + iframeSrc);
+						if ($(this).attr("data-webpage")) {
+
+						}
 						$("#admin-feedback-modal").modal();
 					});
 				$("#admin-feedback-list").append($feedbackLi);
@@ -54,7 +77,7 @@ $(document).ready(function() {
 					});
 				$feedLi.append($removeBtn)
 			$("#announcement-delete-list").append($feedLi);
-			
+
 		}
 		if($("#adminAnnouncementList").children().size() > 1) {
 			$("#adminNoAnnouncements").remove()
@@ -68,7 +91,7 @@ $(document).ready(function() {
 			postMe.msg = $("#announcement-msg").val();
 			window.api.post('admin/announcements/post/', postMe, function(result){});
 		};
-		swal("Yay", "Your announcment has been posted", "success");
+		swal("Yay", "Your announcement has been posted", "success");
 	});
 	$("#announcement-clear").click(function() {
 		$("#admin-announcement-modal").modal();
