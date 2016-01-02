@@ -11,11 +11,13 @@ window.utils.getLongNameForFeature = function(feature) {
 		overview: "Overview",
 		planner: "Planner",
 		hwView: "Homework View",
+		labs: "Labs",
 		myDay: "My Day",
 		admin: "Administrative panel",
 		"admin-feedback": "Feedback",
-		"admin-stats": "Feedback",
-		"admin-about": "Feedback"
+		"admin-stats": "Statistics",
+		"admin-login": "Test user accounts",
+		"admin-about": "About server"
 	};
 	return features[feature];
 };
