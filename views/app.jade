@@ -510,7 +510,27 @@ html
 					div(id="prefs-name")
 						input(type="text", id="usr-name" value="#{user.name}")
 						button(class="btn btn-primary", id="usr-btn") change
+<<<<<<< HEAD
 					
+=======
+				
+				div(id="labs", class="page")
+					p
+						span Welcome, 
+						if user.type == "student"
+							span= user.name.split(" ")[0]
+						else
+							span= user.name
+						span , to Labs!
+					p This is a work in progress...
+					span
+						if user.type == "student"
+							p Welcome to Lab scheduling.
+							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
+						if user.type == "teacher"
+							p Welcome to Lab scheduling.
+							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+>>>>>>> master
 
 				if user.level > 0
 					div(id="admin", class="page")
