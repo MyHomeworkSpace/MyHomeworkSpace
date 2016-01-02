@@ -102,13 +102,13 @@ html
 						li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
-  						li
- -							a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
- -								span= user.name
- -								span.caret
- -							ul.dropdown-menu
- -								li
- -									a(href="#{basePath}/logout") Log out
+ 						li
+ 							a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+ 								span= user.name
+ 								span.caret
+ 							ul.dropdown-menu
+ 								li
+ 									a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 					span
@@ -590,7 +590,7 @@ html
 						h4 About server
 						h5 Under construction!
 						
-					div(id="admin-login")
+					div(id="admin-login", class="page")
 						h1 Administrative panel
 						h4 Test User Login
 						br
