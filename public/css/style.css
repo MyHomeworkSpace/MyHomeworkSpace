@@ -1,3 +1,8 @@
+iframe {
+  border-style: solid;
+  border-width: 5px;
+}
+
 body {
 	padding-top: 70px;
 }
