@@ -29,7 +29,7 @@ $(document).ready(function() {
 					$feedbackLi.click(function() {
 						var iframeSrc = "";
 						if ($(this).attr("data-webpage")) {
-							iframeSrc = atob($(this).attr("data-webpage"));
+							iframeSrc = "<html>" + atob($(this).attr("data-webpage")) + "</html>";
 							var $iframeSrc = $(iframeSrc);
 							$iframeSrc.find("#feedback-modal").remove();
 							$iframeSrc.find(".modal-backdrop").remove();
