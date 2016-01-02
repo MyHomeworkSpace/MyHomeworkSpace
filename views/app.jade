@@ -509,7 +509,9 @@ html
 							a(href="#prefs-profile", role="tab", data-toggle="tab") Profile
 						li(role="presentation")
 							a(href="#prefs-security", role="tab", data-toggle="tab") Security
-					
+						li(role="presentation")
+							a(href="#prefs-apps", role="tab", data-toggle="tab") More Apps
+				
 					div(class="tab-content")
 						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
 							p Settings about your account.
@@ -523,8 +525,29 @@ html
 							
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
 							p Settings about your account's security.
+						
+						div(role="tabpanel", class="tab-pane", id="prefs-apps")
+							p More apps by the PlanHub Team
+							h4 CoursesPlus
+							h6 Free, Chrome Extension, School Laptop Ready
+							h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
+							a.btn-xs.btn-default(href="http://coursesplus.github.io") Download
+							br
+							h4 DaltonTab
+							h6 Free, Chrome Extension, School Laptop Ready
+							h5 DaltonTab is your home base for homework, classes, and your schedule. View your information from multiple sites in one central view, available at the click of a new tab.
+							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm") Download
+							br
+							h4 PlanHub Button
+							h6 Free, Chrome Extension, Pending School Laptop Approval
+							h5 A button in your toolbar that leads directly to PlanHub.
+							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/planhub-button/bgjhpfdlpnddingdjkjlefefbjdnnndm") Download\
+							br
+							h4 Back to Drive
+							h6 Free, Chrome Extension, School Laptop Ready
+							h5 A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.
+							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp") Download
 							
-					
 				div(id="labs", class="page")
 					p
 						span Welcome, 
@@ -541,7 +564,7 @@ html
 						if user.type == "teacher"
 							p Welcome to Lab scheduling.
 							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
-
+						
 				if user.level > 0
 					div(id="admin", class="page")
 						h1 Administrative panel
