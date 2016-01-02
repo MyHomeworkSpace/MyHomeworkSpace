@@ -516,9 +516,9 @@ html
 						button(class="btn btn-primary", id="usr-btn") change
 				
 				div(id="labs", class="page")
-					Welcome, 
+					span Welcome, 
 					span= user.username
-					, to Labs!
+					span , to Labs!
 					p This is a work in progress...
 					span
 						if user.level > 0
@@ -526,13 +526,13 @@ html
 						else
 							if user.type == "student" || user.level > 0
 								if user.level > 0
-									Student Mode
+									span Student Mode
 								Welcome to Lab scheduling.
 								button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
 							if user.type == "teacher" || user.level > 0
 								if user.level > 0
-									Teacher Mode
-								Welcome to Lab scheduling.
+									span Teacher Mode
+								span Welcome to Lab scheduling.
 								button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
 
 				if user.level > 0
