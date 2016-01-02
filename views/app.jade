@@ -542,12 +542,12 @@ html
 									a(href="#admin-feedback") View feedback
 							li(data-page="admin-announcements", class="admin-link")
 								a(href="#admin-announcements") Change announcements
+							li(data-page="admin-login", class="admin-link")
+								a(href="#admin-login") Test user accouts
 							li(data-page="admin-stats", class="admin-link")
 								a(href="#admin-stats") Statistics
 							li(data-page="admin-about", class="admin-link")
 								a(href="#admin-about") About server
-							li(data-page="admin-login", class="admin-link")
-								a(href="#admin-login") Login as Test User
 								
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
@@ -592,15 +592,14 @@ html
 						
 					div(id="admin-login", class="page")
 						h1 Administrative panel
-						h4 Test User Login
+						h4 Test user accouts
+						p Use these accounts to test the PlanHub interface from the perspective of a student or a teacher.
 						h3 Teacher
 						ul
 							li Username: zomg_testTeacher
 							li Password: hexrSecret!
-						br
 						h3 Student
 						ul
 							li Username: zomg_testUser
-							li Password: superSecret!`
-						br
+							li Password: superSecret!
 						a.btn.btn-danger(href="#{basePath}/logout", data-toggle="tooltip", data-placement="bottom", title="Warning: This will sign you out of your current session") Sign into a test user account.
