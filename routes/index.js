@@ -43,6 +43,12 @@ router.post('/login', function(req, res, next) {
 		req.session.username = "zomg_testUser";
 		res.redirect(global.basePath + "/app");
 	}
+	if (req.body.username == "zomg_testTeacher" && req.body.password == "hexrSecret!" {
+		// activate testing teacher
+		req.session.loggedIn = true;
+		req.session.username = "zomg_testTeacher";
+		res.redirect(global.basePath + "/app")
+	})
 	/*if (!(req.body.username == "c19as3" || req.body.username == "c19ww" || req.body.username == "c19em" || req.body.username == "c19jf" || req.body.username == "c20wb" || req.body.username == "c21ys" || req.body.username == "c21as2" || req.body.username == "c21lw")) {
 		res.render('login', { title: 'Log in', error: 'You do not have permission to access this site.' });
 		return;
