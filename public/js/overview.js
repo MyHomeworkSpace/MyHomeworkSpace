@@ -21,3 +21,7 @@ $(document).ready(function() {
 		});
 	});
 });
+
+function hello(){
+  swal("Hi!")
+}
