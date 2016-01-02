@@ -24,7 +24,7 @@ $(document).ready(function() {
 		
 	});
 	$("#myDay-welcome-submit").click(function() {
-		alert("Maybe Works!");
+		swal("Ummmm", "Maybe Works?", "warning");
 		var prefs = {};
 		prefs.sleep = $("input[name=sleepHrs]").val();
 		prefs.wake = $("input[name=WakeUpTime]").val();
