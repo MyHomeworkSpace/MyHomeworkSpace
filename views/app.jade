@@ -516,8 +516,13 @@ html
 						button(class="btn btn-primary", id="usr-btn") change
 				
 				div(id="labs", class="page")
-					h1 Welcome to Labs!
+					h1 Welcome, 
+						span= user.username
+					, to Labs!
 					p Working in Progress...
+					p= user.username
+					p= user.type
+					p= user.leve;
 
 				if user.level > 0
 					div(id="admin", class="page")
