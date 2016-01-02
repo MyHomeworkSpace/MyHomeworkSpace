@@ -522,25 +522,19 @@ html
 						, to Labs!
 					p This is a work in progress...
 					span
-						if user.level > 0 {
+						if user.level > 0
 							span Admin Mode: Can test as a student or teacher.
-						}
-						else {
-							if (user.type == "student" || user.level > 0) {
-								if user.level > 0 {
+						else
+							if user.type == "student" || user.level > 0
+								if user.level > 0
 									span Student Mode
-								}
 								Welcome to Lab scheduling.
 								button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
-							}
-							if user.type == "teacher" || user.level > 0 {
-								if user.level > 0 {
+							if user.type == "teacher" || user.level > 0
+								if user.level > 0
 									span Teacher Mode
-								}
 								Welcome to Lab scheduling.
 								button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
-							}
-						}
 
 				if user.level > 0
 					div(id="admin", class="page")
