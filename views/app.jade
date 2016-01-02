@@ -501,14 +501,22 @@ html
 							ul
 
 				div(id="prefs", class="page")
-					h1 General Preferences
-
-					div(id="prefs-hwView")
-						h3 Name and Identification
-						
-					div(id="prefs-name")
-						input(type="text", id="usr-name" value="#{user.name}")
-						button(class="btn btn-primary", id="usr-btn") change
+					h1 Preferences
+					p Here, you can manage preferences for your account. Looking for preferences for a specific feature instead? Click the gray gear button in the bottom left on the feature you want to change.
+					ul(class="nav nav-tabs", role="tablist")
+						li(role="presentation", class="active")
+							a(href="#prefs-profile", role="tab", data-toggle="tab") Profile
+						li(role="presentation")
+							a(href="#prefs-security", role="tab", data-toggle="tab") Security
+					
+					div(class="tab-content")
+						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
+							p Settings about your account.
+							input(type="text", id="usr-name" value="#{user.name}")
+							button(class="btn btn-primary", id="usr-btn") change
+						div(role="tabpanel", class="tab-pane", id="prefs-security")
+							p Settings about your account's security.
+							
 					
 				div(id="labs", class="page")
 					p
