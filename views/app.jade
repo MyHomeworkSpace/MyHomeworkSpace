@@ -518,7 +518,10 @@ html
 				div(id="labs", class="page")
 					p
 						span Welcome, 
-						span= user.username
+						if user.type == "student"
+							span= user.name.split(" ")[0]
+						else
+							span= user.name
 						span , to Labs!
 					p This is a work in progress...
 					span
