@@ -80,12 +80,12 @@ html
 									a(data-page="planner") Planner
 								li
 									a(data-page="hwView") Homework View
-								li.divider
 								if user.level > 0
+									li.divider
 									li
 										a(data-page="admin") Admin
-								li
-									a(data-page="prefs") Preferences
+									li
+										a(data-page="prefs") Preferences
 
 					ul(class="nav navbar-nav navbar-right")
 						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for PlanHub? Send it to us with this button!")
@@ -512,8 +512,14 @@ html
 					div(class="tab-content")
 						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
 							p Settings about your account.
+							p Name:
 							input(type="text", id="usr-name" value="#{user.name}")
 							button(class="btn btn-primary", id="usr-btn") change
+							p
+								span Email address:
+								span= user.email
+							
+							
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
 							p Settings about your account's security.
 							
