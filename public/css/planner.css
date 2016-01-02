@@ -200,7 +200,9 @@
     text
 }
 .highlightTextarea-container:not(.highlightTextarea-containerTop) .cal_no_hw {
-	padding: 100% !important;
+	position: absolute;
+    width: 150px;
+    height: 100px;
 	text-decoration: line-through !important;
 	background: lightgray !important;
 }
