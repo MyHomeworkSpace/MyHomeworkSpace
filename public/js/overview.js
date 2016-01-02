@@ -4,6 +4,7 @@ $(document).ready(function() {
 	$("#overview").on("tabOpened", function() {
 		$(".overview-date").text(window.utils.formatDate_english(new Date()));
 		window.api.get('overview/announcements/get/', function(data) {
+			$("#announcementList").text("");
 			var response = data.feedback;
 			for (var feed in response) {
 				if (moment(response[feed].time).add(response[feed].days, "days").isAfter(moment())) {
