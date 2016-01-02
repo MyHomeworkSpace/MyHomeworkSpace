@@ -15,6 +15,8 @@ $(document).ready(function() {
 			}
 			if ($("#announcementList").children().size() > 0) {
 				$("#announcementAlert").css("display", "block");
+			} else {
+				$("#announcementAlert").css("display", "none");
 			}
 		});
 	});
