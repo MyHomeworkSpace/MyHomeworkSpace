@@ -260,7 +260,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
-function hello(){
-	swal("Hi!")		
-}
