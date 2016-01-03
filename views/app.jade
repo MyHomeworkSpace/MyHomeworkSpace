@@ -243,6 +243,20 @@ html
 						ol(id="announcement-delete-list")
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
+						
+		div(id="login-to-schedules-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button.close(type="button", data-dismiss="modal", aria-label="Close")
+						span(aria-hidden="true") ×
+						h4.modal-title Connect with Schedules
+					div(class="modal-body")
+						input(id="schedules-username", type="text", placeholder="Username")
+						input(id="schedules-pw", type="password", placeholder="Password")
+					div.modal-footer
+	        	button(class="btn btn-default", id="schedules-sign-in", type="button", data-dismiss="modal") Sign In
+
 		div(class="mainContainer")
 			ul(class="tabs")
 				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
@@ -564,6 +578,7 @@ html
 					if user.type == "teacher"
 						p Welcome to Lab scheduling.
 						button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+					br
 					button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
 						
 				if user.level > 0
