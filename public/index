@@ -1,0 +1,8 @@
+        <ul class="tabs">
+            <li data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more." data-page="overview" data-step="2"><i class="fa fa-calendar"></i> <span>Overview</span></li>
+            <li data-intro="This is Planner. This is where you enter all of your homework, and where the magic happens." data-page="planner" data-step="3"><i class="fa fa-book"></i> <span>Planner</span></li><!-- li(data-page="myDay") My Day -->
+            <li data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!" data-page="hwView" data-step="4"><i class="fa fa-file-text"></i> <span>HW View</span></li><!-- li(data-page="prefs") Preferences -->
+        </ul>
+        
+        <!-- Different tabs that needs to be changed in the app.html file (if it is html) -->
+        <!-- you need to add some stuff to the javascript to make sure it looks like the image i supplied -->
