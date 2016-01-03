@@ -18,17 +18,17 @@ nav {
 	padding-top: 45px;
 }
 .tabs {
-	background: #42A5D6;
+	background: #5F9EA0;
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 60px;
+	width: 55px;
 	height: 100%;
 	padding-top: 80px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	list-style-type: none;
-	border-right: solid 1px #193B49;
+	border-right: solid 2px #528789;
 	z-index: 997;
 	text-align: cente;
 }
@@ -41,7 +41,7 @@ nav {
 	text-align: center;
 	font-size: 1em;
 	position: relative;
-	left: -55px;
+	left: -57px;
 	/* border: solid 1px black; */
 	border-bottom: none;
 	border-top-left-radius: 5px;
