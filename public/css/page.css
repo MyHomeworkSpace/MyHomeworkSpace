@@ -18,51 +18,49 @@ nav {
 	padding-top: 45px;
 }
 .tabs {
-	background: white;
+	background: #42A5D6;
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 50px;
+	width: 60px;
 	height: 100%;
 	padding-top: 80px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	list-style-type: none;
-	border-right: solid 1px black;
+	border-right: solid 1px #193B49;
 	z-index: 997;
+	text-align: cente;
 }
 .tabs li {
-	-webkit-transform: rotate(-90deg);
+	/* -webkit-transform: rotate(-90deg); */
 	-moz-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
 	-o-transform: rotate(-90deg);
-	transform: rotate(-90deg);
-
+	/* transform: rotate(-90deg); */
 	text-align: center;
-
 	font-size: 1em;
-
 	position: relative;
-	left: -60px;
-
-	border: solid 1px black;
+	left: -55px;
+	/* border: solid 1px black; */
 	border-bottom: none;
-
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-
 	width: 90px;
 	height: 40px;
-
 	cursor: pointer;
-	
 	margin-bottom: 60px;
+	/* padding-top: 15px; */
+	padding-bottom: 15px;
 }
 .tabs li:hover {
 	background: lightblue;
 }
 .tabs li .fa {
 	margin-right: 1px;
+	font-size: 37px;
+	color: white;
+	/* font-weight: normal; */
 }
 .go-dropdown li {
 	cursor: pointer;
