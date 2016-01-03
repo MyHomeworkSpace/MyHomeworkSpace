@@ -248,13 +248,13 @@ html
 			div(class="modal-dialog")
 				div(class="modal-content")
 					div(class="modal-header")
-						button.close(type="button", data-dismiss="modal", aria-label="Close")
+						button(class="close", type="button", data-dismiss="modal", aria-label="Close")
 							span(aria-hidden="true") ×
-						h4.modal-title Connect with Schedules
+						h4(class="modal-title") Connect with Schedules
 					div(class="modal-body")
 						input(id="schedules-username", type="text", placeholder="Username", class="form-control")
 						input(id="schedules-pw", type="password", placeholder="Password", class="form-control")
-					div.modal-footer
+					div(class="modal-footer")
 						button(class="btn btn-default", id="schedules-sign-in", type="button", data-dismiss="modal") Sign In
 
 		div(class="mainContainer")
