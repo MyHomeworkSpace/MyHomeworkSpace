@@ -46,6 +46,7 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
+		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
@@ -557,13 +558,13 @@ html
 							span= user.username
 						span , to Labs!
 					p This is a work in progress...
-					span
-						if user.type == "student"
-							p Welcome to Lab scheduling.
-							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
-						if user.type == "teacher"
-							p Welcome to Lab scheduling.
-							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+					if user.type == "student"
+						p Welcome to Lab scheduling.
+						button(class="btn btn-primary", id="schedule-lab-student", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
+					if user.type == "teacher"
+						p Welcome to Lab scheduling.
+						button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+					button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
 						
 				if user.level > 0
 					div(id="admin", class="page")
