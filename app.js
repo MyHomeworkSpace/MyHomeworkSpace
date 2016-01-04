@@ -244,7 +244,17 @@ app.use(function(err, req, res, next) {
 		var message = (err.message || "");
 		var name = (err.name || "");
 		var stack = (err.stack || "");
+		var userId = (req.session.loggedIn ? req.session.user.id : undefined);
 		var url = req.url;
+		var headers = JSON.stringify(req.headers);
+		knex("errors").insert({
+			userId: userId,
+			status: status,
+			stack: stack,
+			msg: message,
+			url: url,
+			headers: headers
+		});
 	}
 	next(err);
 });
