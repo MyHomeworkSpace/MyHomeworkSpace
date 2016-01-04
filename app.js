@@ -254,9 +254,16 @@ app.use(function(err, req, res, next) {
 			msg: message,
 			url: url,
 			headers: headers
+		}).then(function() {
+			res.locals.errorLogged = true;
+			next(err);	
+		}).catch(function() {
+			res.locals.errorLogged = false;
+			next(err);	
 		});
+	} else {
+		next(err);
 	}
-	next(err);
 });
 
 app.use(function(err, req, res, next) {
