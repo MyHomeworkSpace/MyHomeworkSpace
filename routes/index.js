@@ -10,7 +10,7 @@ router.get('/', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('index', { title: 'PlanHub' });
 });
 
-router.get("/error", function(req, res, next) {
+router.get("/error", global.getOptionalUserRecord, function(req, res, next) {
 	var err = new Error('Yay an error');
 	err.status = 500;
 	next(err);
@@ -27,11 +27,11 @@ router.get('/logout', global.requireUser, function(req, res, next) {
 	res.redirect(global.basePath + "/");
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('login', { title: 'Log in' });
 });
 
-router.post('/login', function(req, res, next) {
+router.post('/login', global.getOptionalUserRecord, function(req, res, next) {
 	var username = "";
 	var password = "";
 
