@@ -238,6 +238,15 @@ app.use(function(req, res, next) {
 
 // error handlers
 
+app.use(function(err, req, res, next) {
+	if (err.status == 404) {
+		res.status(404);
+		res.render("404");
+	} else {
+		next(err);
+	}
+});
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
