@@ -1,14 +1,18 @@
 #planner th {
-	border: solid 1px black;
-
+	border: solid 2px #528789;
 	font-size: 1.2em;
 	width: 150px;
-
 	text-align: center;
+	background-color: cadetblue;
+	padding-top: 15px;
+	height: 0px;
+	padding-bottom: 15px;
+	border-top: none !important;
 }
 .subjectRow td {
-	border: solid 1px black;
+	border: solid 2px #528789;
 	height: 100px;
+	border-right: solid 1px #528789 !important;
 }
 .subjectCell {
 	font-size: 1.1em;
@@ -17,6 +21,7 @@
 }
 #planner table .subjectCell, .no-border {
 	border: none !important;
+	background-color: white !important;
 }
 .editCell, .editArea, #planner-hacky-text-measure-thing {
 	padding: 0;
@@ -40,7 +45,7 @@
 }
 .add-subject {
 	background: gray;
-	border: solid 1px black;
+	border: solid 1px #528789;
 	color: white;
 	cursor: pointer;
 	font-style: italic;
@@ -200,9 +205,7 @@
     text
 }
 .highlightTextarea-container:not(.highlightTextarea-containerTop) .cal_no_hw {
-	position: absolute;
-    width: 150px;
-    height: 100px;
+	padding: 100% !important;
 	text-decoration: line-through !important;
 	background: lightgray !important;
 }
