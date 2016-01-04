@@ -40,6 +40,38 @@ router.get('/feedback/get/:id', global.apiCall, global.requireUser, global.getUs
 	});
 });
 
+router.get('/errors/getList', global.apiCall, global.requireUser, global.getUserRecord, global.requireViewFeedback, function(req, res, next) {
+	knex("errors").select("*").then(function(obj) {
+		var tempArr = obj;
+		tempArr.reverse();
+		res.json({
+			status: "ok",
+			error: tempArr
+		});	
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error."
+		});	
+	});
+});
+
+router.get('/errors/get/:id', global.apiCall, global.requireUser, global.getUserRecord, global.requireViewFeedback, function(req, res, next) {
+	knex("errors").where({
+		errorId: req.params.id
+	}).select("*").then(function(obj) {
+		res.json({
+			status: "ok",
+			error: obj[0]
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error."
+		});	
+	});
+});
+
 router.post('/announcements/post/', global.apiCall, global.requireUser, global.getUserRecord, global.requireNonZeroLevel, function(req, res, next) {
 	knex("announcements").insert({
 		days: req.body.days,
