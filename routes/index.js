@@ -10,6 +10,12 @@ router.get('/', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('index', { title: 'PlanHub' });
 });
 
+router.get("/error", function(req, res, next) {
+	// cause an error
+	var yay = 45 / 0;
+	console.log(yay);
+});
+
 router.get('/about', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('about', { title: 'About' });
 });
