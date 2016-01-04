@@ -2,7 +2,10 @@ extends layout
 
 block content
 	h1 Internal server error
-	h3 Please email us at hello@planhub.me with the information below. Don't worry, chances are you didn't break anything. 
+	if errorLogged:
+		h3 This error has been automatically logged. Don't worry, chances are you didn't break anything. 
+	else:
+		h3 Please email us at hello@planhub.me with the information below. Don't worry, chances are you didn't break anything. 
 	if error
 		p= error.status
 		pre #{error.stack}
