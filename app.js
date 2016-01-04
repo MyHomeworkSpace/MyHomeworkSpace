@@ -237,8 +237,20 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+app.use(function(err, req, res, next) {
+	// logging
+	if (err) {
+		var status = (err.status || 500);
+		var message = (err.message || "");
+		var name = (err.name || "");
+		var stack = (err.stack || "");
+		var url = req.url;
+	}
+	next(err);
+});
 
 app.use(function(err, req, res, next) {
+	// 404
 	if (err.status == 404) {
 		res.status(404);
 		res.render("404");
