@@ -1,17 +1,14 @@
 extends layout
 
 block content
-	h1 Whoops! It looks like we have run into an error.
-	p
-		| Don't worry, chances are you didn't break anything. 
-		a(href='mailto:hello@planhub.me?subject=PlanHub%20Error&body=#{error.stack}') Report this error
+	h1 Internal server error
+	h3 Please email us at hello@planhub.me with the information below. Don't worry, chances are you didn't break anything. 
 	if error
 		p= error.status
 		pre #{error.stack}
 	else if msg
-		h2= msg
+		h3= msg
 
-// DUMMY
 // Filler text to get IE and Chrome to show this page
 // Filler text to get IE and Chrome to show this page
 // Filler text to get IE and Chrome to show this page
