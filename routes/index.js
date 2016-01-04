@@ -11,9 +11,9 @@ router.get('/', global.getOptionalUserRecord, function(req, res, next) {
 });
 
 router.get("/error", function(req, res, next) {
-	// cause an error
-	var yay = 45 / 0;
-	console.log(yay);
+	var err = new Error('Yay an error');
+	err.status = 500;
+	next(err);
 });
 
 router.get('/about', global.getOptionalUserRecord, function(req, res, next) {
