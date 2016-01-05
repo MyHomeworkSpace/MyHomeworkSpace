@@ -33,11 +33,7 @@ nav {
 	text-align: cente;
 }
 .tabs li {
-	/* -webkit-transform: rotate(-90deg); */
-	-moz-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	-o-transform: rotate(-90deg);
-	/* transform: rotate(-90deg); */
+	color: white;
 	text-align: center;
 	font-size: 1em;
 	position: relative;
@@ -59,7 +55,6 @@ nav {
 .tabs li .fa {
 	margin-right: 1px;
 	font-size: 37px;
-	color: white;
 	/* font-weight: normal; */
 }
 .go-dropdown li {
