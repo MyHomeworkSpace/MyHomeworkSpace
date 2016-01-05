@@ -1,5 +1,5 @@
 #planner th {
-	border: solid 2px #528789;
+	border: solid 2px #333333;
 	font-size: 1.2em;
 	width: 150px;
 	text-align: center;
@@ -11,9 +11,9 @@
 	color: white;
 }
 .subjectRow td {
-	border: solid 2px #528789;
+	border: solid 2px #333333;
 	height: 100px;
-	border-right: solid 1px #528789 !important;
+	border-right: solid 1px #333333 !important;
 }
 .subjectCell {
 	font-size: 1.1em;
@@ -46,7 +46,7 @@
 }
 .add-subject {
 	background: gray;
-	border: solid 1px #528789;
+	border: solid 1px #333333;
 	color: white;
 	cursor: pointer;
 	font-style: italic;
