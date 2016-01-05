@@ -1,17 +1,15 @@
 #planner th {
-	border: solid 2px #333333;
+	border: solid 1px #333333;
 	font-size: 1.2em;
 	width: 150px;
 	text-align: center;
-	background-color: #333333;
 	padding-top: 5px;
 	height: 0px;
 	padding-bottom: 5px;
 	border-top: none !important;
-	color: white;
 }
 .subjectRow td {
-	border: solid 2px #333333;
+	border: solid 1px #333333;
 	height: 100px;
 	border-right: solid 1px #333333 !important;
 }
@@ -42,7 +40,7 @@
 	border: none;
 	position: relative;
 	top: 2px;
-    font-size: 1.15em;
+	font-size: 1.15em;
 }
 .add-subject {
 	background: gray;
