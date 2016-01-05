@@ -326,10 +326,6 @@ html
 					div(id="planner-status") Saved.
 					div(id="planner-controls-wrapper")
 						div(id="planner-controls")
-						
-							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
-								i(class="fa fa-external-link")
-							
 							button(id="planner-prev", class="btn btn-default btn-xs")
 								i(class="fa fa-arrow-left") 
 
@@ -340,8 +336,8 @@ html
 							button(id="planner-next", class="btn btn-default btn-xs")
 								i(class="fa fa-arrow-right")
 
-							button(id="planner-jumpToToday", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to today", onClick="window.planner.loadWeek(window.planner.findThisMonday().toString());")
-								i(class="fa fa-calendar-o")
+							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
+								i(class="fa fa-external-link")
 
 					table
 						thead
