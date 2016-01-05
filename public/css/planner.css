@@ -264,6 +264,9 @@
 	border-right: none;
 }
 
+#planner {
+	margin-bottom: 30px;
+}
 .ui-datepicker {
 	z-index: 1000 !important;
 }
