@@ -145,11 +145,17 @@ nav {
 
 #page-pref-btn {
 	background: #333333;
+	border-color: #222222;
+	color: white;
 	position: absolute;
 	left: 80px;
 	bottom: 0;
 	z-index: 1040;
 	text-decoration: none;
+}
+
+#page-pref-btn:hover {
+	background-color: #272727;
 }
 
 .loadWarn {
