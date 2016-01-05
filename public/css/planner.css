@@ -3,11 +3,12 @@
 	font-size: 1.2em;
 	width: 150px;
 	text-align: center;
-	background-color: cadetblue;
+	background-color: #333333;
 	padding-top: 15px;
 	height: 0px;
 	padding-bottom: 15px;
 	border-top: none !important;
+	color: white;
 }
 .subjectRow td {
 	border: solid 2px #528789;
