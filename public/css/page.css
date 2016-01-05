@@ -18,16 +18,16 @@ nav {
 	padding-top: 45px;
 }
 .tabs {
-	background: #5F9EA0;
+	background-color: #333333;
 	position: fixed;
 	top: 0;
 	left: 0;
 	height: 100%;
-	padding-top: 80px;
+	padding-top: 60px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	list-style-type: none;
-	border-right: solid 2px #528789;
+	border-right: solid 1px #222222;
 	z-index: 997;
 	text-align: center;
 	width: 80px;
@@ -42,7 +42,7 @@ nav {
 	width: 90px;
 	height: 80px;
 	cursor: pointer;
-	margin-bottom: 40px;
+	margin-bottom: 15px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	transition: background 0.2s;
