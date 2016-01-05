@@ -146,8 +146,9 @@ nav {
 #page-pref-btn {
 	position: absolute;
 	bottom: 0;
-	left: 50px;
 	z-index: 1040;
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
 }
 
 .loadWarn {
