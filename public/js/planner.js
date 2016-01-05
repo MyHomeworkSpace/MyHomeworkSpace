@@ -558,7 +558,11 @@ $(document).ready(function() {
 	});
 
 	$("#planner-jumpTo").click(function() {
-		$.datepicker._gotoToday = function (id) { $(id).datepicker('setDate', new Date()); $('.ui-datepicker-current-day').click(); /*.datepicker('hide').blur();/* };
+		$.datepicker._gotoToday = function (id) {
+			$(id).datepicker('setDate', new Date());
+			$('.ui-datepicker-current-day').click();
+			/*.datepicker('hide').blur();*/
+		};
 		$("body").datepicker("dialog", window.planner.currentStartDate, function(dateStr) {
 			var monday = moment(dateStr);
 			while (monday.day() != 1) {
