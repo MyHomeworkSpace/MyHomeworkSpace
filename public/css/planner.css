@@ -30,7 +30,7 @@
 	box-sizing: border-box;
 }
 #planner-status {
-	display: none;
+	/* display: none; */
 }
 #planner-hacky-text-measure-thing {
 	height: auto;
