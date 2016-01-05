@@ -214,6 +214,15 @@ if (global.env == "production") {
 
 app.use(session(sess));
 
+app.use(function(req, res, next) {
+	if (req.host == "staging.planhub.me") {
+		res.locals.isStaging = true;
+	} else {
+		res.locals.isStaging = false;
+	}
+	next();
+});
+
 app.use(basePath + '/', express.static(path.join(__dirname, 'public')));
 
 app.use(basePath + '/', routes);
