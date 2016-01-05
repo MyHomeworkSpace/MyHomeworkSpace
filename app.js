@@ -182,6 +182,7 @@ var appRouter = require('./routes/app');
 
 var api_main = require('./routes/api_main');
 var api_ext = require('./routes/api_ext');
+var api_labs = require('./routes/api_labs');
 var api_hwView = require('./routes/api_hwView');
 var api_myDay = require('./routes/api_myDay');
 var api_overview = require('./routes/api_overview');
@@ -220,6 +221,7 @@ app.use(basePath + '/app', appRouter);
 
 app.use(basePath + '/api/v1/', api_main);
 app.use(basePath + '/api/v1/ext', api_ext);
+app.use(basePath + '/api/v1/labs', api_labs);
 app.use(basePath + '/api/v1/hwView', api_hwView);
 app.use(basePath + '/api/v1/myDay', api_myDay);
 app.use(basePath + '/api/v1/overview', api_overview);
@@ -235,6 +237,44 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+app.use(function(err, req, res, next) {
+	// logging
+	if (err) {
+		var status = (err.status || 500);
+		var message = (err.message || "");
+		var name = (err.name || "");
+		var stack = (err.stack || "");
+		var username = (req.session.loggedIn ? req.session.username : undefined);
+		var url = req.url;
+		var headers = JSON.stringify(req.headers);
+		knex("errors").insert({
+			username: username,
+			status: status,
+			stack: stack,
+			msg: message,
+			url: url,
+			headers: headers
+		}).then(function() {
+			res.locals.errorLogged = true;
+			next(err);	
+		}).catch(function() {
+			res.locals.errorLogged = false;
+			next(err);	
+		});
+	} else {
+		next(err);
+	}
+});
+
+app.use(function(err, req, res, next) {
+	// 404
+	if (err.status == 404) {
+		res.status(404);
+		res.render("404");
+	} else {
+		next(err);
+	}
+});
 
 // development error handler
 // will print stacktrace

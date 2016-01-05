@@ -18,51 +18,43 @@ nav {
 	padding-top: 45px;
 }
 .tabs {
-	background: white;
+	background-color: #333333;
+	color: white;
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 50px;
 	height: 100%;
-	padding-top: 80px;
+	padding-top: 60px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	list-style-type: none;
-	border-right: solid 1px black;
+	border-right: solid 1px #222222;
 	z-index: 997;
+	text-align: center;
+	width: 80px;
+	padding-left: 50px;
 }
 .tabs li {
-	-webkit-transform: rotate(-90deg);
-	-moz-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	-o-transform: rotate(-90deg);
-	transform: rotate(-90deg);
-
 	text-align: center;
-
 	font-size: 1em;
-
 	position: relative;
-	left: -60px;
-
-	border: solid 1px black;
+	left: -57px;
 	border-bottom: none;
-
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-
 	width: 90px;
-	height: 40px;
-
+	height: 80px;
 	cursor: pointer;
-	
-	margin-bottom: 60px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	transition: background 0.2s;
 }
 .tabs li:hover {
-	background: lightblue;
+	background-color: #272727;
 }
 .tabs li .fa {
 	margin-right: 1px;
+	font-size: 37px;
+	/* font-weight: normal; */
 }
 .go-dropdown li {
 	cursor: pointer;
@@ -79,11 +71,13 @@ nav {
 	height: 100%;
 	padding-top: 55px;
 	padding-left: 60px;
+	padding-left: 90px;
 	position: fixed;
 	top: 0;
 	left: 0;
 	transition: opacity 0.2s;
 	overflow-y: scroll;
+	padding-right: 10px;
 }
 .open-page {
 	opacity: 1;
@@ -150,10 +144,18 @@ nav {
 }
 
 #page-pref-btn {
+	background: #333333;
+	border-color: #222222;
+	color: white;
 	position: absolute;
+	left: 80px;
 	bottom: 0;
-	left: 50px;
 	z-index: 1040;
+	text-decoration: none;
+}
+
+#page-pref-btn:hover {
+	background-color: #272727;
 }
 
 .loadWarn {

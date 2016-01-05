@@ -67,6 +67,9 @@ $(document).ready(function() {
 				}
 				$feedLi.attr("data-id", response[feed].announcementId);
 				var $copyLi = $feedLi.clone();
+					var $days = $('<strong></strong>');
+						$days.text(" Days: " + response[feed].days);
+					$copyLi.append($days)
 				$("#adminAnnouncementList").append($copyLi);
 				var $removeBtn = $('<button class="btn btn-xs btn-danger"> <i class="fa fa-trash-o"></i> </button>');
 					$removeBtn.click(function() {

@@ -46,6 +46,7 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
+		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
@@ -55,7 +56,7 @@ html
 	body
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
-		nav(class="navbar navbar-default navbar-fixed-top web-navbar", data-step="1", data-intro="Welcome to PlanHub! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below)")
+		nav(class="navbar navbar-default navbar-fixed-top web-navbar", data-step="1", data-intro="Welcome to PlanHub, #{user.name}! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below).")
 			div(class="container-fluid")
 				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy PlanHub! To get started, click Done below, and then select a tab.")
 					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
@@ -242,23 +243,37 @@ html
 						ol(id="announcement-delete-list")
 					div(class="modal-footer")
 						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
+						
+		div(id="login-to-schedules-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(class="close", type="button", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") ×
+						h4(class="modal-title") Connect with Schedules
+					div(class="modal-body")
+						input(id="schedules-username", type="text", placeholder="Username", class="form-control")
+						input(id="schedules-pw", type="password", placeholder="Password", class="form-control")
+					div(class="modal-footer")
+						button(class="btn btn-default", id="schedules-sign-in", type="button", data-dismiss="modal") Sign In
+
 		div(class="mainContainer")
 			ul(class="tabs")
 				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
 					i(class="fa fa-calendar") 
-					span  Overview
+					div Overview
 				li(data-step="3", data-intro="This is Planner. This is where you enter all of your homework, and where the magic happens.", data-page="planner")
 					i(class="fa fa-book")  
-					span  Planner
+					div Planner
 				<!-- li(data-page="myDay") My Day -->
 				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
-					span  HW View
+					div HW View
 				<!-- li(data-page="prefs") Preferences -->
 				if user.level > 0
 					li(data-page="admin")
 						i(class="fa fa-cog") 
-						span  Admin
+						div Admin
 
 			button(id="page-pref-btn", class="btn btn-default")
 				i(class="fa fa-cog")
@@ -386,7 +401,7 @@ html
 						div(class="col-md-9")
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/myDay01.png", class="upsell-picture")
+									// img(src="#{basePath}/images/myDay01.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Your custom schedule
 									p You tell My Day how much free time you want, how long it takes you to get home, and what clubs you're a part of. We then build a custom schedule based on your parameters and homework information from your planner.
@@ -395,7 +410,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/myDay02.png", class="upsell-picture")
+									// img(src="#{basePath}/images/myDay02.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Don't spend all night
 									p My Day uses an intelligent algorithm to divide large projects into smaller days. It helps break down long-term assignments into smaller chunks, and ensure that you don't get stuck procrastinating something until the last minute or cramming for a test.
@@ -404,7 +419,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/myDay03.png", class="upsell-picture")
+									// img(src="#{basePath}/images/myDay03.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Your data is already here
 									p My Day takes information you already have from your PlanHub planner and your schedule. Just sign in, and we'll automatically retrieve your information&mdash;you don't have to type it up again. 
@@ -554,16 +569,18 @@ html
 						if user.type == "student"
 							span= user.name.split(" ")[0]
 						else
-							span= user.name
+							span= user.username
 						span , to Labs!
 					p This is a work in progress...
-					span
-						if user.type == "student"
-							p Welcome to Lab scheduling.
-							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
-						if user.type == "teacher"
-							p Welcome to Lab scheduling.
-							button(class="btn", id="schedule-lab-student", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+					button(class="btn btn-primary", id="schedules-connect") Connect to Schedules
+					if user.type == "student"
+						p Welcome to Lab scheduling.
+						button(class="btn btn-primary", id="schedule-lab-student", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
+					if user.type == "teacher"
+						p Welcome to Lab scheduling.
+						button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+					br
+					button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
 						
 				if user.level > 0
 					div(id="admin", class="page")
@@ -572,15 +589,29 @@ html
 						ul
 							if user.canFeedback > 0
 								li(data-page="admin-feedback", class="admin-link")
-									a(href="#admin-feedback") View feedback
+									a(href="#admin-feedback", data-toggle="tooltip", data-placement="right", title="See the feedback users submitted using the send feedback buttons.")
+										i.fa.fa-frown-o.admin-link
+										| View feedback
 							li(data-page="admin-announcements", class="admin-link")
-								a(href="#admin-announcements") Change announcements
+								a(href="#admin-announcements", data-toggle="tooltip", data-placement="right", title="Send announcements to PlanHub users.")
+									i.fa.fa-bullhorn.admin-link
+									| Manage announcements
 							li(data-page="admin-login", class="admin-link")
-								a(href="#admin-login") Test user accounts
+								a(href="#admin-login", data-toggle="tooltip", data-placement="right", title="See PlanHub from a student or teacher's point of view.")
+									i.fa.fa-users.admin-link
+									| Test user accounts
 							li(data-page="admin-stats", class="admin-link")
-								a(href="#admin-stats") Statistics
-							li(data-page="admin-about", class="admin-link")
-								a(href="#admin-about") About server
+								a(href="#admin-stats" , data-toggle="tooltip", data-placement="right", title="Coming Soon!")
+									i.fa.fa-eye.admin-link
+									| Statistics
+							li(data-page="admin-about", class="admin-link", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
+								a(href="#admin-about")
+									i.fa.fa-info-circle.admin-link
+									| About server
+							li(class="admin-link", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
+								a(href="http://blog.planhub.me/wp-login.php" target="_blank")
+									i.fa.fa-rss.admin-link
+									| Manage Blog
 								
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
@@ -616,7 +647,8 @@ html
 					div(id="admin-stats", class="page")
 						h1 Administrative panel
 						h4 Statistics
-						h5 Under construction!
+						a(href="http://status.planhub.me") View Uptime
+						h5 More features coming soon
 
 					div(id="admin-about", class="page")
 						h1 Administrative panel
