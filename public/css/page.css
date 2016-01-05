@@ -22,7 +22,6 @@ nav {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 65px;
 	height: 100%;
 	padding-top: 80px;
 	overflow-y: auto;
@@ -31,20 +30,18 @@ nav {
 	border-right: solid 2px #528789;
 	z-index: 997;
 	text-align: center;
+	padding-left: 0;
 }
 .tabs li {
 	text-align: center;
 	font-size: 1em;
 	position: relative;
 	left: -57px;
-	/* border: solid 1px black; */
 	border-bottom: none;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
 	width: 90px;
-	height: 60px;
+	height: 70px;
 	cursor: pointer;
-	margin-bottom: 60px;
+	margin-bottom: 40px;
 	/* padding-top: 15px; */
 	padding-bottom: 15px;
 }
