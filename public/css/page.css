@@ -184,3 +184,8 @@ nav {
 .loadWarn button:hover {
 	background: rgba(100, 100, 100, 0.95);
 }
+
+.staging-warning {
+	color: red;
+	font-size: 14px;
+}
