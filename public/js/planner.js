@@ -558,12 +558,15 @@ $(document).ready(function() {
 	});
 
 	$("#planner-jumpTo").click(function() {
+		$.datepicker._gotoToday = function (id) { $(id).datepicker('setDate', new Date()).datepicker('hide').blur(); };
 		$("body").datepicker("dialog", window.planner.currentStartDate, function(dateStr) {
 			var monday = moment(dateStr);
 			while (monday.day() != 1) {
 				monday.subtract(1, "day");
 			}
 			window.planner.loadWeek(monday.toDate());
+		}, {
+			showButtonPanel: true
 		});
 	});
 });
