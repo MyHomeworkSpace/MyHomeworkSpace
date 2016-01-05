@@ -43,8 +43,9 @@ nav {
 	height: 80px;
 	cursor: pointer;
 	margin-bottom: 40px;
-	/* padding-top: 15px; */
+	padding-top: 15px;
 	padding-bottom: 15px;
+	transition: background 0.2s;
 }
 .tabs li:hover {
 	background: lightblue;
@@ -69,11 +70,13 @@ nav {
 	height: 100%;
 	padding-top: 55px;
 	padding-left: 60px;
+	padding-left: 90px;
 	position: fixed;
 	top: 0;
 	left: 0;
 	transition: opacity 0.2s;
 	overflow-y: scroll;
+	padding-right: 10px;
 }
 .open-page {
 	opacity: 1;
