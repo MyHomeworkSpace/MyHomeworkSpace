@@ -49,7 +49,7 @@ nav {
 	transition: background 0.2s;
 }
 .tabs li:hover {
-	background: lightblue;
+	background-color: #272727;
 }
 .tabs li .fa {
 	margin-right: 1px;
