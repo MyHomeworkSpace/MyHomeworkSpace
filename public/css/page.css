@@ -187,5 +187,6 @@ nav {
 
 .staging-warning {
 	color: red !important;
-	font-size: 14px !important;
+	font-size: 15px;
+	font-style: bold;
 }
