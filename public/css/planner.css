@@ -257,7 +257,7 @@
     background: lightgray;
 }
 
-#planner thead tr:first-child tr {
+#planner thead tr:not(.announcement-row) th {
 	border-left: none;
 	border-right: none;
 }
