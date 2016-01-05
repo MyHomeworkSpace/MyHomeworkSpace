@@ -47,6 +47,9 @@ html
 							a(href="#{basePath}/about") About
 						li
 							a(href="http://blog.planhub.me") Blog
+						if isStaging
+							p(class="navbar-text staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using staging. This is for testing purposes only-don't use it as your real planner!") Staging
+
 					ul(class="nav navbar-nav navbar-right")
 						if user
 							li(class="navbar-text")= user.name
