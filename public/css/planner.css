@@ -257,6 +257,11 @@
     background: lightgray;
 }
 
+#planner thead tr:first {
+	border-left: none;
+	border-right: none;
+}
+
 .ui-datepicker {
 	z-index: 1000 !important;
 }
