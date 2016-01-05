@@ -11,12 +11,14 @@ window.planner = {
 window.planner.showSaving = function() {
 	window.planner.saving = true;
 	$("#planner-status").html('<i class="fa fa-refresh fa-spin"></i>');
+	$("#planner-status").attr("title", "Saving...");
 	$("#planner").attr("data-exitPrompt", "We're currently saving your information. Please stay on the page.");
 };
 
 window.planner.showSaved = function() {
 	window.planner.saving = false;
 	$("#planner-status").html('<i class="fa fa-check"></i>');
+	$("#planner-status").attr("title", "All data saved!");
 	$("#planner").attr("data-exitPrompt", "");
 };
 
