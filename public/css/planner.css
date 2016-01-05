@@ -257,7 +257,7 @@
     background: lightgray;
 }
 
-#planner thead tr:first {
+#planner thead tr:first-child tr {
 	border-left: none;
 	border-right: none;
 }
