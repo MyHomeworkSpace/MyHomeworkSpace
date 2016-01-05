@@ -89,6 +89,8 @@ html
 										a(data-page="admin") Admin
 									li
 										a(data-page="prefs") Preferences
+						if isStaging
+							p(class="navbar-text") staging
 
 					ul(class="nav navbar-nav navbar-right")
 						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for PlanHub? Send it to us with this button!")
