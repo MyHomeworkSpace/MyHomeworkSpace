@@ -33,7 +33,6 @@ nav {
 	text-align: cente;
 }
 .tabs li {
-	color: white;
 	text-align: center;
 	font-size: 1em;
 	position: relative;
@@ -43,7 +42,7 @@ nav {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	width: 90px;
-	height: 40px;
+	height: 60px;
 	cursor: pointer;
 	margin-bottom: 60px;
 	/* padding-top: 15px; */
