@@ -29,6 +29,9 @@
 	resize: none;
 	box-sizing: border-box;
 }
+#planner-status {
+	display: none;
+}
 #planner-hacky-text-measure-thing {
 	height: auto;
 	position: absolute;
