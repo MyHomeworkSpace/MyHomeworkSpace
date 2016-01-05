@@ -30,7 +30,8 @@ nav {
 	border-right: solid 2px #528789;
 	z-index: 997;
 	text-align: center;
-	padding-left: 0;
+	width: 80px;
+	padding-left: 50px;
 }
 .tabs li {
 	text-align: center;
@@ -39,7 +40,7 @@ nav {
 	left: -57px;
 	border-bottom: none;
 	width: 90px;
-	height: 70px;
+	height: 80px;
 	cursor: pointer;
 	margin-bottom: 40px;
 	/* padding-top: 15px; */
