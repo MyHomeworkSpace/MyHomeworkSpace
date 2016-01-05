@@ -261,19 +261,19 @@ html
 			ul(class="tabs")
 				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
 					i(class="fa fa-calendar") 
-					span  Overview
+					div Overview
 				li(data-step="3", data-intro="This is Planner. This is where you enter all of your homework, and where the magic happens.", data-page="planner")
 					i(class="fa fa-book")  
-					span  Planner
+					div Planner
 				<!-- li(data-page="myDay") My Day -->
 				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
-					span  HW View
+					div HW View
 				<!-- li(data-page="prefs") Preferences -->
 				if user.level > 0
 					li(data-page="admin")
 						i(class="fa fa-cog") 
-						span  Admin
+						div Admin
 
 			button(id="page-pref-btn", class="btn btn-default")
 				i(class="fa fa-cog")
