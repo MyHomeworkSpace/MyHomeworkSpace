@@ -82,7 +82,7 @@ window.hwView.addEventToList = function(ev, list) {
 				if (tag.toLowerCase() == "optionalhw" || tag.toLowerCase() == "challenge") {
 					keyword = "due (optional)"
 				}
-				if (tag.toLowerCase() == "hex")
+				if (tag.toLowerCase() == "hex"){
 					keyword = "- You must hex the NSA by"
 				}
 				var dueText = window.utils.formatDate_pretty(moment(ev.due).add(1, "day").toDate());
