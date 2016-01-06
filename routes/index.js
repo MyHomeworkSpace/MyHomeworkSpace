@@ -20,7 +20,7 @@ router.get('/about', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('about', { title: 'About' });
 });
 
-router.get('/about', global.getOptionalUserRecord, function(req, res, next) {
+router.get('/staging', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('staging', { title: 'Staging' });
 });
 
