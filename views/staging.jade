@@ -3,9 +3,11 @@ extends layout
 block content
 	h1 Staging
 	unless isStaging
-		p(class="lead") You are currently not using staging. Go to staging.planhub.me to open staging.
+		p(class="lead") You are currently not using staging.
+			a(href="staging.planhub.me/staging") Go to Staging
 	if isStaging
 		p(class="lead") You are using PlanHub Staging.
+		 a(href="planhub.me/staging") Exit Staging
 		span(style="color:red;") Please be careful. Things 
 			strong will 
 			| break. This 
