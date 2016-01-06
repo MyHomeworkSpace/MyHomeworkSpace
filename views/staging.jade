@@ -4,10 +4,10 @@ block content
 	h1 Staging
 	unless isStaging
 		p(class="lead") You are currently not using staging. 
-			a(href="http://www.staging.planhub.me/staging") Go to Staging
+			a(href="http://staging.planhub.me/staging") Go to Staging
 	if isStaging
 		p(class="lead") You are using PlanHub Staging. 
-			a(href="http://www.planhub.me/staging") Exit Staging
+			a(href="http://planhub.me/staging") Exit Staging
 		span(style="color:red;") Please be careful. Things 
 			strong will 
 			| break. This 
@@ -19,7 +19,7 @@ block content
 		span As you know, PlanHub is open-source software licensed under the MIT License. PlanHub staging
 			unless isStaging
 				| (which can be found
-				a(href="staging.planhub.me") here
+				a(href="http://staging.planhub.me") here
 				| )
 			| pull directly from the "master" branch of our 
 			a(href="https://github.com/PlanHubMe/PlanHub") Git repository
@@ -27,6 +27,6 @@ block content
 			strong It does not pull from the 
 				a(href="https://github.com/PlanHubMe/PlanHub/tree/stable") stable 
 				| branch, which means whatever we commit will appear there. There will be crashes. Things will get messy. 
-				span(style="color:red;") We strongly reccomend only using PlanHub Staging for api testing, and trying new features. Do not host you planner on PlanHub Staging.
+				span(style="color:red;") We strongly recommend only using PlanHub Staging for API testing and trying new features. Do not host your planner on PlanHub Staging.
 	h1(style="color: red;") PlanHub Staging is for development purposes only.
 		strong Use PlanHub Staging at your own risk. 
