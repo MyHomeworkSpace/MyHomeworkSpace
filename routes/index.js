@@ -20,6 +20,10 @@ router.get('/about', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('about', { title: 'About' });
 });
 
+router.get('/about', global.getOptionalUserRecord, function(req, res, next) {
+	res.render('staging', { title: 'Staging' });
+});
+
 router.get('/logout', global.requireUser, function(req, res, next) {
 	req.session.loggedIn = false;
 	req.session.username = "logged out";
@@ -119,7 +123,7 @@ router.post('/login', global.getOptionalUserRecord, function(req, res, next) {
 							var email = username + "@dalton.org"; // guess the email!
 							var user_type = data["response"]["result"][0]["user"][0]["$"]["type"];
 							var name = data["response"]["result"][0]["user"][0]["name"][0];
-							
+
 							knex.select('*').from('users').limit(1).where({
 								username: username
 							}).then(function(obj) {
