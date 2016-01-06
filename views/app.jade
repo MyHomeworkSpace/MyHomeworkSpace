@@ -621,7 +621,11 @@ html
 								a(href="http://blog.planhub.me/wp-login.php" target="_blank")
 									i.fa.fa-rss.admin-link
 									| Manage Blog
-								
+								li(data-page="admin-brag", class="admin-link", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
+									a(href="#admin-brag")
+										i.fa.fa-bullhorn.admin-link
+										| Manage Blog
+							
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
