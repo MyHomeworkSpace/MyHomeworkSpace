@@ -52,7 +52,7 @@ html
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
-
+			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 
 	body
@@ -667,6 +667,11 @@ html
 						h1 Administrative panel
 						h4 About server
 						h5 Under construction!
+						
+					div(id="admin-about", class="page")
+						h1 Administrative panel
+						h2 I AM AN ADMIN!
+						h3 I have a user.level of #{user.level} and I have a feedback level of #{user.canFeedback}.
 						
 					div(id="admin-login", class="page")
 						h1 Administrative panel
