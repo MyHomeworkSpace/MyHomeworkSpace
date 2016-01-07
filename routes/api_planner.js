@@ -92,6 +92,20 @@ router.get('/events/get/:date/:section_index', global.apiCall, global.requireUse
 	});
 });
 
+router.get('/events/getDay/:day', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	knex("planner_events").where({
+		userId: res.locals.user.id,
+		date: req.params.day
+	}).select("*").then(function(obj) {
+		res.json({
+			status: "ok",
+			events: obj
+		});
+	}).catch(function(e) {
+		global.dbErrorHandler(e, res, req, next);
+	});
+});
+
 router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.params.date === undefined) {
 		res.json({
