@@ -22,12 +22,12 @@ $(document).ready(function() {
 			}
 		});
 		window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
-			HWphrase(result.events.length);	
+			HWphrase(howmuchhw, result.events.length);
 		});
 	});
 });
 
-function HWphrase(hw) {
+function HWphrase(id, hw) {
 	if(hw < 1){
 		document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> Looks like tonight will be an easy night! You have no homework due tomorrow!';
 	} else if (hw < 3) {
