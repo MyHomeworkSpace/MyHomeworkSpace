@@ -22,7 +22,7 @@ $(document).ready(function() {
 			}
 		});
 		window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
-			HWphrase(howmuchhw, result.events.length);
+			HWphrase("howmuchhw", result.events.length);
 		});
 	});
 });
