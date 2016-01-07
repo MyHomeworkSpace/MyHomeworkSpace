@@ -104,4 +104,18 @@ router.post('/announcements/remove/', global.apiCall, global.requireUser, global
 	});
 });
 
+router.get('/users/count/', global.apiCall, global.requireUser, global.getuserRecord, global.requireNonZeroLevel, function(req, res, next) {
+	knex("users").select("id").then(function(res) {
+		res.json({
+			status: "ok",
+			number: res.length
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error"
+		});
+	})''
+});
+
 module.exports = router;
