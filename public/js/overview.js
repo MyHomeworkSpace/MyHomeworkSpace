@@ -42,7 +42,21 @@ window.overview.HWphrase = function (id, hw) {
 		document.getElementById(id).innerHTML = '<i class="fa fa-frown-o"></i> You might be up late doing homework tonight. You have ' + hw + ' assignments due tomorrow.';
 	}
 }
-
+window.overview.graph = function(values){
+	//values is an array of data
+	var myData = values;
+	var myChart = new JSChart('chartid', 'line');
+	myChart.setDataArray(myData);
+	myChart.setLineColor('#000000');
+	myChart.setLineWidth(4);
+	myChart.setTitleColor('#7D7D7D');
+	myChart.setAxisColor('#9F0505');
+	myChart.setGridColor('#a4a4a4');
+	myChart.setAxisValuesColor('#333639');
+	myChart.setAxisNameColor('#333639');
+	myChart.setTextPaddingLeft(0);
+	myChart.draw();
+}
 function hello(){
 	alert("Hi!");
 }
