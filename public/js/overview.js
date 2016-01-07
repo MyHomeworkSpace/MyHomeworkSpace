@@ -21,7 +21,9 @@ $(document).ready(function() {
 				$("#announcementAlert").css("display", "none");
 			}
 		});
-		HWphrase(tomorrow, window.api.get("HWphrase",'/planner/events/getDay/' + day, function(result) {console.log(result.events.length)}));
+		window.api.get("HWphrase",'/planner/events/getDay/' + day, function(result) {
+			HWphrase(tomorrow, result.events.length);	
+		});
 	});
 });
 
