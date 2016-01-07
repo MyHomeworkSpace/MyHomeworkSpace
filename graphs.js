@@ -44,7 +44,7 @@ window.graph.graph = function(){
   			break;
   	}
   	//how do i include this '<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>''
-	  /*var chart = new CanvasJS.Chart("chartContainer", {
+	  var chart = new CanvasJS.Chart("chartContainer", {
 		theme: "theme1",//theme1
 		title:{
 			  text: "Your Homework"              
@@ -67,5 +67,5 @@ window.graph.graph = function(){
 		]
 	});
 	chart.render();
-	*/
+	
   }
