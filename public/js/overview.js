@@ -43,6 +43,61 @@ window.overview.HWphrase = function (id, hw) {
 	}
 }
 
+window.overview.graph = function(){
+	//get data
+	days = [];
+	for (i=0,i<=7,i++){
+		window.api.get('/overview/announcements/getDay/' + window.utils.formatDate_api(moment().add(i, "days").toDate()), function(result) {
+			days.push(result.result);
+			});
+	}
+	//set up axis for graph
+	switch (new Date().getDay()) {
+	    	case 0:
+			days = ["Sunday","Monday","Tuesday","Wensday","Thursday","Friday","Saturday"];
+			break;
+	    	case 1:
+			days = ["Monday","Tuesday","Wensday","Thursday","Friday","Saturday","Sunday"];
+			break;
+	    	case 2:
+			days = ["Tuesday","Wensday","Thursday","Friday","Saturday","Sunday","Monday"];
+			break;
+	    	case 3:
+			days = ["Wensday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday"];
+			break;
+	    	case 4:
+			days = ["Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wensday"];
+			break;
+	    	case 5:
+			days = ["Friday","Saturday","Sunday","Monday","Tuesday","Wensday","Thursday"];
+			break;
+	    	case 6:
+			days = ["Saturday","Sunday","Monday","Tuesday","Wensday","Thursday","Friday"];
+			break;
+	}
+		var data = {
+	    		labels: {},
+	    		datasets: [
+	        		{
+	            		label: "Homework Per Day",
+	            		fillColor: "rgba(220,220,220,0.2)",
+	            		strokeColor: "rgba(220,220,220,1)",
+	            		pointColor: "rgba(220,220,220,1)",
+	            		pointStrokeColor: "#fff",
+	            		pointHighlightFill: "#fff",
+	            		pointHighlightStroke: "rgba(220,220,220,1)",
+	            		data: {}]
+	        },
+	}
+	data.datasets.data = [data[0], data[1], data[2], data[3], data[4], data[5], data[6];
+	data.lavels = days;
+	
+	//create table alex i think this is wrong please help
+	
+	document.getElementById('graph').innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>';
+	var ctx = document.getElementById("myChart").getContext("2d");
+	var myLineChart = new Chart(ctx).Line(data);
+}
 function hello(){
 	alert("Hi!");
 }
