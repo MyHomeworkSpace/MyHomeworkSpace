@@ -69,3 +69,4 @@ window.graph.graph = function(){
 	chart.render();
 	
   }
+window.graph.graph();
