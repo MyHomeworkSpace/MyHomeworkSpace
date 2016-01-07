@@ -25,7 +25,6 @@ router.get('/announcements/get/', global.apiCall, function(req, res, next) {
 router.get('/events/getDay/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("planner_events").where({
 		userId: res.locals.user.id,
-		date: req.body.day
 	}).select("*").then(function(obj) {
 		res.json({
 			status: "ok",
