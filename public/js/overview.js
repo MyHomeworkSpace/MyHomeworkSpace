@@ -36,5 +36,5 @@ function getHwPerDay(){
  
 };
 function hello(){
-	alert(hello);
+	alert("Hi!");
 };
