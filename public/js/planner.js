@@ -538,8 +538,9 @@ $(document).ready(function() {
 						words: [ prefix ],
 						tabSystem: true
 					};
+					loadedPrefixes.push(prefixObj);
 				}
-				window.planner.titleOrder = ;
+				window.planner.titleOrder = loadedPrefixes;
 
 				for (var i = 0; i < subjects.length; i++) {
 					window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
