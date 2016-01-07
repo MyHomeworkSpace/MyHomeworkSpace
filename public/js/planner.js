@@ -531,7 +531,15 @@ $(document).ready(function() {
 				if(titleOrder === undefined) {
 					titleOrder = window.utils.getTabPrefixes();
 				}
-				window.planner.titleOrder = titleOrder;
+				var loadedPrefixes = titleOrder;
+				for (var prefixId in loadedPrefixes) {
+					var prefix = loadedPrefixes[prefixId];
+					var prefixObj = {
+						words: [ prefix ],
+						tabSystem: true
+					};
+				}
+				window.planner.titleOrder = ;
 
 				for (var i = 0; i < subjects.length; i++) {
 					window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
