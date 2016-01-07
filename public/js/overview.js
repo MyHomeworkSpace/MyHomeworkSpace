@@ -27,19 +27,6 @@ $(document).ready(function() {
 	});
 });
 
-function getHwPerDay(){
-	var date = window.utils.formatDate_api(moment().add(1, day).toDate();
-	var hwPerDay = [];
-	for (i = 0; i < 10; i++) {
-		date1 = date + i;
-		window.api.get('/overview/events/getDay/', {date: date1}, function(res) {
-			alert(res);
-			hwPerDay.push(res);
-		});
-		alert(hwPerDay);
-	}
-}
-
 function HWphrase(hw) {
 	if(hw < 1){
 		document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> Looks like tonight will be an easy night! You have no homework due tomorrow!';
