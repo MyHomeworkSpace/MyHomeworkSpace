@@ -27,14 +27,14 @@ function getHwPerDay(){
 	var hwPerDay = [];
 	for (i = 0; i < 10; i++) { 
 		date1 = date + i;
-		 window.api.get('/overview/events/getDay/', {date: date1}, function(res) {
-   			alert(res);
-   			hwPerDay.push(res);
-   		});
-	alert(hwPerDay);
+		window.api.get('/overview/events/getDay/', {date: date1}, function(res) {
+			alert(res);
+			hwPerDay.push(res);
+		});
+		alert(hwPerDay);
 	}
- 
-};
+}
+
 function hello(){
 	alert("Hi!");
-};
+}
