@@ -23,5 +23,10 @@ $(document).ready(function() {
 });
 
 function hello(){
-  alert("Hi!")
+  window.api.get('/overview/events/getDay/', {date: window.utils.formatDate_api(moment().add(1, day).toDate()}, function(res) {
+  	alert(res);
+  });
+
+
+  
 }
