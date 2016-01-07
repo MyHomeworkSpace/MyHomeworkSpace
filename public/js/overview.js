@@ -21,8 +21,8 @@ $(document).ready(function() {
 				$("#announcementAlert").css("display", "none");
 			}
 		});
-		window.api.get("HWphrase",'/planner/events/getDay/' + day, function(result) {
-			HWphrase(tomorrow, result.events.length);	
+		window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
+			HWphrase(result.events.length);	
 		});
 	});
 });
@@ -40,7 +40,7 @@ function getHwPerDay(){
 	}
 }
 
-function HWphrase(date, hw)
+function HWphrase(hw) {
 	if(hw < 1){
 		document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> Looks like tonight will be an easy night! You have no homework due tomorrow!';
 	} else if (hw < 3) {
