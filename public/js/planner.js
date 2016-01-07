@@ -10,13 +10,17 @@ window.planner = {
 
 window.planner.showSaving = function() {
 	window.planner.saving = true;
-	$("#planner-status").html('<i class="fa fa-refresh fa-spin"></i> Saving...');
+	$("#planner-status").html('<i class="fa fa-refresh fa-spin"></i>');
+	$("#planner-status").attr("title", "Saving...");
+	$("#planner-status").attr("data-original-title", "Saving...");
 	$("#planner").attr("data-exitPrompt", "We're currently saving your information. Please stay on the page.");
 };
 
 window.planner.showSaved = function() {
 	window.planner.saving = false;
-	$("#planner-status").html('<i class="fa fa-check"></i> Saved!');
+	$("#planner-status").html('<i class="fa fa-check"></i>');
+	$("#planner-status").attr("title", "All data saved!");
+	$("#planner-status").attr("data-original-title", "All data saved!");
 	$("#planner").attr("data-exitPrompt", "");
 };
 
@@ -527,7 +531,16 @@ $(document).ready(function() {
 				if(titleOrder === undefined) {
 					titleOrder = window.utils.getTabPrefixes();
 				}
-				window.planner.titleOrder = titleOrder;
+				var loadedPrefixes = titleOrder;
+				for (var prefixId in loadedPrefixes) {
+					var prefix = loadedPrefixes[prefixId];
+					var prefixObj = {
+						words: [ prefix ],
+						tabSystem: true
+					};
+					loadedPrefixes.push(prefixObj);
+				}
+				window.planner.titleOrder = loadedPrefixes;
 
 				for (var i = 0; i < subjects.length; i++) {
 					window.planner.createSubjectRow(subjects[i].name, subjects[i].sectionIndex);
@@ -558,12 +571,19 @@ $(document).ready(function() {
 	});
 
 	$("#planner-jumpTo").click(function() {
+		$.datepicker._gotoToday = function (id) {
+			$(id).datepicker('setDate', new Date());
+			$('.ui-datepicker-current-day').click();
+			/*.datepicker('hide').blur();*/
+		};
 		$("body").datepicker("dialog", window.planner.currentStartDate, function(dateStr) {
 			var monday = moment(dateStr);
 			while (monday.day() != 1) {
 				monday.subtract(1, "day");
 			}
 			window.planner.loadWeek(monday.toDate());
+		}, {
+			showButtonPanel: true
 		});
 	});
 });

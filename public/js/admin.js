@@ -99,4 +99,7 @@ $(document).ready(function() {
 	$("#announcement-clear").click(function() {
 		$("#admin-announcement-modal").modal();
 	});
+	window.api.get('/admin/users/count/', function(result) {
+		$("#userNumber").text("There are " + result.number + " users!")
+	});
 });

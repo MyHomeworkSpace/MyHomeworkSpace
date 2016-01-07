@@ -24,12 +24,14 @@ html
 		script(src="#{basePath}/js/jquery-ui.min.js")
 		script(src="#{basePath}/js/sweetalert.min.js")
 		script(src="#{basePath}/js/intro.js")
+		script(src="#{basePath}/js/coursesLib.js", defer)
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/overview.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/hwView.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/myDay.css")
+		link(rel="stylesheet", href="#{global.basePath}/css/admin.css")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/prefs.css")
 
@@ -50,7 +52,7 @@ html
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
-
+			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 
 	body
@@ -88,6 +90,9 @@ html
 										a(data-page="admin") Admin
 									li
 										a(data-page="prefs") Preferences
+						if isStaging
+							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using PlanHub Staging. This is for testing purposes only-don't use it as your real planner!")
+								a(href="#{basePath}/staging") Staging
 
 					ul(class="nav navbar-nav navbar-right")
 						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for PlanHub? Send it to us with this button!")
@@ -134,6 +139,11 @@ html
 					div(class="modal-body")
 						p(class="feedback-desc")
 						textarea(id="feedback-msg", placeholder="Write your message here...")
+						if isStaging
+							strong(style="color: red;") Important: You are on staging, our beta platform. If you use this form to submit feedback, chances are we will not see it. If you want to send feedback on our beta platform, please submit a GitHub issue 
+								a(href="https://github.com/PlanHubMe/PlanHub/issues/new") here
+								| .
+								br
 						strong The following information will be sent with your feedback:
 						ul
 							li
@@ -284,6 +294,7 @@ html
 						span Today is 
 						span(class="overview-date") a day
 						span .
+					h3#howmuchhw
 					div(id="announcementAlert", class="alert alert-info alert-overview", role='alert', width='90%', style="display: none")
 						ul#announcementList
 				div(id="planner", class="page")
@@ -323,16 +334,13 @@ html
 									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
 
 					div(id="planner-hacky-text-measure-thing")
-					div(id="planner-status") Saved.
+					//div(id="planner-status") Saved.
 					div(id="planner-controls-wrapper")
 						div(id="planner-controls")
-						
-							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
-								i(class="fa fa-external-link")
-							
+							span#planner-status.btn-xs.btn-disabled(data-toggle="tooltip", data-placement="bottom", title="All data saved!")
+								i.fa.fa-check
 							button(id="planner-prev", class="btn btn-default btn-xs")
 								i(class="fa fa-arrow-left") 
-
 							span(class="planner-current-week")
 								span Week of 
 								span(id="planner-week")  
@@ -340,8 +348,8 @@ html
 							button(id="planner-next", class="btn btn-default btn-xs")
 								i(class="fa fa-arrow-right")
 
-							button(id="planner-jumpToToday", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to today", onClick="window.planner.loadWeek(window.planner.findThisMonday().toString());")
-								i(class="fa fa-calendar-o")
+							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
+								i(class="fa fa-external-link")
 
 					table
 						thead
@@ -614,7 +622,13 @@ html
 								a(href="http://blog.planhub.me/wp-login.php" target="_blank")
 									i.fa.fa-rss.admin-link
 									| Manage Blog
-								
+								li(data-page="admin-brag", class="admin-link", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
+									a(href="#admin-brag")
+										i.fa.fa-bullhorn.admin-link
+										| Manage Blog
+							li(id="userNumber")
+								No Users
+							
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
@@ -656,6 +670,11 @@ html
 						h1 Administrative panel
 						h4 About server
 						h5 Under construction!
+						
+					div(id="admin-about", class="page")
+						h1 Administrative panel
+						h2 I AM AN ADMIN!
+						h3 I have a user.level of #{user.level} and I have a feedback level of #{user.canFeedback}.
 						
 					div(id="admin-login", class="page")
 						h1 Administrative panel

@@ -1,6 +1,6 @@
 iframe {
-  border-style: solid;
-  border-width: 5px;
+	border-style: solid;
+	border-width: 5px;
 }
 
 body {
@@ -22,4 +22,12 @@ body {
 
 .announcementDelete {
 	text-decoration: line-through;
+}
+
+
+
+.staging-warning {
+	color: red !important;
+	font-size: 15px;
+	font-weight: bold;
 }
