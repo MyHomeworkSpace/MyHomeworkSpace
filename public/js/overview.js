@@ -1,5 +1,7 @@
 window.overview = {};
 
+var tomorrow = window.utils.formatDate_api(moment().add(1, "days").toDate())
+
 $(document).ready(function() {
 	$("#overview").on("tabOpened", function() {
 		$(".overview-date").text(window.utils.formatDate_english(new Date()));
@@ -19,19 +21,32 @@ $(document).ready(function() {
 				$("#announcementAlert").css("display", "none");
 			}
 		});
+		HWphrase(tomorrow, window.api.get('/planner/events/getDay/' + day, function(result) {console.log(result.events.length)}));
 	});
 });
 
 function getHwPerDay(){
 	var date = window.utils.formatDate_api(moment().add(1, day).toDate();
 	var hwPerDay = [];
-	for (i = 0; i < 10; i++) { 
+	for (i = 0; i < 10; i++) {
 		date1 = date + i;
 		window.api.get('/overview/events/getDay/', {date: date1}, function(res) {
 			alert(res);
 			hwPerDay.push(res);
 		});
 		alert(hwPerDay);
+	}
+}
+
+function HWphrase(date, hw)
+	if(hw < 1){
+		document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> Looks like tonight will be an easy night! You have no homework due tomorrow!';
+	} else if (hw < 3) {
+		document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> It seems like you will have some free time tonight! You have ' + hw + ' assignments due tomorrow.';
+	} else if (hw < 5)
+		document.getElementById(id).innerHTML = '<i class="fa fa-frown-o"></i> Tonight might be rough. You have ' + hw + ' assignments due tomorrow.';
+	} else {
+		document.getElementById(id).innerHTML = '<i class="fa fa-frown-o"></i> You might be up late doing homework tonight. You have ' + hw + ' assignments due tomorrow.';
 	}
 }
 
