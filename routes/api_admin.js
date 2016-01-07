@@ -110,10 +110,10 @@ router.get('/users/count/', global.apiCall, global.requireUser, global.getUserRe
 			status: "ok",
 			number: res[0].CNT
 		});
-	}).catch(function() {
+	}).catch(function(err) {
 		res.json({
 			status: "error",
-			error: "Unknown database error"
+			error: "Unknown database error" + err
 		});
 	});
 });
