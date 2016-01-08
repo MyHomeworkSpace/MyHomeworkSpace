@@ -580,6 +580,40 @@ html
 							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp") Download
 							
 				div(id="labs", class="page")
+					div(id="labs-upsell", class="upsell row", data-feature="planner")
+						div(class="col-md-3")
+							h1 Planner
+							h3 Keep track of your assignments online.
+
+							br
+
+							button(class="btn btn-primary upsell-btn", data-feature="planner") Start
+
+						div(class="col-md-9")
+							div(class="upsell-row row")
+								div(class="col-md-4")
+									img(src="#{basePath}/images/planner01.png", class="upsell-picture")
+								div(class="col-md-8")
+									h4 Synced to the cloud
+									p You can't lose your planner anymore - assignments you write are saved to your Dalton account. Sign back in and your assignments will be right where you left them - even if you're using another device.
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-4")
+									img(src="#{basePath}/images/planner02.png", class="upsell-picture")
+								div(class="col-md-8")
+									h4 Tag your assignments
+									p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-4")
+									img(src="#{basePath}/images/planner03.png", class="upsell-picture")
+								div(class="col-md-8")
+									h4 Add or remove subjects
+									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
 					p
 						span Welcome, 
 						if user.type == "student"
