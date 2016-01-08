@@ -26,6 +26,7 @@ html
 		script(src="#{basePath}/js/jquery-ui.min.js")
 		script(src="#{basePath}/js/sweetalert.min.js")
 		script(src="#{basePath}/js/intro.js")
+		script(src="#{basePath}/js/Chart.min.js")
 		script(src="#{basePath}/js/coursesLib.js", defer)
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
@@ -50,8 +51,7 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
-		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
-		script(type="text/javascript", src="#{global.basePath}/js/graphs.js")
+		script(type="text/javascript", src="#{global.basePath}/js/chartSetup.js")
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
@@ -596,9 +596,8 @@ html
 					button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
 				
 				div(id="graphs", class="page")
-					<!-- Okay em-p let your imagination run free here. -->
-					h1 Hi this is just a test.
-					div(id="chartContainer")
+					h1 Graphs
+					canvas#hwChart(width="400" height="400")
 						
 				if user.level > 0
 					div(id="admin", class="page")
