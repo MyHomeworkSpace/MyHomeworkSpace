@@ -1,3 +1,5 @@
+window.graph = {}
+
 window.graph.graph = function(){
  	//get data
  	var days = [];
