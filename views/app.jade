@@ -114,6 +114,7 @@ html
 							ul.dropdown-menu
 								li
 									a(href="#{basePath}/logout") Log out
+									a(href="#prefs") Prefrences
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 					span
@@ -552,9 +553,11 @@ html
 							
 							
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
-							p Settings about your account's security.
+							p Your account's security settings
+							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
+							a.btn.btn-danger(href="https://dalton.myschoolapp.com/app/#login/request") Forgot Password
 						
-						div(role="tabpanel", class="tab-pane", id="prefs-apps")
+						div(role="tabpanel", class="tab-pane", id="prefs-apps")	
 							p More apps by the PlanHub Team
 							h4 CoursesPlus
 							h6 Free, Chrome Extension, School Laptop Ready
