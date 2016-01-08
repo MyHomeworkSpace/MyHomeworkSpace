@@ -19,10 +19,7 @@ window.graph.graph = function(){
  	        hws[dayToAssign] += 1;    
  	    }
  	    console.log(hws);
- 	});
- 	
-  	
-  	//set up axis for graph
+ 	    //set up axis for graph
   	switch (new Date().getDay()) {
   	    	case 0:
   			days = ["Sunday","Monday","Tuesday","Wensday","Thursday","Friday","Saturday"];
@@ -74,6 +71,10 @@ window.graph.graph = function(){
 	chart.render();
 	chart.render();
 	chart.render();
+ 	});
+ 	
+  	
+  	
   }
   
 $(document).ready(function() {
