@@ -1,12 +1,12 @@
 window.graph = {}
-
+var hws = [0,0,0,0,0,0,0];
 window.graph.graph = function(){
  	//get data
  	var days = [];
  	
  	var hwResult;
-	var hws = [0,0,0,0,0,0,0];
-	window.api.get('planner/events/getWholeWeek/' + window.utils.formatDate_api(moment().add(i, "days").toDate()), function(result) {
+	
+	window.api.get('planner/events/getWholeWeek/' + window.utils.formatDate_api(moment().toDate()), function(result) {
  	    var hwResult = result.events;
  		
  	    console.log(result.events.length);
@@ -18,6 +18,7 @@ window.graph.graph = function(){
  	        var dayToAssign = (parseInt(iDate[8] + iDate[9])) - parseInt(date[8] + date[9]);console.log(dayToAssign);
  	        hws[dayToAssign] += 1;    
  	    }
+ 	    console.log(hws);
  	});
  	
   	
@@ -69,5 +70,8 @@ window.graph.graph = function(){
 		]
 	});
 	chart.render();
+	console.log(hws);
+	
 	
   }
+window.graph.graph();
