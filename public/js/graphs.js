@@ -3,12 +3,12 @@ var hws = [0,0,0,0,0,0,0];
 window.graph.graph = function(){
  	//get data
  	var days = [];
- 	
+
  	var hwResult;
-	
+
 	window.api.get('planner/events/getWholeWeek/' + window.utils.formatDate_api(moment().toDate()), function(result) {
  	    var hwResult = result.events;
- 		
+
  	    console.log(result.events.length);
 	    var date = window.utils.formatDate_api(moment().toDate());
 	    for (var i=0;i<result.events.length;i++){
@@ -16,12 +16,12 @@ window.graph.graph = function(){
  			var iDate = window.utils.formatDate_api(moment(hwResult[i]["date"]).toDate());
  			console.log(iDate);
  	        var dayToAssign = (parseInt(iDate[8] + iDate[9])) - parseInt(date[8] + date[9]);console.log(dayToAssign);
- 	        hws[dayToAssign] += 1;    
+ 	        hws[dayToAssign] += 1;
  	    }
  	    console.log(hws);
  	});
- 	
-  	
+
+
   	//set up axis for graph
   	switch (new Date().getDay()) {
   	    	case 0:
@@ -48,12 +48,11 @@ window.graph.graph = function(){
   	}
   	//how do i include this '<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>''
 	  var chart = new CanvasJS.Chart("chartContainer", {
-		theme: "theme1",//theme1
 		title:{
-			  text: "Your Homework"              
+			  text: "Your Homework"
 		},
 		animationEnabled: true,   // change to true
-		data: [              
+		data: [
 		{
 			// Change type to "bar", "area", "spline", "pie",etc.
 			type: "line",
@@ -71,10 +70,10 @@ window.graph.graph = function(){
 	});
 	chart.render();
 	console.log(hws);
-	
-	
+
+
   }
-  
+
 $(document).ready(function() {
 	window.graph.graph();
 });
