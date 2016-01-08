@@ -69,10 +69,11 @@ window.graph.graph = function(){
 		}
 		]
 	});
-	chart.render();
+	
 	console.log(hws);
-	
-	
+	chart.render();
+	chart.render();
+	chart.render();
   }
   
 $(document).ready(function() {
