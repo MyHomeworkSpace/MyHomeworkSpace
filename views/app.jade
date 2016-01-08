@@ -116,9 +116,11 @@ html
 									a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
-					span.h1
-						img(src="#{global.basePath}/images/icon128.png")
-						| PlanHub
+				span
+					img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
+					PlanHub
+					span - 
+					span(class="user-name")= user.name
 
 		div(class="loadOverlay")
 			i(class="fa fa-circle-o-notch fa-spin")
