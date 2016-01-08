@@ -101,6 +101,7 @@ $(document).ready(function() {
 	});
 	window.api.get('/admin/users/count/', function(result) {
 		$("#userNumber").text("There are " + result.number + " users!");
+		console.log("result");
 		console.log(result);
 	});
 });
