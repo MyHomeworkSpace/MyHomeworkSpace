@@ -117,11 +117,9 @@ html
 									a(href="#prefs") Prefrences
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
-					span
-						img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
-						PlanHub
-						span - 
-						span(class="user-name")= user.name
+					span.h1
+						img(src="#{global.basePath}/images/icon128.png")
+						| PlanHub
 
 		div(class="loadOverlay")
 			i(class="fa fa-circle-o-notch fa-spin")
@@ -559,6 +557,7 @@ html
 						
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")	
 							p More apps by the PlanHub Team
+							br
 							h4 CoursesPlus
 							h6 Free, Chrome Extension, School Laptop Ready
 							h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
