@@ -74,4 +74,7 @@ window.graph.graph = function(){
 	
 	
   }
-window.graph.graph();
+  
+$(document).ready(function() {
+	window.graph.graph();
+});
