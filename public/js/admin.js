@@ -100,6 +100,7 @@ $(document).ready(function() {
 		$("#admin-announcement-modal").modal();
 	});
 	window.api.get('/admin/users/count/', function(result) {
-		$("#userNumber").text("There are " + result.number + " users!")
+		$("#userNumber").text("There are " + result.number + " users!");
+		console.log(result);
 	});
 });
