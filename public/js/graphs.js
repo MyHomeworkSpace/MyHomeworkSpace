@@ -24,25 +24,25 @@ window.graph.graph = function(){
   	
   	//set up axis for graph
   	switch (new Date().getDay()) {
-  	    	case 0:
+  	    	case 6:
   			days = ["Sunday","Monday","Tuesday","Wensday","Thursday","Friday","Saturday"];
   			break;
-  	    	case 1:
+  	    	case 0:
   			days = ["Monday","Tuesday","Wensday","Thursday","Friday","Saturday","Sunday"];
   			break;
-  	    	case 2:
+  	    	case 1:
   			days = ["Tuesday","Wensday","Thursday","Friday","Saturday","Sunday","Monday"];
   			break;
- 	    	case 3:
+ 	    	case 2:
   			days = ["Wensday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday"];
   			break;
-  	    	case 4:
+  	    	case 3:
   			days = ["Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wensday"];
   			break;
- 	    	case 5:
+ 	    	case 4:
   			days = ["Friday","Saturday","Sunday","Monday","Tuesday","Wensday","Thursday"];
   			break;
-  	    	case 6:
+  	    	case 5:
   			days = ["Saturday","Sunday","Monday","Tuesday","Wensday","Thursday","Friday"];
   			break;
   	}
@@ -71,6 +71,9 @@ window.graph.graph = function(){
 	});
 	chart.render();
 	console.log(hws);
+	chart.render();
+	chart.render();
+	chart.render();
 	
 	
   }
