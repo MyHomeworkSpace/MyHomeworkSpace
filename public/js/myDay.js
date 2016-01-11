@@ -29,7 +29,7 @@ $(document).ready(function() {
 		swal("You did something wrong, are all your forms filled out?")
 		}
 		else {
-		swal("Yay! Now we will calculate your schedule.", "success")
+		swal("Yay!", "Now we will calculate your schedule.", "success")
 		}
 		var prefs = {};
 		prefs.sleep = $("input[name=sleepHrs]").val();
