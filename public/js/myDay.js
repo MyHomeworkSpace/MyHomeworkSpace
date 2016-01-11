@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 	});
 	$("#myDay-welcome-submit").click(function() {
-		if ($("input[name=sleepHrs]").val().trim() == ""` || $("input[name=WakeUpTime]").val().trim() == ""` || $("input[name=Address]").val().trim() == ""`)
+		if ($("input[name=sleepHrs]").val().trim() == "" || $("input[name=WakeUpTime]").val().trim() == "" || $("input[name=Address]").val().trim() == "")
 		{
 		swal("You did something wrong, are all your forms filled out?")
 		}
