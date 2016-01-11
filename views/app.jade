@@ -475,23 +475,9 @@ html
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
 				
 				div(id="myDayHome", class="page")
-					table(border="1", style="text-align: center;", id="myDayTable")
-						thead
-							tr
-								th 
-									6:00 AM
-						tbody
-							tr
-								td testing
-						tfoot
-							tr
-								td testing
-					div(class="row hidden")
-						div(class="col-md-8")
-							h1 schedule here
-
-						div(class="col-md-4")
-							h1 HW stuff goes here
+					div(id="PersonSchedule", class="schedule")
+						div(id="CurrentMonday", class="day")
+						h4(class="dayheading")Monday
 
 				div(id="hwView", class="page")
 					div(id="hwView-upsell", class="upsell row", data-feature="hwView")
