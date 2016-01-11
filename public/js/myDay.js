@@ -30,6 +30,8 @@ $(document).ready(function() {
 		}
 		else {
 		swal("Yay!", "Now we will calculate your schedule.", "success")
+		// Do Backend Crappy Algorithm complicated stuff
+		
 		}
 		var prefs = {};
 		prefs.sleep = $("input[name=sleepHrs]").val();
