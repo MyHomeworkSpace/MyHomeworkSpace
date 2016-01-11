@@ -3,7 +3,7 @@ extends layout
 block content
 	h1 Staging
 	unless isStaging
-		p(class="lead") You are currently not using staging. 
+		p(class="lead") You are currently not using staging. If you want to test new features as they are released or test our API, then
 			a(href="http://staging.planhub.me/staging") Go to Staging
 	if isStaging
 		p(class="lead") You are using PlanHub Staging. 

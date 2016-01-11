@@ -21,10 +21,18 @@ $(document).ready(function() {
 		$(".myDay-club-select").chosen();
 	});
 	$("#myDay").on("tabOpened", function() {
-		
+
 	});
 	$("#myDay-welcome-submit").click(function() {
-		swal("Ummmm", "Maybe Works?", "warning");
+		if ($("input[name=sleepHrs]").val().trim() == "" || $("input[name=WakeUpTime]").val().trim() == "" || $("input[name=Address]").val().trim() == "")
+		{
+		swal("You did something wrong, are all your forms filled out?")
+		}
+		else {
+		swal("Yay!", "Now we will calculate your schedule.", "success")
+		// Do Backend Crappy Algorithm complicated stuff
+		setPage("myDayHome")
+		}
 		var prefs = {};
 		prefs.sleep = $("input[name=sleepHrs]").val();
 		prefs.wake = $("input[name=WakeUpTime]").val();

@@ -19,6 +19,8 @@ html
 
 		script(src="https://code.jquery.com/jquery-2.1.4.min.js")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
+		script(src="#{basePath}/js/canvasjs.min.js")
+		
 		script(src="#{basePath}/js/modernizer.js")
 		script(src="#{basePath}/js/jquery.highlighttextarea.js")
 		script(src="#{basePath}/js/jquery-ui.min.js")
@@ -49,6 +51,7 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
 		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
+		script(type="text/javascript", src="#{global.basePath}/js/graphs.js")
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
@@ -113,11 +116,11 @@ html
 									a(href="#{basePath}/logout") Log out
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
-					span
-						img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
-						PlanHub
-						span - 
-						span(class="user-name")= user.name
+				span
+					img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
+					PlanHub
+					span - 
+					span(class="user-name")= user.name
 
 		div(class="loadOverlay")
 			i(class="fa fa-circle-o-notch fa-spin")
@@ -470,14 +473,21 @@ html
 							
 
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
-
-					div(class="row hidden")
-						div(class="col-md-8")
-							h1 schedule here
-
-						div(class="col-md-4")
-							h1 HW stuff goes here
-
+				
+				div(id="myDayHome", class="page")
+					div(id="PersonSchedule", class="schedule")
+						div(id="CurrentMonday", class="day")
+						h4(class="dayheading") Monday 
+							div(id="Time")
+								p 6
+								p 630
+								p 7
+								p 730
+								p 8
+								p 830
+								p 9
+								p 930
+							
 				div(id="hwView", class="page")
 					div(id="hwView-upsell", class="upsell row", data-feature="hwView")
 						div(class="col-md-3")
@@ -540,7 +550,7 @@ html
 					div(class="tab-content")
 						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
 							p Settings about your account.
-							p Name:
+							p Name: 
 							input(type="text", id="usr-name" value="#{user.name}")
 							button(class="btn btn-primary", id="usr-btn") change
 							p
@@ -549,10 +559,13 @@ html
 							
 							
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
-							p Settings about your account's security.
+							p Your account's security settings
+							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
+							a.btn.btn-danger(href="https://dalton.myschoolapp.com/app/#login/request") Forgot Password
 						
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")
 							p More apps by the PlanHub Team
+							br
 							h4 CoursesPlus
 							h6 Free, Chrome Extension, School Laptop Ready
 							h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
@@ -574,6 +587,39 @@ html
 							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp") Download
 							
 				div(id="labs", class="page")
+					div(id="labs-upsell", class="upsell row", data-feature="planner")
+						div(class="col-md-3")
+							h1 Labs
+							h3 Keep track of and schedule Labs online.
+
+							br
+
+							button(class="btn btn-primary upsell-btn", data-feature="planner") Start
+
+						div(class="col-md-9")
+							div(class="upsell-row row")
+								div(class="col-md-4")
+									img(src="#{basePath}/images/planner01.png", class="upsell-picture")
+								div(class="col-md-8")
+									h4 Easy and Efficient
+									p Labs scheduled using PlanHub are able to be synced automagically into your planner, into My Day, and into HW View
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-4")
+									img(src="#{basePath}/images/planner02.png", class="upsell-picture")
+								div(class="col-md-8")
+									h4 Tag your assignments
+									p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
+
+							br
+
+							div(class="upsell-row row")
+								div(class="col-md-4")
+									img(src="#{basePath}/images/planner03.png", class="upsell-picture")
+								div(class="col-md-8")
+									h4 Add or remove subjects
+									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
 					p
 						span Welcome, 
 						if user.type == "student"
@@ -586,11 +632,16 @@ html
 					if user.type == "student"
 						p Welcome to Lab scheduling.
 						button(class="btn btn-primary", id="schedule-lab-student", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
-					if user.type == "teacher"
+					if user.type == "faculty"
 						p Welcome to Lab scheduling.
 						button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
 					br
 					button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
+				
+				div(id="graphs", class="page")
+					<!-- Okay em-p let your imagination run free here. -->
+					h1 Hi this is just a test.
+					div(id="chartContainer")
 						
 				if user.level > 0
 					div(id="admin", class="page")
@@ -622,10 +673,7 @@ html
 								a(href="http://blog.planhub.me/wp-login.php" target="_blank")
 									i.fa.fa-rss.admin-link
 									| Manage Blog
-								li(data-page="admin-brag", class="admin-link", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
-									a(href="#admin-brag")
-										i.fa.fa-bullhorn.admin-link
-										| Manage Blog
+							
 							li(id="userNumber")
 								No Users
 							
@@ -670,12 +718,7 @@ html
 						h1 Administrative panel
 						h4 About server
 						h5 Under construction!
-						
-					div(id="admin-about", class="page")
-						h1 Administrative panel
-						h2 I AM AN ADMIN!
-						h3 I have a user.level of #{user.level} and I have a feedback level of #{user.canFeedback}.
-						
+					
 					div(id="admin-login", class="page")
 						h1 Administrative panel
 						h4 Test user accoumts
