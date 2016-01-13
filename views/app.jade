@@ -13,6 +13,10 @@ html
 		link(href="#{basePath}/css/jquery-ui.min.css", rel="stylesheet")
 		link(href="#{basePath}/css/sweetalert.css", rel="stylesheet")
 		link(href="#{basePath}/css/introjs.css", rel="stylesheet")
+		link(href="#{basePath}/css/fullcalendar.min.css", rel="stylesheet")
+		
+		link(href="#{basePath}/css/fullcalendar.print.css", rel="stylesheet", media="print")
+		
 		link(href="#{basePath}/css/print.css", rel="stylesheet", media="print")
 
 		link(href="#{basePath}/css/style.css", rel="stylesheet")
@@ -40,6 +44,8 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/moment.min.js")
 		script(type="text/javascript", src="#{global.basePath}/js/time-polyfill.min.js")
 		script(type="text/javascript", src="#{global.basePath}/chosen/chosen.jquery.min.js")
+
+		script(src="#{basePath}/js/fullcalendar.min.js") // down here because it requires moment
 
 		script(type="text/javascript", src="#{global.basePath}/js/utils.js")
 		script(type="text/javascript", src="#{global.basePath}/js/page.js")
