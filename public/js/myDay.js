@@ -32,6 +32,18 @@ $(document).ready(function() {
 				// will do backendy stuff later
 			}
 		}).fullCalendar("changeView", "agendaWeek");
+
+		$("#myDayEvents ul li").each(function() {
+			$(this).data('event', {
+				title: $.trim($(this).text()), // use the element's text as the event title
+				stick: true // maintain when user navigates (see docs on the renderEvent method)
+			});
+			$(this).draggable({
+				zIndex: 999,
+				revert: true,      // will cause the event to go back to its
+				revertDuration: 0  //  original position after the drag
+			});
+		});
 	});
 	$("#myDay-welcome-submit").click(function() {
 		if ($("input[name=sleepHrs]").val().trim() == "" || $("input[name=WakeUpTime]").val().trim() == "" || $("input[name=Address]").val().trim() == "") {
