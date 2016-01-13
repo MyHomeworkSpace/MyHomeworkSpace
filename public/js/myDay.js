@@ -21,7 +21,7 @@ $(document).ready(function() {
 		$(".myDay-club-select").chosen();
 	});
 	$("#myDay").on("tabOpened", function() {
-
+		$("#myDayCalendar").fullCalendar();
 	});
 	$("#myDay-welcome-submit").click(function() {
 		if ($("input[name=sleepHrs]").val().trim() == "" || $("input[name=WakeUpTime]").val().trim() == "" || $("input[name=Address]").val().trim() == "")
