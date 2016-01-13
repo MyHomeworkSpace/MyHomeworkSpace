@@ -8,3 +8,14 @@ input[type=number] {
 input[type=time] {
 	width: 75px;
 }
+
+#myDayCalendar {
+	padding-right: 175px;
+}
+#myDaySidebar {
+	width: 160px;
+	position: fixed;
+	right: 0;
+	height: 100%;
+	padding-top: 60px;
+}
