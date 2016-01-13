@@ -534,10 +534,15 @@ $(document).ready(function() {
 				var loadedPrefixes = titleOrder;
 				for (var prefixId in loadedPrefixes) {
 					var prefix = loadedPrefixes[prefixId];
-					var prefixObj = {
-						words: [ prefix ],
-						tabSystem: true
-					};
+					var prefixObj;
+					if (prefix.words === undefined) {
+						prefixObj = {
+							words: [ prefix ],
+							tabSystem: true
+						};
+					} else {
+						prefixObj = prefix;
+					}
 					loadedPrefixes.push(prefixObj);
 				}
 				window.planner.titleOrder = loadedPrefixes;
