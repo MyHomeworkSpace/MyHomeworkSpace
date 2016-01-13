@@ -20,6 +20,7 @@ $(document).ready(function() {
 		$(".myDay-club-select").chosen();
 	});
 	$("#myDayHome").on("tabOpened", function() {
+		//window.page.showLoading();
 		$("#myDayCalendar").fullCalendar({
 			header: {
 				left: "title",

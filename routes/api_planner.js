@@ -35,6 +35,35 @@ router.get('/announcements/get/:date', global.apiCall, function(req, res, next) 
 	});
 });
 
+router.get('/announcements/getWeek/:date', global.apiCall, function(req, res, next) {
+	if (req.params.date === undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid date parameter!"
+		});
+		return;
+	}
+	var endOfWeek = new Date(req.params.date);
+	endOfWeek.setDate(endOfWeek.getDate() + 7);
+	global.knex.select('*').from('planner_announcements').where({
+		date: req.params.date
+	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function (data) {
+		if (data.length === 0) {
+			res.json({
+				status: "ok",
+				announcement: null
+			});
+		} else {
+			res.json({
+				status: "ok",
+				announcements: data
+			});
+		}
+	}).catch(function(error) {
+		global.dbErrorHandler(error, res, req, next);
+	});
+});
+
 router.get('/fridays/get/:date', global.apiCall, function(req, res, next) {
 	if (req.params.date === undefined) {
 		res.json({
