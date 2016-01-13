@@ -25,6 +25,11 @@ $(document).ready(function() {
 				left: "title",
 				middle: "",
 				right: "agendaWeek,agendaDay today prev,next"
+			},
+			editable: true,
+			droppable: true,
+			drop: function() {
+				// will do backendy stuff later
 			}
 		}).fullCalendar("changeView", "agendaWeek");
 	});
