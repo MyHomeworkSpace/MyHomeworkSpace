@@ -21,18 +21,34 @@ $(document).ready(function() {
 	});
 	$("#myDayHome").on("tabOpened", function() {
 		//window.page.showLoading();
-		$("#myDayCalendar").fullCalendar({
-			header: {
-				left: "title",
-				middle: "",
-				right: "agendaWeek,agendaDay today prev,next"
-			},
-			editable: true,
-			droppable: true,
-			drop: function() {
-				// will do backendy stuff later
+		var monday = window.planner.findThisMonday();
+		window.api.get("planner/announcements/getWeek/" + indow.utils.formatDate_api(monday), function(data) {
+			var announcements = [];
+			if (data.status == "ok") {
+				announcements = data.announcements;
 			}
-		}).fullCalendar("changeView", "agendaWeek");
+			var events = [];
+			for (var annnouncementIndex in announcements) {
+				var announcement = announcements[announcementIndex];
+				events.push({
+					title: announcement.text,
+					start: announcement.date
+				});
+			}
+			$("#myDayCalendar").fullCalendar({
+				header: {
+					left: "title",
+					middle: "",
+					right: "agendaWeek,agendaDay today prev,next"
+				},
+				editable: true,
+				droppable: true,
+				drop: function() {
+					// will do backendy stuff later
+				}
+				events: events
+			}).fullCalendar("changeView", "agendaWeek");
+		});
 
 		$("#myDayEvents ul li").each(function() {
 			$(this).data('event', {
