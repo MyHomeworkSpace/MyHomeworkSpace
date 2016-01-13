@@ -21,9 +21,9 @@ $(document).ready(function() {
 				$("#announcementAlert").css("display", "none");
 			}
 		});
-		window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
+		/*window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
 			window.overview.HWphrase("howmuchhw", result.events.length);
-		});
+		});*/
 	});
 });
 
