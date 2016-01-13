@@ -58,6 +58,7 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
 		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
 		script(type="text/javascript", src="#{global.basePath}/js/graphs.js")
+		script(type="text/jabascript", src="#{global.basePath}/js/groups.js")
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
@@ -652,7 +653,13 @@ html
 					<!-- Okay em-p let your imagination run free here. -->
 					h1 Hi this is just a test.
 					div(id="chartContainer")
-						
+				div(id="groups", class="page")
+			
+					<!-- im haxing all dis noobs -->
+					h1 Join Groups to Receive Group Planner Events
+						ul(id="groupList)
+							div(id="groupsIn")
+								
 				if user.level > 0
 					div(id="admin", class="page")
 						h1 Administrative panel
