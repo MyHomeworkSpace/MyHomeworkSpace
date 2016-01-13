@@ -19,7 +19,7 @@ $(document).ready(function() {
 	window.myDay.loadClubs($(".myDay-club-select"), function() {
 		$(".myDay-club-select").chosen();
 	});
-	$("#myDay").on("tabOpened", function() {
+	$("#myDayHome").on("tabOpened", function() {
 		$("#myDayCalendar").fullCalendar();
 	});
 	$("#myDay-welcome-submit").click(function() {
