@@ -45,13 +45,12 @@ router.get('/announcements/getWeek/:date', global.apiCall, function(req, res, ne
 	}
 	var endOfWeek = new Date(req.params.date);
 	endOfWeek.setDate(endOfWeek.getDate() + 7);
-	global.knex.select('*').from('planner_announcements').where({
-		date: req.params.date
-	}).andWhere("date", ">=", req.params.date).andWhere("date", "<", endOfWeek).then(function (data) {
+	global.knex.select('*').from('planner_announcements').where("date", ">=", req.params.date)
+	.andWhere("date", "<", endOfWeek).then(function (data) {
 		if (data.length === 0) {
 			res.json({
 				status: "ok",
-				announcement: null
+				announcements: null
 			});
 		} else {
 			res.json({
