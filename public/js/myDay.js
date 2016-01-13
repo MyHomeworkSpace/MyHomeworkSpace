@@ -45,7 +45,7 @@ $(document).ready(function() {
 				droppable: true,
 				drop: function() {
 					// will do backendy stuff later
-				}
+				},
 				events: events
 			}).fullCalendar("changeView", "agendaWeek");
 		});
