@@ -44,7 +44,8 @@ $(document).ready(function() {
 				$("#myDayCalendar").fullCalendar("renderEvent", {
 					title: announcement.text,
 					start: announcement.date,
-					allDay: true
+					allDay: true,
+					editable: false
 				});
 			}
 			window.page.hideLoading();
