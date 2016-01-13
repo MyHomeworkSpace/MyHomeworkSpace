@@ -3,7 +3,6 @@ var hws = [0,0,0,0,0,0,0];
 window.graph.graph = function(){
     //get data
     var days = [];
-
     var hwResult;
 
     window.api.get('planner/events/getWholeWeek/' + window.utils.formatDate_api(moment().toDate()), function(result) {
@@ -22,28 +21,28 @@ window.graph.graph = function(){
         //set up axis for graph
         switch (new Date().getDay()) {
             case 0:
-            days = ["Sunday","Monday","Tuesday","Wensday","Thursday","Friday","Saturday"];
+            days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
             break;
             case 1:
-            days = ["Monday","Tuesday","Wensday","Thursday","Friday","Saturday","Sunday"];
+            days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
             break;
             case 2:
-            days = ["Tuesday","Wensday","Thursday","Friday","Saturday","Sunday","Monday"];
+            days = ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday"];
             break;
             case 3:
-            days = ["Wensday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday"];
+            days = ["Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday"];
             break;
             case 4:
-            days = ["Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wensday"];
+            days = ["Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday"];
             break;
             case 5:
-            days = ["Friday","Saturday","Sunday","Monday","Tuesday","Wensday","Thursday"];
+            days = ["Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"];
             break;
             case 6:
-            days = ["Saturday","Sunday","Monday","Tuesday","Wensday","Thursday","Friday"];
+            days = ["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"];
             break;
         }
-        //how do i include this '<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>''
+        
         var chart = new CanvasJS.Chart("chartContainer", {
             theme: "theme1",//theme1
             title:{
