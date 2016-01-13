@@ -28,7 +28,7 @@ $(document).ready(function() {
 				announcements = data.announcements;
 			}
 			var events = [];
-			for (var annnouncementIndex in announcements) {
+			for (var announcementIndex in announcements) {
 				var announcement = announcements[announcementIndex];
 				events.push({
 					title: announcement.text,
