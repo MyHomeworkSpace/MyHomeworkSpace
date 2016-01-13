@@ -237,7 +237,7 @@ app.use(basePath + '/api/v1/overview', api_overview);
 app.use(basePath + '/api/v1/planner', api_planner);
 app.use(basePath + '/api/v1/prefs', api_prefs);
 app.use(basePath + '/api/v1/admin', api_admin);
-//app.use(basePath + '/api/v1/groups', api_groups)
+app.use(basePath + '/api/v1/groups', api_groups)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
