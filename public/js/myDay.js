@@ -27,14 +27,6 @@ $(document).ready(function() {
 			if (data.status == "ok") {
 				announcements = data.announcements;
 			}
-			var events = [];
-			for (var announcementIndex in announcements) {
-				var announcement = announcements[announcementIndex];
-				events.push({
-					title: announcement.text,
-					start: announcement.date
-				});
-			}
 			$("#myDayCalendar").fullCalendar({
 				header: {
 					left: "title",
@@ -45,9 +37,15 @@ $(document).ready(function() {
 				droppable: true,
 				drop: function() {
 					// will do backendy stuff later
-				},
-				events: events
+				}
 			}).fullCalendar("changeView", "agendaWeek");
+			for (var announcementIndex in announcements) {
+				var announcement = announcements[announcementIndex];
+				$("#myDayCalendar").fullCalendar("renderEvent", {
+					title: announcement.text,
+					start: announcement.date
+				});
+			}
 			window.page.hideLoading();
 		});
 
