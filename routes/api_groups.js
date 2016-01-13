@@ -11,6 +11,22 @@ router.get('/', function(req, res, next) {
 // ==============================================================
 //for stupider emlyns if ur above this line ur 2 far up
 //for stupid emlyns put cod below here
+router.get("/getGroups/",function(req,res,next){
+	knex("users").where({
+		name: "Emlyn Mileaf-Patel"
+	}).select("id").then(function(response) {
+		 res.json({
+		 	result: "ok",
+		 	data: response
+		 });
+
+	}).catch(function() {
+		res.json({
+			result:"error",
+			error:"Unknown database error!"
+		});
+	});
+});
 
 
 
