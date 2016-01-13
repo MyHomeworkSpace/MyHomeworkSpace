@@ -20,9 +20,9 @@ $(document).ready(function() {
 		$(".myDay-club-select").chosen();
 	});
 	$("#myDayHome").on("tabOpened", function() {
-		//window.page.showLoading();
+		window.page.showLoading();
 		var monday = window.planner.findThisMonday();
-		window.api.get("planner/announcements/getWeek/" + indow.utils.formatDate_api(monday), function(data) {
+		window.api.get("planner/announcements/getWeek/" + window.utils.formatDate_api(monday), function(data) {
 			var announcements = [];
 			if (data.status == "ok") {
 				announcements = data.announcements;
@@ -48,6 +48,7 @@ $(document).ready(function() {
 				},
 				events: events
 			}).fullCalendar("changeView", "agendaWeek");
+			window.page.hideLoading();
 		});
 
 		$("#myDayEvents ul li").each(function() {
