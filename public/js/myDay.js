@@ -4,7 +4,6 @@ window.myDay = {
 
 window.myDay.loadClubs = function(target, callback) {
 	window.api.get("myDay/clubs/getAll", function(data) {
-		//data.clubs
 		for (var clubIndex in data.clubs) {
 			var club = data.clubs[clubIndex];
 			var option = $('<option></option>');
@@ -24,14 +23,13 @@ $(document).ready(function() {
 		$("#myDayCalendar").fullCalendar();
 	});
 	$("#myDay-welcome-submit").click(function() {
-		if ($("input[name=sleepHrs]").val().trim() == "" || $("input[name=WakeUpTime]").val().trim() == "" || $("input[name=Address]").val().trim() == "")
-		{
-		swal("You did something wrong, are all your forms filled out?")
+		if ($("input[name=sleepHrs]").val().trim() == "" || $("input[name=WakeUpTime]").val().trim() == "" || $("input[name=Address]").val().trim() == "") {
+			swal("You did something wrong, are all your forms filled out?")
 		}
 		else {
-		swal("Yay!", "Now we will calculate your schedule.", "success")
-		// Do Backend Crappy Algorithm complicated stuff
-		setPage("myDayHome")
+			swal("Yay!", "Now we will calculate your schedule.", "success")
+			// Do Backend Crappy Algorithm complicated stuff
+			setPage("myDayHome")
 		}
 		var prefs = {};
 		prefs.sleep = $("input[name=sleepHrs]").val();
