@@ -43,7 +43,8 @@ $(document).ready(function() {
 				var announcement = announcements[announcementIndex];
 				$("#myDayCalendar").fullCalendar("renderEvent", {
 					title: announcement.text,
-					start: announcement.date
+					start: announcement.date,
+					allDay: true
 				});
 			}
 			window.page.hideLoading();
