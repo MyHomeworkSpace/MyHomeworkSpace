@@ -20,7 +20,13 @@ $(document).ready(function() {
 		$(".myDay-club-select").chosen();
 	});
 	$("#myDayHome").on("tabOpened", function() {
-		$("#myDayCalendar").fullCalendar().fullCalendar("changeView", "agendaWeek");
+		$("#myDayCalendar").fullCalendar({
+			header: {
+				left: "title",
+				middle: "",
+				right: "agendaWeek,agendaDay today prev,next"
+			}
+		}).fullCalendar("changeView", "agendaWeek");
 	});
 	$("#myDay-welcome-submit").click(function() {
 		if ($("input[name=sleepHrs]").val().trim() == "" || $("input[name=WakeUpTime]").val().trim() == "" || $("input[name=Address]").val().trim() == "") {
