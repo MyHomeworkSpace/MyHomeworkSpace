@@ -45,7 +45,7 @@ router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(r
 });
 
 router.post("/newGroup/", global.requireUser, global.getUserRecord, function(req, res, next) {
-	knex("groups").insert({name: res.locals.groupName, adminID: res.locals.user.id}).select("*").then(function(response){
+	knex("groups").insert({name: res.body.groupName, adminID: res.locals.user.id}).select("*").then(function(response){
 		res.json({
 			status: "ok"
 		});
