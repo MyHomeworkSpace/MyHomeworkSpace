@@ -95,12 +95,13 @@ html
 									a(data-page="planner") Planner
 								li
 									a(data-page="hwView") Homework View
+								li.divider
 								if user.level > 0
-									li.divider
+									
 									li
 										a(data-page="admin") Admin
-									li
-										a(data-page="prefs") Preferences
+								li
+									a(data-page="prefs") Preferences
 						if isStaging
 							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using PlanHub Staging. This is for testing purposes only-don't use it as your real planner!")
 								a(href="#{basePath}/staging") Staging
