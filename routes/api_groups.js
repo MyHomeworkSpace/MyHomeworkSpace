@@ -44,7 +44,7 @@ router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(r
 	});
 });
 
-router.post("/newGroup/", global.requireUser, global.getUserRecord, req.body.groupName, function(req, res, next){
+router.post("/newGroup/", global.requireUser, global.getUserRecord, function(req, res, next) {
 	knex("groups").insert({name: res.locals.groupName, adminID: res.locals.user.id}).select("*").then(function(response){
 		res.json({
 			status: "ok"
@@ -52,7 +52,7 @@ router.post("/newGroup/", global.requireUser, global.getUserRecord, req.body.gro
 	});
 });
 
-router.post("/joinGroup/", global.requireUser, global.getUserRecord, req.body.groupID, function(req, res, next){
+router.post("/joinGroup/", global.requireUser, global.getUserRecord, function(req, res, next){
 	knex("groupMembers").insert({userID: res.locals.user.id, groupID: req.body.groupID}).select("*").then(function(response){
 		res.json({
 			status: "ok"
