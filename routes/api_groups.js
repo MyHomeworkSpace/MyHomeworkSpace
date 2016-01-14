@@ -22,8 +22,8 @@ router.get("/getGroups/",function(req,res,next){
 
 	}).catch(function() {
 		res.json({
-			result:"error",
-			error:"Unknown database error!"
+			result: "error",
+			error: "Unknown database error!"
 		});
 	});
 });
@@ -45,18 +45,20 @@ router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(r
 });
 
 router.post("/newGroup/", global.requireUser, global.getUserRecord, req.body.groupName, function(req, res, next){
-   knex("groups").insert({name: res.locals.groupName, adminID: res.locals.user.id}).select("*").then(function(response){
-	res.json({
-    		status: "ok"
+	knex("groups").insert({name: res.locals.groupName, adminID: res.locals.user.id}).select("*").then(function(response){
+		res.json({
+			status: "ok"
+		});
 	});
-})
+});
 
 router.post("/joinGroup/", global.requireUser, global.getUserRecord, req.body.groupID, function(req, res, next){
-   knex("groupMembers").insert({userID: res.locals.user.id, groupID: req.body.groupID}).select("*").then(function(response){
-	res.json({
-    		status: "ok"
+	knex("groupMembers").insert({userID: res.locals.user.id, groupID: req.body.groupID}).select("*").then(function(response){
+		res.json({
+			status: "ok"
+		});
 	});
-})
+});
 
 
 //for stupid emlyns put cod above here
