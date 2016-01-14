@@ -28,18 +28,18 @@ router.get("/getGroups/",function(req,res,next){
 	});
 });
 
-router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(req,res,next){
+router.get("/getGroupsIn/",global.requireUser, global.getUserRecord, function(req,res,next){
 	knex("groupMembers").where({
 		userId: res.locals.user.id
 	}).select("groupId").then(function(result){
 		res.json({
-			result: "ok",
-			data: result
+			result:"ok",
+			data:result
 		});
 	}).catch(function() {
 		res.json({
-			result: "error",
-			error: "Unknown database error!"
+			result:"error",
+			error:"unknown database error!"
 		});
 	});
 });
