@@ -96,7 +96,6 @@ nav {
 
 	padding-top: 55px;
 	padding-left: 90px;
-	padding-right: 10px;
 
 	top: 0;
 	left: 0;
@@ -108,6 +107,14 @@ nav {
 }
 .upsell-btn {
 	width: 100%;
+}
+.upsell:before {
+	background: white;
+	position: fixed;
+	right: 0;
+	width: 10px;
+	height: 100%;
+	z-index: 1;
 }
 
 .loadOverlay {
