@@ -191,6 +191,8 @@ nav {
 		height: 80px;
 		overflow-x: auto;
 		overflow-y: hidden;
+		padding-top: 0;
+		padding-left: 0;
 	}
 	.tabs li {
 		display: inline-block;
