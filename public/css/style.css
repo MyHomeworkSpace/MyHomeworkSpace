@@ -24,10 +24,14 @@ body {
 	text-decoration: line-through;
 }
 
-
-
 .staging-warning {
 	color: red !important;
 	font-size: 15px;
 	font-weight: bold;
+}
+
+.big-text-thing {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
 }
