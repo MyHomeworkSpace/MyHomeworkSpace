@@ -82,6 +82,10 @@ nav {
 	opacity: 1;
 	z-index: 996;
 }
+.page.hasUpsell {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
 
 .upsell {
 	background: white;
