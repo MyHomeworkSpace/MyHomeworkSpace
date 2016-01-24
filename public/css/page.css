@@ -197,7 +197,8 @@ nav {
 	.tabs li {
 		display: inline-block;
 	}
-	.pages {
+	.page {
 		padding-left: 0;
+		padding-top: 125px;
 	}
 }
