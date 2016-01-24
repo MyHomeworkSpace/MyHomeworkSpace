@@ -1,3 +1,7 @@
 .fa.admin-link {
 	margin-right: 2px;
 }
+
+#feedback-frame {
+	border: solid 5px black;
+}
