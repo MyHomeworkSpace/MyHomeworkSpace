@@ -189,6 +189,11 @@ nav {
 		top: 45px;
 		width: 100%;
 		height: 80px;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	.tabs li {
+		display: inline-block;
 	}
 	.pages {
 		padding-left: 0;
