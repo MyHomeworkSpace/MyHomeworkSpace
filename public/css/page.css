@@ -204,7 +204,8 @@ nav {
 	}
 	#page-pref-btn {
 		top: 125px;
+		left: inherit;
 		right: 0;
-		bottom: initial;
+		bottom: inherit;
 	}
 }
