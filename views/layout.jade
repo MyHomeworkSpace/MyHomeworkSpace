@@ -64,6 +64,23 @@ html
 							li
 								a(href="#{basePath}/login") Log in
 
+		div(id="loginModal", class="modal fade", tabindex="-1", role="dialog")
+			div(class="modal-dialog")
+				form(class="modal-content", action="#{global.basePath}/login", method="POST")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close">
+							span(aria-hidden="true") &times;
+						h4(class="modal-title") Log in with your Dalton account
+					
+					div(class="modal-body")
+							input(type="text", name="username", class="form-control", placeholder="Username")
+							input(type="password", name="password", class="form-control", placeholder="Password")
+							a(href='#', data-toggle="tooltip", data-placement="right", title="Your password is never stored. It's only used to sign you in and download your schedule and homework.", style='padding-left: 10px;') Privacy Information
+					
+					div(class="modal-footer")
+						button(type="button", class="btn btn-default", data-dismiss="modal") Close
+						input(type="submit", value="Log in", class="btn btn-primary")
+
 		block precontent
 
 		div(class="container")
