@@ -1,8 +1,12 @@
 doctype html
 html
 	<!--Looking under the hood? Check out our GitHub Repo at http://tinyurl.com/planhubcode or apply to work with us at http://tinyurl.com/planhubjoin-->
+	<!-- MOO! -->
 	head
 		title= title
+		
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		
 		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet", integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==",crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css", rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==", crossorigin="anonymous")
@@ -58,6 +62,7 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
 		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
 		script(type="text/javascript", src="#{global.basePath}/js/graphs.js")
+		script(type="text/javascript", src="#{global.basePath}/js/groups.js")
 		
 		if user.level > 0
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
@@ -76,7 +81,7 @@ html
 						span(class="icon-bar")
 						span(class="icon-bar")
 					a(class="navbar-brand", href="#")
-						img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
+						img(src="#{global.basePath}/images/icon24.png", width="24px", height="24px", class="planhub-logo-nav")
 						span PlanHub
 				
 				div(class="collapse navbar-collapse", id="navbar-collapse")
@@ -123,9 +128,8 @@ html
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 				span
-					img(src="#{global.basePath}/images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
-					PlanHub
-					span - 
+					img(src="#{global.basePath}/images/icon24.png", width="24px", height="24px", class="planhub-logo-nav")
+					span PlanHub - 
 					span(class="user-name")= user.name
 
 		div(class="loadOverlay")
@@ -481,23 +485,14 @@ html
 						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
 				
 				div(id="myDayHome", class="page")
-					div(id="PersonSchedule", class="schedule")
-						div(id="CurrentMonday", class="day")
-							h4(class="dayheading") Monday 
-						div(id="Monday6:00AM", class="6:00AM Monday")
-							
-							
-							//
-								div(id="Time")
-									p 6:00
-									p 6:30
-									p 7:00
-									p 7:30
-									p 8:00
-									p 8:30
-									p 9:00
-									p 9:30 
-							
+					div(id="myDayCalendar")
+					div(id="myDaySidebar")
+						h4 Drag events from this column and place them in the calendar.
+						div(id="myDayEvents")
+							ul
+								li event 1
+								li event 2
+
 				div(id="hwView", class="page")
 					div(id="hwView-upsell", class="upsell row", data-feature="hwView")
 						div(class="col-md-3")
@@ -652,7 +647,12 @@ html
 					<!-- Okay em-p let your imagination run free here. -->
 					h1 Hi this is just a test.
 					div(id="chartContainer")
-						
+				
+				div(id="groups", class="page")
+					h1 Join Groups to Receive Group Planner Events
+					ul(id="groupList")
+						div(id="groupsIn")
+								
 				if user.level > 0
 					div(id="admin", class="page")
 						h1 Administrative panel

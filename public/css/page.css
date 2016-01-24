@@ -70,34 +70,51 @@ nav {
 	width: 100%;
 	height: 100%;
 	padding-top: 55px;
-	padding-left: 60px;
 	padding-left: 90px;
 	position: fixed;
 	top: 0;
 	left: 0;
 	transition: opacity 0.2s;
-	overflow-y: scroll;
+	overflow-y: auto;
 	padding-right: 10px;
 }
 .open-page {
 	opacity: 1;
 	z-index: 996;
 }
+.page.hasUpsell {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
 
 .upsell {
 	background: white;
 	position: fixed;
-	width: 96%;
+	width: 100%;
 	height: 100%;
 	z-index: 2;
-	padding-left: 10px;
+
+	padding-top: 55px;
+	padding-left: 90px;
+
+	top: 0;
+	left: 0;
+
+	overflow-y: auto;
 }
 .upsell-row {
 	background: lightgray;
-	width: 750px;
 }
 .upsell-btn {
 	width: 100%;
+}
+.upsell:before {
+	background: white;
+	position: fixed;
+	right: 0;
+	width: 15px;
+	height: 100%;
+	z-index: 1;
 }
 
 .loadOverlay {
@@ -162,7 +179,6 @@ nav {
 	background: rgba(0, 0, 0, 0.65);
 	font-size: 0.7em;
 	margin: 0 auto;
-	opacity: 1;
 	padding: 5px;
 	width: 300px;
 	opacity: 0;
@@ -183,4 +199,42 @@ nav {
 
 .loadWarn button:hover {
 	background: rgba(100, 100, 100, 0.95);
+}
+
+@media (max-width: 768px) {
+	.tabs {
+		top: 45px;
+		width: 100%;
+		height: 80px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		padding-top: 0;
+		padding-left: 0;
+	}
+	.tabs li {
+		display: inline-block;
+		left: 0;
+	}
+	.page {
+		padding-left: 5px;
+		padding-top: 125px;
+	}
+	.upsell {
+		padding-left: 5px;
+		padding-top: 125px;
+	}
+	#page-pref-btn {
+		top: 125px;
+		left: inherit;
+		right: 0;
+		bottom: inherit;
+	}
+}
+
+@media (max-width: 991px) {
+	.upsell-row {
+		margin-top: 10px;
+		margin-left: 0;
+		margin-right: 0;
+	}
 }

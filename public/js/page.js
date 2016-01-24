@@ -59,7 +59,7 @@ window.page.sendFeedback = function(type, msg, name, username, webpage, callback
 	// if the user does not want to send the webpage, the variable will be set to undefined, so don't do any checks here.
 	window.api.post("feedback/post/", {
 		type: type,
-		msg: msg, 
+		msg: msg,
 		name: name,
 		username: username,
 		webpage: webpage
@@ -159,6 +159,9 @@ $(document).ready(function() {
 		for (var i = features.length - 1; i >= 0; i--) {
 			$(".upsell[data-feature=" + features[i] + "]").remove();
 		}
+		$(".upsell").each(function() {
+			$(this).parent().addClass("hasUpsell");
+		});
 
 		window.page.hideLoading();
 
@@ -167,7 +170,7 @@ $(document).ready(function() {
 		} else {
 			setPage("overview");
 		}
-		
+
 		if (features.length == 0) {
 			introJs().setOption("showStepNumbers", false).start();
 		}

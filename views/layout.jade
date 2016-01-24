@@ -3,6 +3,7 @@ html
 	head
 		title= title
 		
+		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(name='keywords', content='PlanHub, The Dalton School, Dalton, Planner, HW View')
 		meta(name='author', content='PlanHub Team')
 		meta(name="description", content="PlanHub helps you plan and organize your life. It provides an online planner along with tools to help make sure you never fall behind on your homework, tests, or quizzes.")
@@ -11,10 +12,11 @@ html
 		link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css", rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==", crossorigin="anonymous")
 		link(href="#{basePath}/css/style.css", rel="stylesheet")
-
-		script(src="https://code.jquery.com/jquery-2.1.4.min.js", defer)
-		script(src="#{basePath}/js/coursesLib.js", defer)
-		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous", defer)
+		
+		script(src="https://code.jquery.com/jquery-2.1.4.min.js")
+		script(src="#{basePath}/js/smooth-scroll.min.js")
+		script(src="#{basePath}/js/coursesLib.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
 
 		style.
 			body {
@@ -38,7 +40,7 @@ html
 						span(class="icon-bar")
 						span(class="icon-bar")
 					a(class="navbar-brand", href="#{basePath}/")
-						img(src="../images/icon128.png", width="24px", height="24px", class="planhub-logo-nav")
+						img(src="#{basePath}/images/icon24.png", width="24px", height="24px", class="planhub-logo-nav")
 						span PlanHub
 						
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,9 +63,36 @@ html
 								a(href="#{basePath}/logout") Log out
 						else
 							li
-								a(href="#{basePath}/login") Log in
+								a(id="log-in-top", href="#{basePath}/login") Log in
+
+		div(id="loginModal", class="modal fade", tabindex="-1", role="dialog")
+			div(class="modal-dialog")
+				form(class="modal-content", action="#{global.basePath}/login", method="POST")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title") Log in with your Dalton account
+					
+					div(class="modal-body")
+							input(type="text", name="username", class="form-control", placeholder="Username")
+							input(type="password", name="password", class="form-control", placeholder="Password")
+							p Your password is never stored. It's only used to sign you in and download your schedule and homework.
+					
+					div(class="modal-footer")
+						button(type="button", class="btn btn-default", data-dismiss="modal") Close
+						input(type="submit", value="Log in", class="btn btn-primary")
 
 		block precontent
 
 		div(class="container")
 			block content
+		
+		script.
+			smoothScroll.init();
+			$("[data-scroll]").click(function() {
+				window.location.hash = "";
+			});
+			$("#log-in-top").click(function() {
+				$("#loginModal").modal();
+				return false;
+			});

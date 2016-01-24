@@ -189,7 +189,7 @@ var api_overview = require('./routes/api_overview');
 var api_planner = require('./routes/api_planner');
 var api_prefs = require('./routes/api_prefs');
 var api_admin = require('./routes/api_admin');
-
+var api_groups = require('./routes/api_groups');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -237,6 +237,7 @@ app.use(basePath + '/api/v1/overview', api_overview);
 app.use(basePath + '/api/v1/planner', api_planner);
 app.use(basePath + '/api/v1/prefs', api_prefs);
 app.use(basePath + '/api/v1/admin', api_admin);
+app.use(basePath + '/api/v1/groups', api_groups)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -265,10 +266,10 @@ app.use(function(err, req, res, next) {
 			headers: headers
 		}).then(function() {
 			res.locals.errorLogged = true;
-			next(err);	
+			next(err);
 		}).catch(function() {
 			res.locals.errorLogged = false;
-			next(err);	
+			next(err);
 		});
 	} else {
 		next(err);

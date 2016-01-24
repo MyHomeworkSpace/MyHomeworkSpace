@@ -13,7 +13,8 @@ router.get('/csrf', function(req, res, next) { // DO NOT PUT global.apiCall HERE
 		req.session.nonces = [];
 	}
 
-	var token = require("crypto").randomBytes(16).toString('hex');
+	var crypto = require("crypto");
+	var token = crypto.randomBytes(16).toString('hex');
 	console.log("New token: " + token);
 	knex("nonces").insert({ nonce: token, sid: req.session.id }).then(function() {
 		res.json({

@@ -3,17 +3,17 @@ extends layout
 block precontent
 	div(class="jumbotron")
 		div(class="container")
-			h1 Your homework, everywhere you go.
+			h1 Stay organized.
 			p PlanHub is an online planner that organizes your homework into one place.
-			p From the creators of 
-				a(href="http://coursesplus.tk") CoursesPlus 
-				| and 
-				a(href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm?hl=en") DaltonTab
-				| .
 			p
 				a(href="#{basePath}/app", class="btn btn-lg btn-primary") Get started
+				a(data-scroll="data-scroll", href="#info", class="btn btn-lg btn-default") Learn more
+		a(id="info")
 
 block content
+	// div(class="big-text-thing")
+	//	h3 You can't lose your planner if it's online!
+	//	p Your information is stored on your account safely and securely, and can be accessed from anywhere you have an Internet connection!
 	div(class="row")
 		div(class="col-md-4")
 			img(src="#{basePath}/images/main01.png", class="main-feature-img")
@@ -41,13 +41,13 @@ block content
 			p(class="lead") Plan out your life using My Day. Import your schedule and what clubs you are a part of, and then have My Day help you sort out what homework you're going to do and when! Plan out labs, long-term assignments, and more. My Day also helps you see how much free time you have and ensures that you never fall behind.
 			
 	hr
-
-	h5 PlanHubMe is under the MIT License.  
-	br
-	a(href='http://support.planhub.me') Help
+	
+	a(href="https://github.com/PlanHubMe/PlanHub")
+		i(class="fa fa-github")
+		|  View our code on GitHub
 	&nbsp;&bull;&nbsp;
-	a(href='https://planhubme.github.io/APIDocs') Developer tools
+	a(href="http://support.planhub.me") Help
 	&nbsp;&bull;&nbsp;
-	a(href='https://raw.githubusercontent.com/PlanHubMe/PlanHub/master/public/images/mysteriousImage.jpg') Join Our Team
+	a(href="https://planhubme.github.io/APIDocs") Developer tools
 	&nbsp;&bull;&nbsp;
-	span :)
+	a(href="https://raw.githubusercontent.com/PlanHubMe/PlanHub/master/public/images/mysteriousImage.jpg") Join Our Team
