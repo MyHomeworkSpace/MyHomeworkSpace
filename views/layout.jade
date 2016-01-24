@@ -71,3 +71,6 @@ html
 		
 		script.
 			smoothScroll.init();
+			$("[data-scroll]").click(function() {
+				window.location.hash = "";
+			});
