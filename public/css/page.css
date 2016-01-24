@@ -202,4 +202,9 @@ nav {
 		padding-left: 5px;
 		padding-top: 125px;
 	}
+	#page-pref-btn {
+		top: 125px;
+		right: 0;
+		bottom: initial;
+	}
 }
