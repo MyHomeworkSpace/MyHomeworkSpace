@@ -75,7 +75,7 @@ nav {
 	top: 0;
 	left: 0;
 	transition: opacity 0.2s;
-	overflow-y: scroll;
+	overflow-y: auto;
 	padding-right: 10px;
 }
 .open-page {
@@ -96,6 +96,8 @@ nav {
 
 	top: 0;
 	left: 0;
+
+	overflow-y: auto;
 }
 .upsell-row {
 	background: lightgray;
@@ -221,7 +223,7 @@ nav {
 @media (max-width: 991px) {
 	.upsell-row {
 		margin-top: 10px;
-		margin-left: 10px;
-		margin-right: 10px;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
