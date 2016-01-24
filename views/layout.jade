@@ -62,7 +62,7 @@ html
 								a(href="#{basePath}/logout") Log out
 						else
 							li
-								a(href="#{basePath}/login") Log in
+								a(id="log-in-top", href="#{basePath}/login") Log in
 
 		div(id="loginModal", class="modal fade", tabindex="-1", role="dialog")
 			div(class="modal-dialog")
@@ -90,4 +90,8 @@ html
 			smoothScroll.init();
 			$("[data-scroll]").click(function() {
 				window.location.hash = "";
+			});
+			$("#log-in-top").click(function() {
+				$("#loginModal").modal();
+				return false;
 			});
