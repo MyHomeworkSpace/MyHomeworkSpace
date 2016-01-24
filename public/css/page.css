@@ -59,6 +59,12 @@ nav {
 .go-dropdown li {
 	cursor: pointer;
 }
+@media (max-width: 768px) {
+	.tabs {
+		width: 100%;
+		height: 80px;
+	}
+}
 
 .pages {
 	width: 100%;
