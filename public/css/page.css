@@ -217,3 +217,11 @@ nav {
 		bottom: inherit;
 	}
 }
+
+@media (max-width: 991px) {
+	.upsell-row {
+		margin-top: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
