@@ -401,6 +401,8 @@
      */
     Utilities.cloneCss = function(from, to, what) {
         for (var i=0, l=what.length; i<l; i++) {
+            console.log(what);
+            console.log(from.css(what[i]));
             to.css(what[i], from.css(what[i]));
         }
     };
