@@ -410,7 +410,7 @@
                 if (what[i] == "font-family") {
                     setVal = "Lato,sans-serif";
                 } else if (what[i] == "font-size") {
-                    setVal = "15px";
+                    setVal = "13.8px";
                 }
             }
             to.css(what[i], setVal);
