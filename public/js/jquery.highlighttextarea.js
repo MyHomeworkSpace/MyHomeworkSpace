@@ -401,7 +401,19 @@
      */
     Utilities.cloneCss = function(from, to, what) {
         for (var i=0, l=what.length; i<l; i++) {
-            to.css(what[i], from.css(what[i]));
+            var setVal = from.css(what[i]);
+            if (navigator.userAgent.match(/Gecko/g)) {
+                // A WILD FIREFOX APPEARED
+                // PLANHUB USED "HEXY_FIX"
+                // IT'S SUPER EFFECTIVE
+                // TODO: make this read from the document but without using computed styles cause those are brokez in Firefox
+                if (what[i] == "font-family") {
+                    setVal = "Lato,sans-serif";
+                } else if (what[i] == "font-size") {
+                    setVal = "13.8px";
+                }
+            }
+            to.css(what[i], setVal);
         }
     };
 
