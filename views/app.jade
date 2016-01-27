@@ -559,18 +559,19 @@ html
 							input(type="text", id="usr-name" value="#{user.name}")
 							button(class="btn btn-primary", id="usr-btn") change
 							p
-								span Email address:
+								span Email address: 
 								span= user.email
 							
 							
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
-							p Your account's security settings
+							h3 Password
+							p
+								| You are signed in with your Dalton account. For assistance with Dalton accounts, please contact 
+								a(href="mailto:help@dalton.org") help@dalton.org
+								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
-							a.btn.btn-danger(href="https://dalton.myschoolapp.com/app/#login/request") Forgot Password
 						
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")
-							p More apps by the PlanHub Team
-							br
 							h4 CoursesPlus
 							h6 Free, Chrome Extension, School Laptop Ready
 							h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
