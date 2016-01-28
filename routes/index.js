@@ -11,7 +11,7 @@ router.get('/', global.getOptionalUserRecord, function(req, res, next) {
 });
 
 router.get('/typer', global.getOptionalUserRecord, function(req, res, next) {
-	window.location.assign("http://planhubme.github.io/PlannerTyper")
+	res.render('typer', { title: 'PlannerTyper' })
 });
 
 router.get("/error", global.getOptionalUserRecord, function(req, res, next) {
