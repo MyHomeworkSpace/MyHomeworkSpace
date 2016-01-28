@@ -1,19 +1,26 @@
 extends layout
 
 block precontent
-	div(class="jumbotron" height="100vh" style="background-image: url(#{basePath}/images/mainbg.jpg); background-size: cover;")
+	div(class="jumbotron" height="100vh" style=" height: 100vh; background-image: url(/images/mainbg.jpg); background-size: cover; background-attachment: fixed;")
 		div(class="container" height="100vh")
 			h1 Stay organized.
 			p PlanHub is an online planner that organizes your homework into one place.
 			p
 				a(href="#{basePath}/app", class="btn btn-lg btn-primary") Get started
-				a(data-scroll="data-scroll", href="#info", class="btn btn-lg btn-default") Learn more
-		a(id="info")
+				a(data-scroll="data-scroll", href="#info", class="btn btn-lg btn-default") Learn more 
+					span.badge 1
 
 block content
-	// div(class="big-text-thing")
-	//	h3 You can't lose your planner if it's online!
-	//	p Your information is stored on your account safely and securely, and can be accessed from anywhere you have an Internet connection!
+	a(id="info")
+	br.
+	br.
+	br.
+	br.
+	div(class="big-text-thing")
+		h1
+			i.fa.fa-exclamation-triangle 
+		h3 Important:
+		p Due to software upgrades, PlanHub will be temporarily unavailable at 1 PM on Saturday, January 30th. We apologize for any inconvenience this may cause. Thank you for your understanding!
 	div(class="row")
 		div(class="col-md-4")
 			img(src="#{basePath}/images/main01.png", class="main-feature-img")
