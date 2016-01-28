@@ -30,7 +30,9 @@ $(document).ready(function() {
 				}
 				for (var i in hwViewData.events) {
 					var ev = hwViewData.events[i];
-					console.log(ev);
+					var $obj = $("<li></li>");
+						$obj.text(ev.text);
+					$("#myDayEvents ul").append($obj);
 				}
 
 				$("#myDayCalendar").fullCalendar({
