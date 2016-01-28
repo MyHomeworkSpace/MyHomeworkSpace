@@ -28,7 +28,11 @@ $(document).ready(function() {
 				if (data.status == "ok") {
 					announcements = data.announcements;
 				}
-				console.log(hwViewData);
+				for (var i in hwViewData.events) {
+					var ev = hwViewData.events[i];
+					console.log(ev);
+				}
+
 				$("#myDayCalendar").fullCalendar({
 					header: {
 						left: "title",
@@ -50,19 +54,19 @@ $(document).ready(function() {
 						editable: false
 					});
 				}
-				window.page.hideLoading();
-			});
-		});
 
-		$("#myDayEvents ul li").each(function() {
-			$(this).data('event', {
-				title: $.trim($(this).text()), // use the element's text as the event title
-				stick: true // maintain when user navigates (see docs on the renderEvent method)
-			});
-			$(this).draggable({
-				zIndex: 999,
-				revert: true,      // will cause the event to go back to its
-				revertDuration: 0  //  original position after the drag
+				$("#myDayEvents ul li").each(function() {
+					$(this).data('event', {
+						title: $.trim($(this).text()), // use the element's text as the event title
+						stick: true // maintain when user navigates (see docs on the renderEvent method)
+					});
+					$(this).draggable({
+						zIndex: 999,
+						revert: true,      // will cause the event to go back to its
+						revertDuration: 0  //  original position after the drag
+					});
+				});
+				window.page.hideLoading();
 			});
 		});
 	});
