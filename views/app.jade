@@ -487,7 +487,7 @@ html
 				div(id="myDayHome", class="page")
 					div(id="myDayCalendar")
 					div(id="myDaySidebar")
-						h4 Drag events from this column and place them in the calendar.
+						h4 Drag your HW and place it into the calendar
 						div(id="myDayEvents")
 							ul
 								li event 1
@@ -559,18 +559,19 @@ html
 							input(type="text", id="usr-name" value="#{user.name}")
 							button(class="btn btn-primary", id="usr-btn") change
 							p
-								span Email address:
+								span Email address: 
 								span= user.email
 							
 							
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
-							p Your account's security settings
+							h3 Password
+							p
+								| You are signed in with your Dalton account. For assistance with Dalton accounts, please contact 
+								a(href="mailto:help@dalton.org") help@dalton.org
+								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
-							a.btn.btn-danger(href="https://dalton.myschoolapp.com/app/#login/request") Forgot Password
 						
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")
-							p More apps by the PlanHub Team
-							br
 							h4 CoursesPlus
 							h6 Free, Chrome Extension, School Laptop Ready
 							h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
@@ -661,7 +662,7 @@ html
 							if user.canFeedback > 0
 								li(data-page="admin-feedback", class="admin-link")
 									a(href="#admin-feedback", data-toggle="tooltip", data-placement="right", title="See the feedback users submitted using the send feedback buttons.")
-										i.fa.fa-frown-o.admin-link
+										i.fa.fa-smile-o.admin-link
 										| View feedback
 							li(data-page="admin-announcements", class="admin-link")
 								a(href="#admin-announcements", data-toggle="tooltip", data-placement="right", title="Send announcements to PlanHub users.")
@@ -706,6 +707,9 @@ html
 						h1 Administrative panel
 						h4 Announcement Settings
 						h5 Post Announcement
+						div(class="alert alert-danger", role="alert")
+							strong Be careful! 
+							| Don't post too many announcements&mdash;not only do they annoy users, but you can get your announcement permissions revoked!
 						p Message
 						input(type="text", id="announcement-msg", width="300px", data-toggle="tooltip", data-placement="right", title="You can use HTML tags for this input field!")
 						p Days

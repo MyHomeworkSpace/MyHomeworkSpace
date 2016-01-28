@@ -68,7 +68,7 @@ $(document).ready(function() {
 				$feedLi.attr("data-id", response[feed].announcementId);
 				var $copyLi = $feedLi.clone();
 					var $days = $('<strong></strong>');
-						$days.text(" Days: " + response[feed].days);
+						$days.text(" Days: " + response[feed].days + ", Poster ID: " + response[feed].posterId);
 					$copyLi.append($days)
 				$("#adminAnnouncementList").append($copyLi);
 				var $removeBtn = $('<button class="btn btn-xs btn-danger"> <i class="fa fa-trash-o"></i> </button>');
@@ -92,9 +92,10 @@ $(document).ready(function() {
 			postMe.days = $("#announcement-days").val();
 			postMe.time = window.utils.formatDate_api(moment().toDate());
 			postMe.msg = $("#announcement-msg").val();
-			window.api.post('admin/announcements/post/', postMe, function(result){});
-		};
-		swal("Yay", "Your announcement has been posted", "success");
+			window.api.post('admin/announcements/post/', postMe, function(result){
+				swal("Yay", "Your announcement has been posted", "success");
+			});
+		}
 	});
 	$("#announcement-clear").click(function() {
 		$("#admin-announcement-modal").modal();
