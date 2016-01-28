@@ -23,7 +23,7 @@ $(document).ready(function() {
 		window.page.showLoading();
 		var monday = window.planner.findThisMonday();
 		window.api.get("planner/announcements/getWeek/" + window.utils.formatDate_api(monday), function(data) {
-			window.api.get("hwView/getHw", function(hwViewData) {
+			window.api.get("hwView/getHw?date=" + moment().format('YYYY-MM-DD'), function(hwViewData) {
 				var announcements = [];
 				if (data.status == "ok") {
 					announcements = data.announcements;
