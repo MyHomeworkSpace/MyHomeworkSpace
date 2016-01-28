@@ -23,32 +23,35 @@ $(document).ready(function() {
 		window.page.showLoading();
 		var monday = window.planner.findThisMonday();
 		window.api.get("planner/announcements/getWeek/" + window.utils.formatDate_api(monday), function(data) {
-			var announcements = [];
-			if (data.status == "ok") {
-				announcements = data.announcements;
-			}
-			$("#myDayCalendar").fullCalendar({
-				header: {
-					left: "title",
-					middle: "",
-					right: "agendaWeek,agendaDay today prev,next"
-				},
-				editable: true,
-				droppable: true,
-				drop: function() {
-					// will do backendy stuff later
+			window.api.get("hwView/getHw", function(hwViewData) {
+				var announcements = [];
+				if (data.status == "ok") {
+					announcements = data.announcements;
 				}
-			}).fullCalendar("changeView", "agendaWeek");
-			for (var announcementIndex in announcements) {
-				var announcement = announcements[announcementIndex];
-				$("#myDayCalendar").fullCalendar("renderEvent", {
-					title: announcement.text,
-					start: announcement.date,
-					allDay: true,
-					editable: false
-				});
-			}
-			window.page.hideLoading();
+				console.log(hwViewData);
+				$("#myDayCalendar").fullCalendar({
+					header: {
+						left: "title",
+						middle: "",
+						right: "agendaWeek,agendaDay today prev,next"
+					},
+					editable: true,
+					droppable: true,
+					drop: function() {
+						// will do backendy stuff later
+					}
+				}).fullCalendar("changeView", "agendaWeek");
+				for (var announcementIndex in announcements) {
+					var announcement = announcements[announcementIndex];
+					$("#myDayCalendar").fullCalendar("renderEvent", {
+						title: announcement.text,
+						start: announcement.date,
+						allDay: true,
+						editable: false
+					});
+				}
+				window.page.hideLoading();
+			});
 		});
 
 		$("#myDayEvents ul li").each(function() {
