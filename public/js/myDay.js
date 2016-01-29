@@ -34,12 +34,6 @@ $(document).ready(function() {
 						$obj.text(ev.text);
 					$("#myDayEvents ul").append($obj);
 				}
-				eventRender: function(event, element) {
-            element.append( "<span class='closeon'>X</span>" );
-            element.find(".closeon").click(function() {
-               $('#calendar').fullCalendar('removeEvents',event._id);
-            });
-        }
 
 				$("#myDayCalendar").fullCalendar({
 					header: {
@@ -51,6 +45,12 @@ $(document).ready(function() {
 					droppable: true,
 					drop: function() {
 						// will do backendy stuff later
+					},
+					eventRender: function(event, element) {
+						element.append( "<span class='closeon'>X</span>" );
+						element.find(".closeon").click(function() {
+						$('#calendar').fullCalendar('removeEvents',event._id);
+						});
 					}
 				}).fullCalendar("changeView", "agendaWeek");
 				for (var announcementIndex in announcements) {
