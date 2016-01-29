@@ -98,7 +98,7 @@ router.get('/events/get/:date/:section_index', global.apiCall, global.requireUse
 		});
 		return;
 	}
-	if (req.params.section_index === undefined || parseInt(req.params.section_index) === NaN) {
+	if (req.params.section_index === undefined || isNaN(parseInt(req.params.section_index))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
@@ -142,7 +142,7 @@ router.get('/events/getWeek/:date/:section_index', global.apiCall, global.requir
 		});
 		return;
 	}
-	if (req.params.section_index === undefined || parseInt(req.params.section_index) === NaN) {
+	if (req.params.section_index === undefined || isNaN(parseInt(req.params.section_index))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
@@ -199,7 +199,7 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 		});
 		return;
 	}
-	if (req.body.subjectIndex === undefined || parseInt(req.body.subjectIndex) === NaN) {
+	if (req.body.subjectIndex === undefined || isNaN(parseInt(req.body.subjectIndex))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
@@ -213,14 +213,14 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 		});
 		return;
 	}
-	if (req.body.done === undefined || parseInt(req.body.done) === NaN || (parseInt(req.body.done) !== 0 && parseInt(req.body.done) != 1)) {
+	if (req.body.done === undefined || isNaN(parseInt(req.body.done)) || (parseInt(req.body.done) !== 0 && parseInt(req.body.done) != 1)) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid done parameter!"
 		});
 		return;
 	}
-	if (req.body.subId === undefined || parseInt(req.body.subId) === NaN) {
+	if (req.body.subId === undefined || isNaN(parseInt(req.body.subId))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid subId parameter!"
@@ -281,14 +281,14 @@ router.post('/events/purgeLine/', global.apiCall, global.requireUser, global.get
 		});
 		return;
 	}
-	if (req.body.subjectIndex === undefined || parseInt(req.body.subjectIndex) === NaN) {
+	if (req.body.subjectIndex === undefined || isNaN(parseInt(req.body.subjectIndex))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid section index parameter!"
 		});
 		return;
 	}
-	if (req.body.lines === undefined || parseInt(req.body.lines) === NaN) {
+	if (req.body.lines === undefined || isNaN(parseInt(req.body.lines))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid subId parameter!"
@@ -386,14 +386,14 @@ router.post('/sections/rename', global.apiCall, global.requireUser, global.getUs
 });
 
 router.post('/sections/swap', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.body.first === undefined || parseInt(req.body.first) === NaN) {
+	if (req.body.first === undefined || isNaN(parseInt(req.body.first))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid first index parameter!"
 		});
 		return;
 	}
-	if (req.body.second === undefined || parseInt(req.body.second) === NaN) {
+	if (req.body.second === undefined || isNaN(parseInt(req.body.second))) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid second index parameter!"
