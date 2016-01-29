@@ -59,6 +59,7 @@ window.hwView.addEventToList = function(ev, list) {
 					tag = tag + "ing";
 				} else if (tag == "READ") {
 					tag = tag + "ING";
+
 				}
 				if(window.hwView.clr) {
 					$tag.css("color", "black");
