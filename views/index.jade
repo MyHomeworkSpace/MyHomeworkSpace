@@ -1,12 +1,18 @@
 extends layout
 
+block scripts
+	script(src="#{basePath}/js/index.js")
+
 block precontent
 	div(class="jumbotron", style="height: 100vh; background-image: url(/images/mainbg.jpg); background-size: cover; background-attachment: fixed;")
 		div(class="container")
 			h1 Stay organized.
 			p PlanHub is an online planner that organizes your homework into one place.
 			p
-				a(href="#{basePath}/app", class="btn btn-lg btn-primary") Get started
+				if user
+					a(href="#{basePath}/app", class="btn btn-lg btn-primary") Get started
+				else
+					a(href="#{basePath}/login", id="get-started-modal", class="btn btn-lg btn-primary") Get started
 				a(data-scroll="data-scroll", href="#info", class="btn btn-lg btn-default") Learn more
 
 block content
@@ -49,3 +55,7 @@ block content
 	a(href="https://planhubme.github.io/APIDocs") Developer tools
 	&nbsp;&bull;&nbsp;
 	a(href="https://raw.githubusercontent.com/PlanHubMe/PlanHub/master/public/images/mysteriousImage.jpg") Join Our Team
+	br
+	p By using this site, you agree to our 
+		a(href="#{basePath}/privacy") Privacy Policy
+		| .
