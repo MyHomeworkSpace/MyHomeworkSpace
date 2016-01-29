@@ -240,6 +240,8 @@ app.use(basePath + '/api/v1/admin', api_admin);
 app.use(basePath + '/api/v1/groups', api_groups)
 
 // catch 404 and forward to error handler
+app.use(global.getOptionalUserRecord); // get record to show logged in on 404 
+
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
 	err.status = 404;
