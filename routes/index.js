@@ -14,6 +14,10 @@ router.get('/typer', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('typer', { title: 'PlannerTyper' })
 });
 
+router.get('/game', global.getOptionalUserRecord, function(req, res, next) {
+	res.render('game', { title: 'game' })
+});
+
 router.get("/error", global.getOptionalUserRecord, function(req, res, next) {
 	var err = new Error('Yay an error');
 	err.status = 500;
