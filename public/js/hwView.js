@@ -55,8 +55,10 @@ window.hwView.addEventToList = function(ev, list) {
 		var $lineTwo = $('<h4></h4>');
 			var $tag = $('<span></span>');
 				$tag.addClass("first-word");
-				if (tag.toLowerCase() == "read") {
+				if (tag.toLowerCase() == "read" && tag != "READ") {
 					tag = tag + "ing";
+				} else if (tag == "READ") {
+					tag = tag + "ING";
 				}
 				if(window.hwView.clr) {
 					$tag.css("color", "black");
