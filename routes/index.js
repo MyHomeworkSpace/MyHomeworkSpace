@@ -14,8 +14,8 @@ router.get('/typer', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('typer', { title: 'PlannerTyper' })
 });
 
-router.get('/game', global.getOptionalUserRecord, function(req, res, next) {
-	res.render('game', { title: 'game' })
+router.get('/privacy', global.getOptionalUserRecord, function(req, res, next) {
+	res.render('privacy', { title: 'Privacy Policy' })
 });
 
 router.get("/error", global.getOptionalUserRecord, function(req, res, next) {
