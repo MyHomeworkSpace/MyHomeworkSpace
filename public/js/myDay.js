@@ -49,7 +49,8 @@ $(document).ready(function() {
 					eventRender: function(event, element) {
 						element.append( "<span class='closeon'>X</span>" );
 						element.find(".closeon").click(function() {
-						$('#calendar').fullCalendar('removeEvents',event._id);
+							alert("hex");
+							$('#calendar').fullCalendar('removeEvents',event._id);
 						});
 					}
 				}).fullCalendar("changeView", "agendaWeek");
