@@ -45,6 +45,13 @@ $(document).ready(function() {
 					droppable: true,
 					drop: function() {
 						// will do backendy stuff later
+					},
+					eventRender: function(event, element) {
+						element.append( "<span class='closeon'>X</span>" );
+						element.find(".closeon").click(function() {
+							alert("hex");
+							$('#calendar').fullCalendar('removeEvents',event._id);
+						});
 					}
 				}).fullCalendar("changeView", "agendaWeek");
 				for (var announcementIndex in announcements) {
