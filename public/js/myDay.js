@@ -34,6 +34,12 @@ $(document).ready(function() {
 						$obj.text(ev.text);
 					$("#myDayEvents ul").append($obj);
 				}
+				eventRender: function(event, element) {
+            element.append( "<span class='closeon'>X</span>" );
+            element.find(".closeon").click(function() {
+               $('#calendar').fullCalendar('removeEvents',event._id);
+            });
+        }
 
 				$("#myDayCalendar").fullCalendar({
 					header: {
