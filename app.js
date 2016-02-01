@@ -256,7 +256,7 @@ app.use(function(err, req, res, next) {
 		var message = (err.message || "");
 		var name = (err.name || "");
 		var stack = (err.stack || "");
-		var username = (req.session.loggedIn ? req.session.username : undefined);
+		var username = (req.session ? (req.session.loggedIn ? req.session.username : undefined) : undefined);
 		var url = req.url;
 		var headers = JSON.stringify(req.headers);
 		knex("errors").insert({
