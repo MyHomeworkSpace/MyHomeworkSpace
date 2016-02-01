@@ -198,7 +198,7 @@ app.set('view engine', 'jade');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: "500kb" }));
 app.use(cookieParser());
 
 // sessions
@@ -256,7 +256,7 @@ app.use(function(err, req, res, next) {
 		var message = (err.message || "");
 		var name = (err.name || "");
 		var stack = (err.stack || "");
-		var username = (req.session.loggedIn ? req.session.username : undefined);
+		var username = (req.session ? (req.session.loggedIn ? req.session.username : undefined) : undefined);
 		var url = req.url;
 		var headers = JSON.stringify(req.headers);
 		knex("errors").insert({
