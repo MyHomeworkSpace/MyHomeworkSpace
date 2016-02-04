@@ -4,4 +4,4 @@ This is an open-source planner website licensed under the MIT License.
 
 See it online at [planhub.me](http://planhub.me).
 
-Want to contribute? See our [Contributing Guidelines](contributing.md)
+Want to contribute? See our [Contributing Guidelines](contributing.md).
