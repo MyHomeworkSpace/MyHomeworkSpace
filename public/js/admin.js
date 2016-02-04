@@ -107,7 +107,6 @@ $(document).ready(function() {
 		window.api.get('admin/users/get/', function(result) {
 			for (var userIndex in result.users) {
 				var user = result.users[userIndex];
-				console.log(user);
 				var userTable = $("#userTable");
 				var row = $("<tr></tr>");
 				var idCell = $("<td></td>");
