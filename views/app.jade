@@ -693,10 +693,6 @@ html
 								a(href="http://blog.planhub.me/wp-login.php" target="_blank")
 									i.fa.fa-rss.admin-link
 									| Manage Blog
-							
-							li(id="userNumber")
-								No Users
-							
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
@@ -755,3 +751,20 @@ html
 							li Username: zomg_testUser
 							li Password: superSecret!
 						a.btn.btn-danger(href="#{basePath}/logout", data-toggle="tooltip", data-placement="bottom", title="Warning: This will sign you out of your current session") Sign into a test user account.
+					div(id="admin-users", class="page")
+						h1 Administrative panel
+						h4 Users
+						li(id="userNumber")
+							No Users
+						table(border="1" id="userTable")
+							tbody
+								tr
+									td(colspan="6")
+										PlanHub Users
+								tr
+									td ID
+									td Name
+									td Username
+									td Email
+									td Type
+									td Level

@@ -8,6 +8,20 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.get('/users/get', global.apiCall, global.requireUser, global.getUserRecord, global.requireNonZeroLevel, function(req, res, next) {
+	knex("users").select("*").then(function(obj) {
+		res.json({
+			status: "ok",
+			users: obj
+		});
+	}).catch(function() {
+		res.json({
+			status: "error",
+			error: "Unknown database error."
+		});	
+	});
+});
+
 router.get('/feedback/getList', global.apiCall, global.requireUser, global.getUserRecord, global.requireViewFeedback, function(req, res, next) {
 	knex("feedback").select("feedbackId", "msg", "name", "type", "timestamp", "username", "webpage").then(function(obj) {
 		var tempArr = obj;
