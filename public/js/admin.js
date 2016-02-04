@@ -109,7 +109,6 @@ $(document).ready(function() {
 				var user = result.users[userIndex];
 				console.log(user);
 				var userTable = $("#userTable");
-				var rowNumber = 1;
 				var row = $("<tr></tr>");
 				var idCell = $("<td></td>");
 				var nameCell = $("<td></td>");
@@ -121,6 +120,12 @@ $(document).ready(function() {
 				usernameCell.html(user.username);
 				emailCell.html(user.email);
 				typeCell.html(user.type);
+				row.append(idCell);
+				row.append(nameCell);
+				row.append(usernameCell);
+				row.append(emailCell);
+				row.append(typeCell);
+				userTable.append(row);
 			}
 		});
 	});
