@@ -693,6 +693,10 @@ html
 								a(href="http://blog.planhub.me/wp-login.php" target="_blank")
 									i.fa.fa-rss.admin-link
 									| Manage Blog
+							li(data-page="admin-users", class="admin-link", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
+								a(href="#admin-users")
+									i.fa.fa-users.admin-link
+									| Manage Users
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
