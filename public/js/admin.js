@@ -103,10 +103,12 @@ $(document).ready(function() {
 	window.api.get('admin/users/count/', function(result) {
 		$("#userNumber").text("There are " + result.number + " users!")
 	});
-	window.api.get('admin/users/get/', function(result) {
-		for (var userIndex in result.users) {
-			var user = result.users[userIndex];
-			console.log(user);
-		}
+	$("#admin-users").on("tabOpened", function() {
+		window.api.get('admin/users/get/', function(result) {
+			for (var userIndex in result.users) {
+				var user = result.users[userIndex];
+				console.log(user);
+			}
+		});
 	});
 });
