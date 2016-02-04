@@ -116,11 +116,11 @@ $(document).ready(function() {
 				var usernameCell = $("<td></td>");
 				var emailCell = $("<td></td>");
 				var typeCell = $("<td></td>");
-				idCell.html = user.id;
-				nameCell.html = user.id;
-				usernameCell.html = user.id;
-				emailCell.html = user.id;
-				typeCell.html = user.id;
+				idCell.html(user.id);
+				nameCell.html(user.name);
+				usernameCell.html(user.username);
+				emailCell.html(user.email);
+				typeCell.html(user.type);
 			}
 		});
 	});
