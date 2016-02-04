@@ -110,18 +110,17 @@ $(document).ready(function() {
 				console.log(user);
 				var userTable = $("#userTable");
 				var rowNumber = 1;
-				var row = userTable.insertRow(rowNumber);
-				var idCell = row.insertCell(0);
-				var nameCell = row.insertCell(1);
-				var usernameCell = row.insertCell(2);
-				var emailCell = row.insertCell(3);
-				var typeCell = row.insertCell(4);
+				var row = $("<tr></tr>");
+				var idCell = $("<td></td>");
+				var nameCell = $("<td></td>");
+				var usernameCell = $("<td></td>");
+				var emailCell = $("<td></td>");
+				var typeCell = $("<td></td>");
 				idCell.innerHTML = user.id;
 				nameCell.innerHTML = user.id;
 				usernameCell.innerHTML = user.id;
 				emailCell.innerHTML = user.id;
 				typeCell.innerHTML = user.id;
-				rowNumber += 1;
 			}
 		});
 	});
