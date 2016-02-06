@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/schedules/connect', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.post('/schedules/connect', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	var username = req.body.username;
 	var password = req.body.password;
 
