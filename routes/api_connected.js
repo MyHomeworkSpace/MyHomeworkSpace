@@ -73,7 +73,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 						parseXmlString(chunk, function(err, data) {
 							res.json({
 								status: "ok",
-								chunk: chunk
+								data: data
 							});
 						});
 					});
