@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var parseXmlString = require('xml2js').parseString;
 
 router.get('/', function(req, res, next) {
 	res.json({
@@ -9,8 +10,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/schedules/connect', global.apiCall, function(req, res, next) {
-	username = req.body.username;
-	password = req.body.password;
+	var username = req.body.username;
+	var password = req.body.password;
 
 	var rouxRequest = "";
 	rouxRequest += "<request><key></key><action>authenticate</action><credentials><username>";
