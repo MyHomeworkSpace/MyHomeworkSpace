@@ -108,8 +108,8 @@ $(document).ready(function() {
 	});
 
 	$("#schedules-sign-in").click(function() {
-		window.api.post("connected/schedules/connect", { username: $("#schedules-username").val(), password: $("#schedules-pw").val() }, function() {
-
+		window.api.post("connected/schedules/connect", { username: $("#schedules-username").val(), password: $("#schedules-pw").val() }, function(resp) {
+			console.log(resp);
 		});
 	})
 });
