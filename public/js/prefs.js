@@ -106,4 +106,11 @@ $(document).ready(function() {
 	$("#schedules-connect").click(function() {
 		$("#login-to-schedules-modal").modal();
 	});
+
+	$("#schedules-sign-in").click(function() {
+		
+		window.api.post("connected/schedules/connect", { username: $("#schedules-username").val(), $("#schedules-pw").val() }, function() {
+
+		});
+	})
 });
