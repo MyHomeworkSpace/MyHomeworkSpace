@@ -44,13 +44,6 @@ $(document).ready(function() {
 		$("#prefs-modal").modal("hide");
 		setPage($("#prefs-modal").attr("data-feature"));
 	});
-	$("#usr-btn").click(function() {
-		var usrname = $("#usr-name").val();
-		window.api.post("prefs/setName", { name: usrname }, function() {
-			window.page.showLoading();
-			window.location.reload();
-		});
-	});
 	$("#titles-new").click(function() {
 		var $liThingy = $('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></li>');
 			$liThingy.attr("id", "title");
