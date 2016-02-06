@@ -5,3 +5,8 @@
 #feedback-frame {
 	border: solid 5px black;
 }
+
+#userTable {
+	margin: 0 auto;
+	display: table;
+}
