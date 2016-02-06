@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
+
 var parseXmlString = require('xml2js').parseString;
+var https = require('https');
 var querystring = require('querystring');
 
 router.get('/', function(req, res, next) {
