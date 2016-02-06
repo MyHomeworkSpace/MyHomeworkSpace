@@ -5,7 +5,7 @@ var parseXmlString = require('xml2js').parseString;
 var https = require('https');
 var querystring = require('querystring');
 
-var utils = require('utils');
+var utils = require('./utils');
 
 router.get('/', function(req, res, next) {
 	res.json({
@@ -69,7 +69,8 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 				rouxRequest += owner.encodeHTML();
 				rouxRequest += "</ID><start>";
 				rouxRequest += utils.formatDate_roux(start);
-				rouxRequest += "</start><end>"
+				rouxRequest += "</start><end>";
+				rouxRequest += utils.formatDate_roux(end);
 				rouxRequest += "</end></request>";
 
 				post_data = querystring.stringify({
