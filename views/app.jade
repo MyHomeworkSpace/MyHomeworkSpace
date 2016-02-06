@@ -548,6 +548,8 @@ html
 						li(role="presentation")
 							a(href="#prefs-security", role="tab", data-toggle="tab") Security
 						li(role="presentation")
+							a(href="#prefs-connected", role="tab", data-toggle="tab") Connected accoutns
+						li(role="presentation")
 							a(href="#prefs-apps", role="tab", data-toggle="tab") More Apps
 				
 					div(class="tab-content")
@@ -568,7 +570,13 @@ html
 								a(href="mailto:help@dalton.org") help@dalton.org
 								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
-						
+							
+						div(role="tabpanel", class="tab-pane active", id="prefs-connected")
+							p Connect your PlanHub account to other accounts.
+							h3 Schedules
+							p Connect your Dalton account to Schedules so PlanHub can determine when you have labs and free time.
+							button(id="schedules-connect", class="btn btn-lg btn-primary") Connect to Schedules
+									
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")
 							h4 CoursesPlus
 							h6 Free, Chrome Extension, School Laptop Ready
