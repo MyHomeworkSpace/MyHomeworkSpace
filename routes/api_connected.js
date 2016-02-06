@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var parseXmlString = require('xml2js').parseString;
+var querystring = require('querystring');
 
 router.get('/', function(req, res, next) {
 	res.json({
