@@ -5,6 +5,8 @@ var parseXmlString = require('xml2js').parseString;
 var https = require('https');
 var querystring = require('querystring');
 
+var utils = require('utils');
+
 router.get('/', function(req, res, next) {
 	res.json({
 		status: "ok",
@@ -56,12 +58,19 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 				var key = data["response"]["result"][0]["key"][0]["_"];
 				var owner = data["response"]["result"][0]["key"][0]["$"]["owner"];
 
+				var start = utils.findThisMonday();
+				var end = new Date(start);
+				end.setDate(end.getDate() + 4);
+
 				rouxRequest = "";
 				rouxRequest += "<request><key>";
 				rouxRequest += key.encodeHTML();
-				rouxRequest += "</key><action>selectUser</action><ID>";
+				rouxRequest += "</key><action>selectStudentCalendar</action><ID>";
 				rouxRequest += owner.encodeHTML();
-				rouxRequest += "</ID></request>";
+				rouxRequest += "</ID><start>";
+				rouxRequest += utils.formatDate_roux(start);
+				rouxRequest += "</start><end>"
+				rouxRequest += "</end></request>";
 
 				post_data = querystring.stringify({
 					'rouxRequest': rouxRequest
