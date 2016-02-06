@@ -58,7 +58,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 				var key = data["response"]["result"][0]["key"][0]["_"];
 				var owner = data["response"]["result"][0]["key"][0]["$"]["owner"];
 
-				var start = utils.findThisMonday();
+				var start = utils.findNextMonday();
 				var end = new Date(start);
 				end.setDate(end.getDate() + 4);
 

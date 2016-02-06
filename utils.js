@@ -8,6 +8,14 @@ utils.findThisMonday = function() {
 	return today;
 };
 
+utils.findNextMonday = function() {
+	var today = new Date();
+	while (today.getDay() != 1) { // loop until a monday is found
+		today.setDate(today.getDate() + 1);
+	}
+	return today;
+};
+
 utils.formatDate_roux = function(dateObj) {
 	var month = (dateObj.getMonth() + 1).toString();
 	var date = dateObj.getDate().toString();
