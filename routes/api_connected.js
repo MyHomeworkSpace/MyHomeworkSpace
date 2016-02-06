@@ -5,7 +5,7 @@ var parseXmlString = require('xml2js').parseString;
 var https = require('https');
 var querystring = require('querystring');
 
-var utils = require('./utils');
+var utils = require('../utils');
 
 router.get('/', function(req, res, next) {
 	res.json({
