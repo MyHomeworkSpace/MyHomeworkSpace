@@ -17,7 +17,7 @@ utils.formatDate_roux = function(dateObj) {
 	if (date.length == 1) {
 		date = "0" + date;
 	}
-	return dateObj.getFullYear() + "-" + month + "-" + date;
+	return dateObj.getFullYear() + month + date;
 };
 
 module.exports = utils;
