@@ -41,7 +41,7 @@ window.utils.formatDate_api = function(dateObj) {
 	if (date.length == 1) {
 		date = "0" + date;
 	}
-	return dateObj.getFullYear() + month + date;
+	return dateObj.getFullYear() + "-" + month + "-" + date;
 };
 
 window.utils.formatDate_pretty = function(dateObj) {
