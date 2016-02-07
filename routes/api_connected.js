@@ -70,6 +70,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 				});
 				return;
 			}, function(data, chunk) {
+				console.log("HEXRALERT2");
 				res.json({
 					status: "ok",
 					data: data,

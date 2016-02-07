@@ -33,7 +33,7 @@ roux.request = function(key, action, data, errCallback, callback) {
 		hRes.setEncoding('utf8');
 		hRes.on('data', function (chunk) {
 			parseXmlString(chunk, function(err, data) {
-				if (err) {
+				if (err || !data) {
 					errCallback("Unknown error.", err);
 					return;
 				}
