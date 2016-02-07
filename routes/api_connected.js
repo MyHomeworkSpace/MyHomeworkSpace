@@ -26,7 +26,6 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 	data += password.encodeHTML();
 	data += "</password></credentials>";
 
-	key, action, data, err, callback
 	roux.request("", "authenticate", data, function(err) {
 		res.json({
 			status: "error",
