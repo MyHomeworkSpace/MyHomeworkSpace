@@ -32,15 +32,10 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			message: err
 		});
 	}, function(data) {
-				res.json({
-					status: "ok",
-					data: data
-				});
-				return;
 		var key = data["response"]["result"][0]["key"][0]["_"];
 		var owner = data["response"]["result"][0]["key"][0]["$"]["owner"];
 
-		roux.request(key, "selectObjects", "object><objecttype><name>academicyear</name></objecttype></object><pattern><sortorder><academicyear><open>desc</open></academicyear></sortorder><limit>1</limit></pattern>", function(err) {
+		roux.request(key, "selectObjects", "<object><objecttype><name>academicyear</name></objecttype></object><pattern><sortorder><academicyear><open>desc</open></academicyear></sortorder><limit>1</limit></pattern>", function(err) {
 			res.json({
 				status: "error",
 				message: err
