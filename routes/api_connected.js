@@ -62,11 +62,12 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			dataStr += "</end></request>";
 
 			roux.request(key, "selectStudentCalendar", dataStr, function(msg, err) {
-				/*res.json({
+				res.json({
 					status: "error",
 					message: msg,
 					err: err
-				});*/
+				});
+				return;
 			}, function(data, chunk) {
 				res.json({
 					status: "ok",
