@@ -4,7 +4,7 @@ var querystring = require('querystring');
 
 var roux = {};
 
-roux.request = function(key, action, data, err, callback) {
+roux.request = function(key, action, data, errCallback, callback) {
 	var rouxRequest = "";
 	rouxRequest += "<request><key>";
 	rouxRequest += "";
@@ -34,11 +34,11 @@ roux.request = function(key, action, data, err, callback) {
 		hRes.on('data', function (chunk) {
 			parseXmlString(chunk, function(err, data) {
 				if (err) {
-					err(err);
+					errCallback(err);
 					return;
 				}
 				if (data["response"]["result"][0]["$"]["status"] != 200) {
-					err("The username or password was incorrect!");
+					errCallback("The username or password was incorrect!");
 					return;
 				}
 				callback(data);
