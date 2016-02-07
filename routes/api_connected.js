@@ -61,6 +61,12 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			dataStr += utils.formatDate_roux(end);
 			dataStr += "</end></request>";
 
+			res.json({
+				status: "error",
+				message: "hexlevel too high",
+				err: err
+			});
+			return;
 			roux.request(key, "selectStudentCalendar", dataStr, function(msg, err) {
 				res.json({
 					status: "error",
