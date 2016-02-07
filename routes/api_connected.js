@@ -38,8 +38,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 		roux.request(key, "selectObjects", "<object><objecttype><name>academicyear</name></objecttype></object><pattern><sortorder><academicyear><open>desc</open></academicyear></sortorder><limit>1</limit></pattern>", function(err) {
 			res.json({
 				status: "error",
-				message: err,
-				key: key
+				message: err
 			});
 		}, function(data) {
 			var academicyear = data["response"]["result"][0]["academicyear"][0]["$"]["SSID"];
