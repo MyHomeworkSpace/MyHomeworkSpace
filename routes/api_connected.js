@@ -62,7 +62,6 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			dataStr += "</end></request>";
 
 			roux.request(key, "selectStudentCalendar", dataStr, function(msg, err) {
-				console.error("HEXRALERT");
 				res.json({
 					status: "error",
 					message: msg,
@@ -70,7 +69,6 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 				});
 				return;
 			}, function(data, chunk) {
-				console.error("HEXRALERT 2");
 				res.json({
 					status: "ok",
 					data: data,
