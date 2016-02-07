@@ -1,6 +1,7 @@
 var parseXmlString = require('xml2js').parseString;
 var https = require('https');
 var querystring = require('querystring');
+var request = require('request');
 
 var roux = {};
 
@@ -14,42 +15,20 @@ roux.request = function(key, action, data, errCallback, callback) {
 	rouxRequest += data;
 	rouxRequest += "</request>";
 
-	var post_data = querystring.stringify({
-		'rouxRequest': rouxRequest
-	});
-
-	var post_options = {
-		host: 'schedules.dalton.org',
-		port: '443',
-		path: '/roux/index.php',
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': post_data.length
-		}
-	};
-
-	var post_req = https.request(post_options, function(hRes) {
-		hRes.setEncoding('utf8');
-		hRes.on('data', function (chunk) {
-			console.error(chunk);
-			parseXmlString(chunk, function(err, data) {
-				if (err || !data) {
-					console.log(error);
-					errCallback("Unknown error.", err);
-					return;
-				}
-				if (data["response"]["result"][0]["$"]["status"] != 200) {
-					errCallback("The username or password was incorrect!", err);
-					return;
-				}
-				callback(data, chunk);
-			});
+	request.post("https://schedules.dalton.org/roux/index.php", {form: { rouxRequest: rouxRequest } }, function(err, resp, body) {
+		parseXmlString(body, function(err, data) {
+			if (err || !data) {
+				console.log(error);
+				errCallback("Unknown error.", err);
+				return;
+			}
+			if (data["response"]["result"][0]["$"]["status"] != 200) {
+				errCallback("The username or password was incorrect!", err);
+				return;
+			}
+			callback(data, body);
 		});
 	});
-
-	post_req.write(post_data);
-	post_req.end();
 };
 
 module.exports = roux;
