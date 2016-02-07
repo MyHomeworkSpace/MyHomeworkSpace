@@ -19,14 +19,14 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 	var username = req.body.username;
 	var password = req.body.password;
 
-	var data = "";
-	data += "<credentials><username>";
-	data += username.encodeHTML();
-	data += "</username><password type=\"plaintext\">";
-	data += password.encodeHTML();
-	data += "</password></credentials>";
+	var dataStr = "";
+	dataStr += "<credentials><username>";
+	dataStr += username.encodeHTML();
+	dataStr += "</username><password type=\"plaintext\">";
+	dataStr += password.encodeHTML();
+	dataStr += "</password></credentials>";
 
-	roux.request("", "authenticate", data, function(err) {
+	roux.request("", "authenticate", dataStr, function(err) {
 		res.json({
 			status: "error",
 			message: err
@@ -47,20 +47,20 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			var end = new Date(start);
 			end.setDate(end.getDate() + 4);
 
-			rouxRequest = "";
-			rouxRequest += "<request><key>";
-			rouxRequest += key.encodeHTML();
-			rouxRequest += "</key><action>selectStudentCalendar</action><ID>";
-			rouxRequest += owner.encodeHTML();
-			rouxRequest += "</ID><academicyear>";
-			rouxRequest += academicyear;
-			rouxRequest += "</academicyear><start>";
-			rouxRequest += utils.formatDate_roux(start);
-			rouxRequest += "</start><end>";
-			rouxRequest += utils.formatDate_roux(end);
-			rouxRequest += "</end></request>";
+			dataStr = "";
+			dataStr += "<request><key>";
+			dataStr += key.encodeHTML();
+			dataStr += "</key><action>selectStudentCalendar</action><ID>";
+			dataStr += owner.encodeHTML();
+			dataStr += "</ID><academicyear>";
+			dataStr += academicyear;
+			dataStr += "</academicyear><start>";
+			dataStr += utils.formatDate_roux(start);
+			dataStr += "</start><end>";
+			dataStr += utils.formatDate_roux(end);
+			dataStr += "</end></request>";
 
-			roux.request(key, "selectStudentCalendar", data, function(err) {
+			roux.request(key, "selectStudentCalendar", dataStr, function(err) {
 				res.json({
 					status: "error",
 					message: err
