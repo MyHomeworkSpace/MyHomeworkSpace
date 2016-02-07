@@ -32,6 +32,11 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			message: err
 		});
 	}, function(data) {
+				res.json({
+					status: "ok",
+					data: data
+				});
+				return;
 		var key = data["response"]["result"][0]["key"][0]["_"];
 		var owner = data["response"]["result"][0]["key"][0]["$"]["owner"];
 
