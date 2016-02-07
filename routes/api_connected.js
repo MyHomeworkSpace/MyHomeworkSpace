@@ -68,7 +68,6 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			}, function(data) {
 				res.json({
 					status: "ok",
-					chunk: chunk,
 					data: data
 				});
 			});
