@@ -34,8 +34,8 @@ roux.request = function(key, action, data, errCallback, callback) {
 		hRes.on('data', function (chunk) {
 			parseXmlString(chunk, function(err, data) {
 				if (err) {
-					//errCallback("Unknown error.", err);
-					//return;
+					errCallback("Unknown error.", err);
+					return;
 				}
 				if (data["response"]["result"][0]["$"]["status"] != 200) {
 					errCallback("The username or password was incorrect!", err);
