@@ -38,8 +38,7 @@ roux.request = function(key, action, data, errCallback, callback) {
 					return;
 				}
 				if (data["response"]["result"][0]["$"]["status"] != 200) {
-					/*errCallback("The username or password was incorrect!");*/
-					errCallback(data);
+					errCallback("The username or password was incorrect!");
 					return;
 				}
 				callback(data);

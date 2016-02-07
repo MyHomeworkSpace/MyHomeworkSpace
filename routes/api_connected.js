@@ -43,12 +43,6 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 		}, function(data) {
 			var academicyear = data["response"]["result"][0]["academicyear"][0]["$"]["SSID"];
 
-			res.json({
-				status: "ok",
-				year: academicyear
-			});
-			return;
-
 			var start = utils.findNextMonday();
 			var end = new Date(start);
 			end.setDate(end.getDate() + 4);
