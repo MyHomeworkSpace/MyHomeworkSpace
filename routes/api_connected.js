@@ -80,53 +80,6 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			});
 		});
 	});
-
-
-	var post_req = https.request(post_options, function(hRes) {
-		hRes.setEncoding('utf8');
-		hRes.on('data', function (chunk) {
-			parseXmlString(chunk, function(err, data) {
-				if (err) {
-					res.json({err:err});
-					return;
-				}
-				if (data["response"]["result"][0]["$"]["status"] != 200) {
-					res.json({
-						status: "ok",
-						message: "The username or password was incorrect!"
-					});
-					return;
-				}
-				var key = data["response"]["result"][0]["key"][0]["_"];
-				var owner = data["response"]["result"][0]["key"][0]["$"]["owner"];
-
-
-
-				post_data = querystring.stringify({
-					'rouxRequest': rouxRequest
-				});
-				post_options.headers["Content-Length"] = post_data.length;
-				post_req = https.request(post_options, function(hUserRes) {
-					hUserRes.setEncoding('utf8');
-					hUserRes.on('data', function (chunk) {
-						parseXmlString(chunk, function(err, data) {
-							res.json({
-								status: "ok",
-								chunk: chunk,
-								data: data
-							});
-						});
-					});
-				});
-
-				post_req.write(post_data);
-				post_req.end();
-			});
-		});
-	});
-
-	post_req.write(post_data);
-	post_req.end();
 });
 
 module.exports = router;
