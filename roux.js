@@ -41,7 +41,7 @@ roux.request = function(key, action, data, errCallback, callback) {
 					errCallback("The username or password was incorrect!");
 					return;
 				}
-				callback(data);
+				callback(data, chunk);
 			});
 		});
 	});

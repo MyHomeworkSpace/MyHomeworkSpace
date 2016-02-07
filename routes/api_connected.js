@@ -65,10 +65,11 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 					status: "error",
 					message: err
 				});
-			}, function(data) {
+			}, function(data, chunk) {
 				res.json({
 					status: "ok",
-					data: data
+					data: data,
+					chunk: chunk
 				});
 			});
 		});
