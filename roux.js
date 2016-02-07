@@ -32,8 +32,10 @@ roux.request = function(key, action, data, errCallback, callback) {
 	var post_req = https.request(post_options, function(hRes) {
 		hRes.setEncoding('utf8');
 		hRes.on('data', function (chunk) {
+			console.error(chunk);
 			parseXmlString(chunk, function(err, data) {
 				if (err || !data) {
+					console.log(error);
 					errCallback("Unknown error.", err);
 					return;
 				}
