@@ -35,10 +35,11 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 		var key = data["response"]["result"][0]["key"][0]["_"];
 		var owner = data["response"]["result"][0]["key"][0]["$"]["owner"];
 
-		roux.request(key, "selectObjects", "<object><objecttype><name>academicyear</name></objecttype></object><pattern><sortorder><academicyear><open>desc</open></academicyear></sortorder><limit>1</limit></pattern>", function(err) {
+		roux.request(key, "selectObjects", "<object><objecttype><name>academicyear</name></objecttype></object><pattern><sortorder><academicyear><open>desc</open></academicyear></sortorder><limit>1</limit></pattern>", function(msg, err) {
 			res.json({
 				status: "error",
-				message: err
+				message: msg,
+				err: err
 			});
 		}, function(data) {
 			var academicyear = data["response"]["result"][0]["academicyear"][0]["$"]["SSID"];
@@ -60,10 +61,11 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 			dataStr += utils.formatDate_roux(end);
 			dataStr += "</end></request>";
 
-			roux.request(key, "selectStudentCalendar", dataStr, function(err) {
+			roux.request(key, "selectStudentCalendar", dataStr, function(msg, err) {
 				res.json({
 					status: "error",
-					message: err
+					message: msg,
+					err: err
 				});
 			}, function(data, chunk) {
 				res.json({
