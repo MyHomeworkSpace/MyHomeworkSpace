@@ -104,7 +104,7 @@ $(document).ready(function() {
 		$("#userNumber").text("There are " + result.number + " users!")
 	});
 	$("#admin-users").on("tabOpened", function() {
-		$("#userTable tr:not(.table-header)").remove(); // clear table
+		$("#userTable tbody tr").remove(); // clear table
 		window.api.get('admin/users/get/', function(result) {
 			for (var userIndex in result.users) {
 				var user = result.users[userIndex];
