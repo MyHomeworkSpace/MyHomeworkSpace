@@ -121,14 +121,19 @@ html
 						li
 							a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
 								span= user.name 
-								if user.level > 0
-									span(class="adminBadge") (Admin) 
-								if user.type == "faculty"
-									span(class="teacherBadge") (Faculty)
 								span.caret
 							ul.dropdown-menu
 								li
 									a(href="#{basePath}/logout") Log out
+									if user.level > 0
+										span(class="adminBadge") Admin
+										li.divider
+									if user.type == "faculty"
+										span(class="teacherBadge") Teacher
+										li.divider
+									a(data-page="prefs") Prefrences
+									a(href="http://help.planhub.me") Support
+									
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 				span
