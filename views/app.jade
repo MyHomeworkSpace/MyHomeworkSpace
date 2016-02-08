@@ -758,13 +758,16 @@ html
 						h4 Users
 						div(id="userNumber") Loading user count...
 						table(border="1" id="userTable")
-							tbody
-								th(class="table-header")
+							thead
+								th
 									td(colspan="6") PlanHub Users
-								th(class="table-header")
+								th
 									td ID
 									td Name
 									td Username
 									td Email
 									td Type
 									td Level
+							tbody
+								tr
+									td(colspan="6") Loading users...
