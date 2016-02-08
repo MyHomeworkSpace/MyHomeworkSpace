@@ -128,10 +128,10 @@ html
 									if user.level > 0
 										span(class="adminBadge") Admin
 										li.divider
+										a(data-page="prefs") Preferences
 									if user.type == "faculty"
 										span(class="teacherBadge") Teacher
 										li.divider
-									a(data-page="prefs") Prefrences
 									a(href="http://help.planhub.me") Support
 									
 		nav(class="navbar navbar-fixed-top print-navbar")
