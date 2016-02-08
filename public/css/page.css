@@ -238,3 +238,11 @@ nav {
 		margin-right: 0;
 	}
 }
+
+.adminBadge {
+	color: #6666FF;
+}
+
+.teacherBadge {
+	color: #00FF33;
+}
