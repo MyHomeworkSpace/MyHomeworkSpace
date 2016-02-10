@@ -9,10 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/fetchPage', function(req, res, next) {
-	res.json({
-		status: "ok",
-		page: ""
-	});
+	res.render(req.params.page);
 });
 
 module.exports = router;
