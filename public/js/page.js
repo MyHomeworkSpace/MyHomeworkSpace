@@ -11,7 +11,7 @@ function setPage(newPage) {
 		// fetch it!
 		window.api.get("pageHandler/fetchPage/" + newPage, function(response) {
 			// check for error
-			if (obj.status === "error") {
+			if (response.status === "error") {
 				console.error("Error loading page!");
 				return;
 			}
