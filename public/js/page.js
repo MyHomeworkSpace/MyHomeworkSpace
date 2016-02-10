@@ -10,12 +10,29 @@ function setPage(newPage) {
 	} else {
 		// fetch it!
 		window.api.get("pageHandler/fetchPage/" + newPage, function(response) {
+			// check for error
+			try {
+				var obj = JSON.parse(response);
+				if (obj.status == "error") {
+					console.error("Error loading page!");
+					return;
+				}
+			} catch (e) {
+				// ignore it, it's an HTML page
+			}
+
 			// and load it
 			var $page = $(response);
 
 			var $scripts = $page.children("planhub-page-scripts");
+			$("head").append($scripts);
+
 			var $styles = $page.children("planhub-page-styles");
+			$("head").append($styles);
+
 			var $modals = $page.children("planhub-page-modals");
+			$("body").append($modals);
+
 			var $upsell = $page.children("planhub-page-upsell");
 				$upsell.attr("id", newPage + "-upsell");
 				$upsell.addClass("upsell");
