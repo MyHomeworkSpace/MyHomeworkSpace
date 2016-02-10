@@ -100,6 +100,7 @@ html
 									a(data-page="hwView") Homework View
 								if user.level > 0
 									li.divider
+									
 									li
 										a(data-page="admin") Admin
 									li
@@ -125,13 +126,19 @@ html
 							ul.dropdown-menu
 								li
 									a(href="#{basePath}/logout") Log out
-									if user.level > 0
-										span(class="adminBadge") Admin
-										li.divider
+										
+								if user.level > 0
+									li
 										a(data-page="prefs") Preferences
-									if user.type == "faculty"
+									li	
+										span(class="adminBadge") Admin
+									
+								if user.type == "faculty"
+									li
 										span(class="teacherBadge") Teacher
-										li.divider
+									li.divider
+									
+								li
 									a(href="http://help.planhub.me") Support
 									
 		nav(class="navbar navbar-fixed-top print-navbar")
