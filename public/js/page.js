@@ -11,14 +11,9 @@ function setPage(newPage) {
 		// fetch it!
 		window.api.get("pageHandler/fetchPage/" + newPage, function(response) {
 			// check for error
-			try {
-				var obj = JSON.parse(response);
-				if (obj.status == "error") {
-					console.error("Error loading page!");
-					return;
-				}
-			} catch (e) {
-				// ignore it, it's an HTML page
+			if (obj.status === "error") {
+				console.error("Error loading page!");
+				return;
 			}
 
 			// and load it
