@@ -8,8 +8,31 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/fetchPage', function(req, res, next) {
-	res.render(req.params.page);
+router.get('/fetchPage', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.params.page === undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid page parameter!"
+		});
+		return;
+	}
+
+	// "why do you do this? why not just pass user input into res.render?"
+	// "path traversal"
+	var pages = {
+		"testPage": "testPage"
+	};
+
+	if (pages.indexOf(req.params.page) == -1) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid page parameter!"
+		});
+		return;
+	}
+
+	var currentPage = pages[req.params.page];
+	res.render("pages/" + currentPage);
 });
 
 module.exports = router;
