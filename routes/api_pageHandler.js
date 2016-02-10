@@ -12,7 +12,7 @@ router.get('/fetchPage', global.apiCall, global.requireUser, global.getUserRecor
 	if (req.params.page === undefined) {
 		res.json({
 			status: "error",
-			error: "Missing or invalid page parameter!"
+			error: "Missing page parameter!"
 		});
 		return;
 	}
@@ -26,7 +26,7 @@ router.get('/fetchPage', global.apiCall, global.requireUser, global.getUserRecor
 	if (pages.indexOf(req.params.page) == -1) {
 		res.json({
 			status: "error",
-			error: "Missing or invalid page parameter!"
+			error: "Invalid page parameter!"
 		});
 		return;
 	}
