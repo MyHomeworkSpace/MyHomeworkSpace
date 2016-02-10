@@ -19,9 +19,9 @@ router.get('/fetchPage/:page', global.apiCall, global.requireUser, global.getUse
 
 	// "why do you do this? why not just pass user input into res.render?"
 	// "path traversal"
-	var pages = {
-		"testPage": "testPage"
-	};
+	var pages = [
+		"testPage"
+	];
 
 	if (pages.indexOf(req.params.page) == -1) {
 		res.json({
