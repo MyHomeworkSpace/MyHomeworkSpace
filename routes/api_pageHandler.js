@@ -19,11 +19,11 @@ router.get('/fetchPage/:page', global.apiCall, global.requireUser, global.getUse
 
 	// "why do you do this? why not just pass user input into res.render?"
 	// "path traversal"
-	var pages = [
-		"testPage"
-	];
+	var pages = {
+		"testPage": "testPage"
+	};
 
-	if (pages.indexOf(req.params.page) == -1) {
+	if (pages[req.params.page] === undefined) {
 		res.json({
 			status: "error",
 			error: "Invalid page parameter!"
