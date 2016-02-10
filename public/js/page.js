@@ -9,13 +9,33 @@ function setPage(newPage) {
 		window.location.hash = newPage;
 	} else {
 		// fetch it!
-		window.api.get("pageHandler/fetchPage?page=" + newPage, function(response) {
-			console.log(response);
+		window.api.get("pageHandler/fetchPage/" + newPage, function(response) {
+			// and load it
+			var $page = $(response);
+
+			var $scripts = $page.children("planhub-page-scripts");
+			var $styles = $page.children("planhub-page-styles");
+			var $modals = $page.children("planhub-page-modals");
+			var $upsell = $page.children("planhub-page-upsell");
+				$upsell.attr("id", newPage + "-upsell");
+				$upsell.addClass("upsell");
+				$upsell.addClass("row");
+				$upsell.attr("data-feature", newPage);
+			var $content = $page.children("planhub-page-content");
+				$content.attr("id", newPage);
+				$content.addClass("page");
+				if (window.page.features.indexOf(newPage) == -1) {
+					$content.append($upsell);
+				}
+			$("body").append($content);
+
+			setPage(newPage); // and show it
 		});
 	}
 }
 
 window.page = {
+	features: [],
 	loadTimeout: null,
 	loadWarnTimeout: null
 };
@@ -171,6 +191,7 @@ $(document).ready(function() {
 			$(this).parent().addClass("hasUpsell");
 		});
 
+		window.page.features = features;
 		window.page.hideLoading();
 
 		if (window.location.hash != "") {
