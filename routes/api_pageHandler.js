@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/fetchPage', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+router.get('/fetchPage/:page', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.params.page === undefined) {
 		res.json({
 			status: "error",
