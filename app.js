@@ -192,6 +192,7 @@ var api_prefs = require('./routes/api_prefs');
 var api_admin = require('./routes/api_admin');
 var api_groups = require('./routes/api_groups');
 var api_connected = require('./routes/api_connected');
+var api_pageHandler = require('./routes/api_pageHandler');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -242,6 +243,7 @@ app.use(basePath + '/api/v1/prefs', api_prefs);
 app.use(basePath + '/api/v1/admin', api_admin);
 app.use(basePath + '/api/v1/groups', api_groups);
 app.use(basePath + '/api/v1/connected', api_connected);
+app.use(basePath + '/api/v1/pageHandler', api_pageHandler);
 
 // catch 404 and forward to error handler
 app.use(global.getOptionalUserRecord); // get record to show logged in on 404

@@ -1,10 +1,18 @@
 function setPage(newPage) {
 	$(".page.open-page").removeClass("open-page");
-	$("#" + newPage).addClass("open-page");
-	if ($(".upsell[data-feature=" + newPage + "]").length == 0) {
-		$("#" + newPage).trigger("tabOpened");
+	if ($("#" + newPage).length != 0) {
+		// yay, it exists. go to it
+		$("#" + newPage).addClass("open-page");
+		if ($(".upsell[data-feature=" + newPage + "]").length == 0) {
+			$("#" + newPage).trigger("tabOpened");
+		}
+		window.location.hash = newPage;
+	} else {
+		// fetch it!
+		window.api.get("pageHandler/fetchPage?page=" + newPage, function(response) {
+			console.log(response);
+		});
 	}
-	window.location.hash = newPage;
 }
 
 window.page = {
