@@ -41,7 +41,7 @@ function setPage(newPage) {
 				}
 			$("body").append($content);
 
-			setPage(newPage); // and show it
+			//setPage(newPage); // and show it
 		});
 	}
 }
