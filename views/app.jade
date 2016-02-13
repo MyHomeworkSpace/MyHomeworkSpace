@@ -150,8 +150,15 @@ html
 					span(class="user-name")= user.name
 
 		div(class="loadOverlay")
-			i(class="fa fa-circle-o-notch fa-spin")
-			span  Loading...
+			div(class="loader")
+				div(class="cssload-preloader cssload-loading")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+			span Loading...
 			div(class="loadWarn")
 				div Loading is taking longer than usual.
 				button(id="loadButton") Reload?
