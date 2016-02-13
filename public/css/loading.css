@@ -1176,14 +1176,14 @@
 }
 
 .loader {
-  text-align: center;
-  padding-top: 40vh;
+	text-align: center;
+	margin-bottom: 45px;
 }
 
 .loaderBody {
-  background-color: #4d4d4d;
+	background-color: #4d4d4d;
 }
 
 .loaderText {
-  color: #FFFFFF;
+	color: #FFFFFF;
 }
