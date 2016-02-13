@@ -1178,6 +1178,11 @@
 .loader {
 	text-align: center;
 	margin-bottom: 45px;
+	display: none;
+}
+
+.showLoading .loader {
+	display: block;
 }
 
 .loaderBody {
