@@ -1181,7 +1181,7 @@
 	display: none;
 }
 
-.showLoading .loader {
+.showLoadOverlay .loader {
 	display: block;
 }
 
