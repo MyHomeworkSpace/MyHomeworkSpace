@@ -3,6 +3,7 @@
 	height: 40px;
 	top: 45px;
 	padding-top: 0;
+	overflow: hidden;
 }
 .tabs li {
 	display: inline-block;
