@@ -8,6 +8,12 @@
 	display: inline-block;
 	width: 100px;
 	height: 40px;
+	position: relative;
+	top: -10px;
+}
+.tabs li div {
+	display: inline;
+	margin-left: 3px;
 }
 .tabs li .fa {
 	font-size: 18px;
