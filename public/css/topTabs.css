@@ -26,6 +26,9 @@
 	padding-right: 15px;
 }
 #page-pref-btn {
+	position: fixed;
 	top: 45px;
 	right: 0;
+	left: inherit;
+	bottom: inherit;
 }
