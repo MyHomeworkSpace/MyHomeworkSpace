@@ -71,22 +71,6 @@ html
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
 			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
-		
-		script.
-			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-			(function(){
-				var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-				s1.async=true;
-				s1.src='https://embed.tawk.to/56c067a4b87fedbc09c35a3f/default';
-				s1.charset='UTF-8';
-				s1.setAttribute('crossorigin','*');
-				s0.parentNode.insertBefore(s1,s0);
-				Tawk_API = Tawk_API || {};
-				Tawk_API.visitor = {
-					name  : $("#name").text(),
-					email : $("#email").text()
-				};
-			})();
 
 	body
 		div(id="basePath", class="hidden")= global.basePath
@@ -815,3 +799,6 @@ html
 							tbody
 								tr
 									td(colspan="6") Loading users...
+	script(src='https://cdn.slaask.com/chat.js')
+	script.
+		_slaask.init('2d26c9c32125c57a0d45f1fb23eb67ee');
