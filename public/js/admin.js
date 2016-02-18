@@ -104,30 +104,31 @@ $(document).ready(function() {
 		$("#userNumber").text("There are " + result.number + " users!")
 	});
 	$("#admin-users").on("tabOpened", function() {
+		$("#userTable tbody tr").remove(); // clear table
 		window.api.get('admin/users/get/', function(result) {
 			for (var userIndex in result.users) {
 				var user = result.users[userIndex];
-				var userTable = $("#userTable");
+				
 				var row = $("<tr></tr>");
-				var idCell = $("<td></td>");
-				var nameCell = $("<td></td>");
-				var usernameCell = $("<td></td>");
-				var emailCell = $("<td></td>");
-				var typeCell = $("<td></td>");
-				var levelCell = $("<td></td>")
-				idCell.html(user.id);
-				nameCell.html(user.name);
-				usernameCell.html(user.username);
-				emailCell.html(user.email);
-				typeCell.html(user.type);
-				levelCell.html(user.level);
-				row.append(idCell);
-				row.append(nameCell);
-				row.append(usernameCell);
-				row.append(emailCell);
-				row.append(typeCell);
-				row.append(levelCell);
-				userTable.append(row);
+					var idCell = $("<td></td>");
+					var nameCell = $("<td></td>");
+					var usernameCell = $("<td></td>");
+					var emailCell = $("<td></td>");
+					var typeCell = $("<td></td>");
+					var levelCell = $("<td></td>")
+					idCell.html(user.id);
+					nameCell.html(user.name);
+					usernameCell.html(user.username);
+					emailCell.html(user.email);
+					typeCell.html(user.type);
+					levelCell.html(user.level);
+					row.append(idCell);
+					row.append(nameCell);
+					row.append(usernameCell);
+					row.append(emailCell);
+					row.append(typeCell);
+					row.append(levelCell);
+				$("#userTable").append(row);
 			}
 		});
 	});

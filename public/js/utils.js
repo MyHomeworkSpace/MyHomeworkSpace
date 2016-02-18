@@ -117,7 +117,7 @@ window.utils.getPrefixes = function() {
 			color: "cal_optional_hw",
 			words: ["OptionalHW", "Challenge"],
 			tabSystem: true
-			
+
 		}
 	]
 }

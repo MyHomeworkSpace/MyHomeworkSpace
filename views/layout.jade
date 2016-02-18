@@ -2,7 +2,7 @@ doctype html
 html
 	head
 		title= title
-		
+		<!--[if lt ie9]><meta http-equiv='refresh', content="0;URL=http://planhubme.github.io/NotSupported/"><![endif]-->
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(name='keywords', content='PlanHub, The Dalton School, Dalton, Planner, HW View')
 		meta(name='author', content='PlanHub Team')
@@ -31,6 +31,17 @@ html
 				width: 300px;
 				height: 300px;
 			}
+		
+		script.
+			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+			(function(){
+			var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+			s1.async=true;
+			s1.src='https://embed.tawk.to/56c5bff806613232645bcdb3/default';
+			s1.charset='UTF-8';
+			s1.setAttribute('crossorigin','*');
+			s0.parentNode.insertBefore(s1,s0);
+			})();
 	body
 		nav(class="navbar navbar-default navbar-fixed-top")
 			div(class="container-fluid")
