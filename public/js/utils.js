@@ -117,11 +117,11 @@ window.utils.getPrefixes = function() {
 			color: "cal_optional_hw",
 			words: ["OptionalHW", "Challenge"],
 			tabSystem: true
-
-            color: "cal_prez",
-            words: ["Presentation", "Prez"],
-            tabSystem: true
-
+		},
+		{
+			color: "cal_prez",
+			words: ["Presentation", "Prez"],
+			tabSystem: true
 		}
 	]
 }
