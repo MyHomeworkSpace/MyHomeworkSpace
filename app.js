@@ -180,6 +180,7 @@ if (!String.prototype.encodeHTML) {
 var routes = require('./routes/index');
 var appRouter = require('./routes/app');
 
+// TODO: make this betterified
 var api_main = require('./routes/api_main');
 var api_ext = require('./routes/api_ext');
 var api_labs = require('./routes/api_labs');
@@ -190,6 +191,9 @@ var api_planner = require('./routes/api_planner');
 var api_prefs = require('./routes/api_prefs');
 var api_admin = require('./routes/api_admin');
 var api_groups = require('./routes/api_groups');
+var api_connected = require('./routes/api_connected');
+var api_pageHandler = require('./routes/api_pageHandler');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -237,10 +241,12 @@ app.use(basePath + '/api/v1/overview', api_overview);
 app.use(basePath + '/api/v1/planner', api_planner);
 app.use(basePath + '/api/v1/prefs', api_prefs);
 app.use(basePath + '/api/v1/admin', api_admin);
-app.use(basePath + '/api/v1/groups', api_groups)
+app.use(basePath + '/api/v1/groups', api_groups);
+app.use(basePath + '/api/v1/connected', api_connected);
+app.use(basePath + '/api/v1/pageHandler', api_pageHandler);
 
 // catch 404 and forward to error handler
-app.use(global.getOptionalUserRecord); // get record to show logged in on 404 
+app.use(global.getOptionalUserRecord); // get record to show logged in on 404
 
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');

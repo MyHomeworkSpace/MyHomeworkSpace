@@ -1,0 +1,34 @@
+.tabs {
+	width: 100%;
+	height: 40px;
+	top: 45px;
+	padding-top: 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.tabs li {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	position: relative;
+	top: -10px;
+}
+.tabs li div {
+	display: inline;
+	margin-left: 3px;
+}
+.tabs li .fa {
+	font-size: 18px;
+}
+.page {
+	padding-top: 95px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#page-pref-btn {
+	position: fixed;
+	top: 45px;
+	right: 0;
+	left: inherit;
+	bottom: inherit;
+}

@@ -25,7 +25,7 @@ window.prefs.checkToggle = function($checkbox, prefsId) {
 		}
 		$checkbox.prop("checked", toggled);
 		$checkbox.change(function() {
-			var prefsVal = ($(this).prop("checked") ? "1" : "0");	
+			var prefsVal = ($(this).prop("checked") ? "1" : "0");
 			window.api.post("prefs/set", { name: prefsId, value: prefsVal}, function() {});
 		});
 	});
@@ -96,8 +96,20 @@ $(document).ready(function() {
 		});
 		$("#title-sorting").disableSelection();
 	});
+
 	// Homework View
 	window.prefs.checkToggle($("#prefs-hwView-swap"), "name-subj");
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
 	window.prefs.checkToggle($("#prefs-hwView-checkboxes"), "hwView-checkboxes");
+
+	// Connected accounts
+	$("#schedules-connect").click(function() {
+		$("#login-to-schedules-modal").modal();
+	});
+
+	$("#schedules-sign-in").click(function() {
+		window.api.post("connected/schedules/connect", { username: $("#schedules-username").val(), password: $("#schedules-pw").val() }, function(resp) {
+			console.log(resp);
+		});
+	})
 });

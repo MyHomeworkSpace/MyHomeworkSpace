@@ -120,6 +120,7 @@ nav {
 .loadOverlay {
 	background: rgba(0, 0, 0, 0);
 	color: white;
+	font-family: "Open Sans", sans-serif;
 	font-size: 2em;
 	position: fixed;
 	top: 0;
@@ -237,4 +238,12 @@ nav {
 		margin-left: 0;
 		margin-right: 0;
 	}
+}
+
+.adminBadge {
+	color: #6666FF;
+}
+
+.teacherBadge {
+	color: #00FF33;
 }

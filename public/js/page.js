@@ -1,13 +1,53 @@
 function setPage(newPage) {
 	$(".page.open-page").removeClass("open-page");
-	$("#" + newPage).addClass("open-page");
-	if ($(".upsell[data-feature=" + newPage + "]").length == 0) {
-		$("#" + newPage).trigger("tabOpened");
+	if ($("#" + newPage).length != 0) {
+		// yay, it exists. go to it
+		$("#" + newPage).addClass("open-page");
+		if ($(".upsell[data-feature=" + newPage + "]").length == 0) {
+			$("#" + newPage).trigger("tabOpened");
+		}
+		window.location.hash = newPage;
+	} else {
+		// fetch it!
+		window.api.get("pageHandler/fetchPage/" + newPage, function(response) {
+			// check for error
+			if (response.status === "error") {
+				console.error("Error loading page!");
+				return;
+			}
+
+			// and load it
+			var $page = $(response);
+
+			var $scripts = $page.children("planhub-page-scripts");
+			$("head").append($scripts);
+
+			var $styles = $page.children("planhub-page-styles");
+			$("head").append($styles);
+
+			var $modals = $page.children("planhub-page-modals");
+			$("body").append($modals);
+
+			var $upsell = $page.children("planhub-page-upsell");
+				$upsell.attr("id", newPage + "-upsell");
+				$upsell.addClass("upsell");
+				$upsell.addClass("row");
+				$upsell.attr("data-feature", newPage);
+			var $content = $page.children("planhub-page-content");
+				$content.attr("id", newPage);
+				$content.addClass("page");
+				if (window.page.features.indexOf(newPage) == -1) {
+					$content.append($upsell);
+				}
+			$("body").append($content);
+
+			//setPage(newPage); // and show it
+		});
 	}
-	window.location.hash = newPage;
 }
 
 window.page = {
+	features: [],
 	loadTimeout: null,
 	loadWarnTimeout: null
 };
@@ -163,6 +203,7 @@ $(document).ready(function() {
 			$(this).parent().addClass("hasUpsell");
 		});
 
+		window.page.features = features;
 		window.page.hideLoading();
 
 		if (window.location.hash != "") {
