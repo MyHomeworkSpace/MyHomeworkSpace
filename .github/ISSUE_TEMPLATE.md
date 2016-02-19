@@ -3,7 +3,7 @@
 
 
 [//]: # (                   We have some issue guidelines!                  )
-[//]: # (             Click "Preview Changes" above to see them             )
+[//]: # (             Click the "Preview" button above to see them             )
 
 
 
