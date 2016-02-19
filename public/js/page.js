@@ -97,6 +97,7 @@ window.page.getOpenPage = function() {
 
 window.page.setColor = function(color) {
 	$(".tabs").css("background-color", color);
+	$(".navbar-default").css("background-color", color);
 	$("#page-pref-btn").css("background-color", color);
 };
 

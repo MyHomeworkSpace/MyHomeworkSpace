@@ -17,7 +17,7 @@ nav {
 .mainContainer {
 	padding-top: 45px;
 }
-.tabs, #page-pref-btn {
+.tabs, #page-pref-btn, .navbar-default {
 	transition: background-color 0.2s;
 }
 .tabs {
