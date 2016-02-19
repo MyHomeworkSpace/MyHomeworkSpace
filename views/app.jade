@@ -595,9 +595,8 @@ html
 					div(class="tab-content")
 						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
 							p Settings about your account.
-							p Name: 
+							span Name: 
 							input(type="text", id="usr-name" value="#{user.name}", disabled="disabled")
-							p The name change feature is no longer available due to new code that syncs with schedules that is confused when you change your name.
 							p
 								span Email address: 
 								span= user.email
@@ -613,9 +612,12 @@ html
 							
 						div(role="tabpanel", class="tab-pane", id="prefs-connected")
 							p Connect your PlanHub account to other accounts.
-							h3 Schedules
-							p Connect your Dalton account to Schedules so PlanHub can determine when you have labs and free time.
-							button(id="schedules-connect", class="btn btn-lg btn-primary") Connect to Schedules
+							if user.level > 0:
+								h3 Schedules
+								p Connect your Dalton account to Schedules so PlanHub can determine when you have labs and free time.
+								button(id="schedules-connect", class="btn btn-primary") Connect to Schedules
+							else:
+								p This feature's coming soon!
 									
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")
 							h4 CoursesPlus
