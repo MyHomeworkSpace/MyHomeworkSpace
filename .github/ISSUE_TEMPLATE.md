@@ -2,7 +2,7 @@
 [//]: # (Go to [this page](https://github.com/PlanHubMe/PlanHub/blob/master/.github/ISSUE_TEMPLATE.md) to read them! [It may or may not be a repeat of what you see here...)
 
 Great! You found an issue!
-We have some guidelines to help us solve your issue. If your issue does not meet one or more of the qualifictions below, please revise your issue.
+We have some guidelines to help us solve your issue. If your issue does not meet one or more of the qualifications below, please revise your issue.
 
 - [ ] **Name**: Do you use a descriptive title to describe your issue? "It doesn't work," or "Fix HW View" are not detailed enough.
 - [ ] **Description**: Can you describe what was happening that caused you to report the issue?
