@@ -116,11 +116,8 @@ html
 									a(data-page="hwView") Homework View
 								if user.level > 0
 									li.divider
-									
 									li
 										a(data-page="admin") Admin
-									li
-										a(data-page="prefs") Preferences
 						if isStaging
 							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using PlanHub Staging. This is for testing purposes only-don't use it as your real planner!")
 								a(href="#{basePath}/staging") Staging
@@ -144,8 +141,6 @@ html
 									a(href="#{basePath}/logout") Log out
 										
 								if user.level > 0
-									li
-										a(data-page="prefs") Preferences
 									li
 										span(class="adminBadge") Admin
 									
@@ -332,10 +327,12 @@ html
 				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					div HW View
-				<!-- li(data-page="prefs") Preferences -->
+				li(data-page="prefs")
+					i(class="fa fa-cog") 
+					div Preferences
 				if user.level > 0
 					li(data-page="admin")
-						i(class="fa fa-cog") 
+						i(class="fa fa-tasks") 
 						div Admin
 
 			button(id="page-pref-btn", class="btn btn-default")
