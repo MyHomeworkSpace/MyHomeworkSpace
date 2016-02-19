@@ -12,6 +12,7 @@ If you want to help us make cool stuff, you should probably check out our [API](
 
 [//]: # (IF YOU UPDATE THIS SECTION, MAKE SURE YOU UPDATE THE COORESPONDING ISSUE_TEMPLATE.md FILE.)
 
+We have some guidelines to help us solve your issue. If all of the below boxes are not checked, please revise your issue.
 
 - [ ] **Name**: Do you use a descriptive title to describe your issue? "It doesn't work," or "Fix HW View" are not detailed enough.
 - [ ] **Reproduction**: Do steps need to be taken to reproduce this issue? If so, what steps?
