@@ -1,11 +1,12 @@
 doctype html
 html
-	<!--Looking under the hood? Check out our GitHub Repo at http://tinyurl.com/planhubcode or apply to work with us at http://tinyurl.com/planhubjoin-->
+	<!-- Looking under the hood? Check out our GitHub Repo at http://tinyurl.com/planhubcode or apply to work with us at http://tinyurl.com/planhubjoin-->
 	<!-- MOO! -->
 	head
 		title= title
 		
 		meta(name='viewport', content='width=device-width, initial-scale=1')
+		<!--[if lt ie9]><meta http-equiv='refresh', content="0;URL=http://planhubme.github.io/NotSupported/"><![endif]-->
 		
 		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet", integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==",crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css", rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous")
@@ -35,6 +36,8 @@ html
 		script(src="#{basePath}/js/sweetalert.min.js")
 		script(src="#{basePath}/js/intro.js")
 		script(src="#{basePath}/js/coursesLib.js", defer)
+		
+		link(rel="stylesheet", href="#{global.basePath}/css/loading.css")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/overview.css")
@@ -68,10 +71,23 @@ html
 			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
 			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
+		
+		script.
+			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+			(function(){
+				var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+				s1.async=true;
+				s1.src='https://embed.tawk.to/56c067a4b87fedbc09c35a3f/default';
+				s1.charset='UTF-8';
+				s1.setAttribute('crossorigin','*');
+				s0.parentNode.insertBefore(s1,s0);
+			})();
 
 	body
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
+		div(id="name", class="hidden")= user.name
+		div(id="email", class="hidden")= user.email
 		nav(class="navbar navbar-default navbar-fixed-top web-navbar", data-step="1", data-intro="Welcome to PlanHub, #{user.name}! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below).")
 			div(class="container-fluid")
 				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy PlanHub! To get started, click Done below, and then select a tab.")
@@ -100,6 +116,7 @@ html
 									a(data-page="hwView") Homework View
 								if user.level > 0
 									li.divider
+									
 									li
 										a(data-page="admin") Admin
 									li
@@ -120,11 +137,26 @@ html
 								i(class="fa fa-frown-o")
 						li
 							a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-								span= user.name
+								span= user.name 
 								span.caret
 							ul.dropdown-menu
 								li
 									a(href="#{basePath}/logout") Log out
+										
+								if user.level > 0
+									li
+										a(data-page="prefs") Preferences
+									li
+										span(class="adminBadge") Admin
+									
+								if user.type == "faculty"
+									li
+										span(class="teacherBadge") Teacher
+									li.divider
+									
+								li
+									a(href="http://help.planhub.me") Support
+									
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 				span
@@ -133,8 +165,15 @@ html
 					span(class="user-name")= user.name
 
 		div(class="loadOverlay")
-			i(class="fa fa-circle-o-notch fa-spin")
-			span  Loading...
+			div(class="loader")
+				div(class="cssload-preloader cssload-loading")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+					span(class="cssload-slice")
+			span Loading...
 			div(class="loadWarn")
 				div Loading is taking longer than usual.
 				button(id="loadButton") Reload?
@@ -277,8 +316,9 @@ html
 					div(class="modal-body")
 						input(id="schedules-username", type="text", placeholder="Username", class="form-control")
 						input(id="schedules-pw", type="password", placeholder="Password", class="form-control")
+						p Your password is only used to download your schedule, and is never saved or stored.
 					div(class="modal-footer")
-						button(class="btn btn-default", id="schedules-sign-in", type="button", data-dismiss="modal") Sign In
+						button(class="btn btn-primary", id="schedules-sign-in", type="button", data-dismiss="modal") Sign In
 
 		div(class="mainContainer")
 			ul(class="tabs")
@@ -548,6 +588,8 @@ html
 						li(role="presentation")
 							a(href="#prefs-security", role="tab", data-toggle="tab") Security
 						li(role="presentation")
+							a(href="#prefs-connected", role="tab", data-toggle="tab") Connected accounts
+						li(role="presentation")
 							a(href="#prefs-apps", role="tab", data-toggle="tab") More Apps
 				
 					div(class="tab-content")
@@ -568,7 +610,13 @@ html
 								a(href="mailto:help@dalton.org") help@dalton.org
 								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
-						
+							
+						div(role="tabpanel", class="tab-pane", id="prefs-connected")
+							p Connect your PlanHub account to other accounts.
+							h3 Schedules
+							p Connect your Dalton account to Schedules so PlanHub can determine when you have labs and free time.
+							button(id="schedules-connect", class="btn btn-lg btn-primary") Connect to Schedules
+									
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")
 							h4 CoursesPlus
 							h6 Free, Chrome Extension, School Laptop Ready
@@ -589,17 +637,6 @@ html
 							h6 Free, Chrome Extension, School Laptop Ready
 							h5 A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.
 							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp") Download
-							br
-							br
-							br
-							br
-							br
-							br
-							br
-							pre Do you want to play a game?
-								br
-								a(href="planhub.me/game") Yes 
-								a(href="planhub.me/game/no") No
 							
 				div(id="labs", class="page")
 					div(id="labs-upsell", class="upsell row", data-feature="planner")
@@ -758,13 +795,11 @@ html
 					div(id="admin-users", class="page")
 						h1 Administrative panel
 						h4 Users
-						li(id="userNumber")
-							No Users. :(. You should spread the word about PlanHub!
+						div(id="userNumber") Loading user count...
 						table(border="1" id="userTable")
-							tbody
+							thead
 								tr
-									td(colspan="6")
-										PlanHub Users
+									td(colspan="6") PlanHub Users
 								tr
 									td ID
 									td Name
@@ -772,3 +807,6 @@ html
 									td Email
 									td Type
 									td Level
+							tbody
+								tr
+									td(colspan="6") Loading users...
