@@ -108,6 +108,7 @@ window.page.setColor = function(color, complement) {
 	$(".tabs").css("border-right", "solid 1px " + complement);
 	$("#page-pref-btn").css("border-color", complement);
 	$.each(["#page-pref-btn", ".tabs li", ".navbar-default .navbar-nav>li>a"], function() {
+		console.log(this);
 		$(this).off("mouseenter").off("mouseleave").mouseenter(function() {
 			console.log("enter");
 			$(this).css("background-color", window.page.complement);
