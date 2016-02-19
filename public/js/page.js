@@ -198,7 +198,7 @@ $(document).ready(function() {
 	// check for new layout
 	window.prefs.get("topTabs", function(val) {
 		if (val == "1") {
-			$("head").append($("#basePath").text() + "/css/topTabs.css");
+			$("head").append('<link href=" ' + $("#basePath").text() + '/css/topTabs.css" rel="stylesheet" />');
 		}
 	});
 
