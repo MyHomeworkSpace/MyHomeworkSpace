@@ -1,3 +1,11 @@
+[//]: # ()
+[//]: # ()
+[//]: # (                   We have some issue guidelines!                  )
+[//]: # (             Click "Preview Changes" above to see them             )
+[//]: # ()
+[//]: # ()
+[//]: # ()
+
 Great! You found an issue!
 We have some guidelines to help us solve your issue. If all of the below boxes are not checked, please revise your issue.
 
