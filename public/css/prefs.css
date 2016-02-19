@@ -4,3 +4,8 @@
 .prefs-modal-body input {
 	margin-right: 5px;
 }
+
+.tab-pane label {
+	font-size: 14px;
+	padding-left: 2px;
+}
