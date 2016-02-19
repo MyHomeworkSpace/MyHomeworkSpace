@@ -194,10 +194,10 @@ $(document).ready(function() {
 			swal("Awesome!", "Your feedback has been sent successfully! We'll try to respond to you as soon as possible.", "success")
 		});
 	});
-	
+
 	// check for new layout
 	window.prefs.get("topTabs", function(val) {
-		if (val == 1) {
+		if (val == "1") {
 			$("head").append($("#basePath").text() + "/css/topTabs.css");
 		}
 	});
