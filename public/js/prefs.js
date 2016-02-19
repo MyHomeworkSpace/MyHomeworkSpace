@@ -102,6 +102,9 @@ $(document).ready(function() {
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
 	window.prefs.checkToggle($("#prefs-hwView-checkboxes"), "hwView-checkboxes");
 
+	// Layout
+	window.prefs.checkToggle($("#prefs-layout-topTabs"), "topTabs");
+
 	// Connected accounts
 	$("#schedules-connect").click(function() {
 		$("#login-to-schedules-modal").modal();

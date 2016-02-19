@@ -588,6 +588,8 @@ html
 						li(role="presentation")
 							a(href="#prefs-security", role="tab", data-toggle="tab") Security
 						li(role="presentation")
+							a(href="#prefs-layout", role="tab", data-toggle="tab") Layout
+						li(role="presentation")
 							a(href="#prefs-connected", role="tab", data-toggle="tab") Connected accounts
 						li(role="presentation")
 							a(href="#prefs-apps", role="tab", data-toggle="tab") More Apps
@@ -610,6 +612,12 @@ html
 								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
 							
+						div(role="tabpanel", class="tab-pane", id="prefs-layout")
+							p Change the look and feel of PlanHub.
+							
+							input(type="checkbox", id="prefs-layout-topTabs")
+							label(for="prefs-layout-topTabs") Use an alternate tab layout
+
 						div(role="tabpanel", class="tab-pane", id="prefs-connected")
 							p Connect your PlanHub account to other accounts.
 							if user.level > 0
