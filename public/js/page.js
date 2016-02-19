@@ -95,6 +95,11 @@ window.page.getOpenPage = function() {
 	return $(".page.open-page").attr("id");
 };
 
+window.page.setColor = function(color) {
+	$(".tabs").css("background-color", color);
+	$("#page-pref-btn").css("background-color", color);
+};
+
 window.page.sendFeedback = function(type, msg, name, username, webpage, callback) {
 	// if the user does not want to send the webpage, the variable will be set to undefined, so don't do any checks here.
 	window.api.post("feedback/post/", {
