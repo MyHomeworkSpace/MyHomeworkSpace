@@ -97,14 +97,21 @@ window.page.getOpenPage = function() {
 
 // default color is #333333 and complement is #222222
 window.page.setColor = function(color, complement) {
+	window.page.color = color;
+	window.page.complement = complement;
+
 	$(".tabs").css("background-color", color);
 	$(".navbar-default").css("background-color", color);
 	$("#page-pref-btn").css("background-color", color);
 
 	$(".tabs").css("border-right", "solid 1px " + complement);
 	$("#page-pref-btn").css("border-color", complement);
-	$("#page-pref-btn:hover").css("background-color", complement);
-	$(".tabs li:hover").css("background-color", complement);
+	$("#page-pref-btn").off("hover").hover(function() {
+		$(this).css("background-color", window.page.complement);
+	});
+	$(".tabs li").off("hover").hover(function() {
+		$(this).css("background-color", window.page.complement);
+	});
 };
 
 window.page.sendFeedback = function(type, msg, name, username, webpage, callback) {
