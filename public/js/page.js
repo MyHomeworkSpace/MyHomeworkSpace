@@ -103,14 +103,16 @@ window.page.setColor = function(color, complement) {
 	$(".tabs").css("background-color", color);
 	$(".navbar-default").css("background-color", color);
 	$("#page-pref-btn").css("background-color", color);
+	$(".navbar-default .dropdown-menu").css("background-color", color);
 
 	$(".tabs").css("border-right", "solid 1px " + complement);
 	$("#page-pref-btn").css("border-color", complement);
-	$("#page-pref-btn").off("hover").hover(function() {
-		$(this).css("background-color", window.page.complement);
-	});
-	$(".tabs li").off("hover").hover(function() {
-		$(this).css("background-color", window.page.complement);
+	$.each(["#page-pref-btn", ".tabs li", ".navbar-default .navbar-nav>li>a"], function() {
+		$(this).off("mouseenter").off("mouseleave").mouseenter(function() {
+			$(this).css("background-color", window.page.complement);
+		}).mouseleave(function() {
+			$(this).css("background-color", window.page.color);
+		});
 	});
 };
 
