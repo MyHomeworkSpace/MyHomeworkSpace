@@ -109,8 +109,10 @@ window.page.setColor = function(color, complement) {
 	$("#page-pref-btn").css("border-color", complement);
 	$.each(["#page-pref-btn", ".tabs li", ".navbar-default .navbar-nav>li>a"], function() {
 		$(this).off("mouseenter").off("mouseleave").mouseenter(function() {
+			console.log("enter");
 			$(this).css("background-color", window.page.complement);
 		}).mouseleave(function() {
+			console.log("exit");
 			$(this).css("background-color", window.page.color);
 		});
 	});
