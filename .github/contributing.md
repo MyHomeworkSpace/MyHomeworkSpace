@@ -10,7 +10,7 @@ If you want to help us make cool stuff, you should probably check out our [API](
 
 ##Issue Regulations
 
-[//]: # (IF YOU UPDATE THIS SECTION, MAKE SURE YOU UPDATE THE COORESPONDING ISSUE_TEMPLATE.md FILE.)
+[//]: # (IF YOU UPDATE THIS SECTION, MAKE SURE YOU UPDATE THE CORRESPONDING ISSUE_TEMPLATE.md FILE.)
 
 We have some guidelines to help us solve your issue. If all of the below boxes are not checked, please revise your issue.
 
