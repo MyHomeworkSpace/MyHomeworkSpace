@@ -65,10 +65,10 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 				});
 			} else {
 				return trx.into("prefs").where({
-					name: req.body.name
-				}).update({
-					value: req.body.value,
+					name: req.body.name,
 					userId: res.locals.user.id
+				}).update({
+					value: req.body.value
 				});
 			}
 		});
