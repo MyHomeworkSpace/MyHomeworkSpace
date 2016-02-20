@@ -578,7 +578,7 @@ $(document).ready(function() {
 				swal.showInputError("You need to write something!");
 				return false
 			}
-			window.planner.addSubject(name);
+			window.planner.addSubject(inputValue);
 			swal.close();
 		});
 	});
