@@ -218,10 +218,10 @@ $(document).ready(function() {
 	});
 
 	// this is used by topTabs to move the prefs button
-	$(".dropdown-toggle.user-name").on("show.bs.dropdown", function() {
+	$(".username-menu").on("show.bs.dropdown", function() {
 		$("#page-pref-btn").addClass("moved");
 	});
-	$(".dropdown-toggle.user-name").on("hide.bs.dropdown", function() {
+	$(".username-menu").on("hide.bs.dropdown", function() {
 		$("#page-pref-btn").removeClass("moved");
 	});
 
