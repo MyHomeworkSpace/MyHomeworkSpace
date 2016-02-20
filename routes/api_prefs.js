@@ -49,7 +49,7 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 		return;
 	}
 	knex.transaction(function(trx) {
-		trx.from("prefs").where({
+		return trx.from("prefs").where({
 			name: req.body.name,
 			userId: res.locals.user.id
 		}).select("*").then(function(obj) {
