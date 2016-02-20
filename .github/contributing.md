@@ -9,9 +9,6 @@ If you want to help us make cool stuff, you should probably check out our [API](
 * Don't make code changes that violate our [Privacy Policy](http://planhub.me/privacy) unless you check with us first.
 
 ##Issue Regulations
-
-[//]: # (IF YOU UPDATE THIS SECTION, MAKE SURE YOU UPDATE THE CORRESPONDING ISSUE_TEMPLATE.md FILE.)
-
 We have some guidelines to help us solve your issue. If your issue does not meet one or more of the qualifictions below, please revise your issue.
 
 - [ ] **Name**: Do you use a descriptive title to describe your issue? "It doesn't work," or "Fix HW View" are not detailed enough.
