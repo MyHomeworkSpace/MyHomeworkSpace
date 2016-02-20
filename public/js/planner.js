@@ -561,10 +561,26 @@ $(document).ready(function() {
 	});
 
 	$(".add-subject").click(function() {
-		var name = prompt("Enter subject name");
-		if (name !== "" && name !== undefined) {
+		swal({
+			title: "Add subject",
+			text: "What should it be called?",
+			type: "input",
+			showCancelButton: true,
+			closeOnConfirm: false,
+			animation: "slide-from-top",
+			inputPlaceholder: "Type a name for it"
+		},
+		function(inputValue) {
+			if (inputValue === false) {
+				return false;
+			}
+			if (inputValue === "") {
+				swal.showInputError("You need to write something!");
+				return false
+			}
 			window.planner.addSubject(name);
-		}
+			swal.close();
+		});
 	});
 
 	$("#planner-prev").click(function() {
