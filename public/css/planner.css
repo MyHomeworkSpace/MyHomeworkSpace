@@ -285,3 +285,7 @@
 #title-sorting li {
 	width: 221px;
 }
+#plannerTable, #planner-controls {
+	display: table;
+	margin: 0 auto;
+}
