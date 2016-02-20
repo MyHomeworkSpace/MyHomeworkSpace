@@ -52,7 +52,7 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 		return trx.from("prefs").where({
 			name: req.body.name,
 			userId: res.locals.user.id
-		}).select("*").then(function(obj) {
+		}).forShare().select("*").then(function(obj) {
 			if (obj.length == 0){
 				return trx.into("prefs").insert({
 					name: req.body.name,
