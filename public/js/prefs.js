@@ -110,17 +110,10 @@ $(document).ready(function() {
 	});
 
 	$(".themeColor").on("selBoxChanged", function(e) {
-		var complements = {
-			"#333333": "#222222",
-			"#990f0f": "#880e0e",
-			"#0f993b": "#0e882a",
-			"#1c19c2": "#0b08b1",
-			"#c93e3e": "#b82d2d",
-			"#37c464": "#26b353",
-			"#3834fa": "#2723e9"
-		};
+		window.page.setColor(e.to);
+		window.prefs.set("themeColor", e.to, function() {
 
-		window.page.setColor(e.to, complements[e.to]);
+		});
 	});
 
 	// Connected accounts
