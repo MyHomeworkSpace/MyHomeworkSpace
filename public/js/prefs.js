@@ -39,6 +39,7 @@ window.prefs.getJSONPref = function(name, callback) {
         callback(JSON.parse(val));
     });
 };
+
 $(document).ready(function() {
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
@@ -104,6 +105,9 @@ $(document).ready(function() {
 
 	// Layout
 	window.prefs.checkToggle($("#prefs-layout-topTabs"), "topTabs");
+	$(".selBox.themeColor").each(function() {
+		$(this).css("background-color", $(this).attr("data-selBoxVal"));
+	});
 
 	// Connected accounts
 	$("#schedules-connect").click(function() {
