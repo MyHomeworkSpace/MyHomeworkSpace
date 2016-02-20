@@ -217,6 +217,14 @@ $(document).ready(function() {
 		});
 	});
 
+	// this is used by topTabs to move the prefs button
+	$(".dropdown-toggle.user-name").on("show.bs.dropdown", function() {
+		$("#page-pref-btn").addClass("moved");
+	});
+	$(".dropdown-toggle.user-name").on("hide.bs.dropdown", function() {
+		$("#page-pref-btn").removeClass("moved");
+	});
+
 	// check for new layout
 	window.prefs.get("topTabs", function(val) {
 		if (val == "1") {
