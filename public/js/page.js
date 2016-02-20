@@ -250,6 +250,8 @@ $(document).ready(function() {
 			return;
 		}
 		window.page.setColor(val);
+		$(".selBox.themeColor.selected").removeClass("selected");
+		$(".selBox.themeColor[data-selBoxVal=" + val + "]").addClass("selected");
 	});
 
 	window.page.getFeatures(function(features) {
