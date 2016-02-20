@@ -42,7 +42,7 @@ router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(r
 		}
 		res.json({
 			result: "ok",
-			response: result
+			response: groups
 		});
 	}).catch(function() {
 		res.json({
