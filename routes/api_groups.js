@@ -32,17 +32,17 @@ router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(r
 	knex("groupMembers").where({
 		userId: res.locals.user.id
 	}).select("groupId").then(function(result){
-		groups = [];
-		for(i in result) {
-			knex("groups").where({
-				groupID: i
-			}).then(function(group) {
-				groups.append(group[0])
-			});
-		}
+		//groups = [];
+		//for(i in result) {
+		//	knex("groups").where({
+		//		groupID: i
+		//	}).then(function(group) {
+		//		groups.append(group[0])
+		//	});
+		//}
 		res.json({
 			result: "ok",
-			response: groups
+			response: result
 		});
 	}).catch(function() {
 		res.json({
