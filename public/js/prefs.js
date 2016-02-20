@@ -112,7 +112,7 @@ $(document).ready(function() {
 	$(".themeColor").on("selBoxChanged", function(e) {
 		var complements = {
 			"#333333": "#222222",
-			"#990f0f": "#880e0e"
+			"#990f0f": "#880e0e",
 			"#0f993b": "#0e882a",
 			"#1c19c2": "#0b08b1"
 		};
