@@ -38,12 +38,8 @@ router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(r
 				groupID: i
 			}).select("name").then(function(group) {
 				groups.append(group[0])
-			});
+			})
 		}
-		res.json({
-			result: "ok",
-			response: groups
-		});
 	}).catch(function() {
 		res.json({
 			result: "error",
