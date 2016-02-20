@@ -17,6 +17,12 @@ window.prefs.get = function(name, callback) {
 	});
 };
 
+window.prefs.set = function(name, val, callback) {
+	window.api.post("prefs/set", { name: name, value: val}, function() {
+		callback();
+	});
+};
+
 window.prefs.checkToggle = function($checkbox, prefsId) {
 	window.prefs.get(prefsId, function(result) {
 		var toggled = false;
