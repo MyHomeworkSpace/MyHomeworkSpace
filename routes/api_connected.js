@@ -91,10 +91,11 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 					var knexedPeriods = [];
 					for (var periodIndex in periods) {
 						var period = { userId: res.locals.user.id };
-						period.period = periods[periodIndex].BLOCK_NAME[0];
-						period.courseName = periods[periodIndex].section[0].name[0];
-						period.courseShortName = periods[periodIndex].section[0].shortname[0];
-						period.teacherName = periods[periodIndex].instructor[0].name[0];
+							period.period = periods[periodIndex].BLOCK_NAME[0];
+							period.courseName = periods[periodIndex].section[0].name[0];
+							period.courseShortName = periods[periodIndex].section[0].shortname[0];
+							period.teacherName = periods[periodIndex].instructor[0].name[0];
+						knexedPeriods.push(period);
 					}
 					res.json({
 						status: "ok",
