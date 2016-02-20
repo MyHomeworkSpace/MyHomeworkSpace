@@ -104,6 +104,7 @@ window.page.setColor = function(color, complement) {
 	$(".navbar-default").css("background-color", color);
 	$("#page-pref-btn").css("background-color", color);
 	$(".navbar-default .dropdown-menu").css("background-color", color);
+	$(".theme-background-color").css("background-color", color);
 
 	$(".tabs").css("border-right", "solid 1px " + complement);
 	$("#page-pref-btn").css("border-color", complement);
