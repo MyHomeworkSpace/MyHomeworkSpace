@@ -31,19 +31,11 @@ router.get("/getGroups/",function(req,res,next){
 router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(req,res,next){
 	knex("groupMembers").where({
 		userId: res.locals.user.id
-	}).select("groupId").then(function(result){
-		groups = [];
-		for(i in result) {
-			knex("groups").where({
-				groupID: i
-			}).select("name").then(function(group) {
-				groups.append(group[0])
-				res.json({
-					result: "ok",
-					response: groups
-				});
-			});
-		}
+	}).innerJoin("groups", "groupmembers.groupID", "=", "groups.id").select("groups.*").then(function(groups){
+		res.json({
+			result: "ok",
+			groups: groups
+		});
 	}).catch(function() {
 		res.json({
 			result: "error",
