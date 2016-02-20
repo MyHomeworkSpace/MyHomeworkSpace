@@ -250,3 +250,8 @@ nav {
 .teacherBadge {
 	color: #00FF33;
 }
+
+.badge {
+	cursor: default;
+}
+}
