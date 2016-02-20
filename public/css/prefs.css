@@ -9,3 +9,17 @@
 	font-size: 14px;
 	padding-left: 2px;
 }
+
+.selBox {
+	display: inline-block;
+	border: solid 1px black;
+	width: 48px;
+	height: 48px;
+	cursor: pointer;
+}
+.selBox:hover {
+	border: solid 2px yellow;
+}
+.selBox.selected {
+	border: solid 3px yellow;
+}

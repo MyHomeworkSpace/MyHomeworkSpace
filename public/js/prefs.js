@@ -109,6 +109,15 @@ $(document).ready(function() {
 		$(this).css("background-color", $(this).attr("data-selBoxVal"));
 	});
 
+	$(".themeColor").on("selBoxChanged", function(e) {
+		var complements = {
+			"#333333": "#222222",
+			"#1c19c2": "#0b08b1"
+		};
+
+		window.page.setColor(e.to, complements[e.to]);
+	});
+
 	// Connected accounts
 	$("#schedules-connect").click(function() {
 		$("#login-to-schedules-modal").modal();
@@ -119,4 +128,19 @@ $(document).ready(function() {
 			console.log(resp);
 		});
 	})
+
+	// selboxes
+	$(".selBox").click(function() {
+		if ($(this).hasClass("selected") && !$(this).hasClass("custom")) {
+			// Do nothing
+			return;
+		}
+		console.log($("[data-selBoxGroup=" + $(this).attr("data-selBoxGroup") +"]"));
+		$("[data-selBoxGroup=" + $(this).attr("data-selBoxGroup") +"]").removeClass("selected");
+		$(this).addClass("selected");
+		$(this).trigger({
+			type: "selBoxChanged",
+			to: $(this).attr("data-selBoxVal")
+		});
+	});
 });
