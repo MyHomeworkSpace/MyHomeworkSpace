@@ -42,6 +42,23 @@ html
 			s1.setAttribute('crossorigin','*');
 			s0.parentNode.insertBefore(s1,s0);
 			})();
+		
+		script(type="text/javascript")
+			var _paq = _paq || [];
+			_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+			_paq.push(["setCookieDomain", "*.planhub.me"]);
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function() {
+				var u="//piwik.coursesplus.tk/";
+				_paq.push(['setTrackerUrl', u+'piwik.php']);
+				_paq.push(['setSiteId', 3]);
+				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+				g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+			})();
+		noscript
+			p
+				img(src="https://piwik.coursesplus.tk/piwik.php?idsite=3" style="border:0;" alt="")
 	body
 		nav(class="navbar navbar-default navbar-fixed-top")
 			div(class="container-fluid")
