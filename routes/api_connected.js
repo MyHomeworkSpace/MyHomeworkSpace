@@ -30,8 +30,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 		if (data.length != 0) {
 			res.json({
 				status: "error",
-				error: "You've already imported your schedule!",
-				hex: data
+				error: "You've already imported your schedule!"
 			});
 			return;
 		}
@@ -100,6 +99,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 					res.json({
 						status: "ok",
 						data: data,
+						periods: periods,
 						knexedPeriods: knexedPeriods
 					});
 				});
