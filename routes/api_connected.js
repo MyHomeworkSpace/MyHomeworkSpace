@@ -16,6 +16,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/schedules/connect', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.username == undefined || req.body.password == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid user credentials!"
+		});
+		return;
+	}
+
 	var username = req.body.username;
 	var password = req.body.password;
 
