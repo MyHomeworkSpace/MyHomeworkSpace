@@ -142,11 +142,11 @@ html
 										
 								if user.level > 0
 									li
-										span(class="adminBadge") Admin
+										a(class="badge adminBadge") Admin
 									
 								if user.type == "faculty"
 									li
-										span(class="teacherBadge") Teacher
+										a(class="badge teacherBadge") Teacher
 									li.divider
 									
 								li
