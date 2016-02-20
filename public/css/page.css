@@ -253,5 +253,5 @@ nav {
 
 .badge {
 	cursor: default;
-}
+	text-align: left;
 }
