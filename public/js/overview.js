@@ -42,7 +42,3 @@ window.overview.HWphrase = function (id, hw) {
 		document.getElementById(id).innerHTML = '<i class="fa fa-frown-o"></i> You might be up late doing homework tonight. You have ' + hw + ' assignments due tomorrow.';
 	}
 }
-
-function hello(){
-	alert("Hi!");
-}
