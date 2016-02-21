@@ -100,14 +100,29 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					$deleteBtn.click(function() {
 						var subjectName = $(this).parent().parent().parent().attr("data-subjectName");
 						var subjectIndex = $(this).parent().parent().parent().attr("data-subjectIndex");
-						if (confirm("Sure you want to delete '" + subjectName + "'?")) {
-							window.page.showLoading();
-							window.api.post("planner/sections/remove", {
-								sectionIndex: subjectIndex
-							}, function() {
-								window.location.reload();
-							});
-						}
+						swal({
+							title: "Are you sure?",
+							text: "Sure you want to delete '" + subjectName + "'? This is a permanent action.",
+							type: "warning",
+							showCancelButton: true,
+							confirmButtonText: "Delete",
+							cancelButtonText: "Cancel",
+							closeOnConfirm: false,
+							closeOnCancel: false
+						}, function(isConfirm) {
+							if (isConfirm) {
+								swal("Deleted", "This subject has been deleted.", "success");
+								window.page.showLoading();
+								window.api.post("planner/sections/remove", {
+									sectionIndex: subjectIndex
+								}, function() {
+									window.location.reload();
+								});
+							}
+							else {
+								swal("Cancelled", "Deletion cancelled.", "error");
+							}
+						});
 					});
 				$controls.append($deleteBtn);
 			$subjectCell.append($controls);
