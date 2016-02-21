@@ -95,6 +95,40 @@ window.page.getOpenPage = function() {
 	return $(".page.open-page").attr("id");
 };
 
+// default color is #333333 and complement is #222222
+window.page.setColor = function(color) {
+	var complements = {
+		"#333333": "#222222",
+		"#990f0f": "#880e0e",
+		"#0f993b": "#0e882a",
+		"#1c19c2": "#0b08b1",
+		"#c93e3e": "#b82d2d",
+		"#37c464": "#26b353",
+		"#3834fa": "#2723e9"
+	};
+
+	var complement = complements[color];
+
+	window.page.color = color;
+	window.page.complement = complement;
+
+	$(".tabs").css("background-color", color);
+	$(".navbar-default").css("background-color", color);
+	$("#page-pref-btn").css("background-color", color);
+	$(".navbar-default .dropdown-menu").css("background-color", color);
+
+	$(".tabs").css("border-right", "solid 1px " + complement);
+	$("#page-pref-btn").css("border-color", complement);
+
+	$.each(["#page-pref-btn", ".tabs li", ".navbar-default .navbar-nav>li>a", ".navbar-default .dropdown-menu>li>a"], function() {
+		$(this.toString()).css("background-color", window.page.color).off("mouseenter").off("mouseleave").mouseenter(function() {
+			$(this).css("background-color", window.page.complement);
+		}).mouseleave(function() {
+			$(this).css("background-color", window.page.color);
+		});
+	});
+};
+
 window.page.sendFeedback = function(type, msg, name, username, webpage, callback) {
 	// if the user does not want to send the webpage, the variable will be set to undefined, so don't do any checks here.
 	window.api.post("feedback/post/", {
@@ -193,6 +227,31 @@ $(document).ready(function() {
 			$("#feedback-modal").modal("hide");
 			swal("Awesome!", "Your feedback has been sent successfully! We'll try to respond to you as soon as possible.", "success")
 		});
+	});
+
+	// this is used by topTabs to move the prefs button
+	$(".username-menu").on("show.bs.dropdown", function() {
+		$("#page-pref-btn").addClass("moved");
+	});
+	$(".username-menu").on("hide.bs.dropdown", function() {
+		$("#page-pref-btn").removeClass("moved");
+	});
+
+	// check for new layout
+	window.prefs.get("topTabs", function(val) {
+		if (val == "1") {
+			$("head").append('<link href=" ' + $("#basePath").text() + '/css/topTabs.css" rel="stylesheet" />');
+		}
+	});
+
+	// check for theme color
+	window.prefs.get("themeColor", function(val) {
+		if (val == undefined || val == "") {
+			return;
+		}
+		window.page.setColor(val);
+		$(".selBox.themeColor.selected").removeClass("selected");
+		$(".selBox.themeColor[data-selBoxVal=" + val + "]").addClass("selected");
 	});
 
 	window.page.getFeatures(function(features) {
