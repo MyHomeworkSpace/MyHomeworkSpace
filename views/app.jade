@@ -159,6 +159,7 @@ html
 								if user.level > 0
 									li
 										a(class="badge adminBadge") Admin
+									li.divider
 									
 								if user.type == "faculty"
 									li
@@ -167,6 +168,9 @@ html
 									
 								li
 									a(href="http://help.planhub.me") Support
+								
+								li	
+									a(href="#prefs") Settings
 									
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
@@ -343,12 +347,9 @@ html
 				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					div HW View
-				li(data-page="prefs")
-					i(class="fa fa-cog") 
-					div Settings
 				if user.level > 0
 					li(data-page="admin")
-						i(class="fa fa-tasks") 
+						i(class="fa fa-server") 
 						div Admin
 
 			button(id="page-pref-btn", class="btn btn-default")
