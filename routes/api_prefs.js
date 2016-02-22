@@ -18,7 +18,8 @@ router.get('/get/:name', global.apiCall, global.requireUser, global.getUserRecor
 				status: "ok",
 				name: req.params.name,
 				val: undefined
-			});	
+			});
+			return;
 		}
 		res.json({
 			status: "ok",
@@ -48,33 +49,34 @@ router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, f
 		});
 		return;
 	}
-
-	knex("prefs").where({
-		name: req.body.name,
-		userId: res.locals.user.id
-	}).select("*").then(function(obj) {
-		if (obj.length == 0){
-			knex("prefs").insert({
-				name: req.body.name,
-				value: req.body.value,
-				userId: res.locals.user.id
-			}).then(function() {
-				res.json({
-					status: "ok"
+	knex.transaction(function(trx) {
+		return trx.from("prefs").where({
+			name: req.body.name,
+			userId: res.locals.user.id
+		}).forShare().select("*").then(function(obj) {
+			if (obj.length == 0){
+				return trx.into("prefs").insert({
+					name: req.body.name,
+					value: req.body.value,
+					userId: res.locals.user.id
+				}).then(function() {
+					res.json({
+						status: "ok"
+					});
 				});
-			});
-		} else {
-			knex("prefs").where({
-				name: req.body.name
-			}).update({
-				value: req.body.value,
-				userId: res.locals.user.id
-			}).then(function() {
-				res.json({
-					status: "ok"
+			} else {
+				return trx.into("prefs").where({
+					name: req.body.name,
+					userId: res.locals.user.id
+				}).update({
+					value: req.body.value
 				});
-			});
-		}
+			}
+		});
+	}).then(function() {
+		res.json({
+			status: "ok"
+		});
 	}).catch(function() {
 		res.json({
 			status: "error",

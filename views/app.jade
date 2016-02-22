@@ -83,6 +83,22 @@ html
 				s0.parentNode.insertBefore(s1,s0);
 			})();
 
+		script(type="text/javascript").
+			var _paq = _paq || [];
+			_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+			_paq.push(["setCookieDomain", "*.planhub.me"]);
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function() {
+				var u="//piwik.coursesplus.tk/";
+				_paq.push(['setTrackerUrl', u+'piwik.php']);
+				_paq.push(['setSiteId', 3]);
+				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+				g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+			})();
+		noscript
+			p
+				img(src="https://piwik.coursesplus.tk/piwik.php?idsite=3" style="border:0;" alt="")
 	body
 		div(id="basePath", class="hidden")= global.basePath
 		div(id="username", class="hidden")= user.username
@@ -116,11 +132,8 @@ html
 									a(data-page="hwView") Homework View
 								if user.level > 0
 									li.divider
-									
 									li
 										a(data-page="admin") Admin
-									li
-										a(data-page="prefs") Preferences
 						if isStaging
 							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using PlanHub Staging. This is for testing purposes only-don't use it as your real planner!")
 								a(href="#{basePath}/staging") Staging
@@ -135,27 +148,25 @@ html
 						li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
 							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
 								i(class="fa fa-frown-o")
-						li
+						li(class="username-menu")
 							a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
 								span= user.name 
 								span.caret
 							ul.dropdown-menu
-								li
-									a(href="#{basePath}/logout") Log out
-										
 								if user.level > 0
 									li
-										a(data-page="prefs") Preferences
-									li
-										span(class="adminBadge") Admin
+										a(class="badge adminBadge" style="cursor: default;") Admin
 									
 								if user.type == "faculty"
 									li
-										span(class="teacherBadge") Teacher
-									li.divider
+										a(class="badge teacherBadge" style="cursor: default;") Teacher
 									
 								li
 									a(href="http://help.planhub.me") Support
+
+								li.divider
+								li
+									a(href="#{basePath}/logout") Log out
 									
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
@@ -332,10 +343,12 @@ html
 				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					div HW View
-				<!-- li(data-page="prefs") Preferences -->
+				li(data-page="prefs")
+					i(class="fa fa-cog") 
+					div Settings
 				if user.level > 0
 					li(data-page="admin")
-						i(class="fa fa-cog") 
+						i(class="fa fa-server") 
 						div Admin
 
 			button(id="page-pref-btn", class="btn btn-default")
@@ -347,7 +360,7 @@ html
 						span Today is 
 						span(class="overview-date") a day
 						span .
-					h3#howmuchhw
+					h4#howmuchhw
 					div(id="announcementAlert", class="alert alert-info alert-overview", role='alert', width='90%', style="display: none")
 						ul#announcementList
 				div(id="planner", class="page")
@@ -404,7 +417,7 @@ html
 							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
 								i(class="fa fa-external-link")
 
-					table
+					table#plannerTable
 						thead
 							tr
 								th(class="no-border")
@@ -580,13 +593,15 @@ html
 							ul
 
 				div(id="prefs", class="page")
-					h1 Preferences
-					p Here, you can manage preferences for your account. Looking for preferences for a specific feature instead? Click the gray gear button in the bottom left on the feature you want to change.
+					h1 Settings
+					p Here, you can manage settings for your account. Looking for settings for a specific feature instead? Click the gray gear button in the bottom left on the feature you want to change.
 					ul(class="nav nav-tabs", role="tablist")
 						li(role="presentation", class="active")
 							a(href="#prefs-profile", role="tab", data-toggle="tab") Profile
 						li(role="presentation")
 							a(href="#prefs-security", role="tab", data-toggle="tab") Security
+						li(role="presentation")
+							a(href="#prefs-layout", role="tab", data-toggle="tab") Layout
 						li(role="presentation")
 							a(href="#prefs-connected", role="tab", data-toggle="tab") Connected accounts
 						li(role="presentation")
@@ -595,9 +610,8 @@ html
 					div(class="tab-content")
 						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
 							p Settings about your account.
-							p Name: 
+							span Name: 
 							input(type="text", id="usr-name" value="#{user.name}", disabled="disabled")
-							p The name change feature is no longer available due to new code that syncs with schedules that is confused when you change your name.
 							p
 								span Email address: 
 								span= user.email
@@ -611,11 +625,37 @@ html
 								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
 							
+						div(role="tabpanel", class="tab-pane", id="prefs-layout")
+							p Change the look and feel of PlanHub. You might have to reload the page to activate these changes.
+							
+							input(type="checkbox", id="prefs-layout-topTabs")
+							label(for="prefs-layout-topTabs") Use an alternate tab layout (reload the page to see changes)
+							
+							br
+
+							input(type="checkbox", id="prefs-layout-hideTawk")
+							label(for="prefs-layout-hideTawk") Hide the live chat widget (reload the page to see changes)
+							
+							h3 Theme color
+							p Here, you can change the color used for the PlanHub navigation menus.
+							div(id="themeColors")
+								div(class="selBox themeColor selected", data-selBoxGroup="themeColor" data-selBoxVal="#333333")
+								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#990f0f")
+								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#c93e3e")
+								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#0f993b")
+								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#37c464")
+								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#1c19c2")
+								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#3834fa")
+								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#00c8d8")
+
 						div(role="tabpanel", class="tab-pane", id="prefs-connected")
 							p Connect your PlanHub account to other accounts.
-							h3 Schedules
-							p Connect your Dalton account to Schedules so PlanHub can determine when you have labs and free time.
-							button(id="schedules-connect", class="btn btn-lg btn-primary") Connect to Schedules
+							if user.level > 0
+								h3 Schedules
+								p Connect your Dalton account to Schedules so PlanHub can determine when you have labs and free time.
+								button(id="schedules-connect", class="btn btn-primary") Connect to Schedules
+							else
+								p This feature is coming soon!
 									
 						div(role="tabpanel", class="tab-pane", id="prefs-apps")
 							h4 CoursesPlus
@@ -722,16 +762,16 @@ html
 								a(href="#admin-stats" , data-toggle="tooltip", data-placement="right", title="Coming Soon!")
 									i.fa.fa-eye.admin-link
 									| Statistics
-							li(data-page="admin-about", class="admin-link", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-								a(href="#admin-about")
+							li(data-page="admin-about", class="admin-link")
+								a(href="#admin-about", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
 									i.fa.fa-info-circle.admin-link
 									| About server
-							li(class="admin-link", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
-								a(href="http://blog.planhub.me/wp-login.php" target="_blank")
+							li(class="admin-link")
+								a(href="http://blog.planhub.me/wp-login.php" target="_blank", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
 									i.fa.fa-rss.admin-link
 									| Manage Blog
-							li(data-page="admin-users", class="admin-link", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-								a(href="#admin-users")
+							li(data-page="admin-users", class="admin-link")
+								a(href="#admin-users", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
 									i.fa.fa-users.admin-link
 									| Manage Users
 					if user.canFeedback > 0
@@ -810,3 +850,4 @@ html
 							tbody
 								tr
 									td(colspan="6") Loading users...
+		<!-- Wow! You made it to the end! -->

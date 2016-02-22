@@ -17,6 +17,12 @@ window.prefs.get = function(name, callback) {
 	});
 };
 
+window.prefs.set = function(name, val, callback) {
+	window.api.post("prefs/set", { name: name, value: val}, function() {
+		callback();
+	});
+};
+
 window.prefs.checkToggle = function($checkbox, prefsId) {
 	window.prefs.get(prefsId, function(result) {
 		var toggled = false;
@@ -39,6 +45,7 @@ window.prefs.getJSONPref = function(name, callback) {
         callback(JSON.parse(val));
     });
 };
+
 $(document).ready(function() {
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
@@ -102,6 +109,20 @@ $(document).ready(function() {
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
 	window.prefs.checkToggle($("#prefs-hwView-checkboxes"), "hwView-checkboxes");
 
+	// Layout
+	window.prefs.checkToggle($("#prefs-layout-topTabs"), "topTabs");
+	window.prefs.checkToggle($("#prefs-layout-hideTawk"), "hideTawk");
+	$(".selBox.themeColor").each(function() {
+		$(this).css("background-color", $(this).attr("data-selBoxVal"));
+	});
+
+	$(".themeColor").on("selBoxChanged", function(e) {
+		window.page.setColor(e.to);
+		window.prefs.set("themeColor", e.to, function() {
+
+		});
+	});
+
 	// Connected accounts
 	$("#schedules-connect").click(function() {
 		$("#login-to-schedules-modal").modal();
@@ -112,4 +133,19 @@ $(document).ready(function() {
 			console.log(resp);
 		});
 	})
+
+	// selboxes
+	$(".selBox").click(function() {
+		if ($(this).hasClass("selected") && !$(this).hasClass("custom")) {
+			// Do nothing
+			return;
+		}
+		console.log($("[data-selBoxGroup=" + $(this).attr("data-selBoxGroup") +"]"));
+		$("[data-selBoxGroup=" + $(this).attr("data-selBoxGroup") +"]").removeClass("selected");
+		$(this).addClass("selected");
+		$(this).trigger({
+			type: "selBoxChanged",
+			to: $(this).attr("data-selBoxVal")
+		});
+	});
 });

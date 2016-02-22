@@ -31,4 +31,9 @@
 	right: 0;
 	left: inherit;
 	bottom: inherit;
+	transition: right 0.1s;
+	border: none;
+}
+#page-pref-btn.moved {
+	right: 160px;
 }

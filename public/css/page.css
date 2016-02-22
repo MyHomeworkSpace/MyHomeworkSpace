@@ -17,6 +17,9 @@ nav {
 .mainContainer {
 	padding-top: 45px;
 }
+.tabs, #page-pref-btn, .navbar-default {
+	transition: background-color 0.2s;
+}
 .tabs {
 	background-color: #333333;
 	color: white;
@@ -246,4 +249,13 @@ nav {
 
 .teacherBadge {
 	color: #00FF33;
+}
+
+.badge {
+	cursor: default;
+	text-align: left;
+}
+
+.navbar-default .navbar-nav>li>a {
+	transition: background-color 0.2s;
 }
