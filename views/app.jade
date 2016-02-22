@@ -156,15 +156,14 @@ html
 								if user.level > 0
 									li
 										a(class="badge adminBadge" style="cursor: default;") Admin
-									li.divider
 									
 								if user.type == "faculty"
 									li
 										a(class="badge teacherBadge" style="cursor: default;") Teacher
-									li.divider
 									
 								li
 									a(href="http://help.planhub.me") Support
+
 								li.divider
 								li
 									a(href="#{basePath}/logout") Log out
