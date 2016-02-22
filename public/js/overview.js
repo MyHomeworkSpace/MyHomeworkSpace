@@ -21,9 +21,9 @@ $(document).ready(function() {
 				$("#announcementAlert").css("display", "none");
 			}
 		});
-		/*window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
+		window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
 			window.overview.HWphrase("howmuchhw", result.events.length);
-		});*/
+		});
 	});
 });
 
@@ -41,8 +41,4 @@ window.overview.HWphrase = function (id, hw) {
 	} else {
 		document.getElementById(id).innerHTML = '<i class="fa fa-frown-o"></i> You might be up late doing homework tonight. You have ' + hw + ' assignments due tomorrow.';
 	}
-}
-
-function hello(){
-	alert("Hi!");
 }
