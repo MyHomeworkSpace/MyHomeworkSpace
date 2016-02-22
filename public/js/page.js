@@ -245,6 +245,13 @@ $(document).ready(function() {
 		}
 	});
 
+	// check for hiding tawk
+	window.prefs.get("hideTawk", function(val) {
+		if (val == "1") {
+			Tawk_API.hideWidget();
+		}
+	});
+
 	// check for theme color
 	window.prefs.get("themeColor", function(val) {
 		if (val == undefined || val == "") {

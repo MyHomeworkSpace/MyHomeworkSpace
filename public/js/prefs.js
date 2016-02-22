@@ -111,6 +111,7 @@ $(document).ready(function() {
 
 	// Layout
 	window.prefs.checkToggle($("#prefs-layout-topTabs"), "topTabs");
+	window.prefs.checkToggle($("#prefs-layout-hideTawk"), "hideTawk");
 	$(".selBox.themeColor").each(function() {
 		$(this).css("background-color", $(this).attr("data-selBoxVal"));
 	});
