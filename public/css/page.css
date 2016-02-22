@@ -255,3 +255,7 @@ nav {
 	cursor: default;
 	text-align: left;
 }
+
+.navbar-default .navbar-nav>li>a {
+	transition: background-color 0.2s;
+}
