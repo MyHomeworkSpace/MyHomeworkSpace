@@ -31,10 +31,10 @@ router.get("/getGroups/",function(req,res,next){
 router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(req,res,next){
 	knex("groupMembers").where({
 		userId: res.locals.user.id
-	}).select("groupId").then(function(result){
+	}).innerJoin("groups", "groupmembers.groupID", "=", "groups.id").select("groups.*").then(function(groups){
 		res.json({
 			result: "ok",
-			data: result
+			groups: groups
 		});
 	}).catch(function() {
 		res.json({
@@ -45,17 +45,23 @@ router.get("/getGroupsIn/", global.requireUser, global.getUserRecord, function(r
 });
 
 router.post("/newGroup/", global.requireUser, global.getUserRecord, function(req, res, next) {
-	knex("groups").insert({name: res.body.groupName, adminID: res.locals.user.id}).select("*").then(function(response){
+	knex("groups").insert({name: req.body.groupName, adminID: res.locals.user.id}).then(function(response){
+		knex("groupMembers").insert({userID: res.locals.user.id, groupID: response[0]}).then(function(response2){
 		res.json({
-			status: "ok"
+			status: "ok",
+			result: response2,
+			otherResult: response
 		});
 	});
+	});
+	
 });
 
 router.post("/joinGroup/", global.requireUser, global.getUserRecord, function(req, res, next){
-	knex("groupMembers").insert({userID: res.locals.user.id, groupID: req.body.groupID}).select("*").then(function(response){
+	knex("groupMembers").insert({userID: res.locals.user.id, groupID: req.body.groupID}).then(function(response){
 		res.json({
-			status: "ok"
+			status: "ok",
+			result: response
 		});
 	});
 });
