@@ -104,7 +104,8 @@ window.page.setColor = function(color) {
 		"#1c19c2": "#0b08b1",
 		"#c93e3e": "#b82d2d",
 		"#37c464": "#26b353",
-		"#3834fa": "#2723e9"
+		"#3834fa": "#2723e9",
+		"#00c8d8": "#00b7c7"
 	};
 
 	var complement = complements[color];
