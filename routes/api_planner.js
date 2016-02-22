@@ -91,7 +91,7 @@ router.get('/fridays/get/:date', global.apiCall, function(req, res, next) {
 });
 
 router.get('/events/get/:date/:section_index', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
-	if (req.params.date == undefined) {
+	if (req.params.date === undefined) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid date parameter!"
@@ -213,7 +213,7 @@ router.post('/events/post/', global.apiCall, global.requireUser, global.getUserR
 		});
 		return;
 	}
-	if (req.body.done === undefined || isNaN(parseInt(req.body.done)) || (parseInt(req.body.done) !== 0 && parseInt(req.body.done) != 1)) {
+	if (req.body.done === undefined || isNaN(parseInt(req.body.done)) || (parseInt(req.body.done) !== 0 && parseInt(req.body.done) !== 1)) {
 		res.json({
 			status: "error",
 			error: "Missing or invalid done parameter!"
@@ -407,7 +407,7 @@ router.post('/sections/swap', global.apiCall, global.requireUser, global.getUser
 		where(function() {
 			this.where("sectionIndex", first).orWhere("sectionIndex", second);
 		}).then(function(obj) {
-		if (obj.length != 2) {
+		if (obj.length !== 2) {
 			res.json({
 				status: "error",
 				error: "Missing or invalid indexes! " + obj.length
