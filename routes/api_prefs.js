@@ -18,7 +18,8 @@ router.get('/get/:name', global.apiCall, global.requireUser, global.getUserRecor
 				status: "ok",
 				name: req.params.name,
 				val: undefined
-			});	
+			});
+			return;
 		}
 		res.json({
 			status: "ok",
