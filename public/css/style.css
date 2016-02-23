@@ -38,3 +38,12 @@ body {
 .main-feature-img {
 	position: relative;
 }
+
+footer a {
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.btn {
+	transition: background 0.2s;
+}
