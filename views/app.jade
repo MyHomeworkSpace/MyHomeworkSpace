@@ -165,9 +165,6 @@ html
 									a(href="http://help.planhub.me") Support
 
 								li.divider
-								
-								li
-									a(data-page="prefs") Preferences
 									
 								li
 									a(href="#{basePath}/logout") Log out
@@ -347,6 +344,9 @@ html
 				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					div HW View
+				li(data-page="prefs")
+					i(class="fa fa-cog") 
+					div Settings
 				if user.level > 0
 					li(data-page="admin")
 						i(class="fa fa-server") 
