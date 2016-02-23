@@ -43,8 +43,9 @@ router.post('/getBatch/', global.apiCall, global.requireUser, global.getUserReco
 		return;
 	}
 	var subquery = knex("prefs").select("*");
-	for (var nameIndex in req.body.names) {
-		subquery.orWhere("name", "=", req.body.names[nameIndex]);
+	var names = JSON.parse(req.body.names);
+	for (var nameIndex in names) {
+		subquery.orWhere("name", "=", names[nameIndex]);
 	}
 	knex("prefs").select("*").where({
 		userId: res.locals.user.id

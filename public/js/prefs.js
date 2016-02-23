@@ -18,7 +18,7 @@ window.prefs.get = function(name, callback) {
 };
 
 window.prefs.getBatch = function(names, callback) {
-	window.api.post("prefs/getBatch/", { names: names }, function(data) {
+	window.api.post("prefs/getBatch/", { names: JSON.stringify(names) }, function(data) {
 		var vals = {};
 		for (var dataIndex in data) {
 			vals[data[dataIndex].name] = data[dataIndex].value;
