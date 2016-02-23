@@ -34,6 +34,33 @@ router.get('/get/:name', global.apiCall, global.requireUser, global.getUserRecor
 	});
 });
 
+router.post('/getBatch/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.names == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing or invalid names parameter."
+		});
+		return;
+	}
+	var subquery = knex("prefs").select("*");
+	for (var nameIndex in req.body.names) {
+		subquery.orWhere("name", "=", req.body.names[nameIndex]);
+	}
+	knex("prefs").select("*").where({
+		userId: res.locals.user.id
+	}).andWhere(subquery).then(function(obj) {
+		res.json({
+			status: "ok",
+			prefs: obj
+		});
+	}).catch(function(e) {
+		res.json({
+			status: "error",
+			error: "Unknown database error"
+		});
+	});
+});
+
 router.post('/set/', global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.name == undefined) {
 		res.json({

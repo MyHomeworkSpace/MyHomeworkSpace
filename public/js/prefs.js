@@ -17,6 +17,16 @@ window.prefs.get = function(name, callback) {
 	});
 };
 
+window.prefs.getBatch = function(names, callback) {
+	window.api.post("prefs/getBatch/", { names: names }, function(data) {
+		var vals = {};
+		for (var dataIndex in data) {
+			vals[data[dataIndex].name] = data[dataIndex].value;
+		}
+		callback(vals);
+	});
+};
+
 window.prefs.set = function(name, val, callback) {
 	window.api.post("prefs/set", { name: name, value: val}, function() {
 		callback();

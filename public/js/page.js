@@ -240,28 +240,21 @@ $(document).ready(function() {
 
 	window.api.ready(function() {
 		console.log("Nonce pool ready!");
-		// check for new layout
-		window.prefs.get("topTabs", function(val) {
-			if (val == "1") {
+
+		window.prefs.getBatch(["topTabs", "hideTawk", "themeColor"], function(prefs) {
+			if (prefs.topTabs == "1") {
 				$("head").append('<link href=" ' + $("#basePath").text() + '/css/topTabs.css" rel="stylesheet" />');
 			}
-		});
 
-		// check for hiding tawk
-		window.prefs.get("hideTawk", function(val) {
-			if (val == "1") {
+			if (prefs.hideTawk == "1") {
 				Tawk_API.hideWidget();
 			}
-		});
 
-		// check for theme color
-		window.prefs.get("themeColor", function(val) {
-			if (val == undefined || val == "") {
-				return;
+			if (prefs.themeColor != undefined && prefs.themeColor != "") {
+				window.page.setColor(val);
+				$(".selBox.themeColor.selected").removeClass("selected");
+				$(".selBox.themeColor[data-selBoxVal=" + val + "]").addClass("selected");
 			}
-			window.page.setColor(val);
-			$(".selBox.themeColor.selected").removeClass("selected");
-			$(".selBox.themeColor[data-selBoxVal=" + val + "]").addClass("selected");
 		});
 
 		window.page.getFeatures(function(features) {
