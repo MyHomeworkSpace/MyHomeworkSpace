@@ -42,14 +42,14 @@ router.post('/getBatch/', global.apiCall, global.requireUser, global.getUserReco
 		});
 		return;
 	}
-	var subquery = knex("prefs").select("*");
+	var subquery = knex("prefs").select("prefId");
 	var names = JSON.parse(req.body.names);
 	for (var nameIndex in names) {
 		subquery.orWhere("name", "=", names[nameIndex]);
 	}
 	knex("prefs").select("*").where({
 		userId: res.locals.user.id
-	}).andWhere(subquery).then(function(obj) {
+	}).where("prefId", "in", subquery).then(function(obj) {
 		res.json({
 			status: "ok",
 			prefs: obj
