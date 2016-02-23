@@ -3,7 +3,7 @@ window.api = {
 	noncePool: [],
 	noncePooling: true,
 	callbacks: [],
-	isReady: false;
+	isReady: false
 };
 
 window.api.addToNoncePool = function(callback) {
