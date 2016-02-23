@@ -1,8 +1,31 @@
 window.api = {
-	version: "v1"
+	version: "v1",
+	noncePool: [],
+	noncePooling: true
+};
+
+window.api.addToNoncePool = function(callback) {
+	if (!noncePooling) {
+		return;
+	}
+	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrfPool", function(ret) {
+		// add them to the pool
+		for (var nonceIndex in ret.nonces) {
+			noncePool.push(ret.nonces[nonceIndex]);
+		}
+		callback();
+	});
 };
 
 window.api.getNonce = function(callback, err) {
+	if (noncePooling) {
+		if (noncePool.length > 0) {
+			// that was easy
+			callback(noncePool.pop());
+		} else {
+
+		}
+	}
 	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrf", function(ret) {
 		callback(ret.nonce);
 	});
