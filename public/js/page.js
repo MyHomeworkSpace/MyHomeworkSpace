@@ -248,6 +248,8 @@ $(document).ready(function() {
 
 			if (prefs.hideTawk == "1") {
 				Tawk_API.hideWidget();
+				$("#tawkchat-iframe-container").remove();
+				$("#tawk-script").remove();
 			}
 
 			if (prefs.themeColor != undefined && prefs.themeColor != "") {
