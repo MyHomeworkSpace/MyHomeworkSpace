@@ -24,7 +24,7 @@ router.get('/csrfPool', function(req, res, next) { // DO NOT PUT global.apiCall 
 	var crypto = require("crypto");
 
 	var nonces = [];
-	var toGenerate = 10;
+	var toGenerate = 20;
 	for (var i = 0; i < toGenerate; i++) {
 		nonces.push({ nonce: crypto.randomBytes(16).toString('hex'), sid: req.session.id});
 	}
