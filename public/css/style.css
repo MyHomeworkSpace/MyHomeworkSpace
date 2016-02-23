@@ -39,7 +39,7 @@ body {
 	position: relative;
 }
 
-footer a {
+footer a, footer a:hover {
 	text-decoration: none;
 	transition: color 0.2s;
 }
