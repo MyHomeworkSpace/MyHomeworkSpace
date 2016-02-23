@@ -11,7 +11,7 @@ window.api.addToNoncePool = function(callback) {
 	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrfPool", function(ret) {
 		// add them to the pool
 		for (var nonceIndex in ret.nonces) {
-			noncePool.push(ret.nonces[nonceIndex]);
+			window.api.noncePool.push(ret.nonces[nonceIndex]);
 		}
 		callback();
 	});
@@ -19,9 +19,9 @@ window.api.addToNoncePool = function(callback) {
 
 window.api.getNonce = function(callback, err) {
 	if (window.api.noncePooling) {
-		if (noncePool.length > 0) {
+		if (window.api.noncePool.length > 0) {
 			// that was easy
-			callback(noncePool.pop());
+			callback(window.api.noncePool.pop());
 			return;
 		} else {
 			// this will fallback to a normal request
