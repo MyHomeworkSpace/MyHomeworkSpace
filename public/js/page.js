@@ -239,6 +239,7 @@ $(document).ready(function() {
 	});
 
 	window.api.addToNoncePool(function() {
+		console.log("Nonce pool ready!");
 		// check for new layout
 		window.prefs.get("topTabs", function(val) {
 			if (val == "1") {
