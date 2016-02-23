@@ -238,7 +238,7 @@ $(document).ready(function() {
 		$("#page-pref-btn").removeClass("moved");
 	});
 
-	window.api.addToNoncePool(function() {
+	window.api.ready(function() {
 		console.log("Nonce pool ready!");
 		// check for new layout
 		window.prefs.get("topTabs", function(val) {
@@ -286,4 +286,6 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	window.api.init();
 });

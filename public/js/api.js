@@ -1,7 +1,9 @@
 window.api = {
 	version: "v1",
 	noncePool: [],
-	noncePooling: true
+	noncePooling: true,
+	callbacks: [],
+	isReady: false;
 };
 
 window.api.addToNoncePool = function(callback) {
@@ -49,4 +51,22 @@ window.api.post = function(path, data, done, err) {
 			done(ret);
 		});
 	}, err);
+};
+
+window.api.init = function() {
+	window.api.addToNoncePool(function() {
+		window.api.isReady = true;
+		while (window.api.callbacks.length > 0) {
+			var func = window.api.callbacks.pop();
+			(func)();
+		}
+	});
+};
+
+window.api.ready = function(callback) {
+	if (window.api.isReady) {
+		callback();
+		return;
+	}
+	window.api.callbacks.push(callback);
 };

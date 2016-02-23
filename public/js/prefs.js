@@ -46,7 +46,7 @@ window.prefs.getJSONPref = function(name, callback) {
     });
 };
 
-$(document).ready(function() {
+window.api.ready(function() {
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
 		setPage($("#prefs-modal").attr("data-feature"));
