@@ -34,3 +34,7 @@ body {
 	padding-bottom: 41px;
 	text-align: center;
 }
+
+.main-feature-img {
+	position: relative;
+}
