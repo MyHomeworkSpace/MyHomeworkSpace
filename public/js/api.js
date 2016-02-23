@@ -22,8 +22,10 @@ window.api.getNonce = function(callback, err) {
 		if (noncePool.length > 0) {
 			// that was easy
 			callback(noncePool.pop());
+			return;
 		} else {
-
+			// this will fallback to a normal request
+			// TODO: autofill the pool
 		}
 	}
 	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrf", function(ret) {
