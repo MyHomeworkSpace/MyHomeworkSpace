@@ -49,7 +49,7 @@ router.post('/getBatch/', global.apiCall, global.requireUser, global.getUserReco
 	}
 	knex("prefs").select("*").where({
 		userId: res.locals.user.id
-	}).where("prefId", "in", subquery).then(function(obj) {
+	}).andWhere("prefId", "in", subquery).then(function(obj) {
 		res.json({
 			status: "ok",
 			prefs: obj
