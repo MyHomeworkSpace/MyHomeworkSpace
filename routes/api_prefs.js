@@ -57,8 +57,7 @@ router.post('/getBatch/', global.apiCall, global.requireUser, global.getUserReco
 	}).catch(function(e) {
 		res.json({
 			status: "error",
-			error: "Unknown database error",
-			e: e
+			error: "Unknown database error"
 		});
 	});
 });

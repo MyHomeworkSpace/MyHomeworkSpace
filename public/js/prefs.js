@@ -20,8 +20,8 @@ window.prefs.get = function(name, callback) {
 window.prefs.getBatch = function(names, callback) {
 	window.api.post("prefs/getBatch/", { names: JSON.stringify(names) }, function(data) {
 		var vals = {};
-		for (var dataIndex in data) {
-			vals[data[dataIndex].name] = data[dataIndex].value;
+		for (var dataIndex in data.prefs) {
+			vals[data.prefs[dataIndex].name] = data.prefs[dataIndex].value;
 		}
 		callback(vals);
 	});
