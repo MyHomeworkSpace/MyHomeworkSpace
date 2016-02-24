@@ -255,7 +255,7 @@ $(document).ready(function() {
 			if (prefs.themeColor != undefined && prefs.themeColor != "") {
 				window.page.setColor(prefs.themeColor);
 				$(".selBox.themeColor.selected").removeClass("selected");
-				$(".selBox.themeColor[data-selBoxVal=" + val + "]").addClass("selected");
+				$(".selBox.themeColor[data-selBoxVal=" + prefs.themeColor + "]").addClass("selected");
 			}
 		});
 
