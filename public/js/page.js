@@ -247,7 +247,9 @@ $(document).ready(function() {
 			}
 
 			if (prefs.hideTawk == "1") {
-				Tawk_API.hideWidget();
+				if (Tawk_API) {
+					Tawk_API.hideWidget();
+				}
 				$("#tawkchat-iframe-container").remove();
 				$("#tawk-script").remove();
 			}
