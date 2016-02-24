@@ -72,7 +72,7 @@ html
 			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 		
-		script.
+		script(id="tawk-script").
 			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 			(function(){
 				var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -165,6 +165,7 @@ html
 									a(href="http://help.planhub.me") Support
 
 								li.divider
+									
 								li
 									a(href="#{basePath}/logout") Log out
 									

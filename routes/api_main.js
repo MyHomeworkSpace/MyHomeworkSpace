@@ -9,18 +9,30 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/csrf', function(req, res, next) { // DO NOT PUT global.apiCall HERE OR ELSE YOU WILL NEED A NONCE TO GET A NONCE
-	if (!req.session.nonces) {
-		req.session.nonces = [];
-	}
-
 	var crypto = require("crypto");
 	var token = crypto.randomBytes(16).toString('hex');
-	console.log("New token: " + token);
 	knex("nonces").insert({ nonce: token, sid: req.session.id }).then(function() {
 		res.json({
 			status: "ok",
 			version: "1",
 			nonce: token
+		});
+	});
+});
+
+router.get('/csrfPool', function(req, res, next) { // DO NOT PUT global.apiCall HERE OR ELSE YOU WILL NEED A NONCE TO GET A NONCE
+	var crypto = require("crypto");
+
+	var nonces = [];
+	var toGenerate = 20;
+	for (var i = 0; i < toGenerate; i++) {
+		nonces.push({ nonce: crypto.randomBytes(16).toString('hex'), sid: req.session.id});
+	}
+	knex("nonces").insert(nonces).then(function() {
+		res.json({
+			status: "ok",
+			version: "1",
+			nonces: nonces
 		});
 	});
 });

@@ -1,7 +1,5 @@
-//haxing
 $(document).ready(function(){
-    window.api.get("groups/getGroups/", function(result){
-        console.log("emlynizdumb")
-        //swal("emlynizdumb", result, "success");
-    })
+    /*window.api.get("groups/getGroups/", function(result){
+        // TODO: do something with groups
+    })*/
 });

@@ -1,6 +1,6 @@
 window.admin = {};
 
-$(document).ready(function() {
+window.api.ready(function() {
 	$("#admin-feedback").on("tabOpened", function() {
 		window.api.get("admin/feedback/getList", function(resp) {
 			$("#admin-feedback-list").text("");
@@ -108,7 +108,7 @@ $(document).ready(function() {
 		window.api.get('admin/users/get/', function(result) {
 			for (var userIndex in result.users) {
 				var user = result.users[userIndex];
-				
+
 				var row = $("<tr></tr>");
 					var idCell = $("<td></td>");
 					var nameCell = $("<td></td>");

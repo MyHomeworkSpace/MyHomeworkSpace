@@ -238,49 +238,49 @@ $(document).ready(function() {
 		$("#page-pref-btn").removeClass("moved");
 	});
 
-	// check for new layout
-	window.prefs.get("topTabs", function(val) {
-		if (val == "1") {
-			$("head").append('<link href=" ' + $("#basePath").text() + '/css/topTabs.css" rel="stylesheet" />');
-		}
-	});
+	window.api.ready(function() {
+		console.log("Nonce pool ready!");
 
-	// check for hiding tawk
-	window.prefs.get("hideTawk", function(val) {
-		if (val == "1") {
-			Tawk_API.hideWidget();
-		}
-	});
+		window.prefs.getBatch(["topTabs", "hideTawk", "themeColor"], function(prefs) {
+			if (prefs.topTabs == "1") {
+				$("head").append('<link href=" ' + $("#basePath").text() + '/css/topTabs.css" rel="stylesheet" />');
+			}
 
-	// check for theme color
-	window.prefs.get("themeColor", function(val) {
-		if (val == undefined || val == "") {
-			return;
-		}
-		window.page.setColor(val);
-		$(".selBox.themeColor.selected").removeClass("selected");
-		$(".selBox.themeColor[data-selBoxVal=" + val + "]").addClass("selected");
-	});
+			if (prefs.hideTawk == "1") {
+				Tawk_API.hideWidget();
+				$("#tawkchat-iframe-container").remove();
+				$("#tawk-script").remove();
+			}
 
-	window.page.getFeatures(function(features) {
-		for (var i = features.length - 1; i >= 0; i--) {
-			$(".upsell[data-feature=" + features[i] + "]").remove();
-		}
-		$(".upsell").each(function() {
-			$(this).parent().addClass("hasUpsell");
+			if (prefs.themeColor != undefined && prefs.themeColor != "") {
+				window.page.setColor(prefs.themeColor);
+				$(".selBox.themeColor.selected").removeClass("selected");
+				$(".selBox.themeColor[data-selBoxVal=" + val + "]").addClass("selected");
+			}
 		});
 
-		window.page.features = features;
-		window.page.hideLoading();
+		window.page.getFeatures(function(features) {
+			for (var i = features.length - 1; i >= 0; i--) {
+				$(".upsell[data-feature=" + features[i] + "]").remove();
+			}
+			$(".upsell").each(function() {
+				$(this).parent().addClass("hasUpsell");
+			});
 
-		if (window.location.hash != "") {
-			setPage(window.location.hash.substr(1));
-		} else {
-			setPage("overview");
-		}
+			window.page.features = features;
+			window.page.hideLoading();
 
-		if (features.length == 0) {
-			introJs().setOption("showStepNumbers", false).start();
-		}
+			if (window.location.hash != "") {
+				setPage(window.location.hash.substr(1));
+			} else {
+				setPage("overview");
+			}
+
+			if (features.length == 0) {
+				introJs().setOption("showStepNumbers", false).start();
+			}
+		});
 	});
+
+	window.api.init();
 });
