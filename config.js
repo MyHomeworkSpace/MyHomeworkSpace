@@ -3,7 +3,7 @@ module.exports = {
 		host     : 'localhost',
 		user     : 'planhub',
 		password : 'planhub',
-		database : 'planhub'}
+		database : 'planhub'},
 	emails: {
 		enabled: false,
 		from: "Misconfigured PlanHub <misconfigured@misconfigured.invalid>",
