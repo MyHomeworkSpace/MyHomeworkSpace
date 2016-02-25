@@ -21,7 +21,7 @@ $(document).ready(function() {
 				$("#announcementAlert").css("display", "none");
 			}
 		});
-		window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
+		 window.api.get('/planner/events/getDay/' + tomorrow, function(result) {
 			window.overview.HWphrase("howmuchhw", result.events.length);
 		});
 	});
@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 window.overview.HWphrase = function (id, hw) {
 	if(hw < 1){
-		document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> Looks like tonight will be an easy night! You have no homework due tomorrow!';
+		document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> Looks like tonight will be an easy night! You have noj homework due tomorrow!';
 	} else if (hw < 3) {
 		if (hw === 1){
 			document.getElementById(id).innerHTML = '<i class="fa fa-smile-o"></i> It seems like you will have some free time tonight! You have ' + hw + ' assignment due tomorrow.';

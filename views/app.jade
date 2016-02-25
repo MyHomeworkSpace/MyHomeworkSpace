@@ -294,6 +294,27 @@ html
 					
 					div(class="modal-footer feedback-footer-normal")
 						button(type="button", class="btn btn-default", data-dismiss="modal") Close
+						
+		div(id="2fa-enable-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title")
+							span Enable Two Factor Authentication
+					
+					div(class="modal-body")
+						h3
+							span Step One
+						h4
+							span Add the code to your TFA App.
+							br
+							img(style="text-align: center" src="https://placeholdit.imgix.net/~text?txtsize=19&txt=QR+Code+Here&w=400&h=400&txttrack=0")
+					
+					div(class="modal-footer feedback-footer-normal")
+						button(type="button", class="btn btn-default", data-dismiss="modal") Cancel
+						button#submit2fa(type="button", class="btn btn-primary", data-dismiss="modal")
 	
 		div(id="admin-feedback-modal", class="modal fade")
 			div(class="modal-dialog")
