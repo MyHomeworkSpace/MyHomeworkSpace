@@ -6,7 +6,7 @@ If you want to help us make cool stuff, you should probably check out our [API](
 * **Always pull to the "master" branch.**
 * Test your changes before you push them.
 * We may not accept every pull request. If we reject yours, don't take it personally. We will likely provide feedback on how to make your code even better!
-* Don't make code changes that violate our [Privacy Policy](http://planhub.me/privacy) unless you check with us first.
+* Don't make code changes that violate our [Privacy Policy](http://planhub.me/privacy).
 
 ##Issue Regulations
 We have some guidelines to help us solve your issue. If your issue does not meet one or more of the qualifictions below, please revise your issue.

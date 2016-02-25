@@ -72,7 +72,7 @@ html
 			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 		
-		script.
+		script(id="tawk-script").
 			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 			(function(){
 				var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -165,9 +165,6 @@ html
 									a(href="http://help.planhub.me") Support
 
 								li.divider
-								
-								li
-									a(data-page="prefs") Preferences
 									
 								li
 									a(href="#{basePath}/logout") Log out
@@ -368,6 +365,9 @@ html
 				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
 					i(class="fa fa-file-text") 
 					div HW View
+				li(data-page="prefs")
+					i(class="fa fa-cog") 
+					div Settings
 				if user.level > 0
 					li(data-page="admin")
 						i(class="fa fa-server") 
@@ -646,7 +646,15 @@ html
 								a(href="mailto:help@dalton.org") help@dalton.org
 								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
-							
+							h3 Two-factor authentication
+							p Two-factor authentication adds an extra layer of security of your acocunt.
+							if user.tfa == 1
+								p You have two-factor authentication enabled.
+								button(id="prefs-disable-2fa", class="btn btn-danger") Disable two-factor authentication
+							else
+								p You have two-factor authentication disabled.
+								button(id="prefs-enable-2fa", class="btn btn-primary") Enable two-factor authentication
+
 						div(role="tabpanel", class="tab-pane", id="prefs-layout")
 							p Change the look and feel of PlanHub. You might have to reload the page to activate these changes.
 							

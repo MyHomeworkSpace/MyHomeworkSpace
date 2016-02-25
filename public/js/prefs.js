@@ -17,6 +17,16 @@ window.prefs.get = function(name, callback) {
 	});
 };
 
+window.prefs.getBatch = function(names, callback) {
+	window.api.post("prefs/getBatch/", { names: JSON.stringify(names) }, function(data) {
+		var vals = {};
+		for (var dataIndex in data.prefs) {
+			vals[data.prefs[dataIndex].name] = data.prefs[dataIndex].value;
+		}
+		callback(vals);
+	});
+};
+
 window.prefs.set = function(name, val, callback) {
 	window.api.post("prefs/set", { name: name, value: val}, function() {
 		callback();
@@ -46,7 +56,7 @@ window.prefs.getJSONPref = function(name, callback) {
     });
 };
 
-$(document).ready(function() {
+window.api.ready(function() {
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
 		setPage($("#prefs-modal").attr("data-feature"));

@@ -34,3 +34,20 @@ body {
 	padding-bottom: 41px;
 	text-align: center;
 }
+
+.main-feature-img {
+	position: relative;
+}
+
+footer a, footer a:hover {
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+footer a:hover {
+	color: #077194;
+}
+
+.btn {
+	transition: background 0.2s;
+}
