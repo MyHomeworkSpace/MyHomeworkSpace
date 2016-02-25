@@ -32,13 +32,13 @@ router.get('/staging', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('staging', { title: 'Staging' });
 });
 
-router.get('/emailTest', global.getOptionalUserRecord, function(req, res, next) {
+/*router.get('/emailTest', global.getOptionalUserRecord, function(req, res, next) {
 	require("../emails.js").sendEmail("verify", "astuder@planhub.me", { verify_url: "https://planhub.me/lel" }, function() {
 		res.end("yay");
 	}, function() {
 		res.end("errez!");
 	});
-});
+});*/
 
 router.get('/logout', global.requireUser, function(req, res, next) {
 	req.session.loggedIn = false;
