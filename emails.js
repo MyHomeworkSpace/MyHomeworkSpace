@@ -10,7 +10,7 @@ var processTemplate = function(text, objs) {
 	var out = text;
 	for (var objIndex in objs) {
 		var obj = objs[objIndex];
-		out = out.replace(new RegExp("\(" + objIndex.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1") + "\)", "g"), obj);
+		out = out.replace(new RegExp("\\(" + objIndex.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1") + "\\)", "g"), obj);
 	}
 	return out;
 };
