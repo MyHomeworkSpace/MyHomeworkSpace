@@ -22,7 +22,7 @@ global.basePath = basePath;
 var env = "development";
 global.env = ((app.get("env") == "production") ? app.get("env") : env);
 
-var config = require("./config");
+global.config = require("./config");
 global.mysqlConnection = config.dbConnection;
 
 global.knex = require('knex')({
