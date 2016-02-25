@@ -10,7 +10,7 @@ module.exports = {
 		smtpConfig: {
 			host: "localhost",
 			port: 465,
-			secure: true
+			secure: true,
 			auth: {
 				user: "accounts@planhub.me",
 				pass: "password"
