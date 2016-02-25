@@ -38,6 +38,8 @@ global.sessionStore = new KnexSessionStore({
 	knex: global.knex
 });
 
+global.transporter = require("nodemailer").createTransport(config.emails.smtpConfig);
+
 global.isApiPath = function(path) {
 	return path.indexOf("api") > -1;
 };

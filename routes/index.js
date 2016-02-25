@@ -32,6 +32,22 @@ router.get('/staging', global.getOptionalUserRecord, function(req, res, next) {
 	res.render('staging', { title: 'Staging' });
 });
 
+router.get('/emailTest', global.getOptionalUserRecord, function(req, res, next) {
+	var email = {
+		from: config.emails.from,
+		to: "astuder@planhub.me",
+		subject: "hexy_test",
+		text: "hexy_hex, this is a test",
+		html: "hexy_hex, this is a <strong>test</strong>"
+	};
+	transporter.sendMail(email, function(err, info) {
+		res.json({
+			err: err,
+			info: info
+		});
+	});
+});
+
 router.get('/logout', global.requireUser, function(req, res, next) {
 	req.session.loggedIn = false;
 	req.session.username = "logged out";
