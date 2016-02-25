@@ -33,18 +33,10 @@ router.get('/staging', global.getOptionalUserRecord, function(req, res, next) {
 });
 
 router.get('/emailTest', global.getOptionalUserRecord, function(req, res, next) {
-	var email = {
-		from: config.emails.from,
-		to: "astuder@planhub.me",
-		subject: "hexy_test",
-		text: "hexy_hex, this is a test",
-		html: "hexy_hex, this is a <strong>test</strong>"
-	};
-	transporter.sendMail(email, function(err, info) {
-		res.json({
-			err: err,
-			info: info
-		});
+	require("../emails.js").sendEmail("verify", "astuder@planhub.me", { verify_url: "https://planhub.me/lel" }, function() {
+		res.end("yay");
+	}, function() {
+		res.end("errez!");
 	});
 });
 
