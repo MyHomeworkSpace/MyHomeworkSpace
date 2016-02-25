@@ -63,7 +63,9 @@ window.hwView.addEventToList = function(ev, list) {
 				}
 				if(window.hwView.clr) {
 					$tag.css("color", "black");
-				} else {
+				} else if (tag == window.hwView.subjects[ev.subject].name) {
+					$tag.addClass("cal_subjectName");
+ 				} else {
 					$tag.addClass(window.utils.getPrefixClass(tag));
 				}
 
