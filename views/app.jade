@@ -305,9 +305,11 @@ html
 						h3
 							span Step One
 						h4
-							span Add the code to your TFA App.
-							br
-							img(style="text-align: center" src="https://placeholdit.imgix.net/~text?txtsize=19&txt=QR+Code+Here&w=400&h=400&txttrack=0")
+							span Scan this QR code with your 
+								span(data-toggle="tooltip", data-placement="bottom", title="Need an authenticator? Our reccomendations are Google Authenticator (iOS and Android) and Authenticator (Windows Phone)." style="cursor: help") authentication app
+								| .
+						br
+						img(style="text-align: center" src="https://placeholdit.imgix.net/~text?txtsize=19&txt=QR+Code+Here&w=400&h=400&txttrack=0")
 					
 					div(class="modal-footer feedback-footer-normal")
 						button(type="button", class="btn btn-default", data-dismiss="modal") Cancel
