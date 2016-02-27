@@ -7,9 +7,9 @@ window.hwView = {
 
 window.hwView.createOverdueList = function() {
 	// make the current lists smaller
-	$("#hwView-tomorrow").removeClass("col-md-4").addClass("col-md-3");
-	$("#hwView-soon").removeClass("col-md-4").addClass("col-md-3");
-	$("#hwView-longterm").removeClass("col-md-4").addClass("col-md-3");
+	$(".hwView-tomorrow").removeClass("col-md-4").addClass("col-md-3");
+	$(".hwView-soon").removeClass("col-md-4").addClass("col-md-3");
+	$(".hwView-longterm").removeClass("col-md-4").addClass("col-md-3");
 
 	var $overdueList = $('<div class="col-md-3 hwView-overdue"></div>');
 		var $title = $('<h3>Due today</h3>');
