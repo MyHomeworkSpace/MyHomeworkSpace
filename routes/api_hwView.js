@@ -21,7 +21,8 @@ router.get('/getHw/', global.apiCall, global.requireUser, global.getUserRecord, 
 	}).where("date", ">", new Date(req.query.date)).where(knex.raw("WEEKDAY(date)"), "!=", 5).where(knex.raw("WEEKDAY(date)"), "!=", 6).then(function(data) {
 		knex("planner_events").select("*").where({
 			userId: res.locals.user.id,
-			date: new Date(req.query.date)
+			date: new Date(req.query.date),
+			done: 1
 		}).then(function(overdue_data) {
 			res.json({
 				status: "ok",
