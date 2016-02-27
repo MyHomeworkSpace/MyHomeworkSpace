@@ -12,7 +12,7 @@ window.hwView.createOverdueList = function() {
 	$(".hwView-longterm").removeClass("col-md-4").addClass("col-md-3");
 
 	var $overdueList = $('<div class="col-md-3 hwView-overdue"></div>');
-		var $title = $('<h3>Due today</h3>');
+		var $title = $('<h3>Overdue</h3>');
 		$overdueList.append($title);
 		var $list = $('<ul></ul>');
 		$overdueList.append($list);
