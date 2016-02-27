@@ -22,7 +22,7 @@ router.get('/getHw/', global.apiCall, global.requireUser, global.getUserRecord, 
 		knex("planner_events").select("*").where({
 			userId: res.locals.user.id,
 			date: new Date(req.query.date),
-			done: 1
+			done: 0
 		}).then(function(overdue_data) {
 			res.json({
 				status: "ok",
