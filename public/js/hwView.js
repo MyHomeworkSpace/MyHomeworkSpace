@@ -240,6 +240,8 @@ $(document).ready(function() {
 		$(".hwView-tomorrow ul").text("");
 		$(".hwView-soon ul").text("");
 		$(".hwView-longterm ul").text("");
+		// reset lists
+		$(".hwView-list.col-md-3").removeClass("col-md-3").addClass("col-md-4");
 		// special case for checking on Friday, Saturday, or Sunday
 		if (moment().day() === 0 || moment().day() == 5 || moment().day() == 6) {
 			$(".tomorrow-or-monday").text("Monday"); // the part that makes it show Monday stuff is in findNextDay().
