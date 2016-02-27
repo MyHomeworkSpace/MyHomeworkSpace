@@ -11,7 +11,7 @@ window.hwView.createOverdueList = function() {
 	$("#hwView-soon").removeClass("col-md-4").addClass("col-md-3");
 	$("#hwView-longterm").removeClass("col-md-4").addClass("col-md-3");
 
-	var $overdueList = $('<div id="hwView-overdue"></div>');
+	var $overdueList = $('<div class="col-md-3 hwView-overdue"></div>');
 		var $title = $('<h3>Due today</h3>');
 		$overdueList.append($title);
 		var $list = $('<ul></ul>');
@@ -33,7 +33,7 @@ window.hwView.addEventToList = function(ev, list) {
 		return;
 	}
 
-	if (list === "overdue" && $("#hwView-overdue").length == 0) {
+	if (list === "overdue" && $(".hwView-overdue").length == 0) {
 		// overdue list doesn't exist, make it
 		window.hwView.createOverdueList();
 	}
