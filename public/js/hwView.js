@@ -2,7 +2,8 @@ window.hwView = {
 	subjects: {},
 	loadCount: 0,
 	swapOrder: false,
-	disableChecks: false
+	disableChecks: false,
+	disableOverdue: false
 };
 
 window.hwView.createOverdueList = function() {
@@ -30,6 +31,10 @@ window.hwView.addEventToList = function(ev, list) {
 		return;
 	}
 	if (name.trim() === "") {
+		return;
+	}
+
+	if (list === "overdue" && window.hwView.disableOverdue) {
 		return;
 	}
 
@@ -254,7 +259,10 @@ $(document).ready(function() {
 				window.hwView.clr = (val == "1");
 				window.prefs.get("hwView-checkboxes", function(val) {
 					window.hwView.disableChecks = (val == "1");
-					window.hwView.loadEvents(function() {
+					window.prefs.get("hwView-disableOverdue", function(val) {
+						window.hwView.disableOverdue = (val == "1");
+						window.hwView.loadEvents(function() {
+						});
 					});
 				});
 			});

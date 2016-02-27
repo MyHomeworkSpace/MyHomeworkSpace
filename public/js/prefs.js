@@ -118,6 +118,7 @@ window.api.ready(function() {
 	window.prefs.checkToggle($("#prefs-hwView-swap"), "name-subj");
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
 	window.prefs.checkToggle($("#prefs-hwView-checkboxes"), "hwView-checkboxes");
+	window.prefs.checkToggle($("#prefs-hwView-disableOverdue"), "hwView-disableOverdue");
 
 	// Layout
 	window.prefs.checkToggle($("#prefs-layout-topTabs"), "topTabs");
