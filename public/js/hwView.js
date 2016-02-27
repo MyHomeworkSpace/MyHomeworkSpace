@@ -236,6 +236,7 @@ $(document).ready(function() {
 		window.page.showLoading();
 		window.hwView.loadCount = 0;
 		// clear lists
+		$(".hwView-overdue").remove();
 		$(".hwView-tomorrow ul").text("");
 		$(".hwView-soon ul").text("");
 		$(".hwView-longterm ul").text("");
