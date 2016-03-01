@@ -106,6 +106,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 							period.start = periods[periodIndex].start[0].replace("1899-01-01 ", "");
 							period.end = periods[periodIndex].end[0].replace("1899-01-01 ", "");
 							period.offset = periods[periodIndex].offset[0];
+							period.dow = periods[periodIndex].DAY_NUMBER[0];
 							period.period = periods[periodIndex].BLOCK_NAME[0];
 						knexedPeriods.push(period);
 					}
