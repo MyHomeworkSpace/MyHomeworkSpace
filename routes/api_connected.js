@@ -96,7 +96,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 							handledDows.push(lastDow);
 							lastDow = periods[periodIndex].DAY_NUMBER[0];
 						}
-						if (handledDows.indexOf(periods[periodIndex].DAY_NUMBER) > -1) {
+						if (handledDows.indexOf(periods[periodIndex].DAY_NUMBER[0]) > -1) {
 							continue; // skip this day
 						}
 						var period = { userId: res.locals.user.id };
