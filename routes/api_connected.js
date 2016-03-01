@@ -64,7 +64,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 
 				var start = utils.findNextMonday();
 				var end = new Date(start);
-				end.setDate(end.getDate() + 4);
+				end.setDate(end.getDate() + 31);
 
 				dataStr = "";
 				dataStr += "<request><key>";
@@ -89,12 +89,24 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 				}, function(data, chunk) {
 					var periods = data.response.result[0].period;
 					var knexedPeriods = [];
+					var handledDows = [];
+					var lastDow = periods[0].DAY_NUMBER[0];
 					for (var periodIndex in periods) {
+						if (periods[periodIndex].DAY_NUMBER != lastDow) {
+							handledDows.push(lastDow);
+						}
+						if (handledDows.indexOf(periods[periodIndex].DAY_NUMBER) > -1) {
+							continue; // skip this day
+						}
 						var period = { userId: res.locals.user.id };
-							period.period = periods[periodIndex].BLOCK_NAME[0];
 							period.courseName = periods[periodIndex].section[0].name[0];
 							period.courseShortName = periods[periodIndex].section[0].shortname[0];
 							period.teacherName = periods[periodIndex].instructor[0].name[0];
+							period.location = periods[periodIndex].location[0];
+							period.start = periods[periodIndex].start[0].replace("1899-01-01 ", "");
+							period.end = periods[periodIndex].end[0].replace("1899-01-01 ", "");
+							period.offset = periods[periodIndex].offset[0];
+							period.period = periods[periodIndex].BLOCK_NAME[0];
 						knexedPeriods.push(period);
 					}
 					res.json({
