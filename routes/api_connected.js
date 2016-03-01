@@ -114,7 +114,8 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 						status: "ok",
 						data: data,
 						periods: periods,
-						knexedPeriods: knexedPeriods
+						knexedPeriods: knexedPeriods,
+						handledDows: handledDows
 					});
 				});
 			});
