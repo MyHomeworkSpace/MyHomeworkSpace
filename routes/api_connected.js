@@ -94,7 +94,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 					for (var periodIndex in periods) {
 						if (periods[periodIndex].DAY_NUMBER != lastDow) {
 							handledDows.push(lastDow);
-							lastDow = periods[periodIndex].DAY_NUMBER;
+							lastDow = periods[periodIndex].DAY_NUMBER[0];
 						}
 						if (handledDows.indexOf(periods[periodIndex].DAY_NUMBER) > -1) {
 							continue; // skip this day
