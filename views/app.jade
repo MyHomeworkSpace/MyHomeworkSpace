@@ -358,7 +358,16 @@ html
 						input(id="schedules-pw", type="password", placeholder="Password", class="form-control")
 						p Your password is only used to download your schedule, and is never saved or stored.
 					div(class="modal-footer")
-						button(class="btn btn-primary", id="schedules-sign-in", type="button", data-dismiss="modal") Sign In
+						button(class="btn btn-default", type="button", data-dismiss="modal") Close
+						button(class="btn btn-primary", id="schedules-sign-in", type="button") Sign In
+						
+		div(id="schedules-import-loading-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-body")
+						h3
+							i(class="fa fa-refresh fa-spin")  
+							span Importing your schedule, please wait...
 
 		div(class="mainContainer")
 			ul(class="tabs")
