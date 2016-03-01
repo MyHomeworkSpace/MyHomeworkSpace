@@ -64,7 +64,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 
 				var start = utils.findNextMonday();
 				var end = new Date(start);
-				end.setDate(end.getDate() + 62);
+				end.setDate(end.getDate() + 93);
 
 				dataStr = "";
 				dataStr += "<request><key>";
