@@ -92,12 +92,12 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 					var handledDows = [];
 					var lastDow = periods[0].DAY_NUMBER[0];
 					for (var periodIndex in periods) {
+						if (handledDows.indexOf(periods[periodIndex].DAY_NUMBER[0]) > -1) {
+							continue; // skip this day
+						}
 						if (periods[periodIndex].DAY_NUMBER != lastDow) {
 							handledDows.push(lastDow);
 							lastDow = periods[periodIndex].DAY_NUMBER[0];
-						}
-						if (handledDows.indexOf(periods[periodIndex].DAY_NUMBER[0]) > -1) {
-							continue; // skip this day
 						}
 						var period = { userId: res.locals.user.id };
 							period.courseName = periods[periodIndex].section[0].name[0];
@@ -116,8 +116,7 @@ router.post('/schedules/connect', global.apiCall, global.requireUser, global.get
 						data: data,
 						periods: periods,
 						knexedPeriods: knexedPeriods,
-						handledDows: handledDows,
-						hexytest: handledDows.indexOf("1")
+						handledDows: handledDows
 					});
 				});
 			});
