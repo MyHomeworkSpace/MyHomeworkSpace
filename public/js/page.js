@@ -277,6 +277,17 @@ $(document).ready(function() {
 			});
 
 			window.page.features = features;
+
+			// these are exempt from enabling
+			window.page.features.push("overview");
+			window.page.features.push("admin");
+			window.page.features.push("admin-feedback");
+			window.page.features.push("admin-announcements");
+			window.page.features.push("admin-stats");
+			window.page.features.push("admin-about");
+			window.page.features.push("admin-login");
+			window.page.features.push("admin-users");
+
 			window.page.hideLoading();
 
 			if (window.location.hash != "") {
