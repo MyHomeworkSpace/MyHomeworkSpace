@@ -42,6 +42,7 @@ function setPage(newPage) {
 				}
 			$(".pages").append($content);
 
+			upsellTrigger();
 			window.page.hideLoading();
 			setPage(newPage); // and show it
 		});
@@ -163,6 +164,21 @@ window.page.openFeedbackModal = function(type) {
 	$("#feedback-modal").modal();
 };
 
+function upsellTrigger() {
+	$(".upsell-btn").off("click").on("click", function() {
+		var feature = $(this).attr("data-feature");
+
+		window.page.showLoading();
+
+		window.page.addFeature(feature, function() {
+			window.location.hash = feature;
+			window.location.reload();
+		});
+
+		//$(".upsell[data-feature=" + feature + "]").remove();
+	});
+}
+
 $(document).ready(function() {
 	window.page.showLoading();
 
@@ -186,18 +202,7 @@ $(document).ready(function() {
 		window.prefs.openModal(window.page.getOpenPage());
 	});
 
-	$(".upsell-btn").click(function() {
-		var feature = $(this).attr("data-feature");
-
-		window.page.showLoading();
-
-		window.page.addFeature(feature, function() {
-			window.location.hash = feature;
-			window.location.reload();
-		});
-
-		//$(".upsell[data-feature=" + feature + "]").remove();
-	});
+	upsellTrigger();
 
 	$(".ideaBtn").click(function() {
 		window.page.openFeedbackModal("idea");
