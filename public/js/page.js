@@ -9,6 +9,7 @@ function setPage(newPage) {
 		window.location.hash = newPage;
 	} else {
 		// fetch it!
+		window.page.showLoading();
 		window.api.get("pageHandler/fetchPage/" + newPage, function(response) {
 			// check for error
 			if (response.status === "error") {
@@ -41,6 +42,7 @@ function setPage(newPage) {
 				}
 			$(".pages").append($content);
 
+			window.page.hideLoading();
 			setPage(newPage); // and show it
 		});
 	}
