@@ -25,6 +25,7 @@ router.get('/fetchPage/:page', global.apiCall, global.requireUser, global.getUse
 		"admin-about": "admin-about",
 		"admin-login": "admin-login",
 		"admin-stats": "admin-stats",
+		"overview": "overview",
 		"testPage": "testPage"
 	};
 

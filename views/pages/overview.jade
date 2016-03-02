@@ -1,0 +1,16 @@
+extends page
+
+block styles
+	link(rel="stylesheet", href="#{global.basePath}/css/overview.css")
+
+block scripts
+	script(type="text/javascript", src="#{global.basePath}/js/overview.js")
+
+block content
+	h3
+		span Today is 
+		span(class="overview-date") a day
+		span .
+	h4#howmuchhw
+	div(id="announcementAlert", class="alert alert-info alert-overview", role='alert', width='90%', style="display: none")
+		ul#announcementList
