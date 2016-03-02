@@ -241,8 +241,8 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							$(this).trigger("input");
 							$(this).trigger("change");
 						} else {
-							$(this).val("none");
 							$(this).data("oldVal", $(this).val());
+							$(this).val("none");
 							$(this).trigger("input");
 							$(this).trigger("change");
 						}
