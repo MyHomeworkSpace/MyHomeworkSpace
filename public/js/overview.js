@@ -2,7 +2,7 @@ window.overview = {};
 
 var tomorrow = window.utils.formatDate_api(moment().add(1, "days").toDate())
 
-$(document).ready(function() {
+window.api.ready(function() {
 	$("#overview").on("tabOpened", function() {
 		$(".overview-date").text(window.utils.formatDate_english(new Date()));
 		window.api.get('overview/announcements/get/', function(data) {
