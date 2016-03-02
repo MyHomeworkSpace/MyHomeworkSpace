@@ -235,10 +235,14 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 					if(clicky.altKey) {
 						if($(this).val() == "none") {
 							$(this).val("");
+							if ($(this).data("oldVal")) {
+								$(this).val($(this).data("oldVal"));
+							}
 							$(this).trigger("input");
 							$(this).trigger("change");
 						} else {
 							$(this).val("none");
+							$(this).data("oldVal", $(this).val());
 							$(this).trigger("input");
 							$(this).trigger("change");
 						}
