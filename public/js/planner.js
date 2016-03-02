@@ -232,7 +232,7 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 				$editCell.find("textarea").change(textAreaChg);
 				$editCell.find(".checkBtn").change(textAreaChg);
 				$editCell.find("textarea").click(function(clicky) {
-					if(clicky.altKey) {
+					if (clicky.altKey) {
 						if($(this).val() == "none") {
 							$(this).val("");
 							if ($(this).data("oldVal")) {
