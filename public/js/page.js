@@ -39,7 +39,7 @@ function setPage(newPage) {
 				if (window.page.features.indexOf(newPage) == -1) {
 					$content.append($upsell);
 				}
-			$("body").append($content);
+			$(".pages").append($content);
 
 			//setPage(newPage); // and show it
 		});
