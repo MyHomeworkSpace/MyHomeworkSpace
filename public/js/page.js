@@ -19,21 +19,21 @@ function setPage(newPage) {
 			// and load it
 			var $page = $(response);
 
-			var $scripts = $page.children("planhub-page-scripts");
+			var $scripts = $page.children("page-scripts");
 			$("head").append($scripts);
 
-			var $styles = $page.children("planhub-page-styles");
+			var $styles = $page.children("page-styles");
 			$("head").append($styles);
 
-			var $modals = $page.children("planhub-page-modals");
+			var $modals = $page.children("page-modals");
 			$("body").append($modals);
 
-			var $upsell = $page.children("planhub-page-upsell");
+			var $upsell = $page.children("page-upsell");
 				$upsell.attr("id", newPage + "-upsell");
 				$upsell.addClass("upsell");
 				$upsell.addClass("row");
 				$upsell.attr("data-feature", newPage);
-			var $content = $page.children("planhub-page-content");
+			var $content = $page.children("page-content");
 				$content.attr("id", newPage);
 				$content.addClass("page");
 				if (window.page.features.indexOf(newPage) == -1) {
