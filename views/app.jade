@@ -44,7 +44,6 @@ html
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/hwView.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/myDay.css")
-		link(rel="stylesheet", href="#{global.basePath}/css/admin.css")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/prefs.css")
 
@@ -66,9 +65,6 @@ html
 		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
 		script(type="text/javascript", src="#{global.basePath}/js/graphs.js")
 		script(type="text/javascript", src="#{global.basePath}/js/groups.js")
-		
-		if user.level > 0
-			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
 			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 		
@@ -787,39 +783,6 @@ html
 						div(id="groupsIn")
 								
 				if user.level > 0
-					div(id="admin", class="page")
-						h1 Administrative panel
-						h4 Select a task
-						ul
-							if user.canFeedback > 0
-								li(data-page="admin-feedback", class="admin-link")
-									a(href="#admin-feedback", data-toggle="tooltip", data-placement="right", title="See the feedback users submitted using the send feedback buttons.")
-										i.fa.fa-smile-o.admin-link
-										| View feedback
-							li(data-page="admin-announcements", class="admin-link")
-								a(href="#admin-announcements", data-toggle="tooltip", data-placement="right", title="Send announcements to PlanHub users.")
-									i.fa.fa-bullhorn.admin-link
-									| Manage announcements
-							li(data-page="admin-login", class="admin-link")
-								a(href="#admin-login", data-toggle="tooltip", data-placement="right", title="See PlanHub from a student or teacher's point of view.")
-									i.fa.fa-users.admin-link
-									| Test user accounts
-							li(data-page="admin-stats", class="admin-link")
-								a(href="#admin-stats" , data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-									i.fa.fa-eye.admin-link
-									| Statistics
-							li(data-page="admin-about", class="admin-link")
-								a(href="#admin-about", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-									i.fa.fa-info-circle.admin-link
-									| About server
-							li(class="admin-link")
-								a(href="http://blog.planhub.me/wp-login.php" target="_blank", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
-									i.fa.fa-rss.admin-link
-									| Manage Blog
-							li(data-page="admin-users", class="admin-link")
-								a(href="#admin-users", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-									i.fa.fa-users.admin-link
-									| Manage Users
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
