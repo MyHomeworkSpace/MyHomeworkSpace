@@ -20,9 +20,6 @@ function setPage(newPage) {
 			// and load it
 			var $page = $(response);
 
-			var $scripts = $page.children("#page-scripts");
-			$("head").append($scripts);
-
 			var $styles = $page.children("#page-styles");
 			$("head").append($styles);
 
@@ -41,6 +38,9 @@ function setPage(newPage) {
 					$content.append($upsell);
 				}
 			$(".pages").append($content);
+
+			var $scripts = $page.children("#page-scripts");
+			$("head").append($scripts);
 
 			upsellTrigger();
 			window.page.hideLoading();
