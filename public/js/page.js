@@ -194,10 +194,6 @@ $(document).ready(function() {
 		setPage($(this).attr("data-page"));
 	});
 
-	$(".admin-link").click(function() {
-		setPage($(this).attr("data-page"));
-	});
-
 	$("#page-pref-btn").click(function() {
 		window.prefs.openModal(window.page.getOpenPage());
 	});

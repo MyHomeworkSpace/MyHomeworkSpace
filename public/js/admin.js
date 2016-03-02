@@ -1,6 +1,10 @@
 window.admin = {};
 
 window.api.ready(function() {
+	$(".admin-link").click(function() {
+		setPage($(this).attr("data-page"));
+	});
+
 	$("#admin-feedback").on("tabOpened", function() {
 		window.api.get("admin/feedback/getList", function(resp) {
 			$("#admin-feedback-list").text("");
