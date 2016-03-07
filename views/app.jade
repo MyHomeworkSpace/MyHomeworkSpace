@@ -40,11 +40,9 @@ html
 		link(rel="stylesheet", href="#{global.basePath}/css/loading.css")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
-		link(rel="stylesheet", href="#{global.basePath}/css/overview.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/hwView.css")
 		link(rel="stylesheet", href="#{global.basePath}/css/myDay.css")
-		link(rel="stylesheet", href="#{global.basePath}/css/admin.css")
 
 		link(rel="stylesheet", href="#{global.basePath}/css/prefs.css")
 
@@ -59,16 +57,12 @@ html
 
 		script(type="text/javascript", src="#{global.basePath}/js/api.js")
 
-		script(type="text/javascript", src="#{global.basePath}/js/overview.js")
 		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
 		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
 		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
 		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
 		script(type="text/javascript", src="#{global.basePath}/js/graphs.js")
 		script(type="text/javascript", src="#{global.basePath}/js/groups.js")
-		
-		if user.level > 0
-			script(type="text/javascript", src="#{global.basePath}/js/admin.js")
 			
 		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
 		
@@ -262,6 +256,11 @@ html
 						input(type="checkbox", id="prefs-hwView-checkboxes")
 						label(for="prefs-hwView-checkboxes") Disable checkboxes
 
+						br
+
+						input(type="checkbox", id="prefs-hwView-disableOverdue")
+						label(for="prefs-hwView-disableOverdue") Disable "overdue" column
+
 					div(class="modal-body prefs-modal-body", id="prefs-myDay-body")
 						p This feature does not have any preferences you can change.
 
@@ -291,6 +290,29 @@ html
 					
 					div(class="modal-footer feedback-footer-normal")
 						button(type="button", class="btn btn-default", data-dismiss="modal") Close
+						
+		div(id="2fa-enable-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+							span(aria-hidden="true") &times;
+						h4(class="modal-title")
+							span Enable Two Factor Authentication
+					
+					div(class="modal-body")
+						h3
+							span Step One
+						h4
+							span Scan this QR code with your 
+								span(data-toggle="tooltip", data-placement="bottom", title="Need an authenticator? Our reccomendations are Google Authenticator (iOS and Android) and Authenticator (Windows Phone)." style="cursor: help") authentication app
+								| .
+						br
+						img(style="text-align: center" src="https://placeholdit.imgix.net/~text?txtsize=19&txt=QR+Code+Here&w=400&h=400&txttrack=0")
+					
+					div(class="modal-footer feedback-footer-normal")
+						button(type="button", class="btn btn-default", data-dismiss="modal") Cancel
+						button#submit2fa(type="button", class="btn btn-primary", data-dismiss="modal")
 	
 		div(id="admin-feedback-modal", class="modal fade")
 			div(class="modal-dialog")
@@ -330,7 +352,16 @@ html
 						input(id="schedules-pw", type="password", placeholder="Password", class="form-control")
 						p Your password is only used to download your schedule, and is never saved or stored.
 					div(class="modal-footer")
-						button(class="btn btn-primary", id="schedules-sign-in", type="button", data-dismiss="modal") Sign In
+						button(class="btn btn-default", type="button", data-dismiss="modal") Close
+						button(class="btn btn-primary", id="schedules-sign-in", type="button") Sign In
+						
+		div(id="schedules-import-loading-modal", class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-body")
+						h3
+							i(class="fa fa-refresh fa-spin")  
+							span Importing your schedule, please wait...
 
 		div(class="mainContainer")
 			ul(class="tabs")
@@ -356,14 +387,6 @@ html
 				i(class="fa fa-cog")
 
 			div(class="pages")
-				div(id="overview", class="page")
-					h3
-						span Today is 
-						span(class="overview-date") a day
-						span .
-					h4#howmuchhw
-					div(id="announcementAlert", class="alert alert-info alert-overview", role='alert', width='90%', style="display: none")
-						ul#announcementList
 				div(id="planner", class="page")
 					div(id="planner-upsell", class="upsell row", data-feature="planner")
 						div(class="col-md-3")
@@ -581,15 +604,15 @@ html
 									h4 Quick and at-a-glance
 									p Homework View lets you see what's due tomorrow, next week, and beyond in a clear, easy, and functional at-a-glance view. Don't switch between weeks or months in your planner&mdash;just use Homework View!
 
-					div(class="row")
-						div(class="col-md-4 hwView-tomorrow")
+					div(id="hwView-rows", class="row")
+						div(class="col-md-4 hwView-tomorrow hwView-list")
 							h3 Due 
 								span(class="tomorrow-or-monday") tomorrow
 							ul
-						div(class="col-md-4 hwView-soon")
+						div(class="col-md-4 hwView-soon hwView-list")
 							h3 Due soon
 							ul
-						div(class="col-md-4 hwView-longterm")
+						div(class="col-md-4 hwView-longterm hwView-list")
 							h3 Long-term
 							ul
 
@@ -625,7 +648,15 @@ html
 								a(href="mailto:help@dalton.org") help@dalton.org
 								| .
 							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
-							
+							h3 Two-factor authentication
+							p Two-factor authentication adds an extra layer of security of your acocunt.
+							if user.tfa == 1
+								p You have two-factor authentication enabled.
+								button(id="prefs-disable-2fa", class="btn btn-danger") Disable two-factor authentication
+							else
+								p You have two-factor authentication disabled.
+								button(id="prefs-enable-2fa", class="btn btn-primary") Enable two-factor authentication
+
 						div(role="tabpanel", class="tab-pane", id="prefs-layout")
 							p Change the look and feel of PlanHub. You might have to reload the page to activate these changes.
 							
@@ -742,39 +773,6 @@ html
 						div(id="groupsIn")
 								
 				if user.level > 0
-					div(id="admin", class="page")
-						h1 Administrative panel
-						h4 Select a task
-						ul
-							if user.canFeedback > 0
-								li(data-page="admin-feedback", class="admin-link")
-									a(href="#admin-feedback", data-toggle="tooltip", data-placement="right", title="See the feedback users submitted using the send feedback buttons.")
-										i.fa.fa-smile-o.admin-link
-										| View feedback
-							li(data-page="admin-announcements", class="admin-link")
-								a(href="#admin-announcements", data-toggle="tooltip", data-placement="right", title="Send announcements to PlanHub users.")
-									i.fa.fa-bullhorn.admin-link
-									| Manage announcements
-							li(data-page="admin-login", class="admin-link")
-								a(href="#admin-login", data-toggle="tooltip", data-placement="right", title="See PlanHub from a student or teacher's point of view.")
-									i.fa.fa-users.admin-link
-									| Test user accounts
-							li(data-page="admin-stats", class="admin-link")
-								a(href="#admin-stats" , data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-									i.fa.fa-eye.admin-link
-									| Statistics
-							li(data-page="admin-about", class="admin-link")
-								a(href="#admin-about", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-									i.fa.fa-info-circle.admin-link
-									| About server
-							li(class="admin-link")
-								a(href="http://blog.planhub.me/wp-login.php" target="_blank", data-toggle="tooltip", data-placement="right", title="Write and manage posts on the PlanHub Blog")
-									i.fa.fa-rss.admin-link
-									| Manage Blog
-							li(data-page="admin-users", class="admin-link")
-								a(href="#admin-users", data-toggle="tooltip", data-placement="right", title="Coming Soon!")
-									i.fa.fa-users.admin-link
-									| Manage Users
 					if user.canFeedback > 0
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
@@ -808,31 +806,7 @@ html
 						ul#adminAnnouncementList(style="-webkit-transition: text-decoration 1s; transition: text-decoration 1s;")
 							li#adminNoAnnouncements There are currently no announcements.
 						button(class="btn", id="announcement-clear", class="btn btn-default") Manage Announcements
-
-					div(id="admin-stats", class="page")
-						h1 Administrative panel
-						h4 Statistics
-						a(href="http://status.planhub.me") View Uptime
-						h5 More features coming soon
-
-					div(id="admin-about", class="page")
-						h1 Administrative panel
-						h4 About server
-						h5 Under construction!
 					
-					div(id="admin-login", class="page")
-						h1 Administrative panel
-						h4 Test user accoumts
-						p Use these accounts to test the PlanHub interface from the perspective of a student or a teacher.
-						h3 Teacher
-						ul
-							li Username: zomg_testTeacher
-							li Password: hexrSecret!
-						h3 Student
-						ul
-							li Username: zomg_testUser
-							li Password: superSecret!
-						a.btn.btn-danger(href="#{basePath}/logout", data-toggle="tooltip", data-placement="bottom", title="Warning: This will sign you out of your current session") Sign into a test user account.
 					div(id="admin-users", class="page")
 						h1 Administrative panel
 						h4 Users

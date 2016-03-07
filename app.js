@@ -22,7 +22,7 @@ global.basePath = basePath;
 var env = "development";
 global.env = ((app.get("env") == "production") ? app.get("env") : env);
 
-var config = require("./config");
+global.config = require("./config");
 global.mysqlConnection = config.dbConnection;
 
 global.knex = require('knex')({
@@ -37,6 +37,8 @@ global.knex = require('knex')({
 global.sessionStore = new KnexSessionStore({
 	knex: global.knex
 });
+
+global.transporter = require("nodemailer").createTransport(config.emails.smtpConfig);
 
 global.isApiPath = function(path) {
 	return path.indexOf("api") > -1;

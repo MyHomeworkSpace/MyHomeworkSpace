@@ -5,6 +5,10 @@ block scripts
 	script(src="#{basePath}/js/index.js")
 	script.
 		$(document).ready(function() {
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+				// we're on a phone, don't init skrollr
+				return;
+			}
 			var s = skrollr.init();
 		});
 

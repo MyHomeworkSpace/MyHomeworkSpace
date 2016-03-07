@@ -118,6 +118,7 @@ window.api.ready(function() {
 	window.prefs.checkToggle($("#prefs-hwView-swap"), "name-subj");
 	window.prefs.checkToggle($("#prefs-hwView-color"), "titleclr");
 	window.prefs.checkToggle($("#prefs-hwView-checkboxes"), "hwView-checkboxes");
+	window.prefs.checkToggle($("#prefs-hwView-disableOverdue"), "hwView-disableOverdue");
 
 	// Layout
 	window.prefs.checkToggle($("#prefs-layout-topTabs"), "topTabs");
@@ -139,6 +140,8 @@ window.api.ready(function() {
 	});
 
 	$("#schedules-sign-in").click(function() {
+		$("#login-to-schedules-modal").modal("hide");
+		$("#schedules-import-loading-modal").modal();
 		window.api.post("connected/schedules/connect", { username: $("#schedules-username").val(), password: $("#schedules-pw").val() }, function(resp) {
 			console.log(resp);
 		});

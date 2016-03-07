@@ -9,6 +9,7 @@ function setPage(newPage) {
 		window.location.hash = newPage;
 	} else {
 		// fetch it!
+		window.page.showLoading();
 		window.api.get("pageHandler/fetchPage/" + newPage, function(response) {
 			// check for error
 			if (response.status === "error") {
@@ -19,29 +20,31 @@ function setPage(newPage) {
 			// and load it
 			var $page = $(response);
 
-			var $scripts = $page.children("planhub-page-scripts");
-			$("head").append($scripts);
-
-			var $styles = $page.children("planhub-page-styles");
+			var $styles = $page.children("#page-styles");
 			$("head").append($styles);
 
-			var $modals = $page.children("planhub-page-modals");
+			var $modals = $page.children("#page-modals");
 			$("body").append($modals);
 
-			var $upsell = $page.children("planhub-page-upsell");
+			var $upsell = $page.children("#page-upsell");
 				$upsell.attr("id", newPage + "-upsell");
 				$upsell.addClass("upsell");
 				$upsell.addClass("row");
 				$upsell.attr("data-feature", newPage);
-			var $content = $page.children("planhub-page-content");
+			var $content = $page.children("#page-content");
 				$content.attr("id", newPage);
 				$content.addClass("page");
 				if (window.page.features.indexOf(newPage) == -1) {
 					$content.append($upsell);
 				}
-			$("body").append($content);
+			$(".pages").append($content);
 
-			//setPage(newPage); // and show it
+			var $scripts = $page.children("#page-scripts");
+			$("head").append($scripts);
+
+			upsellTrigger();
+			window.page.hideLoading();
+			setPage(newPage); // and show it
 		});
 	}
 }
@@ -161,6 +164,21 @@ window.page.openFeedbackModal = function(type) {
 	$("#feedback-modal").modal();
 };
 
+function upsellTrigger() {
+	$(".upsell-btn").off("click").on("click", function() {
+		var feature = $(this).attr("data-feature");
+
+		window.page.showLoading();
+
+		window.page.addFeature(feature, function() {
+			window.location.hash = feature;
+			window.location.reload();
+		});
+
+		//$(".upsell[data-feature=" + feature + "]").remove();
+	});
+}
+
 $(document).ready(function() {
 	window.page.showLoading();
 
@@ -176,26 +194,11 @@ $(document).ready(function() {
 		setPage($(this).attr("data-page"));
 	});
 
-	$(".admin-link").click(function() {
-		setPage($(this).attr("data-page"));
-	});
-
 	$("#page-pref-btn").click(function() {
 		window.prefs.openModal(window.page.getOpenPage());
 	});
 
-	$(".upsell-btn").click(function() {
-		var feature = $(this).attr("data-feature");
-
-		window.page.showLoading();
-
-		window.page.addFeature(feature, function() {
-			window.location.hash = feature;
-			window.location.reload();
-		});
-
-		//$(".upsell[data-feature=" + feature + "]").remove();
-	});
+	upsellTrigger();
 
 	$(".ideaBtn").click(function() {
 		window.page.openFeedbackModal("idea");
@@ -247,7 +250,9 @@ $(document).ready(function() {
 			}
 
 			if (prefs.hideTawk == "1") {
-				Tawk_API.hideWidget();
+				if (Tawk_API && Tawk_API.hideWidget) {
+					Tawk_API.hideWidget();
+				}
 				$("#tawkchat-iframe-container").remove();
 				$("#tawk-script").remove();
 			}
@@ -268,6 +273,17 @@ $(document).ready(function() {
 			});
 
 			window.page.features = features;
+
+			// these are exempt from enabling
+			window.page.features.push("overview");
+			window.page.features.push("admin");
+			window.page.features.push("admin-feedback");
+			window.page.features.push("admin-announcements");
+			window.page.features.push("admin-stats");
+			window.page.features.push("admin-about");
+			window.page.features.push("admin-login");
+			window.page.features.push("admin-users");
+
 			window.page.hideLoading();
 
 			if (window.location.hash != "") {

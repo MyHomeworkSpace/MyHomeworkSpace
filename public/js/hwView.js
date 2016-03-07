@@ -2,7 +2,22 @@ window.hwView = {
 	subjects: {},
 	loadCount: 0,
 	swapOrder: false,
-	disableChecks: false
+	disableChecks: false,
+	disableOverdue: false
+};
+
+window.hwView.createOverdueList = function() {
+	// make the current lists smaller
+	$(".hwView-tomorrow").removeClass("col-md-4").addClass("col-md-3");
+	$(".hwView-soon").removeClass("col-md-4").addClass("col-md-3");
+	$(".hwView-longterm").removeClass("col-md-4").addClass("col-md-3");
+
+	var $overdueList = $('<div class="col-md-3 hwView-overdue"></div>');
+		var $title = $('<h3>Overdue</h3>');
+		$overdueList.append($title);
+		var $list = $('<ul></ul>');
+		$overdueList.append($list);
+	$("#hwView-rows").prepend($overdueList);
 };
 
 window.hwView.addEventToList = function(ev, list) {
@@ -17,6 +32,15 @@ window.hwView.addEventToList = function(ev, list) {
 	}
 	if (name.trim() === "") {
 		return;
+	}
+
+	if (list === "overdue" && window.hwView.disableOverdue) {
+		return;
+	}
+
+	if (list === "overdue" && $(".hwView-overdue").length == 0) {
+		// overdue list doesn't exist, make it
+		window.hwView.createOverdueList();
 	}
 
 	var $item = $('<li class="hwView-item"></li>');
@@ -63,7 +87,9 @@ window.hwView.addEventToList = function(ev, list) {
 				}
 				if(window.hwView.clr) {
 					$tag.css("color", "black");
-				} else {
+				} else if (tag == window.hwView.subjects[ev.subject].name) {
+					$tag.addClass("cal_subjectName");
+ 				} else {
 					$tag.addClass(window.utils.getPrefixClass(tag));
 				}
 
@@ -172,10 +198,6 @@ window.hwView.loadEvents = function(callback) {
 		window.hwView.loadStep();
 		window.api.get("hwView/getHw?date=" + moment().format('YYYY-MM-DD'), function(data) {
 			var ev = data.events;
-			if (ev.length === 0) {
-				window.hwView.loadStep();
-				return;
-			}
 			for (var evIndex in ev) {
 				var evObj = {
 					name: ev[evIndex].text,
@@ -194,51 +216,22 @@ window.hwView.loadEvents = function(callback) {
 				}
 				window.hwView.addEventToList(evObj, list);
 			}
+
+			// overdue stuff
+			var overdue = data.overdue;
+			for (var overdueIndex in overdue) {
+				var evObj = {
+					name: overdue[overdueIndex].text,
+					due: new Date(overdue[overdueIndex].date.split("T")[0]),
+					subject: overdue[overdueIndex].sectionIndex,
+					done: overdue[overdueIndex].done,
+					subId: overdue[overdueIndex].subId
+				};
+				window.hwView.addEventToList(evObj, "overdue");
+			}
+
 			window.hwView.loadStep();
 		});
-		/*window.hwView.loadStep();
-		window.hwView.loadList(window.hwView.findNextDay(1), "tomorrow", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(2), "soon", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(3), "soon", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(4), "soon", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(5), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(6), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(7), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(8), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(9), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(10), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(11), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(12), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(13), "longterm", function() {
-
-		});
-		window.hwView.loadList(window.hwView.findNextDay(14), "longterm", function() {
-
-		});*/
 	});
 	callback();
 };
@@ -248,9 +241,12 @@ $(document).ready(function() {
 		window.page.showLoading();
 		window.hwView.loadCount = 0;
 		// clear lists
+		$(".hwView-overdue").remove();
 		$(".hwView-tomorrow ul").text("");
 		$(".hwView-soon ul").text("");
 		$(".hwView-longterm ul").text("");
+		// reset lists
+		$(".hwView-list.col-md-3").removeClass("col-md-3").addClass("col-md-4");
 		// special case for checking on Friday, Saturday, or Sunday
 		if (moment().day() === 0 || moment().day() == 5 || moment().day() == 6) {
 			$(".tomorrow-or-monday").text("Monday"); // the part that makes it show Monday stuff is in findNextDay().
@@ -263,7 +259,10 @@ $(document).ready(function() {
 				window.hwView.clr = (val == "1");
 				window.prefs.get("hwView-checkboxes", function(val) {
 					window.hwView.disableChecks = (val == "1");
-					window.hwView.loadEvents(function() {
+					window.prefs.get("hwView-disableOverdue", function(val) {
+						window.hwView.disableOverdue = (val == "1");
+						window.hwView.loadEvents(function() {
+						});
 					});
 				});
 			});

@@ -1,5 +1,41 @@
 extends page
 
+block upsell
+	div(class="col-md-3")
+		h1 Test page
+		h3 It's a test page!
+
+		br
+
+		button(class="btn btn-primary upsell-btn", data-feature="testPage") Start
+
+	div(class="col-md-9")
+		div(class="upsell-row row")
+			div(class="col-md-4")
+				img(src="https://placehold.it/225x150", class="upsell-picture")
+			div(class="col-md-8")
+				h4 Some cool feature
+				p yayayayay
+
+		br
+
+		div(class="upsell-row row")
+			div(class="col-md-4")
+				img(src="https://placehold.it/225x150", class="upsell-picture")
+			div(class="col-md-8")
+				h4 Another cool feature
+				p yayayayayayay
+
+		br
+
+		div(class="upsell-row row")
+			div(class="col-md-4")
+				img(src="https://placehold.it/225x150", class="upsell-picture")
+			div(class="col-md-8")
+				h4 A third feature
+				p yaaaaaaaaaaaaay
+
+
 block content
 	h1 This is a test page.
 	h2 Yay.
