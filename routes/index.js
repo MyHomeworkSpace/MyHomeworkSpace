@@ -7,7 +7,7 @@ var parseXmlString = require('xml2js').parseString;
 
 /* GET home page. */
 router.get('/', global.getOptionalUserRecord, function(req, res, next) {
-	res.render('index', { title: 'PlanHub' });
+	res.render('index', { title: 'MyHomeworkSpace' });
 });
 
 router.get('/typer', global.getOptionalUserRecord, function(req, res, next) {
@@ -33,7 +33,7 @@ router.get('/staging', global.getOptionalUserRecord, function(req, res, next) {
 });
 
 /*router.get('/emailTest', global.getOptionalUserRecord, function(req, res, next) {
-	require("../emails.js").sendEmail("verify", "astuder@planhub.me", { verify_url: "https://planhub.me/lel" }, function() {
+	require("../emails.js").sendEmail("verify", "astuder@myhomework.space", { verify_url: "https://myhomework.space/lel" }, function() {
 		res.end("yay");
 	}, function() {
 		res.end("errez!");

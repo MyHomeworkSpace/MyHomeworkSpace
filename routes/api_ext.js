@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/getAuthPage', global.apiCall, function(req, res, next) {
 	res.json({
 		status: "ok",
-		authPage: "https://planhub.me/api/v1/ext/appAuth/" + "asdf"
+		authPage: "https://myhomework.space/api/v1/ext/appAuth/" + "asdf"
 	});
 });
 

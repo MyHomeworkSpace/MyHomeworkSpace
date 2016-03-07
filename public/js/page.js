@@ -149,9 +149,9 @@ window.page.sendFeedback = function(type, msg, name, username, webpage, callback
 window.page.openFeedbackModal = function(type) {
 	var desc = "Liked a feature? Found something helpful? Tell us what you like! We'd love to hear it, and your feedback helps us make even better things in the future!";
 	if (type == "frown") {
-		desc = "Annoyed by something? Found a glitch? Hate how something works? Tell us! We'd love to help you and improve PlanHub.";
+		desc = "Annoyed by something? Found a glitch? Hate how something works? Tell us! We'd love to help you and improve MyHomeworkSpace.";
 	} else if (type == "idea") {
-		desc = "Have an idea for a new feature? Something that helps you? A tweak to make your life easier? Tell us! We'd love to include it and make PlanHub even better!";
+		desc = "Have an idea for a new feature? Something that helps you? A tweak to make your life easier? Tell us! We'd love to include it and make MyHomeworkSpace even better!";
 	}
 
 	$("#feedback-modal-title-first").text("Send a ");
