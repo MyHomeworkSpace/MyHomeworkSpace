@@ -4,10 +4,10 @@ block content
 	h1 Staging
 	unless isStaging
 		p(class="lead") You are currently not using staging. If you want to test new features as they are released or test our API, then
-			a(href="http://staging.planhub.me/staging") Go to Staging
+			a(href="https://staging.myhomework.space/staging") Go to Staging
 	if isStaging
-		p(class="lead") You are using PlanHub Staging. 
-			a(href="http://planhub.me/staging") Exit Staging
+		p(class="lead") You are using MyHomeworkSpace Staging. 
+			a(href="https://myhomework.space/staging") Exit Staging
 		span(style="color:red;") Please be careful. Things 
 			strong will 
 			| break. This 
@@ -16,10 +16,10 @@ block content
 			// and was a painful message to write with jade.
 
 	p
-		span As you know, PlanHub is open-source software licensed under the MIT License. PlanHub staging 
+		span As you know, MyHomeworkSpace is open-source software licensed under the MIT License. PlanHub staging 
 			unless isStaging
 				| (which can be found
-				a(href="http://staging.planhub.me") here
+				a(href="http://staging.myhomework.space") here
 				| )
 			| pulls directly from the "master" branch of our 
 			a(href="https://github.com/PlanHubMe/PlanHub") Git repository
