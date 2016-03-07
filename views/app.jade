@@ -100,7 +100,7 @@ html
 		div(id="email", class="hidden")= user.email
 		nav(class="navbar navbar-default navbar-fixed-top web-navbar", data-step="1", data-intro="Welcome to PlanHub, #{user.name}! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below).")
 			div(class="container-fluid")
-				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy PlanHub! To get started, click Done below, and then select a tab.")
+				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy MyHomeworkSpace! To get started, click Done below, and then select a tab.")
 					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
 						span(class="sr-only") Toggle navigation
 						span(class="icon-bar")
@@ -108,7 +108,7 @@ html
 						span(class="icon-bar")
 					a(class="navbar-brand", href="#")
 						img(src="#{global.basePath}/images/icon24.png", width="24px", height="24px", class="planhub-logo-nav")
-						span PlanHub
+						span MyHomeworkSpace
 				
 				div(class="collapse navbar-collapse", id="navbar-collapse")
 					ul(class="nav navbar-nav")
@@ -129,11 +129,11 @@ html
 									li
 										a(data-page="admin") Admin
 						if isStaging
-							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using PlanHub Staging. This is for testing purposes only-don't use it as your real planner!")
+							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using MyHomeworkSpace Staging. This is for testing purposes only-don't use it as your real planner!")
 								a(href="#{basePath}/staging") Staging
 
 					ul(class="nav navbar-nav navbar-right")
-						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for PlanHub? Send it to us with this button!")
+						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for MyHomeworkSpace? Send it to us with this button!")
 							a(class="ideaBtn", data-toggle="tooltip", data-placement="bottom", title="Have a great new idea? Send it to us.")
 								i(class="fa fa-lightbulb-o")
 						li(class="feedback-btn", data-step="6", data-intro="Do you like a feature? Send us your thoughts with this button!")
@@ -156,7 +156,7 @@ html
 										a(class="badge teacherBadge" style="cursor: default;") Teacher
 									
 								li
-									a(href="http://help.planhub.me") Support
+									a(href="http://help.myhomework.space") Support
 
 								li.divider
 									
@@ -167,7 +167,7 @@ html
 			div(class="container-fluid")
 				span
 					img(src="#{global.basePath}/images/icon24.png", width="24px", height="24px", class="planhub-logo-nav")
-					span PlanHub - 
+					span MyHomeworkSpace - 
 					span(class="user-name")= user.name
 
 		div(class="loadOverlay")
@@ -522,7 +522,7 @@ html
 									// img(src="#{basePath}/images/myDay03.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Your data is already here
-									p My Day takes information you already have from your PlanHub planner and your schedule. Just sign in, and we'll automatically retrieve your information&mdash;you don't have to type it up again. 
+									p My Day takes information you already have from your MyHomeworkSpace planner and your schedule. Just sign in, and we'll automatically retrieve your information&mdash;you don't have to type it up again. 
 
 					div(id="myDay-welcome")
 						h1 Welcome!
@@ -658,7 +658,7 @@ html
 								button(id="prefs-enable-2fa", class="btn btn-primary") Enable two-factor authentication
 
 						div(role="tabpanel", class="tab-pane", id="prefs-layout")
-							p Change the look and feel of PlanHub. You might have to reload the page to activate these changes.
+							p Change the look and feel of MyHomeworkSpace. You might have to reload the page to activate these changes.
 							
 							input(type="checkbox", id="prefs-layout-topTabs")
 							label(for="prefs-layout-topTabs") Use an alternate tab layout (reload the page to see changes)
@@ -669,7 +669,7 @@ html
 							label(for="prefs-layout-hideTawk") Hide the live chat widget (reload the page to see changes)
 							
 							h3 Theme color
-							p Here, you can change the color used for the PlanHub navigation menus.
+							p Here, you can change the color used for the MyHomeworkSpace navigation menus.
 							div(id="themeColors")
 								div(class="selBox themeColor selected", data-selBoxGroup="themeColor" data-selBoxVal="#333333")
 								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#990f0f")
@@ -681,10 +681,10 @@ html
 								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#00c8d8")
 
 						div(role="tabpanel", class="tab-pane", id="prefs-connected")
-							p Connect your PlanHub account to other accounts.
+							p Connect your MyHomeworkSpace account to other accounts.
 							if user.level > 0
 								h3 Schedules
-								p Connect your Dalton account to Schedules so PlanHub can determine when you have labs and free time.
+								p Connect your Dalton account to Schedules so MyHomeworkSpace can determine when you have labs and free time.
 								button(id="schedules-connect", class="btn btn-primary") Connect to Schedules
 							else
 								p This feature is coming soon!
@@ -726,7 +726,7 @@ html
 									img(src="#{basePath}/images/planner01.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Easy and Efficient
-									p Labs scheduled using PlanHub are able to be synced automagically into your planner, into My Day, and into HW View
+									p Labs scheduled using MyHomeworkSpace are able to be synced automagically into your planner, into My Day, and into HW View
 							br
 
 							div(class="upsell-row row")
@@ -758,7 +758,7 @@ html
 						button(class="btn btn-primary", id="schedule-lab-student", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
 					if user.type == "faculty"
 						p Welcome to Lab scheduling.
-						button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with PlanHub.") Start accepting Labs with PlanHub!
+						button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with MyHomeworkSpace.") Start accepting Labs with MyHomeworkSpace!
 					br
 					button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
 				
@@ -814,7 +814,7 @@ html
 						table(border="1" id="userTable")
 							thead
 								tr
-									td(colspan="6") PlanHub Users
+									td(colspan="6") MyHomeworkSpace Users
 								tr
 									td ID
 									td Name
