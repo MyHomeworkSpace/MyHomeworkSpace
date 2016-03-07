@@ -16,7 +16,7 @@ router.get('/getAuthPage', global.apiCall, function(req, res, next) {
 });
 
 router.get("/appAuth/:token", function(req, res, next) {
-	res.render("externalapp", { title: 'PlanHub', appName: "DaltonTab" });
+	res.render("externalapp", { title: 'MyHomeworkSpace', appName: "DaltonTab" });
 });
 
 module.exports = router;
