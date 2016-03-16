@@ -1,6 +1,6 @@
 # Developing for MyHomeworkSpace
 
-If you want to help us make cool stuff, you should probably check out our [API](http://planhubme.github.io/APIDocs) and our [Join Our Team](https://raw.githubusercontent.com/MyHomeworkSpace/PlanHub/master/public/images/mysteriousImage.jpg) page. You can also submit [pull requests](https://help.github.com/articles/using-pull-requests/). Have any questions? Feel free to contact us at [hello@myhomework.space](mailto:hello@myhomework.space) or press the appropriate buttons in the navbar on [MyHomeworkSpace](https://myhomework.space).
+If you want to help us make cool stuff, you should probably check out our [API](http://myhomeworkspace.github.io/APIDocs) and our [Join Our Team](https://raw.githubusercontent.com/MyHomeworkSpace/MyHomeworkSpace/master/public/images/mysteriousImage.jpg) page. You can also submit [pull requests](https://help.github.com/articles/using-pull-requests/). Have any questions? Feel free to contact us at [hello@myhomework.space](mailto:hello@myhomework.space) or press the appropriate buttons in the navbar on [MyHomeworkSpace](https://myhomework.space).
 
 ##Pull Request Regulations
 * **Always pull to the "master" branch.**
