@@ -124,7 +124,7 @@ window.page.setColor = function(color) {
 	$(".tabs").css("border-right", "solid 1px " + complement);
 	$("#page-pref-btn").css("border-color", complement);
 
-	$.each(["#page-pref-btn", ".tabs li", ".navbar-default .navbar-nav>li>a", ".navbar-default .dropdown-menu>li>a"], function() {
+	$.each(["#page-pref-btn", ".tabs li", ".navbar-default .navbar-nav>li>a", ".navbar-default .dropdown-menu>li>a", ".back-to-home"], function() {
 		$(this.toString()).css("background-color", window.page.color).off("mouseenter").off("mouseleave").mouseenter(function() {
 			$(this).css("background-color", window.page.complement);
 		}).mouseleave(function() {

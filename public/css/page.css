@@ -263,3 +263,10 @@ nav {
 .logo-nav {
 	margin-left: 9px;
 }
+
+.back-to-home:hover {
+	background-color: #333333;
+}
+.back-to-home:hover {
+	background-color: #272727;
+}
