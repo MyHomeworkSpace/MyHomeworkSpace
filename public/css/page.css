@@ -259,3 +259,8 @@ nav {
 .navbar-default .navbar-nav>li>a {
 	transition: background-color 0.2s;
 }
+
+.logo-nav {
+	position: relative;
+	left: 5px;
+}
