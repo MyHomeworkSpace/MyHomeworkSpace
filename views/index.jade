@@ -1,5 +1,11 @@
 extends layout
 
+block styles
+	style.
+		body {
+			overflow-x: hidden;
+		}
+
 block scripts
 	script(src="#{basePath}/js/skrollr.min.js")
 	script(src="#{basePath}/js/index.js")

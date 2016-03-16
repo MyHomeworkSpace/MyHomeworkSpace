@@ -4,7 +4,9 @@ body {
 
 .logo-nav {
 	display: inline !important;
-	margin-right: 0px;
+	margin-right: 5px;
+	position: relative;
+	top: -2px;
 }
 
 .print-navbar {
