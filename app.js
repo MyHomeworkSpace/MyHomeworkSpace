@@ -1,7 +1,7 @@
 /*
 	MyHomeworkSpace
 	https://myhomework.space/
-	https://github.com/PlanHubMe/PlanHub
+	https://github.com/MyHomeworkSpace/MyHomeworkSpace
 	Licensed under the MIT License.
 */
 
