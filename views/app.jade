@@ -112,22 +112,6 @@ html
 				
 				div(class="collapse navbar-collapse", id="navbar-collapse")
 					ul(class="nav navbar-nav")
-						li
-							a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-								| Go 
-								span.caret
-
-							ul.dropdown-menu.go-dropdown(role='menu')
-								li
-									a(data-page="overview") Overview
-								li
-									a(data-page="planner") Planner
-								li
-									a(data-page="hwView") Homework View
-								if user.level > 0
-									li.divider
-									li
-										a(data-page="admin") Admin
 						if isStaging
 							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using MyHomeworkSpace Staging. This is for testing purposes only-don't use it as your real planner!")
 								a(href="#{basePath}/staging") Staging
