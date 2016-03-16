@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* App home page. */
 router.get('/', global.requireUser, global.getUserRecord, function(req, res, next) {
-	res.render('app', { title: 'PlanHub' });
+	res.render('app', { title: 'MyHomeworkSpace' });
 });
 
 module.exports = router;

@@ -4,10 +4,10 @@ block content
 	h1 Staging
 	unless isStaging
 		p(class="lead") You are currently not using staging. If you want to test new features as they are released or test our API, then
-			a(href="http://staging.planhub.me/staging") Go to Staging
+			a(href="https://staging.myhomework.space/staging") Go to Staging
 	if isStaging
-		p(class="lead") You are using PlanHub Staging. 
-			a(href="http://planhub.me/staging") Exit Staging
+		p(class="lead") You are using MyHomeworkSpace Staging. 
+			a(href="https://myhomework.space/staging") Exit Staging
 		span(style="color:red;") Please be careful. Things 
 			strong will 
 			| break. This 
@@ -16,17 +16,17 @@ block content
 			// and was a painful message to write with jade.
 
 	p
-		span As you know, PlanHub is open-source software licensed under the MIT License. PlanHub staging 
+		span As you know, MyHomeworkSpace is open-source software licensed under the MIT License. MyHomeworkSpace staging 
 			unless isStaging
 				| (which can be found
-				a(href="http://staging.planhub.me") here
+				a(href="http://staging.myhomework.space") here
 				| )
 			| pulls directly from the "master" branch of our 
-			a(href="https://github.com/PlanHubMe/PlanHub") Git repository
+			a(href="https://github.com/MyHomeworkSpace/MyHomeworkSpace") Git repository
 			|. 
 			strong It does not pull from the 
-				a(href="https://github.com/PlanHubMe/PlanHub/tree/stable") stable 
+				a(href="https://github.com/MyHomeworkSpace/MyHomeworkSpace/tree/stable") stable 
 				| branch, which means whatever we commit will appear there. There will be crashes. Things will get messy. 
-				span(style="color:red;") We strongly recommend only using PlanHub Staging for API testing and trying new features. Do not host your planner on PlanHub Staging.
-	h1(style="color: red;") PlanHub Staging is for development purposes only.
-		strong Use PlanHub Staging at your own risk. 
+				span(style="color:red;") We strongly recommend only using MyHomeworkSpace Staging for API testing and trying new features. Do not host your planner on MyHomeworkSpace Staging.
+	h1(style="color: red;") MyHomeworkSpace Staging is for development purposes only.
+		strong Use MyHomeworkSpace Staging at your own risk. 

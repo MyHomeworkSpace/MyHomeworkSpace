@@ -72,7 +72,7 @@
         	if (this.settings.wordsOnly ) {
         		that.spacer = '\\b';
         	}
-        	
+
         $.each(lines, function(i, line) {
             var finalLine = line;
             $.each(that.settings.words, function(color, words) {
@@ -90,7 +90,7 @@
             }
             finalLines.push(finalLine);
         });
-        
+
         text = finalLines.join("\n");
 
         $.each(this.settings.ranges, function(i, range) {
@@ -300,7 +300,7 @@
         this.$el.css({
             'background': 'none'
         });
-        
+
         this.$containerTop.html(this.$container.html());
         this.$containerTop.attr("style", this.$container.attr("style"));
     };
@@ -364,10 +364,10 @@
             'top': -this.$el.scrollTop(),
             'left': -this.$el.scrollLeft()
         });
-        
+
         this.$containerTop.html(this.$container.html());
         this.$containerTop.attr("style", this.$container.attr("style"));
-        
+
         $("mark").each(function() {
             if (!$(this).hasClass("fade")) {
                 $(this).addClass("fade");
@@ -404,7 +404,7 @@
             var setVal = from.css(what[i]);
             if (navigator.userAgent.match(/Gecko/g)) {
                 // A WILD FIREFOX APPEARED
-                // PLANHUB USED "HEXY_FIX"
+                // MYHOMEWORKSPACE USED "HEXY_FIX"
                 // IT'S SUPER EFFECTIVE
                 // TODO: make this read from the document but without using computed styles cause those are brokez in Firefox
                 if (what[i] == "font-family") {

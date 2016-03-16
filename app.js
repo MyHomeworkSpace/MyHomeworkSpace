@@ -1,7 +1,7 @@
 /*
-	PlanHub
-	https://planhub.me/
-	https://github.com/PlanHubMe/PlanHub
+	MyHomeworkSpace
+	https://myhomework.space/
+	https://github.com/MyHomeworkSpace/MyHomeworkSpace
 	Licensed under the MIT License.
 */
 
@@ -164,7 +164,7 @@ global.dbErrorHandler = function(err, req, res, next) {
 				error: "Database error"
 			});
 		} else {
-			res.render("error", { title: "Error", msg: "Database error occured. Please email hello@planhub.me for assistance. Mention what you were trying to do."});
+			res.render("error", { title: "Error", msg: "Database error occured. Please email hello@myhomework.space for assistance. Mention what you were trying to do."});
 		}
 };
 
@@ -221,7 +221,7 @@ if (global.env == "production") {
 app.use(session(sess));
 
 app.use(function(req, res, next) {
-	if (req.host == "staging.planhub.me") {
+	if (req.host == "staging.myhomework.space") {
 		res.locals.isStaging = true;
 	} else {
 		res.locals.isStaging = false;
