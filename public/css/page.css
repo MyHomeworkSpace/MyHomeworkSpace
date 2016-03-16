@@ -264,8 +264,13 @@ nav {
 	margin-left: 9px;
 }
 
-.back-to-home:hover {
+.back-to-home {
 	background-color: #333333;
+	text-align: center;
+	width: 80px;
+}
+.back-to-home img {
+	margin: 0 auto;
 }
 .back-to-home:hover {
 	background-color: #272727;
