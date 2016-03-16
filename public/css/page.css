@@ -273,7 +273,8 @@ nav {
 	margin: 0 auto;
 
 	position: relative;
-	top: -2px;
+	top: -5px;
+	left: -1px;
 }
 .back-to-home:hover {
 	background-color: #272727;
