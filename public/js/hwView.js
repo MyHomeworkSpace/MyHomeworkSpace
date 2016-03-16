@@ -186,7 +186,7 @@ window.hwView.loadStep = function() {
 	window.hwView.loadCount += 1;
 	if (window.hwView.loadCount >= 2) { //(1 + (14 * Object.keys(window.hwView.subjects).length))) {
 		window.page.hideLoading();
-		if ($(".hwView-tomorrow ul").text() === "" && $(".hwView-soon ul").text() === "" && $(".hwView-longterm ul").text() === "") {
+		if ($(".hwView-overdue ul").text() === "" && $(".hwView-tomorrow ul").text() === "" && $(".hwView-soon ul").text() === "" && $(".hwView-longterm ul").text() === "") {
 			// empty!
 			swal("You don't have any homework in your planner!", "Once you've written some assignments in, come back here.", "warning");
 		}
