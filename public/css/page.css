@@ -7,12 +7,16 @@ html, body, .mainContainer {
 nav {
 	background: white;
 	border-bottom: solid 1px black;
+	font-family: Lato, sans-serif;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 998 !important; /* please stay on top */
 	/*height: 70px;*/
+}
+.row {
+	font-family: Lato, sans-serif;
 }
 .mainContainer {
 	padding-top: 45px;
