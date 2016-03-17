@@ -7,12 +7,16 @@ html, body, .mainContainer {
 nav {
 	background: white;
 	border-bottom: solid 1px black;
+	font-family: Lato, sans-serif;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 998 !important; /* please stay on top */
 	/*height: 70px;*/
+}
+.row {
+	font-family: Lato, sans-serif;
 }
 .mainContainer {
 	padding-top: 45px;
@@ -258,4 +262,25 @@ nav {
 
 .navbar-default .navbar-nav>li>a {
 	transition: background-color 0.2s;
+}
+
+.logo-nav {
+	margin-left: 9px;
+}
+
+.back-to-home {
+	background-color: #333333;
+	text-align: center;
+	width: 80px;
+	transition: background-color 0.2s;
+}
+.back-to-home img {
+	margin: 0 auto;
+
+	position: relative;
+	top: -5px;
+	left: -1px;
+}
+.back-to-home:hover {
+	background-color: #272727;
 }
