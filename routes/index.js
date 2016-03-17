@@ -79,7 +79,7 @@ router.post('/login', global.getOptionalUserRecord, function(req, res, next) {
 		res.render('login', { title: 'Log in', error: 'You do not have permission to access this site.' });
 		return;
 	}*/
-	username = req.body.username;
+	username = req.body.username.split("\\")[0];
 	password = req.body.password;
 
 	var rouxRequest = "";
