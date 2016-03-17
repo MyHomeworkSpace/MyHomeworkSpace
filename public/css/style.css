@@ -2,11 +2,7 @@ body {
 	padding-top: 0px;
 }
 
-nav {
-	font-family: Lato, sans-serif;
-}
-
-.row {
+nav, .row, .jumbotron {
 	font-family: Lato, sans-serif;
 }
 
