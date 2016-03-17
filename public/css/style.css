@@ -2,6 +2,14 @@ body {
 	padding-top: 0px;
 }
 
+nav {
+	font-family: Lato, sans-serif;
+}
+
+.row {
+	font-family: Lato, sans-serif;
+}
+
 .logo-nav {
 	display: inline !important;
 	margin-right: 5px;
