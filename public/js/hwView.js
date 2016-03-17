@@ -50,13 +50,14 @@ window.hwView.addEventToList = function(ev, list) {
 		$item.attr("data-subId", ev.subId);
 		var hexyTime = moment(ev.due).subtract(moment().utcOffset(), "minutes");
 		$item.attr("data-date", window.utils.formatDate_api(hexyTime.toDate()));
+		$item.attr("data-rawDate", ev.rawDue.split("T")[0]);
 		$item.attr("data-sectionIndex", ev.subject);
 		$item.attr("data-name", ev.name);
 		var $checkbox = $('<input type="checkbox" class="hwView-toggleDone"></input>');
 			$checkbox.prop("checked", done);
 			$checkbox.change(function() {
 				var subId = parseInt($item.attr("data-subId"));
-				var date = $item.attr("data-date");
+				var date = $item.attr("data-rawDate");
 				var sectionIndex = parseInt($item.attr("data-sectionIndex"));
 				var name = $item.attr("data-name");
 				var doneNow = $(this).prop("checked");
@@ -145,6 +146,7 @@ window.hwView.loadList = function(date, list, callback) {
 				var evObj = {
 					name: ev[evIndex].text,
 					due: new Date(data.date),
+					rawDue: data.date,
 					subject: ev[evIndex].sectionIndex,
 					done: ev[evIndex].done,
 					subId: ev[evIndex].subId
@@ -202,6 +204,7 @@ window.hwView.loadEvents = function(callback) {
 				var evObj = {
 					name: ev[evIndex].text,
 					due: new Date(ev[evIndex].date.split("T")[0]),
+					rawDue: ev[evIndex].date,
 					subject: ev[evIndex].sectionIndex,
 					done: ev[evIndex].done,
 					subId: ev[evIndex].subId
@@ -223,6 +226,7 @@ window.hwView.loadEvents = function(callback) {
 				var evObj = {
 					name: overdue[overdueIndex].text,
 					due: new Date(overdue[overdueIndex].date.split("T")[0]),
+					rawDue: overdue[overdueIndex].date,
 					subject: overdue[overdueIndex].sectionIndex,
 					done: overdue[overdueIndex].done,
 					subId: overdue[overdueIndex].subId
