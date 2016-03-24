@@ -59,3 +59,10 @@ footer a:hover {
 .btn {
 	transition: background 0.2s;
 }
+
+.main-jumbo {
+	height: 100vh;
+	background-image: url(../images/mainbg.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+}
