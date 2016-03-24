@@ -16,13 +16,13 @@ var KnexSessionStore = require('connect-session-knex')(session);
 
 var app = express();
 
-var basePath = "";
-global.basePath = basePath;
-
 var env = "development";
 global.env = ((app.get("env") == "production") ? app.get("env") : env);
 
 global.config = require("./config");
+
+global.basePath = config.basePath;
+global.staticPath = config.staticPath;
 global.mysqlConnection = config.dbConnection;
 
 global.knex = require('knex')({
@@ -229,7 +229,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.use(basePath + '/', express.static(path.join(__dirname, 'public')));
+app.use(basePath + '/static', express.static(path.join(__dirname, 'public')));
 
 app.use(basePath + '/', routes);
 app.use(basePath + '/app', appRouter);
