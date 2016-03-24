@@ -7,10 +7,10 @@ block content
 		p(class="alert alert-danger")
 			strong Oh no! 
 			span= error
-	form(action="#{global.basePath}/login", method="POST")
+	form(action="#{basePath}/login", method="POST")
 		input(type="text", name="username", class="form-control", placeholder="Username")
 		input(type="password", name="password", class="form-control", placeholder="Password")
 		input(type="submit", value="Log in", class="btn btn-primary")
 		a(href='#', data-toggle="tooltip", data-placement="right", title="Your password is never stored. It's only used to sign you in and download your schedule and homework.", style='padding-left: 10px;') Privacy Information
 
-	script(src="#{basePath}/js/tooltips.js", defer)
+	script(src="#{staticPath}/js/tooltips.js", defer)
