@@ -40,6 +40,10 @@ global.sessionStore = new KnexSessionStore({
 
 global.transporter = require("nodemailer").createTransport(config.emails.smtpConfig);
 
+if (global.basePath[global.basePath.length - 1] == "/") {
+	global.basePath = global.basePath.slice(0, -1); // remove trailing slash
+}
+
 global.isApiPath = function(path) {
 	return path.indexOf("api") > -1;
 };
