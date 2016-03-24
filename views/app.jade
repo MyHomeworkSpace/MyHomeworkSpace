@@ -12,59 +12,59 @@ html
 		link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css", rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous")
 		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==", crossorigin="anonymous")
 
-		link(href="#{basePath}/css/time-polyfill.css", rel="stylesheet")
-		link(href="#{basePath}/chosen/chosen.min.css", rel="stylesheet")
-		link(href="#{basePath}/css/jquery.highlighttextarea.css", rel="stylesheet")
-		link(href="#{basePath}/css/jquery-ui.min.css", rel="stylesheet")
-		link(href="#{basePath}/css/sweetalert.css", rel="stylesheet")
-		link(href="#{basePath}/css/introjs.css", rel="stylesheet")
-		link(href="#{basePath}/css/fullcalendar.min.css", rel="stylesheet")
+		link(href="#{staticPath}/css/time-polyfill.css", rel="stylesheet")
+		link(href="#{staticPath}/chosen/chosen.min.css", rel="stylesheet")
+		link(href="#{staticPath}/css/jquery.highlighttextarea.css", rel="stylesheet")
+		link(href="#{staticPath}/css/jquery-ui.min.css", rel="stylesheet")
+		link(href="#{staticPath}/css/sweetalert.css", rel="stylesheet")
+		link(href="#{staticPath}/css/introjs.css", rel="stylesheet")
+		link(href="#{staticPath}/css/fullcalendar.min.css", rel="stylesheet")
 		
-		link(href="#{basePath}/css/fullcalendar.print.css", rel="stylesheet", media="print")
+		link(href="#{staticPath}/css/fullcalendar.print.css", rel="stylesheet", media="print")
 		
-		link(href="#{basePath}/css/print.css", rel="stylesheet", media="print")
+		link(href="#{staticPath}/css/print.css", rel="stylesheet", media="print")
 
-		link(href="#{basePath}/css/style.css", rel="stylesheet")
+		link(href="#{staticPath}/css/style.css", rel="stylesheet")
 
 		script(src="https://code.jquery.com/jquery-2.1.4.min.js")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
-		script(src="#{basePath}/js/canvasjs.min.js")
+		script(src="#{staticPath}/js/canvasjs.min.js")
 		
-		script(src="#{basePath}/js/modernizer.js")
-		script(src="#{basePath}/js/jquery.highlighttextarea.js")
-		script(src="#{basePath}/js/jquery-ui.min.js")
-		script(src="#{basePath}/js/sweetalert.min.js")
-		script(src="#{basePath}/js/intro.js")
-		script(src="#{basePath}/js/coursesLib.js", defer)
+		script(src="#{staticPath}/js/modernizer.js")
+		script(src="#{staticPath}/js/jquery.highlighttextarea.js")
+		script(src="#{staticPath}/js/jquery-ui.min.js")
+		script(src="#{staticPath}/js/sweetalert.min.js")
+		script(src="#{staticPath}/js/intro.js")
+		script(src="#{staticPath}/js/coursesLib.js", defer)
 		
-		link(rel="stylesheet", href="#{global.basePath}/css/loading.css")
+		link(rel="stylesheet", href="#{global.staticPath}/css/loading.css")
 
-		link(rel="stylesheet", href="#{global.basePath}/css/page.css")
-		link(rel="stylesheet", href="#{global.basePath}/css/planner.css")
-		link(rel="stylesheet", href="#{global.basePath}/css/hwView.css")
-		link(rel="stylesheet", href="#{global.basePath}/css/myDay.css")
+		link(rel="stylesheet", href="#{staticPath}/css/page.css")
+		link(rel="stylesheet", href="#{staticPath}/css/planner.css")
+		link(rel="stylesheet", href="#{staticPath}/css/hwView.css")
+		link(rel="stylesheet", href="#{staticPath}/css/myDay.css")
 
-		link(rel="stylesheet", href="#{global.basePath}/css/prefs.css")
+		link(rel="stylesheet", href="#{staticPath}/css/prefs.css")
 
-		script(type="text/javascript", src="#{global.basePath}/js/moment.min.js")
-		script(type="text/javascript", src="#{global.basePath}/js/time-polyfill.min.js")
-		script(type="text/javascript", src="#{global.basePath}/chosen/chosen.jquery.min.js")
+		script(type="text/javascript", src="#{staticPath}/js/moment.min.js")
+		script(type="text/javascript", src="#{staticPath}/js/time-polyfill.min.js")
+		script(type="text/javascript", src="#{global.staticPath}/chosen/chosen.jquery.min.js")
 
-		script(src="#{basePath}/js/fullcalendar.min.js") // down here because it requires moment
+		script(src="#{staticPath}/js/fullcalendar.min.js") // down here because it requires moment
 
-		script(type="text/javascript", src="#{global.basePath}/js/utils.js")
-		script(type="text/javascript", src="#{global.basePath}/js/page.js")
+		script(type="text/javascript", src="#{staticPath}/js/utils.js")
+		script(type="text/javascript", src="#{staticPath}/js/page.js")
 
-		script(type="text/javascript", src="#{global.basePath}/js/api.js")
+		script(type="text/javascript", src="#{staticPath}/js/api.js")
 
-		script(type="text/javascript", src="#{global.basePath}/js/planner.js")
-		script(type="text/javascript", src="#{global.basePath}/js/hwView.js")
-		script(type="text/javascript", src="#{global.basePath}/js/myDay.js")
-		script(type="text/javascript", src="#{global.basePath}/js/labs.js")
-		script(type="text/javascript", src="#{global.basePath}/js/graphs.js")
-		script(type="text/javascript", src="#{global.basePath}/js/groups.js")
+		script(type="text/javascript", src="#{staticPath}/js/planner.js")
+		script(type="text/javascript", src="#{staticPath}/js/hwView.js")
+		script(type="text/javascript", src="#{staticPath}/js/myDay.js")
+		script(type="text/javascript", src="#{staticPath}/js/labs.js")
+		script(type="text/javascript", src="#{staticPath}/js/graphs.js")
+		script(type="text/javascript", src="#{staticPath}/js/groups.js")
 			
-		script(type="text/javascript", src="#{global.basePath}/js/prefs.js")
+		script(type="text/javascript", src="#{staticPath}/js/prefs.js")
 		
 		script(id="tawk-script").
 			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -94,7 +94,8 @@ html
 			p
 				img(src="https://piwik.coursesplus.tk/piwik.php?idsite=3" style="border:0;" alt="")
 	body
-		div(id="basePath", class="hidden")= global.basePath
+		div(id="basePath", class="hidden")= basePath
+		div(id="staticPath", class="hidden")= staticPath
 		div(id="username", class="hidden")= user.username
 		div(id="name", class="hidden")= user.name
 		div(id="email", class="hidden")= user.email
@@ -107,7 +108,7 @@ html
 						span(class="icon-bar")
 						span(class="icon-bar")
 					a(class="navbar-brand back-to-home", href="#{basePath}/")
-						img(src="#{global.basePath}/images/icon128.png", width="32px", height="32px", class="logo-nav")
+						img(src="#{staticPath}/images/icon128.png", width="32px", height="32px", class="logo-nav")
 				
 				div(class="collapse navbar-collapse", id="navbar-collapse")
 					ul(class="nav navbar-nav")
@@ -149,7 +150,7 @@ html
 		nav(class="navbar navbar-fixed-top print-navbar")
 			div(class="container-fluid")
 				span
-					img(src="#{global.basePath}/images/icon24.png", width="24px", height="24px", class="logo-nav")
+					img(src="#{staticPath}/images/icon24.png", width="24px", height="24px", class="logo-nav")
 					span MyHomeworkSpace - 
 					span(class="user-name")= user.name
 
@@ -383,7 +384,7 @@ html
 						div(class="col-md-9")
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/planner01.png", class="upsell-picture")
+									img(src="#{staticPath}/images/planner01.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Synced to the cloud
 									p You can't lose your planner anymore - assignments you write are saved to your Dalton account. Sign back in and your assignments will be right where you left them - even if you're using another device.
@@ -392,7 +393,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/planner02.png", class="upsell-picture")
+									img(src="#{staticPath}/images/planner02.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Tag your assignments
 									p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
@@ -401,7 +402,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/planner03.png", class="upsell-picture")
+									img(src="#{staticPath}/images/planner03.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Add or remove subjects
 									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
@@ -484,7 +485,7 @@ html
 						div(class="col-md-9")
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									// img(src="#{basePath}/images/myDay01.png", class="upsell-picture")
+									// img(src="#{staticPath}/images/myDay01.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Your custom schedule
 									p You tell My Day how much free time you want, how long it takes you to get home, and what clubs you're a part of. We then build a custom schedule based on your parameters and homework information from your planner.
@@ -493,7 +494,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									// img(src="#{basePath}/images/myDay02.png", class="upsell-picture")
+									// img(src="#{staticPath}/images/myDay02.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Don't spend all night
 									p My Day uses an intelligent algorithm to divide large projects into smaller days. It helps break down long-term assignments into smaller chunks, and ensure that you don't get stuck procrastinating something until the last minute or cramming for a test.
@@ -502,7 +503,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									// img(src="#{basePath}/images/myDay03.png", class="upsell-picture")
+									// img(src="#{staticPath}/images/myDay03.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Your data is already here
 									p My Day takes information you already have from your MyHomeworkSpace planner and your schedule. Just sign in, and we'll automatically retrieve your information&mdash;you don't have to type it up again. 
@@ -564,7 +565,7 @@ html
 						div(class="col-md-9")
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/hwView01.png", class="upsell-picture")
+									img(src="#{staticPath}/images/hwView01.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Don't get caught by surprise
 									p Homework View shows you tests, quizzes, and other long-term assignments ahead of time - that way, you'll always be on top of what you have to do.
@@ -573,7 +574,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/hwView02.png", class="upsell-picture")
+									img(src="#{staticPath}/images/hwView02.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Gets data from your planner
 									p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your homework into yet another program.
@@ -582,7 +583,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/hwView03.png", class="upsell-picture")
+									img(src="#{staticPath}/images/hwView03.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Quick and at-a-glance
 									p Homework View lets you see what's due tomorrow, next week, and beyond in a clear, easy, and functional at-a-glance view. Don't switch between weeks or months in your planner&mdash;just use Homework View!
@@ -707,7 +708,7 @@ html
 						div(class="col-md-9")
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/planner01.png", class="upsell-picture")
+									img(src="#{staticPath}/images/planner01.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Easy and Efficient
 									p Labs scheduled using MyHomeworkSpace are able to be synced automagically into your planner, into My Day, and into HW View
@@ -715,7 +716,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/planner02.png", class="upsell-picture")
+									img(src="#{staticPath}/images/planner02.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Tag your assignments
 									p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
@@ -724,7 +725,7 @@ html
 
 							div(class="upsell-row row")
 								div(class="col-md-4")
-									img(src="#{basePath}/images/planner03.png", class="upsell-picture")
+									img(src="#{staticPath}/images/planner03.png", class="upsell-picture")
 								div(class="col-md-8")
 									h4 Add or remove subjects
 									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
@@ -761,15 +762,7 @@ html
 						div(id="admin-feedback", class="page")
 							h1 Administrative panel
 							h4 View feedback
-							div(class="row")
-								div(class="col-md-4")
-									ul(id="admin-feedback-list")
-								div(class="col-md-8")
-									h3(id="admin-feedback-content" style="position: fixed;") Select feedback on the left to see it here!
-									h5
-										span(id="admin-feedback-name") 
-										span(id="admin-feedback-username")
-									h5(id="admin-feedback-time")
+							ul(id="admin-feedback-list")
 								
 					
 					div(id="admin-announcements", class="page")
@@ -780,7 +773,7 @@ html
 							strong Be careful! 
 							| Don't post too many announcements&mdash;not only do they annoy users, but you can get your announcement permissions revoked!
 						p Message
-						input(type="text", id="announcement-msg", width="300px", data-toggle="tooltip", data-placement="right", title="You can use HTML tags for this input field!")
+						input(type="text", id="announcement-msg", style="width:600px; height:40px; font-size:16pt;", data-toggle="tooltip", data-placement="right", title="You can use HTML tags for this input field!")
 						p Days
 						input(type="number", id="announcement-days", data-toggle="tooltip", data-placement="right", title="Because of possible time zone problems, please set this to 2 days or above to make sure all users see it. Thank you!")
 						br

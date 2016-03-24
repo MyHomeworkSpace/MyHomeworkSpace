@@ -59,6 +59,10 @@ window.page.getBasePath = function() {
 	return $("#basePath").text();
 };
 
+window.page.getStaticPath = function() {
+	return $("#staticPath").text();
+};
+
 window.page.showLoading = function() {
 	window.page.loadTimeout = setTimeout(function() {
 		$(".loadOverlay").addClass("showLoadOverlay");
@@ -246,7 +250,7 @@ $(document).ready(function() {
 
 		window.prefs.getBatch(["topTabs", "hideTawk", "themeColor"], function(prefs) {
 			if (prefs.topTabs == "1") {
-				$("head").append('<link href=" ' + $("#basePath").text() + '/css/topTabs.css" rel="stylesheet" />');
+				$("head").append('<link href=" ' + $("#staticPath").text() + '/css/topTabs.css" rel="stylesheet" />');
 			}
 
 			if (prefs.hideTawk == "1") {

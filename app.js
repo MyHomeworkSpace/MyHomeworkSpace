@@ -16,13 +16,13 @@ var KnexSessionStore = require('connect-session-knex')(session);
 
 var app = express();
 
-var basePath = "";
-global.basePath = basePath;
-
 var env = "development";
 global.env = ((app.get("env") == "production") ? app.get("env") : env);
 
 global.config = require("./config");
+
+global.basePath = config.basePath;
+global.staticPath = config.staticPath;
 global.mysqlConnection = config.dbConnection;
 
 global.knex = require('knex')({
@@ -39,6 +39,10 @@ global.sessionStore = new KnexSessionStore({
 });
 
 global.transporter = require("nodemailer").createTransport(config.emails.smtpConfig);
+
+if (global.basePath[global.basePath.length - 1] == "/") {
+	global.basePath = global.basePath.slice(0, -1); // remove trailing slash
+}
 
 global.isApiPath = function(path) {
 	return path.indexOf("api") > -1;
@@ -229,7 +233,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.use(basePath + '/', express.static(path.join(__dirname, 'public')));
+app.use(basePath + '/static', express.static(path.join(__dirname, 'public')));
 
 app.use(basePath + '/', routes);
 app.use(basePath + '/app', appRouter);
