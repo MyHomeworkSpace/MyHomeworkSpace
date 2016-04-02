@@ -1,6 +1,6 @@
 var testNotification = new Notify('Yay!', {
     body: 'If you are seeing this, then notifications have been fully set up and are functional!',
-    icon: window.page.getStaticUrl() + "images/notificationicon.svg" ,
+    //icon: window.page.getStaticUrl() + "images/notificationicon.svg" ,
     notifyShow: testNotify
 });
 
