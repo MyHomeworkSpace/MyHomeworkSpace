@@ -24,11 +24,7 @@ router.post("/setPhone", function(req, res, next) {
 		return;
 	}
 	var carriers = require("../sms");
-	res.json({
-		carriers: carriers
-	});
-	return;
-	if (carriers.indexOf(req.body.carrier) < 0) {
+	if (carriers[req.body.carrier] === undefined) {
 		res.json({
 			status: "error",
 			error: "Invalid carrier!"
