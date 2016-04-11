@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.post("/setPhone", function(req, res, next) {
+router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
 	if (req.body.phone == undefined) {
 		res.json({
 			status: "error",
