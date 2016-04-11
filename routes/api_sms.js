@@ -31,7 +31,7 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 		});
 		return;
 	}
-	require('crypto').randomBytes(6, function(err, buffer) {
+	require('crypto').randomBytes(3, function(err, buffer) {
 		var verifyCode = buffer.toString('hex');
 		knex("phones").select("*").where({
 			userId: res.locals.user.id
@@ -49,8 +49,7 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 				}).catch(function(error) {
 					res.json({
 						status: "error",
-						error: "Unknown database error.",
-						verifyCode: verifyCode
+						error: "Unknown database error."
 					});
 				});
 			}
