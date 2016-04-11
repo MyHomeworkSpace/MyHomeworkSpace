@@ -50,7 +50,7 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 					res.json({
 						status: "error",
 						error: "Unknown database error.",
-						ex: error
+						verifyCode: verifyCode
 					});
 				});
 			}
