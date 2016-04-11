@@ -5,7 +5,7 @@ var emailTemplates = {
 		text: 'MyHomeworkSpace\nVerify your email\nTODO: some text here I guess\nCopy-paste the following URL into a new browser window: (verify_url)'
 	},
 	smsCode: {
-		subject: "SMS verification code",
+		subject: "",
 		// this is an SMS message, so please keep `html` and `text` the *same*
 		html: "(verify_code) is your MyHomeworkSpace verification code",
 		text: "(verify_code) is your MyHomeworkSpace verification code"
