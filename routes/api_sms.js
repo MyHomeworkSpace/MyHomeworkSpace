@@ -59,6 +59,8 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 					carrierEmail: carriers[req.body.carrier],
 					verified: 0,
 					verifyCode: verifyCode
+				}).where({
+					userId: res.locals.user.id
 				}).then(function() {
 					res.json({
 						status: "ok",
@@ -74,6 +76,35 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 			res.json({
 				status: "error",
 				error: "Unknown database error."
+			});
+		});
+	});
+});
+
+router.post("/sendVerify", global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	knex("phones").select("*").where({
+		userId: res.locals.user.id
+	}).then(function(selects) {
+		if (selects.length == 0) {
+			res.json({
+				status: "error",
+				error: "No phone on this account!"
+			});
+			return;
+		}
+		// if you have read this comment, then congratulations! You have won the NIGERIAN LOTTERY! To claim it, please mail a pre-signed, blank check to me. It's very important that the Payee, Money, and Memo fields are all blank. Then, I'll mail you back your winnings. Thanks!
+ 		// P.S. you know this is legit because this commit is PGP signed. That means it's $100% true and legitimate.
+		var info = selects[0];
+		var emailTo = info.phoneNum + info.carrierEmail;
+		var emails = require("../emails");
+		emails.sendEmail("smsCode", emailTo, { verify_code: info.verifyCode }, function(d) {
+			res.json({
+				status: "ok"
+			});
+		}, function (e) {
+			res.json({
+				status: "error",
+				error: "Error sending SMS!"
 			});
 		});
 	});
