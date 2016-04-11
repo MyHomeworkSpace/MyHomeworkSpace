@@ -70,3 +70,5 @@ var carriers = {
     "West Central Wireless" : "@sms.wcc.net",
     "Western Wireless" : "@cellularonewest.com",
 }
+
+module.exports = carriers;

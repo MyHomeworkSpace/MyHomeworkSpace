@@ -3,6 +3,12 @@ var emailTemplates = {
 		subject: "Verify your email",
 		html: '<h1>MyHomeworkSpace</h1><h2>Verify your email</h2><p>TODO: some text here I guess</p><a href="(verify_url)">Click here to verify your email</a><p>If that didn\'t work, try copy-pasting the following URL into a new browser window: (verify_url)</p>',
 		text: 'MyHomeworkSpace\nVerify your email\nTODO: some text here I guess\nCopy-paste the following URL into a new browser window: (verify_url)'
+	},
+	smsCode: {
+		subject: "SMS verification code",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "(verify_code) is your MyHomeworkSpace verification code",
+		text: "(verify_code) is your MyHomeworkSpace verification code"
 	}
 };
 
