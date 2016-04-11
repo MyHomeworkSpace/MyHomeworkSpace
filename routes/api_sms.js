@@ -31,47 +31,50 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 		});
 		return;
 	}
-	knex("phones").select("*").where({
-		userId: res.locals.user.id
-	}).then(function(selects) {
-		if(selects.length == 0) {
-			knex("phones").insert({
-				userId: res.locals.user.id,
-				phoneNum: req.body.phone,
-				carrierEmail: carriers[req.body.carrier]
-			}).then(function() {
-				res.json({
-					status: "ok",
+	require('crypto').randomBytes(6, function(err, buffer) {
+		var verifyCode = buffer.toString('hex');
+		knex("phones").select("*").where({
+			userId: res.locals.user.id
+		}).then(function(selects) {
+			if(selects.length == 0) {
+				knex("phones").insert({
+					userId: res.locals.user.id,
+					phoneNum: req.body.phone,
+					carrierEmail: carriers[req.body.carrier],
+					verifyCode: verifyCode
+				}).then(function() {
+					res.json({
+						status: "ok",
+					});
+				}).catch(function(error) {
+					res.json({
+						status: "error",
+						error: "Unknown database error."
+					});
 				});
-			}).catch(function(error) {
-				res.json({
-					status: "error",
-					error: "Unknown database error. part a",
-					ex: error
+			}
+			else {
+				knex("phones").update({
+					phoneNum: req.body.phone,
+					carrierEmail: carriers[req.body.carrier],
+					verified: 0,
+					verifyCode: verifyCode
+				}).then(function() {
+					res.json({
+						status: "ok",
+					});
+				}).catch(function(error) {
+					res.json({
+						status: "error",
+						error: "Unknown database error."
+					});
 				});
+			}
+		}).catch(function(ex) {
+			res.json({
+				status: "error",
+				error: "Unknown database error."
 			});
-		}
-		else {
-			knex("phones").update({
-				phoneNum: req.body.phone,
-				carrierEmail: carriers[req.body.carrier]
-			}).then(function() {
-				res.json({
-					status: "ok",
-				});
-			}).catch(function(error) {
-				res.json({
-					status: "error",
-					error: "Unknown database error. part b",
-					ex: error
-				});
-			});
-		}
-	}).catch(function(ex) {
-		res.json({
-			status: "error",
-			error: "Unknown database error. part c",
-			ex: ex
 		});
 	});
 });
