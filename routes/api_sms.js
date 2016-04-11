@@ -49,7 +49,8 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 				}).catch(function(error) {
 					res.json({
 						status: "error",
-						error: "Unknown database error."
+						error: "Unknown database error.",
+						ex: error
 					});
 				});
 			}
