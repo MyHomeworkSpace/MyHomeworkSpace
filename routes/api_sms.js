@@ -46,7 +46,8 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 			}).catch(function(error) {
 				res.json({
 					status: "error",
-					error: "Unknown database error."
+					error: "Unknown database error. part a"
+					ex: error
 				});
 			});
 		}
@@ -61,14 +62,16 @@ router.post("/setPhone", global.apiCall, global.requireUser, global.getUserRecor
 			}).catch(function(error) {
 				res.json({
 					status: "error",
-					error: "Unknown database error."
+					error: "Unknown database error. part b",
+					ex: error
 				});
 			});
 		}
-	}).catch(function() {
+	}).catch(function(ex) {
 		res.json({
 			status: "error",
-			error: "Unknown database error."
+			error: "Unknown database error. part c",
+			ex: ex
 		});
 	});
 });
