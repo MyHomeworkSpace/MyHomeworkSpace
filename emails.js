@@ -7,8 +7,20 @@ var emailTemplates = {
 	smsCode: {
 		subject: "",
 		// this is an SMS message, so please keep `html` and `text` the *same*
-		html: "(verify_code) is your MyHomeworkSpace verification code",
-		text: "(verify_code) is your MyHomeworkSpace verification code"
+		html: "(verify_code) is your MyHomeworkSpace verification code. You should make me a contact so you don't think some random person is texting you about your homework!",
+		text: "(verify_code) is your MyHomeworkSpace verification code. You should make me a contact so you don't think some random person is texting you about your homework!"
+	},
+	smsNotification1: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "You asked me to remind you about your (assignment_type) in (subject_name), so here is your reminder:",
+		text: "You asked me to remind you about your (assignment_type) in (subject_name), so here is your reminder:"
+	}
+	smsNotification2: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "(assignment_name) is due (due_date)",
+		text: "(assignment_name) is due (due_date)"
 	}
 };
 
