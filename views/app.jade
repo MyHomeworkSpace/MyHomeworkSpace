@@ -636,7 +636,7 @@ html
 							
 							
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
-							h3 PaAssword
+							h3 Password
 							p
 								| You are signed in with your Dalton account. For assistance with Dalton accounts, please contact 
 								a(href="mailto:help@dalton.org") help@dalton.org
@@ -651,7 +651,7 @@ html
 								else
 									p You have two-factor authentication disabled.
 									button(id="prefs-enable-2fa", class="btn btn-primary") Enable two-factor authentication
-
+							
 						div(role="tabpanel", class="tab-pane", id="prefs-layout")
 							p Change the look and feel of MyHomeworkSpace. You might have to reload the page to activate these changes.
 							
@@ -761,6 +761,16 @@ html
 					<!-- Okay em-p let your imagination run free here. -->
 					h1 Hi this is just a test.
 					div(id="chartContainer")
+					
+				div(id="smsverify", class="page")
+					h1 Enable SMS
+					h4 Check your phone! We just sent a verification code to the 
+						span=user.carrier
+						| phone at
+						span=user.number
+						| .
+					button(onclick='setPage("prefs")') Change Number/Carrier
+					button() Resend Code
 				
 				div(id="groups", class="page")
 					h1 Join Groups to Receive Group Planner Events
