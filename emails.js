@@ -15,7 +15,7 @@ var emailTemplates = {
 		// this is an SMS message, so please keep `html` and `text` the *same*
 		html: "You asked me to remind you about your (assignment_type) in (subject_name), so here is your reminder:",
 		text: "You asked me to remind you about your (assignment_type) in (subject_name), so here is your reminder:"
-	}
+	},
 	smsNotification2: {
 		subject: "",
 		// this is an SMS message, so please keep `html` and `text` the *same*
