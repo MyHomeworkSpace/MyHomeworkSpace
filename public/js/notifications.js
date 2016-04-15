@@ -12,11 +12,15 @@ function showTestNotify(){
     testNotification.show();
 }
 
-if (!Notify.needsPermission) {
-    doNotification();
-} else if (Notify.isSupported()) {
-    Notify.requestPermission(onNotifyPermissionGranted, onNotifyPermissionDenied);
-}
+$(document).ready(function() {
+    $("#activateNotifications").click(function() {
+        if (!Notify.needsPermission) {
+            doNotification();
+        } else if (Notify.isSupported()) {
+            Notify.requestPermission(onNotifyPermissionGranted, onNotifyPermissionDenied);
+        }
+    });
+});
 
 function onNotifyPermissionGranted() {
     console.log('Notification permission enabled. :)');
