@@ -147,7 +147,7 @@ nav {
 }
 
 .showLoadOverlay {
-	background: #4d4d4d;
+	background: rgba(0, 0, 0, 0.5);
 	z-index: 99999 !important; /* please be above the nav */
 }
 
