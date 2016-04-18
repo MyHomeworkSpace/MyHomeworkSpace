@@ -623,8 +623,11 @@ html
 							button(id="activateNotifications", class="btn btn-primary") Activate notifications
 							button(class="btn btn-default" onclick="showTestNotify()") Send a test notification
 							
-							
-							
+							h3 Text Message Notifications
+							p Enter your Phone Carrier and Phone Number to recieve a text message daily with the homework you have due the next day.
+							select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select")
+								option(value="")
+						
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
 							h3 Password
 							p

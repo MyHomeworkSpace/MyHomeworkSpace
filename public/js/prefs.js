@@ -1,5 +1,8 @@
 window.prefs = {};
 
+//sms
+$(".chosen-select").chosen()
+
 window.prefs.openModal = function(feature) {
 	$("#prefs-feature-name").text(window.utils.getLongNameForFeature(feature));
 	$(".prefs-modal-body").addClass("hidden");
