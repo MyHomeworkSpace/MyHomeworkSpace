@@ -42,11 +42,11 @@ var carriers = {
     "Qwest" : "@qwestmp.com",
     "Rogers AT&T Wireless" : "@pcs.rogers.com",
     "Rogers Canada" : "@pcs.rogers.com",
-    "Satellink" : "10digitpagernumber.pageme@satellink.net",
+    "Satellink" : ".pageme@satellink.net",
     "Southwestern Bell" : "@email.swbw.com",
     "Sprint" : "@messaging.sprintpcs.com",
     "Sumcom" : "@tms.suncom.com",
-    "Surewest Communicaitons" : "@mobile.surewest.com",
+    "Surewest Communications" : "@mobile.surewest.com",
     "T-Mobile" : "@tmomail.net",
     "Telus" : "@msg.telus.com",
     "Tracfone" : "@txt.att.net",
@@ -55,14 +55,11 @@ var carriers = {
     "US Cellular" : "@email.uscc.net",
     "US West" : "@uswestdatamail.com",
     "Solo Mobile" : "@txt.bell.ca",
-    "Sprint" : "@messaging.sprintpcs.com",
-    "Sumcom" : "@tms.suncom.com",
-    "Surewest Communicaitons" : "@mobile.surewest.com",
     "Verizon" : "@vtext.com",
     "Virgin Mobile" : "@vmobl.com",
     "Virgin Mobile Canada" : "@vmobile.ca",
     "West Central Wireless" : "@sms.wcc.net",
-    "Western Wireless" : "@cellularonewest.com",
-}
+    "Western Wireless" : "@cellularonewest.com"
+};
 
 module.exports = carriers;
