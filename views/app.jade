@@ -67,17 +67,6 @@ html
 		script(type="text/javascript", src="#{staticPath}/js/prefs.js")
 		script(type="text/javascript", src="#{staticPath}/js/notify.js")
 		script(type="text/javascript", src="#{staticPath}/js/notifications.js")
-		
-		script(id="tawk-script").
-			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-			(function(){
-				var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-				s1.async=true;
-				s1.src='https://embed.tawk.to/56c067a4b87fedbc09c35a3f/default';
-				s1.charset='UTF-8';
-				s1.setAttribute('crossorigin','*');
-				s0.parentNode.insertBefore(s1,s0);
-			})();
 
 		script(type="text/javascript").
 			var _paq = _paq || [];
@@ -658,11 +647,6 @@ html
 							
 							input(type="checkbox", id="prefs-layout-topTabs")
 							label(for="prefs-layout-topTabs") Use an alternate tab layout (reload the page to see changes)
-							
-							br
-
-							input(type="checkbox", id="prefs-layout-hideTawk")
-							label(for="prefs-layout-hideTawk") Hide the live chat widget (reload the page to see changes)
 							
 							h3 Theme color
 							p Here, you can change the color used for the MyHomeworkSpace navigation menus.
