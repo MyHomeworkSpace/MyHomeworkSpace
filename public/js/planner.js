@@ -94,7 +94,6 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 							}, function() {
 								$(".subjectRow[data-subjectIndex=" + subjectIndex + "]").attr("data-subjectName", inputValue);
 								$(".subjectRow[data-subjectIndex=" + subjectIndex + "] .subjectCell span").text(inputValue);
-								window.location.reload();
 							});
 						});
 					});
