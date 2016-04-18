@@ -1,7 +1,5 @@
 window.prefs = {};
 
-//sms
-$(".chosen-select").chosen()
 
 window.prefs.openModal = function(feature) {
 	$("#prefs-feature-name").text(window.utils.getLongNameForFeature(feature));
@@ -60,6 +58,9 @@ window.prefs.getJSONPref = function(name, callback) {
 };
 
 window.api.ready(function() {
+	
+	$(".carrier-select").chosen()
+	
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
 		setPage($("#prefs-modal").attr("data-feature"));
