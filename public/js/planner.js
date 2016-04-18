@@ -30,7 +30,9 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 		$row.attr("data-subjectIndex", subjectIndex);
 
 		var $subjectCell = $('<td class="subjectCell"></td>');
-			$subjectCell.text(subjectName);
+			var $name = $("<span></span>");
+				$name.text(subjectName);
+			$subjectCell.append($name);
 
 			var $controls = $('<div class="subjectControls"></div>');
 				var $move = $('<button class="btn btn-xs btn-default planner-subject-handle"><i class="fa fa-arrows"></i></button>');
@@ -90,6 +92,8 @@ window.planner.createSubjectRow = function(subjectName, subjectIndex) {
 								sectionIndex: subjectIndex,
 								newName: inputValue
 							}, function() {
+								$(".subjectRow[data-subjectIndex=" + subjectIndex + "]").attr("data-subjectName", inputValue);
+								$(".subjectRow[data-subjectIndex=" + subjectIndex + "] .subjectCell span").text(inputValue);
 								window.location.reload();
 							});
 						});
