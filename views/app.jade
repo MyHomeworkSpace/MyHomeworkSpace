@@ -602,6 +602,8 @@ html
 						li(role="presentation", class="active")
 							a(href="#prefs-profile", role="tab", data-toggle="tab") General
 						li(role="presentation")
+							a(href="#prefs-notifications", role="tab", data-toggle="tab") Notifications
+						li(role="presentation")
 							a(href="#prefs-security", role="tab", data-toggle="tab") Security
 						li(role="presentation")
 							a(href="#prefs-layout", role="tab", data-toggle="tab") Layout
@@ -618,6 +620,7 @@ html
 							h3 Email address: 
 							p= user.email
 							
+						div(role="tabpanel", class="tab-pane", id="prefs-notifications")
 							h3 Push Notifications
 							p Push notifications will come soon, but you can test your browser's compatibility now.
 							button(id="activateNotifications", class="btn btn-primary") Activate notifications
