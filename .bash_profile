@@ -1,6 +1,0 @@
-alias add.="git add ."
-alias commit="git commit -S -m \""
-alias status="git status"
-echo  -e "\033[91mThis terminal has been hexed.\033[0m"
-export PS1="\033[36mHEX!!! ▶ \033[32m"
-export PS2="\033[91mHEX!!! ▷ \033[32m"
