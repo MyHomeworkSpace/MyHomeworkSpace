@@ -7,7 +7,7 @@
 3. Download the latest [stable](https://github.com/MyHomeworkSpace/MyHomeworkSpace/archive/stable.zip) or [staging](https://github.com/MyHomeworkSpace/MyHomeworkSpace/blob/master/.github/downloadStaging.md) release of MyHomeworkSpace.
 
 ##Changing Files to Suit your Needs
-TODO: WRITE THIS
+You may change any files that you would like to as long as you include a copy of our [license](license.md).
 
 ##Running the server
 TODO: WRITE THIS
