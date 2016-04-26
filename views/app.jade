@@ -5,6 +5,14 @@ html
 	head
 		title= title
 		
+		script(type='application/ld+json').
+			  {
+			  "@context" : "http://schema.org",
+			  "@type" : "Organization",
+			  "url" : "http://myhomework.space",
+			  "logo": "https://raw.githubusercontent.com/MyHomeworkSpace/MyHomeworkSpace/master/public/images/icon128.png"
+			  }
+		
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		<!--[if lt ie9]><meta http-equiv='refresh', content="0;URL=http://myhomeworkspace.github.io/NotSupported/"><![endif]-->
 		
