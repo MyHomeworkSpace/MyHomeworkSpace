@@ -2,10 +2,10 @@ module.exports = {
 	basePath: "/",
 	staticPath: "/static",
 	dbConnection: {
-		host     : '192.168.0.20',
-		user     : 'planhub_test',
-		password : 'planhub_test',
-		database : 'planhub_test'},
+		host     : 'localhost',
+		user     : 'myhomeworkspace',
+		password : 'myhomeworkspace',
+		database : 'myhomeworkspace'},
 	emails: {
 		enabled: false,
 		from: "Misconfigured MyHomeworkSpace <misconfigured@misconfigured.invalid>",
