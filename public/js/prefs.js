@@ -1,5 +1,19 @@
 window.prefs = {};
 
+function updatePhone(){
+	var phonenumber = document.getElementById('phonenumberinput').value
+	var phonecarrier = document.getElementById('carrier-select').value
+	window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(r) { console.log(r); });
+	window.api.post("sms/sendVerify", {}, function(r) { console.log(r); });
+	swal({
+		title: "Check your phone!",
+		text: "We just sent you a verification code! Please enter it below.",
+		type: "input",
+		showCancelButton: true,
+		closeOnConfirm: true,
+		animation: "slide-from-top",
+		inputPlaceholder: "Verification Code"
+	});
 
 window.prefs.openModal = function(feature) {
 	$("#prefs-feature-name").text(window.utils.getLongNameForFeature(feature));
@@ -58,9 +72,23 @@ window.prefs.getJSONPref = function(name, callback) {
 };
 
 window.api.ready(function() {
-	
+
 	$(".carrier-select").chosen()
-	
+
+	function phonenumber(inputtxt)
+	{
+	  var phoneno = /^\d{10}$/;
+	  if((inputtxt.value.match(phoneno))
+	        {
+	      return true;
+	        }
+	      else
+	        {
+	        alert("message");
+	        return false;
+	        }
+	}
+
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
 		setPage($("#prefs-modal").attr("data-feature"));
