@@ -7,8 +7,8 @@ var emailTemplates = {
 	smsCode: {
 		subject: "",
 		// this is an SMS message, so please keep `html` and `text` the *same*
-		html: "(verify_code) is your MyHomeworkSpace verification code. You should make me a contact so you don't think some random person is texting you about your homework!",
-		text: "(verify_code) is your MyHomeworkSpace verification code. You should make me a contact so you don't think some random person is texting you about your homework!"
+		html: "Hi! (verify_code) is your MyHomeworkSpace verification code.",
+		text: "Hi! (verify_code) is your MyHomeworkSpace verification code."
 	},
 	smsNotification1: {
 		subject: "",
