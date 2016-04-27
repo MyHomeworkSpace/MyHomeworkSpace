@@ -636,14 +636,15 @@ html
 							
 							h3 Text Message Notifications
 							p Enter your Phone Carrier and Phone Number to recieve a text message daily with the homework you have due the next day.
-							p Phone Number
 							.form-group
-								label.control-label(for='phonenumberinput') Small input
+								label.control-label(for='phonenumberinput') Phone Number
+								br
 								input.form-control.input-sm(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput")
 							br
 							br
 							.form-group
-								label.control-label(for='phonenumberinput') Small input
+								label.control-label(for='carrier-select') Carrier
+								br
 								select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select" style="width:250px !important")
 									each val, index in carriers
 										option= index 
