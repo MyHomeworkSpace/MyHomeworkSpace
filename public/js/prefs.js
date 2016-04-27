@@ -14,14 +14,11 @@ function updatePhone(){
 	}
 }
 
-function verifyphone(inputtxt){
+function verifyphone(inputtxt) {
 	var phoneno = /^\d{10}$/;
-	if((inputtxt.value.match(phoneno))
-	{
+	if (inputtxt.value.match(phoneno)) {
 		return true;
-	}
-	else
-	{
+	} else {
 		alert("message");
 		return false;
 	}
