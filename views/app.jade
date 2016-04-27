@@ -637,13 +637,16 @@ html
 							h3 Text Message Notifications
 							p Enter your Phone Carrier and Phone Number to recieve a text message daily with the homework you have due the next day.
 							p Phone Number
-							input(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput")
+							.form-group
+  							label.control-label(for='phonenumberinput') Small input
+  							input#inputSmall.form-control.input-sm(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput")
 							br
 							br
-							p Carrier
-							select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select" style="width:250px !important")
-								each val, index in carriers
-									option= index 
+							.form-group
+								label.control-label(for='phonenumberinput') Small input
+								select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select" style="width:250px !important")
+									each val, index in carriers
+										option= index 
 							br
 							br
 							button(class="btn btn-primary" onclick="updatePhone();") Submit!
@@ -772,10 +775,7 @@ html
 					
 				div(id="smsverify", class="page")
 					h1 Enable SMS
-					h4 Check your phone! We just sent a verification code to the 
-					//	span=user.carrier
-					//	| phone at
-					//	span=user.number
+					h4 Check your phone! We just sent you a verificaton code. Please enter it below.
 					//	| .
 					button(onclick='setPage("prefs")') Change Number/Carrier
 					button() Resend Code

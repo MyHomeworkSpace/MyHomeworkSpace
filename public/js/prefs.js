@@ -14,6 +14,14 @@ function updatePhone(){
 	}
 }
 
+function sendVerify(){
+	window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(phoneData) {
+		window.api.post("sms/sendVerify", {}, function(verificationData) {
+			setPage("smsverify");
+		});
+	});
+}
+
 function verifyphone(inputtxt) {
 	var phoneno = /^\d{10}$/;
 	return inputtxt.match(phoneno);
