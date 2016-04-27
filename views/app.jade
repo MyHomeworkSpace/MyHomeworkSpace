@@ -636,11 +636,10 @@ html
 							
 							h3 Text Message Notifications
 							p Enter your Phone Carrier and Phone Number to recieve a text message daily with the homework you have due the next day.
+							input(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput")
 							select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select")
 								each val, index in carriers
 									option= index 
-							
-							input(type="text" name="phonenumber" id="phonenumberinput")
 							
 							button(class="btn btn-primary" onclick="updatePhone();") Submit!
 						
