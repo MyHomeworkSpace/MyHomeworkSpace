@@ -77,7 +77,7 @@ window.prefs.getJSONPref = function(name, callback) {
 
 window.api.ready(function() {
 
-	$(".carrier-select").chosen()
+	$(".carrier-select").chosen({width: '300'})
 
 
 	$("#prefs-done").click(function() {
