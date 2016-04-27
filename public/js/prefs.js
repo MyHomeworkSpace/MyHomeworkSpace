@@ -16,12 +16,7 @@ function updatePhone(){
 
 function verifyphone(inputtxt) {
 	var phoneno = /^\d{10}$/;
-	if (inputtxt.value.match(phoneno)) {
-		return true;
-	} else {
-		alert("message");
-		return false;
-	}
+	return inputtxt.match(phoneno);
 }
 
 window.prefs.openModal = function(feature) {
