@@ -38,6 +38,7 @@ var carriers = {
     "OnlineBeep" : "@onlinebeep.net",
     "PCS One" : "@pcsone.net",
     "President's Choice" : "@txt.bell.ca",
+    "Project Fi" : "@msg.fi.google.com",
     "Public Service Cellular" : "@sms.pscel.com",
     "Qwest" : "@qwestmp.com",
     "Rogers AT&T Wireless" : "@pcs.rogers.com",
