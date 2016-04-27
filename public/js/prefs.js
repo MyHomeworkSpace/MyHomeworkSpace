@@ -3,17 +3,26 @@ window.prefs = {};
 function updatePhone(){
 	var phonenumber = document.getElementById('phonenumberinput').value
 	var phonecarrier = document.getElementById('carrier-select').value
-	window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(r) { console.log(r); });
-	window.api.post("sms/sendVerify", {}, function(r) { console.log(r); });
-	swal({
-		title: "Check your phone!",
-		text: "We just sent you a verification code! Please enter it below.",
-		type: "input",
-		showCancelButton: true,
-		closeOnConfirm: true,
-		animation: "slide-from-top",
-		inputPlaceholder: "Verification Code"
-	});
+	if(verifyphone(phonenumber)=== true){
+		window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(r) { console.log(r); });
+		window.api.post("sms/sendVerify", {}, function(r) { console.log(r); });
+		setPage("smsverify")
+	} else {
+		sweetAlert("Oops...", "It seems like that phone number is not in the correct format. It should be in the format of \"1234567890\"", "error");
+	}
+}
+
+function verifyphone(inputtxt){
+	var phoneno = /^\d{10}$/;
+	if((inputtxt.value.match(phoneno))
+				{
+			return true;
+				}
+			else
+				{
+				alert("message");
+				return false;
+				}
 }
 
 window.prefs.openModal = function(feature) {
@@ -76,19 +85,6 @@ window.api.ready(function() {
 
 	$(".carrier-select").chosen()
 
-	function phonenumber(inputtxt)
-	{
-	  var phoneno = /^\d{10}$/;
-	  if((inputtxt.value.match(phoneno))
-	        {
-	      return true;
-	        }
-	      else
-	        {
-	        alert("message");
-	        return false;
-	        }
-	}
 
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
