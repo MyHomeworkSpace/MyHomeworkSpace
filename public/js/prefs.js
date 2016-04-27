@@ -1,12 +1,14 @@
 window.prefs = {};
 
 function updatePhone(){
-	var phonenumber = document.getElementById('phonenumberinput').value
-	var phonecarrier = document.getElementById('carrier-select').value
-	if(verifyphone(phonenumber)=== true){
-		window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(r) { console.log(r); });
-		window.api.post("sms/sendVerify", {}, function(r) { console.log(r); });
-		setPage("smsverify")
+	var phonenumber = document.getElementById('phonenumberinput').value;
+	var phonecarrier = document.getElementById('carrier-select').value;
+	if (verifyphone(phonenumber)) {
+		window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(phoneData) {
+			window.api.post("sms/sendVerify", {}, function(verificationData) {
+				setPage("smsverify");
+			});
+		});
 	} else {
 		sweetAlert("Oops...", "It seems like that phone number is not in the correct format. It should be in the format of \"1234567890\"", "error");
 	}
@@ -15,14 +17,14 @@ function updatePhone(){
 function verifyphone(inputtxt){
 	var phoneno = /^\d{10}$/;
 	if((inputtxt.value.match(phoneno))
-				{
-			return true;
-				}
-			else
-				{
-				alert("message");
-				return false;
-				}
+	{
+		return true;
+	}
+	else
+	{
+		alert("message");
+		return false;
+	}
 }
 
 window.prefs.openModal = function(feature) {
