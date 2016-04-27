@@ -23,3 +23,7 @@
 .selBox.selected {
 	border: solid 3px yellow;
 }
+
+.chosen-container {
+	min-width: 220px !important;
+}
