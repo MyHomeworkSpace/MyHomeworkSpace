@@ -14,6 +14,7 @@ function updatePhone(){
 		animation: "slide-from-top",
 		inputPlaceholder: "Verification Code"
 	});
+}
 
 window.prefs.openModal = function(feature) {
 	$("#prefs-feature-name").text(window.utils.getLongNameForFeature(feature));
