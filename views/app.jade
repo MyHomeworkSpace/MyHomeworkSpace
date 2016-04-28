@@ -637,14 +637,14 @@ html
 							h3 Text Message Notifications
 							p Enter your Phone Carrier and Phone Number to recieve a text message daily with the homework you have due the next day.
 							br
-							p Phone Number
-							input.form-control.input-sm(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput" style="width 200px")
-							br
-							br
 							p Carrier
 							select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select" style="width:250px !important")
 								each val, index in carriers
 										option= index 
+							br
+							br
+							p Phone Number
+							input.form-control.input-sm(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput" style="width 200px")
 							br
 							br
 							button(class="btn btn-primary" onclick="updatePhone();") Submit!
