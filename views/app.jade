@@ -611,6 +611,7 @@ html
 							a(href="#prefs-profile", role="tab", data-toggle="tab") General
 						li(role="presentation")
 							a(href="#prefs-notifications", role="tab", data-toggle="tab") Notifications
+								sup(style="color: #00c3c3" ) Beta
 						li(role="presentation")
 							a(href="#prefs-security", role="tab", data-toggle="tab") Security
 						li(role="presentation")
@@ -627,12 +628,12 @@ html
 							input(type="text", id="usr-name" value="#{user.name}", disabled="disabled")
 							h3 Email address: 
 							p= user.email
-							
-						div(role="tabpanel", class="tab-pane", id="prefs-notifications")
-							h3 Push Notifications
-							p Push notifications will come soon, but you can test your browser's compatibility now.
-							button(id="activateNotifications", class="btn btn-primary") Activate notifications
-							button(class="btn btn-default" onclick="showTestNotify()") Send a test notification
+						if user.lever > 0	
+							div(role="tabpanel", class="tab-pane", id="prefs-notifications")
+								h3 Push Notifications
+								p Push notifications will come soon, but you can test your browser's compatibility now.
+								button(id="activateNotifications", class="btn btn-primary") Activate notifications
+								button(class="btn btn-default" onclick="showTestNotify()") Send a test notification
 							
 							h3 Text Message Notifications
 								sup(style="color: #00c3c3" ) Beta
@@ -645,10 +646,13 @@ html
 							br
 							br
 							p Phone Number
-							input.form-control.input-sm(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput" style="width 200px")
+							input(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput" style="width 200px")
 							br
 							br
 							button(class="btn btn-primary" onclick="updatePhone();") Submit!
+							br
+							br
+							p We are adding more notification options soon!
 						
 						div(role="tabpanel", class="tab-pane", id="prefs-security")
 							h3 Password
