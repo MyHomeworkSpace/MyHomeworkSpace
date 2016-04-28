@@ -10,6 +10,18 @@ var emailTemplates = {
 		html: "Hi! (verify_code) is your MyHomeworkSpace verification code.",
 		text: "Hi! (verify_code) is your MyHomeworkSpace verification code."
 	},
+	smsDaily: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "Here is your homework due tommorrow, as you requested! 😀 ",
+		text: "Here is your homework due tommorrow, as you requested! 😀 "
+	},
+	smsAssignment: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "(assignment_type) in (subject): (assignment_name)",
+		text: "(assignment_type) in (subject): (assignment_name)"
+	},
 	smsNotification1: {
 		subject: "",
 		// this is an SMS message, so please keep `html` and `text` the *same*
