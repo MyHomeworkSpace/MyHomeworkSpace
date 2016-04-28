@@ -108,4 +108,50 @@ router.post("/sendVerify", global.apiCall, global.requireUser, global.getUserRec
 	});
 });
 
+
+router.post("/checkVerify", global.apiCall, global.requireUser, global.getUserRecord, function(req, res, next) {
+	if (req.body.code == undefined) {
+		res.json({
+			status: "error",
+			error: "Missing code parameter!"
+		});
+		return;
+	}
+	knex("phones").select("*").where({
+		userId: res.locals.user.id
+	}).then(function(selects) {
+		if (selects.length == 0) {
+			res.json({
+				status: "error",
+				error: "No phone on this account!"
+			});
+			return;
+		}
+		if (selects[0].verified == 1) {
+			res.json({
+				status: "error",
+				error: "Already verified!"
+			});
+			return;
+		}
+		if (selects[0].verifyCode !== req.body.code) {
+			res.json({
+				status: "error",
+				error: "Incorrect verification code!"
+			});
+			return;
+		}
+		knex("phones").update({
+			verified: 1
+		}).where({
+			userId: res.locals.user.id
+		}).then(function() {
+			res.json({
+				status: "ok"
+			});
+			return;
+		});
+	});
+});
+
 module.exports = router;
