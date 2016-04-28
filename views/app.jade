@@ -628,13 +628,14 @@ html
 							input(type="text", id="usr-name" value="#{user.name}", disabled="disabled")
 							h3 Email address: 
 							p= user.email
-						if user.level > 0	
-							div(role="tabpanel", class="tab-pane", id="prefs-notifications")
+						
+						div(role="tabpanel", class="tab-pane", id="prefs-notifications")
+							if user.level > 1
 								h3 Push Notifications
 								p Push notifications will come soon, but you can test your browser's compatibility now.
 								button(id="activateNotifications", class="btn btn-primary") Activate notifications
 								button(class="btn btn-default" onclick="showTestNotify()") Send a test notification
-							
+								
 							h3 Text Message Notifications
 								sup(style="color: #00c3c3" ) Beta
 							p Enter your Phone Carrier and Phone Number to recieve a text message daily with the homework you have due the next day.
