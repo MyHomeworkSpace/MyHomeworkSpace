@@ -142,7 +142,8 @@ router.post("/checkVerify", global.apiCall, global.requireUser, global.getUserRe
 			return;
 		}
 		knex("phones").update({
-			verified: 1
+			verified: 1,
+			lastVerify: knex.fn.now()
 		}).where({
 			userId: res.locals.user.id
 		}).then(function() {
