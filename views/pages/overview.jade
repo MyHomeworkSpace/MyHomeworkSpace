@@ -12,5 +12,22 @@ block content
 		span(class="overview-date") a day
 		span .
 	h4#howmuchhw
-	div(id="announcementAlert", class="alert alert-info alert-overview", role='alert', width='90%', style="display: none")
-		ul#announcementList
+	div(id="announcementAlert", class="panel panel-warning", role='alert', width='90%', style="display: none")
+		.pannel-heading
+			h3.panel-title Announcement
+		.pannel-body
+			ul#announcementList
+		
+	.panel.panel-primary(width="50%")
+  	.panel-heading
+    	h3.panel-title= user.name
+  	.panel-body
+    	h5 Your Profile
+			p= user.username
+			p= user.email
+			
+			div(id="basePath", class="hidden")= basePath
+			div(id="staticPath", class="hidden")= staticPath
+			div(id="username", class="hidden")= user.username
+			div(id="name", class="hidden")= user.name
+			div(id="email", class="hidden")= user.email
