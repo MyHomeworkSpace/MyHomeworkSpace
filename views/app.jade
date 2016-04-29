@@ -637,14 +637,13 @@ html
 								button(class="btn btn-default" onclick="showTestNotify()") Send a test notification
 								
 							h3 Text Message Notifications
-								sup(style="color: #00c3c3" ) Beta
-							p Enter your Phone Carrier and Phone Number to recieve a text message daily with the homework you have due the next day.
+								sup(style="color: #00c3c3") Beta
+							p Enter your Phone Carrier and Phone Number to receive a text message daily with the homework you have due the next day.
 							br
 							p Carrier
 							select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select")
 								each val, index in carriers
 										option= index 
-							br
 							br
 							p Phone Number
 							input(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput" style="width 200px")
@@ -779,10 +778,13 @@ html
 					
 				div(id="smsverify", class="page")
 					h1 Enable SMS
-					h4 Check your phone! We just sent you a verificaton code. Please enter it below.
-					//	| .
-					button(onclick='setPage("prefs")') Change Number/Carrier
-					button() Resend Code
+					h4 Check your phone! We just sent you a verification code. Please enter it below.
+					
+					h5(id="sms-verify-error") 
+					input(type="text", id="sms-verify-code", placeholder="Enter code", class="form-control")
+					
+					button(id="sms-submit-verify" class="btn btn-primary") Verify
+					button(onclick='setPage("prefs")' class="btn btn-default") Back
 				
 				div(id="groups", class="page")
 					h1 Join Groups to Receive Group Planner Events
