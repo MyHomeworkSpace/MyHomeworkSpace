@@ -24,10 +24,11 @@ block content
 	
 	if user.level > 0
 		.panel.panel-info
-			.panel-heading Admin
-		.panel-body
-			p
-				a(id="userNumber" onclick="setPage(\"admin-users\")") Loading user count...
-				if user.canFeedback > 1
-					a(onclick="setPage(\"admin-feedback\")") Feedback
-			
+			.panel-heading 
+				h3(class="panel-title") Admin
+			.panel-body
+				p
+					a(id="userNumber" onclick="setPage(\"admin-users\")") Loading user count...
+					if user.canFeedback > 1
+						a(onclick="setPage(\"admin-feedback\")") Feedback
+				
