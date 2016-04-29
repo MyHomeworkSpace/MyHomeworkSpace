@@ -21,3 +21,13 @@ block content
 		.panel-heading
 			h3 Homework due tomorrow
 		.panel-body(class="hwView-tomorrow hwView-list")
+	
+	if user.level > 0
+		.panel.panel-info
+			.panel-heading Admin
+		.panel-body
+			p
+				a(id="userNumber" onclick="setPage(\"admin-users\")") Loading user count...
+				if user.canFeedback > 1
+					a(onclick="setPage(\"admin-feedback\")") Feedback
+			
