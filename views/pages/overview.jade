@@ -19,8 +19,6 @@ block content
 			ul#announcementList
 	.panel.panel-primary(style="width: 50%")
 		.panel-heading
-			h3.panel-title= user.name
-		.panel-body
-			h5 Your Profile
-				p= user.username
-				p= user.email
+			h3.panel-title Homework due 
+				span(class="tomorrow-or-monday")
+		.panel-body(class="hwView-tomorrow hwView-list")
