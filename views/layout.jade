@@ -19,7 +19,15 @@ html
 		script(src="#{staticPath}/js/coursesLib.js")
 		script(src="#{staticPath}/js/sweetalert.min.js")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
-
+		
+		script(type='application/ld+json').
+				{
+				"@context" : "http://schema.org",
+				"@type" : "Organization",
+				"url" : "http://myhomework.space",
+				"logo": "https://raw.githubusercontent.com/MyHomeworkSpace/MyHomeworkSpace/master/public/images/icon128.png"
+				}
+		
 		block scripts
 
 		block styles
