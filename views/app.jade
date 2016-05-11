@@ -19,6 +19,7 @@ html
 		link(href="#{staticPath}/css/sweetalert.css", rel="stylesheet")
 		link(href="#{staticPath}/css/introjs.css", rel="stylesheet")
 		link(href="#{staticPath}/css/fullcalendar.min.css", rel="stylesheet")
+		link(href="#{staticPath}/contextmenu/jquery.contextMenu.min.css", rel="stylesheet")
 		
 		link(href="#{staticPath}/css/fullcalendar.print.css", rel="stylesheet", media="print")
 		
@@ -43,15 +44,16 @@ html
 		link(rel="stylesheet", href="#{staticPath}/css/planner.css")
 		link(rel="stylesheet", href="#{staticPath}/css/hwView.css")
 		link(rel="stylesheet", href="#{staticPath}/css/myDay.css")
-
 		link(rel="stylesheet", href="#{staticPath}/css/prefs.css")
 
 		script(type="text/javascript", src="#{staticPath}/js/moment.min.js")
 		script(type="text/javascript", src="#{staticPath}/js/time-polyfill.min.js")
 		script(type="text/javascript", src="#{global.staticPath}/chosen/chosen.jquery.min.js")
+		script(type="text/javascript", src="#{staticPath}/contextmenu/jquery.ui.position.min.js")
+		script(type="text/javascript", src="#{staticPath}/contextmenu/jquery.contextMenu.min.js")
 
 		script(src="#{staticPath}/js/fullcalendar.min.js") // down here because it requires moment
-
+		
 		script(type="text/javascript", src="#{staticPath}/js/utils.js")
 		script(type="text/javascript", src="#{staticPath}/js/page.js")
 
@@ -63,6 +65,7 @@ html
 		script(type="text/javascript", src="#{staticPath}/js/labs.js")
 		script(type="text/javascript", src="#{staticPath}/js/graphs.js")
 		script(type="text/javascript", src="#{staticPath}/js/groups.js")
+		script(type="text/javascript", src="#{staticPath}/contextmenu/contextmenu.js")
 			
 		script(type="text/javascript", src="#{staticPath}/js/prefs.js")
 		
@@ -93,7 +96,7 @@ html
 		noscript
 			p
 				img(src="https://piwik.coursesplus.tk/piwik.php?idsite=3" style="border:0;" alt="")
-	body
+	body.contextMenu
 		div(id="basePath", class="hidden")= basePath
 		div(id="staticPath", class="hidden")= staticPath
 		div(id="username", class="hidden")= user.username
