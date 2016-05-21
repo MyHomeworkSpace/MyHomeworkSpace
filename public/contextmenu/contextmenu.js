@@ -1,3 +1,5 @@
+$("body").contextMenu(true);
+
 $(function(){
     $.contextMenu({
         selector: '.contextMenu',
