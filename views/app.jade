@@ -76,22 +76,7 @@ html
 		script(type="text/javascript", src="#{staticPath}/js/notify.js")
 		script(type="text/javascript", src="#{staticPath}/js/notifications.js")
 
-		script(type="text/javascript").
-			var _paq = _paq || [];
-			_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-			_paq.push(["setCookieDomain", "*.myhomework.space"]);
-			_paq.push(['trackPageView']);
-			_paq.push(['enableLinkTracking']);
-			(function() {
-				var u="//piwik.coursesplus.tk/";
-				_paq.push(['setTrackerUrl', u+'piwik.php']);
-				_paq.push(['setSiteId', 3]);
-				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-				g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-			})();
-		noscript
-			p
-				img(src="https://piwik.coursesplus.tk/piwik.php?idsite=3" style="border:0;" alt="")
+		include includes/piwik.jade
 	body
 		div(id="basePath", class="hidden")= basePath
 		div(id="staticPath", class="hidden")= staticPath
