@@ -2,7 +2,7 @@ $("body").contextMenu(true);
 
 $(function(){
     $.contextMenu({
-        selector: '.contextMenu',
+        selector: 'contextMenu',
         items: {
             "edit": {
                 name: "Edit",
