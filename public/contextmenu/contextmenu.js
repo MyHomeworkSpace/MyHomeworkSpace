@@ -19,7 +19,7 @@ $(function(){
                 swal("Cut, Copy, and Paste in MyHomeworkSpace", "Due to some browser constraints, you must use keyboard shortcuts to cut, copy, and paste in MyHomeworkSpace. To cut, highlight the text you want to cut, and press Control/Command + X. To copy, higlight the text you want to copy, and press Control/Command + C. To paste, place your cursor where you would like to paste, and press Control/Command + V. Thank you!", "warning");
               }
             },
-            "copy": {
+            copy: {
               name: "Copy",,
               callback: function(key, options) {
                 swal("Cut, Copy, and Paste in MyHomeworkSpace", "Due to some browser constraints, you must use keyboard shortcuts to cut, copy, and paste in MyHomeworkSpace. To cut, highlight the text you want to cut, and press Control/Command + X. To copy, higlight the text you want to copy, and press Control/Command + C. To paste, place your cursor where you would like to paste, and press Control/Command + V. Thank you!", "warning");
