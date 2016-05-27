@@ -13,11 +13,11 @@ context.attach('html', [
     {text: 'Paste', action: function(e){
         cutcopypaste();
     }},
-		{divider: true},
+    {divider: true},
     {text: 'Print', action: function(e){
         window.print();
     }},
-    {divide: true}
+    {divide: true},
     {text: 'Overview', action: function(e){
         setPage("overview")
     }},
@@ -30,4 +30,4 @@ context.attach('html', [
     {text: 'Prefrences', action: function(e){
         setPage("prefs")
     }},
-	]);
+]);
