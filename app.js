@@ -128,18 +128,14 @@ global.requireEditAnnouncements = function(req, res, next) {
 
 global.apiCall = function(req, res, next) {
 	res.locals.apiCall = true;
-	knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).select("*").then(function(rst) {
-		if (rst.length > 0) {
-			knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).del().then(function() {
-				next();
-			});
-		} else {
-			res.json({
-				status: "error",
-				error: "The nonce is invalid."
-			});
-		}
-	});
+	if (req.param("nonce") && req.session.nonce && req.param("nonce") === req.session.nonce) {
+		next();
+	} else {
+		res.json({
+			status: "error",
+			error: "The nonce is invalid."
+		});
+	}
 };
 
 global.getOptionalUserRecord = function(req, res, next) {
@@ -199,6 +195,7 @@ var api_admin = require('./routes/api_admin');
 var api_groups = require('./routes/api_groups');
 var api_connected = require('./routes/api_connected');
 var api_pageHandler = require('./routes/api_pageHandler');
+var api_sms = require('./routes/api_sms');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -218,9 +215,11 @@ var sess = {
 	cookie: {}
 };
 
+/*
 if (global.env == "production") {
 	sess.cookie.secure = true; // serve secure cookies
 }
+*/
 
 app.use(session(sess));
 
@@ -250,6 +249,7 @@ app.use(basePath + '/api/v1/admin', api_admin);
 app.use(basePath + '/api/v1/groups', api_groups);
 app.use(basePath + '/api/v1/connected', api_connected);
 app.use(basePath + '/api/v1/pageHandler', api_pageHandler);
+app.use(basePath + '/api/v1/sms', api_sms);
 
 // catch 404 and forward to error handler
 app.use(global.getOptionalUserRecord); // get record to show logged in on 404

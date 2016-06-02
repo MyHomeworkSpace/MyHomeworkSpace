@@ -3,6 +3,36 @@ var emailTemplates = {
 		subject: "Verify your email",
 		html: '<h1>MyHomeworkSpace</h1><h2>Verify your email</h2><p>TODO: some text here I guess</p><a href="(verify_url)">Click here to verify your email</a><p>If that didn\'t work, try copy-pasting the following URL into a new browser window: (verify_url)</p>',
 		text: 'MyHomeworkSpace\nVerify your email\nTODO: some text here I guess\nCopy-paste the following URL into a new browser window: (verify_url)'
+	},
+	smsCode: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "Hi! (verify_code) is your MyHomeworkSpace verification code.",
+		text: "Hi! (verify_code) is your MyHomeworkSpace verification code."
+	},
+	smsDaily: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "Here is your homework due tommorrow, as you requested! 😀 ",
+		text: "Here is your homework due tommorrow, as you requested! 😀 "
+	},
+	smsAssignment: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "(assignment_type) in (subject): (assignment_name)",
+		text: "(assignment_type) in (subject): (assignment_name)"
+	},
+	smsNotification1: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "You asked me to remind you about your (assignment_type) in (subject_name), so here is your reminder:",
+		text: "You asked me to remind you about your (assignment_type) in (subject_name), so here is your reminder:"
+	},
+	smsNotification2: {
+		subject: "",
+		// this is an SMS message, so please keep `html` and `text` the *same*
+		html: "(assignment_name) is due (due_date)",
+		text: "(assignment_name) is due (due_date)"
 	}
 };
 

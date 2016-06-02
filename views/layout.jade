@@ -19,7 +19,15 @@ html
 		script(src="#{staticPath}/js/coursesLib.js")
 		script(src="#{staticPath}/js/sweetalert.min.js")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==", crossorigin="anonymous")
-
+		
+		script(type='application/ld+json').
+				{
+				"@context" : "http://schema.org",
+				"@type" : "Organization",
+				"url" : "http://myhomework.space",
+				"logo": "https://raw.githubusercontent.com/MyHomeworkSpace/MyHomeworkSpace/master/public/images/icon128.png"
+				}
+		
 		block scripts
 
 		block styles
@@ -35,33 +43,7 @@ html
 				height: 300px;
 			}
 		
-		script.
-			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-			(function(){
-			var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-			s1.async=true;
-			s1.src='https://embed.tawk.to/56c067a4b87fedbc09c35a3f/1abqh0rd4';
-			s1.charset='UTF-8';
-			s1.setAttribute('crossorigin','*');
-			s0.parentNode.insertBefore(s1,s0);
-			})();
-		
-		script(type="text/javascript").
-			var _paq = _paq || [];
-			_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-			_paq.push(["setCookieDomain", "*.myhomework.space"]);
-			_paq.push(['trackPageView']);
-			_paq.push(['enableLinkTracking']);
-			(function() {
-				var u="//piwik.coursesplus.tk/";
-				_paq.push(['setTrackerUrl', u+'piwik.php']);
-				_paq.push(['setSiteId', 3]);
-				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-				g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-			})();
-		noscript
-			p
-				img(src="https://piwik.coursesplus.tk/piwik.php?idsite=3" style="border:0;" alt="")
+		include includes/piwik.jade
 	body
 		nav(class="navbar navbar-default navbar-fixed-top")
 			div(class="container-fluid")

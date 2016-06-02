@@ -1,38 +1,12 @@
 window.api = {
 	version: "v1",
-	noncePool: [],
-	noncePooling: true,
+	nonce: "",
 	callbacks: [],
 	isReady: false
 };
 
-window.api.addToNoncePool = function(callback) {
-	if (!window.api.noncePooling) {
-		return;
-	}
-	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrfPool", function(ret) {
-		// add them to the pool
-		for (var nonceIndex in ret.nonces) {
-			window.api.noncePool.push(ret.nonces[nonceIndex].nonce);
-		}
-		callback();
-	});
-};
-
 window.api.getNonce = function(callback, err) {
-	if (window.api.noncePooling) {
-		if (window.api.noncePool.length > 0) {
-			// that was easy
-			callback(window.api.noncePool.pop());
-			return;
-		} else {
-			// this will fallback to a normal request
-			// TODO: autofill the pool
-		}
-	}
-	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrf", function(ret) {
-		callback(ret.nonce);
-	});
+	callback(window.api.nonce);
 };
 
 window.api.get = function(path, done, err) {
@@ -54,8 +28,9 @@ window.api.post = function(path, data, done, err) {
 };
 
 window.api.init = function() {
-	window.api.addToNoncePool(function() {
+	$.get(window.page.getBasePath() + "/api/" + window.api.version + "/csrf", function(ret) {
 		window.api.isReady = true;
+		window.api.nonce = ret.nonce;
 		while (window.api.callbacks.length > 0) {
 			var func = window.api.callbacks.pop();
 			(func)();

@@ -65,6 +65,8 @@ router.post('/info/set', global.apiCall, global.requireUser, global.getUserRecor
 				address: req.body.address,
 				clubs: req.body.clubs,
 				schoolId: parseInt(req.body.schoolId)
+			}).where({
+				userId: res.locals.user.id
 			}).then(function() {
 				res.json({
 					status: "ok",

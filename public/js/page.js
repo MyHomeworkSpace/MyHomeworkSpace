@@ -248,17 +248,9 @@ $(document).ready(function() {
 	window.api.ready(function() {
 		console.log("Nonce pool ready!");
 
-		window.prefs.getBatch(["topTabs", "hideTawk", "themeColor"], function(prefs) {
+		window.prefs.getBatch(["topTabs", "themeColor"], function(prefs) {
 			if (prefs.topTabs == "1") {
 				$("head").append('<link href=" ' + $("#staticPath").text() + '/css/topTabs.css" rel="stylesheet" />');
-			}
-
-			if (prefs.hideTawk == "1") {
-				if (Tawk_API && Tawk_API.hideWidget) {
-					Tawk_API.hideWidget();
-				}
-				$("#tawkchat-iframe-container").remove();
-				$("#tawk-script").remove();
 			}
 
 			if (prefs.themeColor != undefined && prefs.themeColor != "") {

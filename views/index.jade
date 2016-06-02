@@ -13,6 +13,11 @@ block scripts
 		$(document).ready(function() {
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 				// we're on a phone, don't init skrollr
+				swal(
+				  'Phone',
+				  'Hey! It looks like you are using a phone or other mobile device! MyHomeworkSpace doesn\'t work that well with phones, so just please note that you might realize some issues. If you do, we would love to hear about them either by you clicking the appropriate button in the toolbar or by emailing hello@myhomework.space. Thanks!',
+				  'question'
+				)
 				return;
 			}
 			var s = skrollr.init();

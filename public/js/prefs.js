@@ -1,5 +1,32 @@
 window.prefs = {};
 
+function updatePhone(){
+	var phonenumber = document.getElementById('phonenumberinput').value;
+	var phonecarrier = document.getElementById('carrier-select').value;
+	if (verifyphone(phonenumber)) {
+		window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(phoneData) {
+			window.api.post("sms/sendVerify", {}, function(verificationData) {
+				setPage("smsverify");
+			});
+		});
+	} else {
+		sweetAlert("Oops...", "It seems like that phone number is not in the correct format. It should be in the format of \"1234567890\"", "error");
+	}
+}
+
+function sendVerify(){
+	window.api.post("sms/setPhone", {phone: phonenumber, carrier: phonecarrier}, function(phoneData) {
+		window.api.post("sms/sendVerify", {}, function(verificationData) {
+			setPage("smsverify");
+		});
+	});
+}
+
+function verifyphone(inputtxt) {
+	var phoneno = /^\d{10}$/;
+	return inputtxt.match(phoneno);
+}
+
 window.prefs.openModal = function(feature) {
 	$("#prefs-feature-name").text(window.utils.getLongNameForFeature(feature));
 	$(".prefs-modal-body").addClass("hidden");
@@ -57,6 +84,8 @@ window.prefs.getJSONPref = function(name, callback) {
 };
 
 window.api.ready(function() {
+	$(".carrier-select").chosen({width: '300'});
+
 	$("#prefs-done").click(function() {
 		$("#prefs-modal").modal("hide");
 		setPage($("#prefs-modal").attr("data-feature"));
@@ -145,7 +174,42 @@ window.api.ready(function() {
 		window.api.post("connected/schedules/connect", { username: $("#schedules-username").val(), password: $("#schedules-pw").val() }, function(resp) {
 			console.log(resp);
 		});
-	})
+	});
+
+	// sms
+	$("#sms-submit-verify").click(function() {
+		var code = $("#sms-verify-code").val();
+		if (code.length < 6) {
+			$("#sms-verify-error").text("That code is shorter than it should be! Make sure that you copied the whole code!");
+			$("#sms-verify-error").animate({ color: "red" }, 100, "swing", function() {
+				$("#sms-verify-error").animate({ color: "black" }, 100, "swing", function() {
+
+				});
+			});
+			return;
+		}
+		if (code.length > 6) {
+			$("#sms-verify-error").text("That code is longer than it should be! Make sure that you copied the whole code!");
+			$("#sms-verify-error").animate({ color: "red" }, 100, "swing", function() {
+				$("#sms-verify-error").animate({ color: "black" }, 100, "swing", function() {
+
+				});
+			});
+			return;
+		}
+		window.api.post("sms/checkVerify", {code: code}, function(response) {
+			if (response.status === "error") {
+				$("#sms-verify-error").text("That code is invalid!");
+				$("#sms-verify-error").animate({ color: "red" }, 100, "swing", function() {
+					$("#sms-verify-error").animate({ color: "black" }, 100, "swing", function() {
+
+					});
+				});
+				return;
+			}
+
+		});
+	});
 
 	// selboxes
 	$(".selBox").click(function() {

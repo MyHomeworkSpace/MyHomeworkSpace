@@ -127,7 +127,8 @@ nav {
 .loadOverlay {
 	background: rgba(0, 0, 0, 0);
 	color: white;
-	font-family: "Open Sans", sans-serif;
+	font-family: "Lato", sans-serif;
+	font-weight: 100;
 	font-size: 2em;
 	position: fixed;
 	top: 0;
@@ -281,6 +282,11 @@ nav {
 	top: -5px;
 	left: -1px;
 }
+
 .back-to-home:hover {
 	background-color: #272727;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "Lato", sans-serif;
 }
