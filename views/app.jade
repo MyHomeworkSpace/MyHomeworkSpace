@@ -27,6 +27,7 @@ html
 		link(href="#{staticPath}/css/sweetalert.css", rel="stylesheet")
 		link(href="#{staticPath}/css/introjs.css", rel="stylesheet")
 		link(href="#{staticPath}/css/fullcalendar.min.css", rel="stylesheet")
+		link(href="#{staticPath}/css/context.bootstrap.css", rel="stylesheet")
 		
 		link(href="#{staticPath}/css/fullcalendar.print.css", rel="stylesheet", media="print")
 		
@@ -44,6 +45,8 @@ html
 		script(src="#{staticPath}/js/sweetalert.min.js")
 		script(src="#{staticPath}/js/intro.js")
 		script(src="#{staticPath}/js/coursesLib.js", defer)
+		script(src="#{staticPath}/js/context.js")
+		script(src="#{staticPath}/js/contextmenu.js")
 		
 		link(rel="stylesheet", href="#{global.staticPath}/css/loading.css")
 
@@ -75,771 +78,762 @@ html
 		script(type="text/javascript", src="#{staticPath}/js/prefs.js")
 		script(type="text/javascript", src="#{staticPath}/js/notify.js")
 		script(type="text/javascript", src="#{staticPath}/js/notifications.js")
+		
+		script(type="text/javascript", src="#{staticPath}/js/mousetrap.min.js")
+		script(type="text/javascript", src="#{staticPath}/js/shortcuts.js")
+		
+		script(type="text/javascript", src="#{staticPath}/js/nlp_compromise.min.js")
+		script(type="text/javascript", src="#{staticPath}/js/quickAdd.js")
 
-		script(type="text/javascript").
-			var _paq = _paq || [];
-			_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-			_paq.push(["setCookieDomain", "*.myhomework.space"]);
-			_paq.push(['trackPageView']);
-			_paq.push(['enableLinkTracking']);
-			(function() {
-				var u="//piwik.coursesplus.tk/";
-				_paq.push(['setTrackerUrl', u+'piwik.php']);
-				_paq.push(['setSiteId', 3]);
-				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-				g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-			})();
-		noscript
-			p
-				img(src="https://piwik.coursesplus.tk/piwik.php?idsite=3" style="border:0;" alt="")
-	body
-		div(id="basePath", class="hidden")= basePath
-		div(id="staticPath", class="hidden")= staticPath
-		div(id="username", class="hidden")= user.username
-		div(id="name", class="hidden")= user.name
-		div(id="email", class="hidden")= user.email
-		nav(class="navbar navbar-default navbar-fixed-top web-navbar", data-step="1", data-intro="Welcome to MyHomeworkSpace, #{user.name}! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below).")
-			div(class="container-fluid")
-				div(class="navbar-header", data-step="8", data-intro="We hope you enjoy MyHomeworkSpace! To get started, click Done below, and then select a tab.")
-					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
-						span(class="sr-only") Toggle navigation
-						span(class="icon-bar")
-						span(class="icon-bar")
-						span(class="icon-bar")
-					a(class="navbar-brand back-to-home", href="#{basePath}/")
-						img(src="#{staticPath}/images/icon128.png", width="32px", height="32px", class="logo-nav")
-				
-				div(class="collapse navbar-collapse", id="navbar-collapse")
-					ul(class="nav navbar-nav")
-						if isStaging
-							li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using MyHomeworkSpace Staging. This is for testing purposes only-don't use it as your real planner!")
-								a(href="#{basePath}/staging") Staging
+		include includes/piwik.jade
+		body
+			div(id="basePath", class="hidden")= basePath
+			div(id="staticPath", class="hidden")= staticPath
+			div(id="username", class="hidden")= user.username
+			div(id="name", class="hidden")= user.name
+			div(id="email", class="hidden")= user.email
+			nav(class="navbar navbar-default navbar-fixed-top web-navbar", data-step="1", data-intro="Welcome to MyHomeworkSpace, #{user.name}! This short tour will guide you through the different features. You can feel free to skip it! (just press the skip button below).")
+				div(class="container-fluid")
+					div(class="navbar-header", data-step="8", data-intro="We hope you enjoy MyHomeworkSpace! To get started, click Done below, and then select a tab.")
+						button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse", aria-expanded="false")
+							span(class="sr-only") Toggle navigation
+							span(class="icon-bar")
+							span(class="icon-bar")
+							span(class="icon-bar")
+						a(class="navbar-brand back-to-home", href="#{basePath}/")
+							img(src="#{staticPath}/images/icon128.png", width="32px", height="32px", class="logo-nav")
+					
+					div(class="collapse navbar-collapse", id="navbar-collapse")
+						ul(class="nav navbar-nav")
+							if isStaging
+								li(class="staging-warning", data-toggle="tooltip", data-placement="bottom", title="You're using MyHomeworkSpace Staging. This is for testing purposes only-don't use it as your real planner!")
+									a(href="#{basePath}/staging") Staging
 
-					ul(class="nav navbar-nav navbar-right")
-						li(class="feedback-btn", data-step="5", data-intro="Have a good idea for MyHomeworkSpace? Send it to us with this button!")
-							a(class="ideaBtn", data-toggle="tooltip", data-placement="bottom", title="Have a great new idea? Send it to us.")
-								i(class="fa fa-lightbulb-o")
-						li(class="feedback-btn", data-step="6", data-intro="Do you like a feature? Send us your thoughts with this button!")
-							a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Like something? Send us a smile.")
-								i(class="fa fa-smile-o")
-						li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
-							a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
-								i(class="fa fa-frown-o")
-						li(class="username-menu")
-							a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-								span= user.name 
-								span.caret
-							ul.dropdown-menu
-								if user.level > 0
+						ul(class="nav navbar-nav navbar-right")
+							li(class="feedback-btn", data-step="5", data-intro="Have a good idea for MyHomeworkSpace? Send it to us with this button!")
+								a(class="ideaBtn", data-toggle="tooltip", data-placement="bottom", title="Have a great new idea? Send it to us.")
+									i(class="fa fa-lightbulb-o")
+							li(class="feedback-btn", data-step="6", data-intro="Do you like a feature? Send us your thoughts with this button!")
+								a(class="smileBtn", data-toggle="tooltip", data-placement="bottom", title="Like something? Send us a smile.")
+									i(class="fa fa-smile-o")
+							li(class="feedback-btn", data-step="7", data-intro="Have you found a bug? Do you dislike a feature? Send us your thoughts with this button!")
+								a(class="frownBtn", data-toggle="tooltip", data-placement="bottom", title="Don't like something? Send us a frown.")
+									i(class="fa fa-frown-o")
+							li(class="username-menu")
+								a.dropdown-toggle(class="user-name", href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+									span= user.name 
+									span.caret
+								ul.dropdown-menu
+									if user.level > 0
+										li
+											a(class="badge adminBadge" style="cursor: default;") Admin
+										
+									if user.type == "faculty"
+										li
+											a(class="badge teacherBadge" style="cursor: default;") Teacher
+										
 									li
-										a(class="badge adminBadge" style="cursor: default;") Admin
-									
-								if user.type == "faculty"
+										a(href="http://help.myhomework.space") Support
+
+									li.divider
+										
 									li
-										a(class="badge teacherBadge" style="cursor: default;") Teacher
-									
+										a(href="#{basePath}/logout") Log out
+										
+			nav(class="navbar navbar-fixed-top print-navbar")
+				div(class="container-fluid")
+					span
+						img(src="#{staticPath}/images/icon24.png", width="24px", height="24px", class="logo-nav")
+						span MyHomeworkSpace - 
+						span(class="user-name")= user.name
+
+			div(class="loadOverlay")
+				div(class="loader")
+					div(class="cssload-preloader cssload-loading")
+						span(class="cssload-slice")
+						span(class="cssload-slice")
+						span(class="cssload-slice")
+						span(class="cssload-slice")
+						span(class="cssload-slice")
+						span(class="cssload-slice")
+				span Loading...
+				div(class="loadWarn")
+					div Loading is taking longer than usual.
+					button(id="loadButton") Reload?
+
+			div(id="feedback-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+								span(aria-hidden="true") &times;
+							h4(class="modal-title")
+								span(id="feedback-modal-title-first") Send a 
+								span(class="feedback-type") 
+						
+						div(class="modal-body")
+							p(class="feedback-desc")
+							textarea(id="feedback-msg", placeholder="Write your message here...")
+							if isStaging
+								strong(style="color: red;") Important: You are on staging, our beta platform. If you use this form to submit feedback, chances are we will not see it. If you want to send feedback on our beta platform, please submit a GitHub issue 
+									a(href="https://github.com/MyHomeworkSpace/MyHomeworkSpace/issues/new") here
+									| .
+									br
+							strong The following information will be sent with your feedback:
+							ul
 								li
-									a(href="http://help.myhomework.space") Support
-
-								li.divider
-									
+									span Your name (
+									span= user.name
+									span )
 								li
-									a(href="#{basePath}/logout") Log out
-									
-		nav(class="navbar navbar-fixed-top print-navbar")
-			div(class="container-fluid")
-				span
-					img(src="#{staticPath}/images/icon24.png", width="24px", height="24px", class="logo-nav")
-					span MyHomeworkSpace - 
-					span(class="user-name")= user.name
-
-		div(class="loadOverlay")
-			div(class="loader")
-				div(class="cssload-preloader cssload-loading")
-					span(class="cssload-slice")
-					span(class="cssload-slice")
-					span(class="cssload-slice")
-					span(class="cssload-slice")
-					span(class="cssload-slice")
-					span(class="cssload-slice")
-			span Loading...
-			div(class="loadWarn")
-				div Loading is taking longer than usual.
-				button(id="loadButton") Reload?
-
-		div(id="feedback-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
-							span(aria-hidden="true") &times;
-						h4(class="modal-title")
-							span(id="feedback-modal-title-first") Send a 
-							span(class="feedback-type") 
-					
-					div(class="modal-body")
-						p(class="feedback-desc")
-						textarea(id="feedback-msg", placeholder="Write your message here...")
-						if isStaging
-							strong(style="color: red;") Important: You are on staging, our beta platform. If you use this form to submit feedback, chances are we will not see it. If you want to send feedback on our beta platform, please submit a GitHub issue 
-								a(href="https://github.com/MyHomeworkSpace/MyHomeworkSpace/issues/new") here
-								| .
-								br
-						strong The following information will be sent with your feedback:
-						ul
-							li
-								span Your name (
-								span= user.name
-								span )
-							li
-								span Your username (
-								span= user.username
-								span )
-							li
-								input(type="checkbox", id="feedback-snapshot", checked="checked")
-								span  (optional) A snapshot of the web page so we can see what you are talking about! This might contain information you are looking at, like your planner events. You don't have to include it if you don't want to.
-						p Thanks for the feedback! Click "Submit" to send it!
-					
-					div(class="modal-footer feedback-footer-normal")
-						button(type="button", class="btn btn-default", data-dismiss="modal") Close without submitting
-						button(type="button", class="btn btn-primary", id="feedback-submit") Submit
-
-					div(class="modal-footer feedback-footer-load hidden")
-						i(class="fa fa-circle-o-notch fa-spin")
-						span  Loading...
-
-		div(id="prefs-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						h4
-							span(id="prefs-feature-name")
-							span  Preferences
-
-					div(class="modal-body prefs-modal-body", id="prefs-overview-body")
-						p This feature does not have any preferences you can change.
-
-					div(class="modal-body prefs-modal-body", id="prefs-planner-body")
-						h4 Order of titles in tab system
-						p When you press the tab key in an event box, you can cycle through the available tags. This list allows you to edit and reorder the available tags.
-						ol(id="title-sorting")
-						button(type="button", class="btn btn-primary", id="titles-new") New
-
-					div(class="modal-body prefs-modal-body", id="prefs-hwView-body")
-						input(type="checkbox", id="prefs-hwView-swap")
-						label(for="prefs-hwView-swap") Swap order of name and subject
-
-						br
-
-						input(type="checkbox", id="prefs-hwView-color")
-						label(for="prefs-hwView-color") Disable title coloring
-
-						br
-
-						input(type="checkbox", id="prefs-hwView-checkboxes")
-						label(for="prefs-hwView-checkboxes") Disable checkboxes
-
-						br
-
-						input(type="checkbox", id="prefs-hwView-disableOverdue")
-						label(for="prefs-hwView-disableOverdue") Disable "overdue" column
-
-					div(class="modal-body prefs-modal-body", id="prefs-myDay-body")
-						p This feature does not have any preferences you can change.
-
-					div(class="modal-body prefs-modal-body", id="prefs-admin-body")
-						p This feature does not have any preferences you can change.
-
-					div(class="modal-footer")
-						button(type="button", class="btn btn-primary", id="prefs-done") Done
-
-		div(id="planner-move-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
-							span(aria-hidden="true") &times;
-						h4(class="modal-title")
-							span Swap subject
-					
-					div(class="modal-body")
-						p
-							span Click on the subject you want to swap '
-							span(id="swap-subj-name") 
-							span ' with.
-						ul(id="swap-subj-list")
-							li test
-							li test
-					
-					div(class="modal-footer feedback-footer-normal")
-						button(type="button", class="btn btn-default", data-dismiss="modal") Close
+									span Your username (
+									span= user.username
+									span )
+								li
+									input(type="checkbox", id="feedback-snapshot", checked="checked")
+									span  (optional) A snapshot of the web page so we can see what you are talking about! This might contain information you are looking at, like your planner events. You don't have to include it if you don't want to.
+							p Thanks for the feedback! Click "Submit" to send it!
 						
-		div(id="2fa-enable-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
-							span(aria-hidden="true") &times;
-						h4(class="modal-title")
-							span Enable Two Factor Authentication
-					
-					div(class="modal-body")
-						h3
-							span Step One
-						h4
-							span Scan this QR code with your 
-								span(data-toggle="tooltip", data-placement="bottom", title="Need an authenticator? Our reccomendations are Google Authenticator (iOS and Android) and Authenticator (Windows Phone)." style="cursor: help") authentication app
-								| .
-						br
-						img(style="text-align: center" src="https://placeholdit.imgix.net/~text?txtsize=19&txt=QR+Code+Here&w=400&h=400&txttrack=0")
-					
-					div(class="modal-footer feedback-footer-normal")
-						button(type="button", class="btn btn-default", data-dismiss="modal") Cancel
-						button#submit2fa(type="button", class="btn btn-primary", data-dismiss="modal")
-	
-		div(id="admin-feedback-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
-							span(aria-hidden="true") &times;
-						h4(class="modal-title") View feedback
-					
-					div(class="modal-body", style="height: 500px")
-						iframe(sandbox="allow-scripts", id="feedback-frame", width="100%", height="100%", style="padding: 0; margin: 0;")
-					div(class="modal-footer")
-						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
+						div(class="modal-footer feedback-footer-normal")
+							button(type="button", class="btn btn-default", data-dismiss="modal") Close without submitting
+							button(type="button", class="btn btn-primary", id="feedback-submit") Submit
 
-		div(id="admin-announcement-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						button(type="button", class="close", data-dismiss="modal", aria-label="Close")
-							span(aria-hidden="true") &times;
-						h4(class="modal-title") Delete Announcements
-					
-					div(class="modal-body")
-						ol(id="announcement-delete-list")
-					div(class="modal-footer")
-						button(type="button", class="btn btn-primary", data-dismiss="modal") Close
+						div(class="modal-footer feedback-footer-load hidden")
+							i(class="fa fa-circle-o-notch fa-spin")
+							span  Loading...
+
+			div(id="prefs-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							h4
+								span(id="prefs-feature-name")
+								span  Preferences
+
+						div(class="modal-body prefs-modal-body", id="prefs-overview-body")
+							p This feature does not have any preferences you can change.
+
+						div(class="modal-body prefs-modal-body", id="prefs-planner-body")
+							h4 Order of titles in tab system
+							p When you press the tab key in an event box, you can cycle through the available tags. This list allows you to edit and reorder the available tags.
+							ol(id="title-sorting")
+							button(type="button", class="btn btn-primary", id="titles-new") New
+
+						div(class="modal-body prefs-modal-body", id="prefs-hwView-body")
+							input(type="checkbox", id="prefs-hwView-swap")
+							label(for="prefs-hwView-swap") Swap order of name and subject
+
+							br
+
+							input(type="checkbox", id="prefs-hwView-color")
+							label(for="prefs-hwView-color") Disable title coloring
+
+							br
+
+							input(type="checkbox", id="prefs-hwView-checkboxes")
+							label(for="prefs-hwView-checkboxes") Disable checkboxes
+
+							br
+
+							input(type="checkbox", id="prefs-hwView-disableOverdue")
+							label(for="prefs-hwView-disableOverdue") Disable "overdue" column
+
+						div(class="modal-body prefs-modal-body", id="prefs-myDay-body")
+							p This feature does not have any preferences you can change.
+
+						div(class="modal-body prefs-modal-body", id="prefs-admin-body")
+							p This feature does not have any preferences you can change.
+
+						div(class="modal-footer")
+							button(type="button", class="btn btn-primary", id="prefs-done") Done
+
+			div(id="planner-move-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+								span(aria-hidden="true") &times;
+							h4(class="modal-title")
+								span Swap subject
 						
-		div(id="login-to-schedules-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						button(class="close", type="button", data-dismiss="modal", aria-label="Close")
-							span(aria-hidden="true") ×
-						h4(class="modal-title") Connect with Schedules
-					div(class="modal-body")
-						input(id="schedules-username", type="text", placeholder="Username", class="form-control")
-						input(id="schedules-pw", type="password", placeholder="Password", class="form-control")
-						p Your password is only used to download your schedule, and is never saved or stored.
-					div(class="modal-footer")
-						button(class="btn btn-default", type="button", data-dismiss="modal") Close
-						button(class="btn btn-primary", id="schedules-sign-in", type="button") Sign In
-						
-		div(id="schedules-import-loading-modal", class="modal fade")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-body")
-						h3
-							i(class="fa fa-refresh fa-spin")  
-							span Importing your schedule, please wait...
-
-		div(class="mainContainer")
-			ul(class="tabs")
-				li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
-					i(class="fa fa-calendar") 
-					div Overview
-				li(data-step="3", data-intro="This is Planner. This is where you enter all of your homework, and where the magic happens.", data-page="planner")
-					i(class="fa fa-book")  
-					div Planner
-				<!-- li(data-page="myDay") My Day -->
-				li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
-					i(class="fa fa-file-text") 
-					div HW View
-				li(data-page="prefs")
-					i(class="fa fa-cog") 
-					div Settings
-				if user.level > 0
-					li(data-page="admin")
-						i(class="fa fa-server") 
-						div Admin
-				//-ON APRIL FOOLS DAY UNCOMMENT BELOW:
-				//- DON'T FORGET PART 2
-				//-li(data-page="aprilfools")
-				//-	i(class="fa fa-clock-o")
-				//-	div MyDay
-			button(id="page-pref-btn", class="btn btn-default")
-				i(class="fa fa-cog")
-
-			div(class="pages")
-				div(id="planner", class="page")
-					div(id="planner-upsell", class="upsell row", data-feature="planner")
-						div(class="col-md-3")
-							h1 Planner
-							h3 Keep track of your assignments online.
-
-							br
-
-							button(class="btn btn-primary upsell-btn", data-feature="planner") Start
-
-						div(class="col-md-9")
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/planner01.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Synced to the cloud
-									p You can't lose your planner anymore - assignments you write are saved to your Dalton account. Sign back in and your assignments will be right where you left them - even if you're using another device.
-
-							br
-
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/planner02.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Tag your assignments
-									p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
-
-							br
-
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/planner03.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Add or remove subjects
-									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
-
-					div(id="planner-hacky-text-measure-thing")
-					//div(id="planner-status") Saved.
-					div(id="planner-controls-wrapper")
-						div(id="planner-controls")
-							span#planner-status.btn-xs.btn-disabled(data-toggle="tooltip", data-placement="bottom", title="All data saved!")
-								i.fa.fa-check
-							button(id="planner-prev", class="btn btn-default btn-xs")
-								i(class="fa fa-arrow-left") 
-							span(class="planner-current-week")
-								span Week of 
-								span(id="planner-week")  
-
-							button(id="planner-next", class="btn btn-default btn-xs")
-								i(class="fa fa-arrow-right")
-
-							button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
-								i(class="fa fa-external-link")
-
-					table#plannerTable
-						thead
-							tr
-								th(class="no-border")
-								th
-									span(class="planner-dow") Monday
-									span(class="planner-day") 
-								th
-									span(class="planner-dow") Tuesday
-									span(class="planner-day") 
-								th
-									span(class="planner-dow") Wednesday
-									span(class="planner-day") 
-								th
-									span(class="planner-dow") Thursday
-									span(class="planner-day") 
-								th
-									span(class="planner-dow planner-dow-friday") Friday
-									span(class="planner-day") 
-								th
-									span(class="planner-dow") Saturday
-									span(class="planner-day") 
-								th
-									span(class="planner-dow") Sunday
-									span(class="planner-day") 
-							tr(class="announcement-row")
-								th(class="no-border")
-								th 
-								th 
-								th 
-								th 
-								th 
-								th 
-								th 
-						tbody
-							tr(class="planner-welcome hidden")
-								td(class="no-border")
-								td(colspan="7", class="welcome-box")
-									h1 Welcome to Planner.
-									h4 Click the "Add subject" button below to get started.
-						tfoot
-							tr
-								td(class="no-border")
-								td(class="add-subject", colspan="7") 
-									i(class="fa fa-plus")
-									span &nbsp;&nbsp;Add subject
-
-				div(id="myDay", class="page")
-					div(id="myDay-upsell", class="upsell row", data-feature="myDay")
-						div(class="col-md-3")
-							h1 My Day
-							h3 Plan out your life easily and efficiently.
-
-							br
-
-							button(class="btn btn-primary btn-disabled upsell-btn", data-feature="myDay") Start
-
-						div(class="col-md-9")
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									// img(src="#{staticPath}/images/myDay01.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Your custom schedule
-									p You tell My Day how much free time you want, how long it takes you to get home, and what clubs you're a part of. We then build a custom schedule based on your parameters and homework information from your planner.
-
-							br
-
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									// img(src="#{staticPath}/images/myDay02.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Don't spend all night
-									p My Day uses an intelligent algorithm to divide large projects into smaller days. It helps break down long-term assignments into smaller chunks, and ensure that you don't get stuck procrastinating something until the last minute or cramming for a test.
-
-							br
-
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									// img(src="#{staticPath}/images/myDay03.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Your data is already here
-									p My Day takes information you already have from your MyHomeworkSpace planner and your schedule. Just sign in, and we'll automatically retrieve your information&mdash;you don't have to type it up again. 
-
-					div(id="myDay-welcome")
-						h1 Welcome!
-						p(class="lead") Please answer these short questions so we can build your personal schedule. The answers to these questions can always be changed later.
-						form(id="myDay-welcome-form")
-							
-
-							span Ideally, but realistically, how many of hours of sleep would you like to get each night?
-							input(type="number", name="sleepHrs")
-							
-							br
-
-							span When do you need to wake up in the morning? 
-							input(type="time", name="WakeUpTime")
-							
-
-							br
-
-							span What is your address? 
-								strong We will never use it for anything other than calculating travel time.
-							input(type="address", name="Address")
-
-							br
-
-							span Which clubs are you a part of? Multiple clubs are allowed
-							select(name="clubs", data-placeholder="Choose a club", multiple="multiple", class="myDay-club-select")
-								option(value="")
-
-
-							br 
-							
-
-							span What school do you go to?
-							input(type="text", name="School", value="Dalton", disabled="disabled")
-							
-
-						button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
-				
-				div(id="myDayHome", class="page")
-					div(id="myDayCalendar")
-					div(id="myDaySidebar")
-						h4 Drag your HW and place it into the calendar
-						div(id="myDayEvents")
-							ul
-
-				div(id="hwView", class="page")
-					div(id="hwView-upsell", class="upsell row", data-feature="hwView")
-						div(class="col-md-3")
-							h1 Homework View
-							h3 See what assignments you've got in a simple interface.
-
-							br
-
-							button(class="btn btn-primary upsell-btn", data-feature="hwView") Start
-
-						div(class="col-md-9")
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/hwView01.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Don't get caught by surprise
-									p Homework View shows you tests, quizzes, and other long-term assignments ahead of time - that way, you'll always be on top of what you have to do.
-
-							br
-
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/hwView02.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Gets data from your planner
-									p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your homework into yet another program.
-
-							br
-
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/hwView03.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Quick and at-a-glance
-									p Homework View lets you see what's due tomorrow, next week, and beyond in a clear, easy, and functional at-a-glance view. Don't switch between weeks or months in your planner&mdash;just use Homework View!
-
-					div(id="hwView-rows", class="row")
-						div(class="col-md-4 hwView-tomorrow hwView-list")
-							h3 Due 
-								span(class="tomorrow-or-monday") tomorrow
-							ul
-						div(class="col-md-4 hwView-soon hwView-list")
-							h3 Due soon
-							ul
-						div(class="col-md-4 hwView-longterm hwView-list")
-							h3 Long-term
-							ul
-
-				div(id="prefs", class="page")
-					h1 Settings
-					p Here, you can manage settings for your account. Looking for settings for a specific feature instead? Click the gray gear button in the bottom left on the feature you want to change.
-					ul(class="nav nav-tabs", role="tablist")
-						li(role="presentation", class="active")
-							a(href="#prefs-profile", role="tab", data-toggle="tab") General
-						li(role="presentation")
-							a(href="#prefs-notifications", role="tab", data-toggle="tab") Notifications
-								sup(style="color: #00c3c3" ) Beta
-						li(role="presentation")
-							a(href="#prefs-security", role="tab", data-toggle="tab") Security
-						li(role="presentation")
-							a(href="#prefs-layout", role="tab", data-toggle="tab") Layout
-						li(role="presentation")
-							a(href="#prefs-connected", role="tab", data-toggle="tab") Connected accounts
-						li(role="presentation")
-							a(href="#prefs-apps", role="tab", data-toggle="tab") More Apps
-				
-					div(class="tab-content")
-						div(role="tabpanel", class="tab-pane active", id="prefs-profile")
-							p General Settings
-							span Name: 
-							input(type="text", id="usr-name" value="#{user.name}", disabled="disabled")
-							h3 Email address: 
-							p= user.email
-						
-						div(role="tabpanel", class="tab-pane", id="prefs-notifications")
-							if user.level > 1
-								h3 Push Notifications
-								p Push notifications will come soon, but you can test your browser's compatibility now.
-								button(id="activateNotifications", class="btn btn-primary") Activate notifications
-								button(class="btn btn-default" onclick="showTestNotify()") Send a test notification
-								
-							h3 Text Message Notifications
-								sup(style="color: #00c3c3") Beta
-							p Enter your Phone Carrier and Phone Number to receive a text message daily with the homework you have due the next day.
-							br
-							p Carrier
-							select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select")
-								each val, index in carriers
-										option= index 
-							br
-							p Phone Number
-							input(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput" style="width 200px")
-							br
-							br
-							button(class="btn btn-primary" onclick="updatePhone();") Submit!
-							br
-							br
-							p We are adding more notification options soon!
-						
-						div(role="tabpanel", class="tab-pane", id="prefs-security")
-							h3 Password
+						div(class="modal-body")
 							p
-								| You are signed in with your Dalton account. For assistance with Dalton accounts, please contact 
-								a(href="mailto:help@dalton.org") help@dalton.org
-								| .
-							a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
-							if user.level > 0
-								h3 Two-factor authentication
-								p Two-factor authentication adds an extra layer of security of your acocunt.
-								if user.tfa == 1
-									p You have two-factor authentication enabled.
-									button(id="prefs-disable-2fa", class="btn btn-danger") Disable two-factor authentication
-								else
-									p You have two-factor authentication disabled.
-									button(id="prefs-enable-2fa", class="btn btn-primary") Enable two-factor authentication
+								span Click on the subject you want to swap '
+								span(id="swap-subj-name") 
+								span ' with.
+							ul(id="swap-subj-list")
+								li test
+								li test
+						
+						div(class="modal-footer feedback-footer-normal")
+							button(type="button", class="btn btn-default", data-dismiss="modal") Close
 							
-						div(role="tabpanel", class="tab-pane", id="prefs-layout")
-							p Change the look and feel of MyHomeworkSpace. You might have to reload the page to activate these changes.
+			div(id="2fa-enable-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+								span(aria-hidden="true") &times;
+							h4(class="modal-title")
+								span Enable Two Factor Authentication
+						
+						div(class="modal-body")
+							h3
+								span Step One
+							h4
+								span Scan this QR code with your 
+									span(data-toggle="tooltip", data-placement="bottom", title="Need an authenticator? Our reccomendations are Google Authenticator (iOS and Android) and Authenticator (Windows Phone)." style="cursor: help") authentication app
+									| .
+							br
+							img(style="text-align: center" src="https://placeholdit.imgix.net/~text?txtsize=19&txt=QR+Code+Here&w=400&h=400&txttrack=0")
+						
+						div(class="modal-footer feedback-footer-normal")
+							button(type="button", class="btn btn-default", data-dismiss="modal") Cancel
+							button#submit2fa(type="button", class="btn btn-primary", data-dismiss="modal")
+		
+			div(id="admin-feedback-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+								span(aria-hidden="true") &times;
+							h4(class="modal-title") View feedback
+						
+						div(class="modal-body", style="height: 500px")
+							iframe(sandbox="allow-scripts", id="feedback-frame", width="100%", height="100%", style="padding: 0; margin: 0;")
+						div(class="modal-footer")
+							button(type="button", class="btn btn-primary", data-dismiss="modal") Close
+
+			div(id="admin-announcement-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+								span(aria-hidden="true") &times;
+							h4(class="modal-title") Delete Announcements
+						
+						div(class="modal-body")
+							ol(id="announcement-delete-list")
+						div(class="modal-footer")
+							button(type="button", class="btn btn-primary", data-dismiss="modal") Close
 							
-							input(type="checkbox", id="prefs-layout-topTabs")
-							label(for="prefs-layout-topTabs") Use an alternate tab layout (reload the page to see changes)
+			div(id="login-to-schedules-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							button(class="close", type="button", data-dismiss="modal", aria-label="Close")
+								span(aria-hidden="true") ×
+							h4(class="modal-title") Connect with Schedules
+						div(class="modal-body")
+							input(id="schedules-username", type="text", placeholder="Username", class="form-control")
+							input(id="schedules-pw", type="password", placeholder="Password", class="form-control")
+							p Your password is only used to download your schedule, and is never saved or stored.
+						div(class="modal-footer")
+							button(class="btn btn-default", type="button", data-dismiss="modal") Close
+							button(class="btn btn-primary", id="schedules-sign-in", type="button") Sign In
 							
-							h3 Theme color
-							p Here, you can change the color used for the MyHomeworkSpace navigation menus.
-							div(id="themeColors")
-								div(class="selBox themeColor selected", data-selBoxGroup="themeColor" data-selBoxVal="#333333")
-								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#990f0f")
-								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#c93e3e")
-								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#0f993b")
-								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#37c464")
-								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#1c19c2")
-								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#3834fa")
-								div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#00c8d8")
+			div(id="schedules-import-loading-modal", class="modal fade")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-body")
+							h3
+								i(class="fa fa-refresh fa-spin")  
+								span Importing your schedule, please wait...
 
-						div(role="tabpanel", class="tab-pane", id="prefs-connected")
-							p Connect your MyHomeworkSpace account to other accounts.
-							if user.level > 0
-								h3 Schedules
-								p Connect your Dalton account to Schedules so MyHomeworkSpace can determine when you have labs and free time.
-								button(id="schedules-connect", class="btn btn-primary") Connect to Schedules
-							else
-								p This feature is coming soon!
-									
-						div(role="tabpanel", class="tab-pane", id="prefs-apps")
-							h4 CoursesPlus
-							h6 Free, Chrome Extension, School Laptop Ready
-							h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
-							a.btn-xs.btn-default(href="http://coursesplus.github.io") Download
-							br
-							h4 DaltonTab
-							h6 Free, Chrome Extension, School Laptop Ready
-							h5 DaltonTab is your home base for homework, classes, and your schedule. View your information from multiple sites in one central view, available at the click of a new tab.
-							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm") Download
-							br
-							h4 MyHomeworkSpace Button
-							h6 Free, Chrome Extension, School Laptop Ready
-							h5 A button in your toolbar that leads directly to MyHomeworkSpace.
-							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/bgjhpfdlpnddingdjkjlefefbjdnnndm") Download
-							br
-							h4 Back to Drive
-							h6 Free, Chrome Extension, School Laptop Ready
-							h5 A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.
-							a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp") Download
-							
-				div(id="labs", class="page")
-					div(id="labs-upsell", class="upsell row", data-feature="planner")
-						div(class="col-md-3")
-							h1 Labs
-							h3 Keep track of and schedule Labs online.
+			div(class="mainContainer")
+				ul(class="tabs")
+					li(data-step="2", data-intro="This is Overview. This is a work in progress page. Currently, it only says the date, but we are working on adding more.", data-page="overview")
+						i(class="fa fa-calendar") 
+						div Overview
+					li(data-step="3", data-intro="This is Planner. This is where you enter all of your homework, and where the magic happens.", data-page="planner")
+						i(class="fa fa-book")  
+						div Planner
+					<!-- li(data-page="myDay") My Day -->
+					li(data-step="4", data-intro="This is HW View. All of your homework gets laid out here in an easy-to-understand way!", data-page="hwView")
+						i(class="fa fa-file-text") 
+						div HW View
+					li(data-page="prefs")
+						i(class="fa fa-cog") 
+						div Settings
+					if user.level > 0
+						li(data-page="admin")
+							i(class="fa fa-server") 
+							div Admin
+					//-ON APRIL FOOLS DAY UNCOMMENT BELOW:
+					//- DON'T FORGET PART 2
+					//-li(data-page="aprilfools")
+					//-	i(class="fa fa-clock-o")
+					//-	div MyDay
+				button(id="page-pref-btn", class="btn btn-default")
+					i(class="fa fa-cog")
 
-							br
+				div(class="pages")
+					div(id="planner", class="page")
+						div(id="planner-upsell", class="upsell row", data-feature="planner")
+							div(class="col-md-3")
+								h1 Planner
+								h3 Keep track of your assignments online.
 
-							button(class="btn btn-primary upsell-btn", data-feature="planner") Start
+								br
 
-						div(class="col-md-9")
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/planner01.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Easy and Efficient
-									p Labs scheduled using MyHomeworkSpace are able to be synced automagically into your planner, into My Day, and into HW View
-							br
+								button(class="btn btn-primary upsell-btn", data-feature="planner") Start
 
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/planner02.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Tag your assignments
-									p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
+							div(class="col-md-9")
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/planner01.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Synced to the cloud
+										p You can't lose your planner anymore - assignments you write are saved to your Dalton account. Sign back in and your assignments will be right where you left them - even if you're using another device.
 
-							br
+								br
 
-							div(class="upsell-row row")
-								div(class="col-md-4")
-									img(src="#{staticPath}/images/planner03.png", class="upsell-picture")
-								div(class="col-md-8")
-									h4 Add or remove subjects
-									p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
-					p
-						span Welcome, 
-						if user.type == "student"
-							span= user.name.split(" ")[0]
-						else
-							span= user.username
-						span , to Labs!
-					p This is a work in progress...
-					button(class="btn btn-primary", id="schedules-connect") Connect to Schedules
-					if user.type == "student"
-						p Welcome to Lab scheduling.
-						button(class="btn btn-primary", id="schedule-lab-student", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
-					if user.type == "faculty"
-						p Welcome to Lab scheduling.
-						button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with MyHomeworkSpace.") Start accepting Labs with MyHomeworkSpace!
-					br
-					button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
-				
-				div(id="graphs", class="page")
-					<!-- Okay em-p let your imagination run free here. -->
-					h1 Hi this is just a test.
-					div(id="chartContainer")
-					
-				div(id="smsverify", class="page")
-					h1 Enable SMS
-					h4 Check your phone! We just sent you a verification code. Please enter it below.
-					
-					h5(id="sms-verify-error") 
-					input(type="text", id="sms-verify-code", placeholder="Enter code", class="form-control")
-					
-					button(id="sms-submit-verify" class="btn btn-primary") Verify
-					button(onclick='setPage("prefs")' class="btn btn-default") Back
-				
-				div(id="groups", class="page")
-					h1 Join Groups to Receive Group Planner Events
-					ul(id="groupList")
-						div(id="groupsIn")
-								
-				if user.level > 0
-					if user.canFeedback > 0
-						div(id="admin-feedback", class="page")
-							h1 Administrative panel
-							h4 View feedback
-							ul(id="admin-feedback-list")
-								
-					
-					div(id="admin-announcements", class="page")
-						h1 Administrative panel
-						h4 Announcement Settings
-						h5 Post Announcement
-						div(class="alert alert-danger", role="alert")
-							strong Be careful! 
-							| Don't post too many announcements&mdash;not only do they annoy users, but you can get your announcement permissions revoked!
-						p Message
-						input(type="text", id="announcement-msg", style="width:600px; height:40px; font-size:16pt;", data-toggle="tooltip", data-placement="right", title="You can use HTML tags for this input field!")
-						p Days
-						input(type="number", id="announcement-days", data-toggle="tooltip", data-placement="right", title="Because of possible time zone problems, please set this to 2 days or above to make sure all users see it. Thank you!")
-						br
-						br
-						button(class="btn", id="announcement-submit", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Please proofread your announcement before you press this button!") Send
-						h5 Current Announcements
-						ul#adminAnnouncementList(style="-webkit-transition: text-decoration 1s; transition: text-decoration 1s;")
-							li#adminNoAnnouncements There are currently no announcements.
-						button(class="btn", id="announcement-clear", class="btn btn-default") Manage Announcements
-					
-					div(id="admin-users", class="page")
-						h1 Administrative panel
-						h4 Users
-						div(id="userNumber") Loading user count...
-						table(border="1" id="userTable")
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/planner02.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Tag your assignments
+										p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
+
+								br
+
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/planner03.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Add or remove subjects
+										p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
+
+						div(id="planner-hacky-text-measure-thing")
+						//div(id="planner-status") Saved.
+						div(id="planner-controls-wrapper")
+							div(id="planner-controls")
+								span#planner-status.btn-xs.btn-disabled(data-toggle="tooltip", data-placement="bottom", title="All data saved!")
+									i.fa.fa-check
+								button(id="planner-prev", class="btn btn-default btn-xs")
+									i(class="fa fa-arrow-left") 
+								span(class="planner-current-week")
+									span Week of 
+									span(id="planner-week")  
+
+								button(id="planner-next", class="btn btn-default btn-xs")
+									i(class="fa fa-arrow-right")
+
+								button(id="planner-jumpTo", class="btn btn-default btn-xs", data-toggle="tooltip", data-placement="bottom", title="Jump to date")
+									i(class="fa fa-external-link")
+
+						table#plannerTable
 							thead
 								tr
-									td(colspan="6") MyHomeworkSpace Users
-								tr
-									td ID
-									td Name
-									td Username
-									td Email
-									td Type
-									td Level
+									th(class="no-border")
+									th
+										span(class="planner-dow") Monday
+										span(class="planner-day") 
+									th
+										span(class="planner-dow") Tuesday
+										span(class="planner-day") 
+									th
+										span(class="planner-dow") Wednesday
+										span(class="planner-day") 
+									th
+										span(class="planner-dow") Thursday
+										span(class="planner-day") 
+									th
+										span(class="planner-dow planner-dow-friday") Friday
+										span(class="planner-day") 
+									th
+										span(class="planner-dow") Saturday
+										span(class="planner-day") 
+									th
+										span(class="planner-dow") Sunday
+										span(class="planner-day") 
+								tr(class="announcement-row")
+									th(class="no-border")
+									th 
+									th 
+									th 
+									th 
+									th 
+									th 
+									th 
 							tbody
+								tr(class="planner-welcome hidden")
+									td(class="no-border")
+									td(colspan="7", class="welcome-box")
+										h1 Welcome to Planner.
+										h4 Click the "Add subject" button below to get started.
+							tfoot
 								tr
-									td(colspan="6") Loading users...
-						
+									td(class="no-border")
+									td(class="add-subject", colspan="7") 
+										i(class="fa fa-plus")
+										span &nbsp;&nbsp;Add subject
+
+					div(id="myDay", class="page")
+						div(id="myDay-upsell", class="upsell row", data-feature="myDay")
+							div(class="col-md-3")
+								h1 My Day
+								h3 Plan out your life easily and efficiently.
+
+								br
+
+								button(class="btn btn-primary btn-disabled upsell-btn", data-feature="myDay") Start
+
+							div(class="col-md-9")
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										// img(src="#{staticPath}/images/myDay01.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Your custom schedule
+										p You tell My Day how much free time you want, how long it takes you to get home, and what clubs you're a part of. We then build a custom schedule based on your parameters and homework information from your planner.
+
+								br
+
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										// img(src="#{staticPath}/images/myDay02.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Don't spend all night
+										p My Day uses an intelligent algorithm to divide large projects into smaller days. It helps break down long-term assignments into smaller chunks, and ensure that you don't get stuck procrastinating something until the last minute or cramming for a test.
+
+								br
+
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										// img(src="#{staticPath}/images/myDay03.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Your data is already here
+										p My Day takes information you already have from your MyHomeworkSpace planner and your schedule. Just sign in, and we'll automatically retrieve your information&mdash;you don't have to type it up again. 
+
+						div(id="myDay-welcome")
+							h1 Welcome!
+							p(class="lead") Please answer these short questions so we can build your personal schedule. The answers to these questions can always be changed later.
+							form(id="myDay-welcome-form")
+								
+
+								span Ideally, but realistically, how many of hours of sleep would you like to get each night?
+								input(type="number", name="sleepHrs")
+								
+								br
+
+								span When do you need to wake up in the morning? 
+								input(type="time", name="WakeUpTime")
+								
+
+								br
+
+								span What is your address? 
+									strong We will never use it for anything other than calculating travel time.
+								input(type="address", name="Address")
+
+								br
+
+								span Which clubs are you a part of? Multiple clubs are allowed
+								select(name="clubs", data-placeholder="Choose a club", multiple="multiple", class="myDay-club-select")
+									option(value="")
+
+
+								br 
+								
+
+								span What school do you go to?
+								input(type="text", name="School", value="Dalton", disabled="disabled")
+								
+
+							button(id="myDay-welcome-submit", class="btn btn-primary btn-lg") Submit
+					
+					div(id="myDayHome", class="page")
+						div(id="myDayCalendar")
+						div(id="myDaySidebar")
+							h4 Drag your HW and place it into the calendar
+							div(id="myDayEvents")
+								ul
+
+					div(id="hwView", class="page")
+						div(id="hwView-upsell", class="upsell row", data-feature="hwView")
+							div(class="col-md-3")
+								h1 Homework View
+								h3 See what assignments you've got in a simple interface.
+
+								br
+
+								button(class="btn btn-primary upsell-btn", data-feature="hwView") Start
+
+							div(class="col-md-9")
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/hwView01.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Don't get caught by surprise
+										p Homework View shows you tests, quizzes, and other long-term assignments ahead of time - that way, you'll always be on top of what you have to do.
+
+								br
+
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/hwView02.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Gets data from your planner
+										p Homework View uses information you already have stored in your online planner. There's no extra work required for it to use this data - you don't have to copy your homework into yet another program.
+
+								br
+
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/hwView03.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Quick and at-a-glance
+										p Homework View lets you see what's due tomorrow, next week, and beyond in a clear, easy, and functional at-a-glance view. Don't switch between weeks or months in your planner&mdash;just use Homework View!
+
+						div(id="hwView-rows", class="row")
+							div(class="col-md-4 hwView-tomorrow hwView-list")
+								h3 Due 
+									span(class="tomorrow-or-monday") tomorrow
+								ul
+							div(class="col-md-4 hwView-soon hwView-list")
+								h3 Due soon
+								ul
+							div(class="col-md-4 hwView-longterm hwView-list")
+								h3 Long-term
+								ul
+
+					div(id="prefs", class="page")
+						h1 Settings
+						p Here, you can manage settings for your account. Looking for settings for a specific feature instead? Click the gray gear button in the bottom left on the feature you want to change.
+						ul(class="nav nav-tabs", role="tablist")
+							li(role="presentation", class="active")
+								a(href="#prefs-profile", role="tab", data-toggle="tab") General
+							li(role="presentation")
+								a(href="#prefs-notifications", role="tab", data-toggle="tab") Notifications
+									sup(style="color: #00c3c3" ) Beta
+							li(role="presentation")
+								a(href="#prefs-security", role="tab", data-toggle="tab") Security
+							li(role="presentation")
+								a(href="#prefs-layout", role="tab", data-toggle="tab") Layout
+							li(role="presentation")
+								a(href="#prefs-connected", role="tab", data-toggle="tab") Connected accounts
+							li(role="presentation")
+								a(href="#prefs-apps", role="tab", data-toggle="tab") More Apps
+					
+						div(class="tab-content")
+							div(role="tabpanel", class="tab-pane active", id="prefs-profile")
+								p General Settings
+								span Name: 
+								input(type="text", id="usr-name" value="#{user.name}", disabled="disabled")
+								h3 Email address: 
+								p= user.email
+							
+							div(role="tabpanel", class="tab-pane", id="prefs-notifications")
+								if user.level > 1
+									h3 Push Notifications
+									p Push notifications will come soon, but you can test your browser's compatibility now.
+									button(id="activateNotifications", class="btn btn-primary") Activate notifications
+									button(class="btn btn-default" onclick="showTestNotify()") Send a test notification
 									
-					//-APRIL FOOLS UNCOMMENT PART 2
-					//-div(id="aprilfools", class="page")
-					//-	div(style="padding-top: 40%; padding-left: 40%")
-					//-		a(class="btn-lg btn-default" href="https://tr.im/mydayregester") Enable MyDay on this account
-		<!-- Wow! You made it to the end :)! -->
+								h3 Text Message Notifications
+									sup(style="color: #00c3c3") Beta
+								p Enter your Phone Carrier and Phone Number to receive a text message daily with the homework you have due the next day.
+								br
+								p Carrier
+								select(name="carrier", data-placeholder="Choose a carrier", class="carrier-select" id="carrier-select")
+									each val, index in carriers
+											option= index 
+								br
+								p Phone Number
+								input(placeholder="Phone Number" type="text" name="phonenumber" id="phonenumberinput" style="width 200px")
+								br
+								br
+								button(class="btn btn-primary" onclick="updatePhone();") Submit!
+								br
+								br
+								p We are adding more notification options soon!
+							
+							div(role="tabpanel", class="tab-pane", id="prefs-security")
+								h3 Password
+								p
+									| You are signed in with your Dalton account. For assistance with Dalton accounts, please contact 
+									a(href="mailto:help@dalton.org") help@dalton.org
+									| .
+								a.btn.btn-default(href="https://password.dalton.org/", data-toggle="tooltip", data-placement="right", title="Reset your password using the Dalton School password reset page.") Reset Password
+								if user.level > 0
+									h3 Two-factor authentication
+									p Two-factor authentication adds an extra layer of security of your acocunt.
+									if user.tfa == 1
+										p You have two-factor authentication enabled.
+										button(id="prefs-disable-2fa", class="btn btn-danger") Disable two-factor authentication
+									else
+										p You have two-factor authentication disabled.
+										button(id="prefs-enable-2fa", class="btn btn-primary") Enable two-factor authentication
+								
+							div(role="tabpanel", class="tab-pane", id="prefs-layout")
+								p Change the look and feel of MyHomeworkSpace. You might have to reload the page to activate these changes.
+								
+								input(type="checkbox", id="prefs-layout-topTabs")
+								label(for="prefs-layout-topTabs") Use an alternate tab layout (reload the page to see changes)
+								
+								h3 Theme color
+								p Here, you can change the color used for the MyHomeworkSpace navigation menus.
+								div(id="themeColors")
+									div(class="selBox themeColor selected", data-selBoxGroup="themeColor" data-selBoxVal="#333333")
+									div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#990f0f")
+									div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#c93e3e")
+									div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#0f993b")
+									div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#37c464")
+									div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#1c19c2")
+									div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#3834fa")
+									div(class="selBox themeColor", data-selBoxGroup="themeColor" data-selBoxVal="#00c8d8")
+
+							div(role="tabpanel", class="tab-pane", id="prefs-connected")
+								p Connect your MyHomeworkSpace account to other accounts.
+								if user.level > 0
+									h3 Schedules
+									p Connect your Dalton account to Schedules so MyHomeworkSpace can determine when you have labs and free time.
+									button(id="schedules-connect", class="btn btn-primary") Connect to Schedules
+								else
+									p This feature is coming soon!
+										
+							div(role="tabpanel", class="tab-pane", id="prefs-apps")
+								h4 CoursesPlus
+								h6 Free, Chrome Extension, School Laptop Ready
+								h5 CoursesPlus (also known as Courses Plus or Courses+) is a small extension for the Dalton Courses website. It adds many useful features and customizations, from marking assignments as completed to background changes, and it makes many things look much nicer. (Of course, you can turn off the parts you don't like from the options page.)
+								a.btn-xs.btn-default(href="http://coursesplus.github.io") Download
+								br
+								h4 DaltonTab
+								h6 Free, Chrome Extension, School Laptop Ready
+								h5 DaltonTab is your home base for homework, classes, and your schedule. View your information from multiple sites in one central view, available at the click of a new tab.
+								a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm") Download
+								br
+								h4 MyHomeworkSpace Button
+								h6 Free, Chrome Extension, School Laptop Ready
+								h5 A button in your toolbar that leads directly to MyHomeworkSpace.
+								a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/bgjhpfdlpnddingdjkjlefefbjdnnndm") Download
+								br
+								h4 Back to Drive
+								h6 Free, Chrome Extension, School Laptop Ready
+								h5 A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.
+								a.btn-xs.btn-default(href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp") Download
+								
+					div(id="labs", class="page")
+						div(id="labs-upsell", class="upsell row", data-feature="planner")
+							div(class="col-md-3")
+								h1 Labs
+								h3 Keep track of and schedule Labs online.
+
+								br
+
+								button(class="btn btn-primary upsell-btn", data-feature="planner") Start
+
+							div(class="col-md-9")
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/planner01.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Easy and Efficient
+										p Labs scheduled using MyHomeworkSpace are able to be synced automagically into your planner, into My Day, and into HW View
+								br
+
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/planner02.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Tag your assignments
+										p Start your assignments with a certain word - like "HW", "Quiz", "Test", Project", or "Essay", and it will automatically be color-coded. This lets you quickly see important events coming up, so you don't get surprised by another long-term project.
+
+								br
+
+								div(class="upsell-row row")
+									div(class="col-md-4")
+										img(src="#{staticPath}/images/planner03.png", class="upsell-picture")
+									div(class="col-md-8")
+										h4 Add or remove subjects
+										p You aren't limited to just five subjects! Add as many as you like! You're also free to rearrange or rename your sections&mdash;it's your planner!
+						p
+							span Welcome, 
+							if user.type == "student"
+								span= user.name.split(" ")[0]
+							else
+								span= user.username
+							span , to Labs!
+						p This is a work in progress...
+						button(class="btn btn-primary", id="schedules-connect") Connect to Schedules
+						if user.type == "student"
+							p Welcome to Lab scheduling.
+							button(class="btn btn-primary", id="schedule-lab-student", data-toggle="tooltip", data-placement="right", title="Schedule a Lab with one of your teachers.") Schedule a Lab!
+						if user.type == "faculty"
+							p Welcome to Lab scheduling.
+							button(class="btn btn-primary", id="accept-labs-teacher", data-toggle="tooltip", data-placement="right", title="Start accepting Lab scheduling online with MyHomeworkSpace.") Start accepting Labs with MyHomeworkSpace!
+						br
+						button(class="btn btn-primary", id="check-labs", data-page="my-labs", data-toggle="tooltip", data-placement="right", title="See what labs I have scheduled.") Check my Labs.
+					
+					div(id="graphs", class="page")
+						<!-- Okay em-p let your imagination run free here. -->
+						h1 Hi this is just a test.
+						div(id="chartContainer")
+						
+					div(id="smsverify", class="page")
+						h1 Enable SMS
+						h4 Check your phone! We just sent you a verification code. Please enter it below.
+						
+						h5(id="sms-verify-error") 
+						input(type="text", id="sms-verify-code", placeholder="Enter code", class="form-control")
+						
+						button(id="sms-submit-verify" class="btn btn-primary") Verify
+						button(onclick='setPage("prefs")' class="btn btn-default") Back
+					
+					div(id="groups", class="page")
+						h1 Join Groups to Receive Group Planner Events
+						ul(id="groupList")
+							div(id="groupsIn")
+									
+					if user.level > 0
+						if user.canFeedback > 0
+							div(id="admin-feedback", class="page")
+								h1 Administrative panel
+								h4 View feedback
+								ul(id="admin-feedback-list")
+									
+						
+						div(id="admin-announcements", class="page")
+							h1 Administrative panel
+							h4 Announcement Settings
+							h5 Post Announcement
+							div(class="alert alert-danger", role="alert")
+								strong Be careful! 
+								| Don't post too many announcements&mdash;not only do they annoy users, but you can get your announcement permissions revoked!
+							p Message
+							input(type="text", id="announcement-msg", style="width:600px; height:40px; font-size:16pt;", data-toggle="tooltip", data-placement="right", title="You can use HTML tags for this input field!")
+							p Days
+							input(type="number", id="announcement-days", data-toggle="tooltip", data-placement="right", title="Because of possible time zone problems, please set this to 2 days or above to make sure all users see it. Thank you!")
+							br
+							br
+							button(class="btn", id="announcement-submit", class="btn btn-primary", data-toggle="tooltip", data-placement="right", title="Please proofread your announcement before you press this button!") Send
+							h5 Current Announcements
+							ul#adminAnnouncementList(style="-webkit-transition: text-decoration 1s; transition: text-decoration 1s;")
+								li#adminNoAnnouncements There are currently no announcements.
+							button(class="btn", id="announcement-clear", class="btn btn-default") Manage Announcements
+						
+						div(id="admin-users", class="page")
+							h1 Administrative panel
+							h4 Users
+							div(id="userNumber") Loading user count...
+							table(border="1" id="userTable")
+								thead
+									tr
+										td(colspan="6") MyHomeworkSpace Users
+									tr
+										td ID
+										td Name
+										td Username
+										td Email
+										td Type
+										td Level
+								tbody
+									tr
+										td(colspan="6") Loading users...
+							
+										
+						//-APRIL FOOLS UNCOMMENT PART 2
+						//-div(id="aprilfools", class="page")
+						//-	div(style="padding-top: 40%; padding-left: 40%")
+						//-		a(class="btn-lg btn-default" href="https://tr.im/mydayregester") Enable MyDay on this account
+						<!-- Wow! You made it to the end :)! -->
