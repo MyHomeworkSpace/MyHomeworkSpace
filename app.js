@@ -128,18 +128,14 @@ global.requireEditAnnouncements = function(req, res, next) {
 
 global.apiCall = function(req, res, next) {
 	res.locals.apiCall = true;
-	knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).select("*").then(function(rst) {
-		if (rst.length > 0) {
-			knex("nonces").where({ nonce: req.param("nonce"), sid: req.session.id }).del().then(function() {
-				next();
-			});
-		} else {
-			res.json({
-				status: "error",
-				error: "The nonce is invalid."
-			});
-		}
-	});
+	if (req.param("nonce") && req.session.nonce && req.param("nonce") === req.session.nonce) {
+		next();
+	} else {
+		res.json({
+			status: "error",
+			error: "The nonce is invalid."
+		});
+	}
 };
 
 global.getOptionalUserRecord = function(req, res, next) {

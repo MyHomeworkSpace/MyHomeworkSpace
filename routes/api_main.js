@@ -10,30 +10,33 @@ router.get('/', function(req, res, next) {
 
 router.get('/csrf', function(req, res, next) { // DO NOT PUT global.apiCall HERE OR ELSE YOU WILL NEED A NONCE TO GET A NONCE
 	var crypto = require("crypto");
-	var token = crypto.randomBytes(16).toString('hex');
-	knex("nonces").insert({ nonce: token, sid: req.session.id }).then(function() {
-		res.json({
-			status: "ok",
-			version: "1",
-			nonce: token
-		});
+	if (!req.session.nonce) {
+		req.session.nonce = crypto.randomBytes(16).toString('hex');
+	}
+	res.json({
+		status: "ok",
+		version: "1",
+		nonce: req.session.nonce
 	});
 });
 
 router.get('/csrfPool', function(req, res, next) { // DO NOT PUT global.apiCall HERE OR ELSE YOU WILL NEED A NONCE TO GET A NONCE
 	var crypto = require("crypto");
 
+	if (!req.session.nonce) {
+		req.session.nonce = crypto.randomBytes(16).toString('hex');
+	}
+
 	var nonces = [];
 	var toGenerate = 20;
 	for (var i = 0; i < toGenerate; i++) {
-		nonces.push({ nonce: crypto.randomBytes(16).toString('hex'), sid: req.session.id});
+		nonces.push(req.session.nonce);
 	}
-	knex("nonces").insert(nonces).then(function() {
-		res.json({
-			status: "ok",
-			version: "1",
-			nonces: nonces
-		});
+
+	res.json({
+		status: "ok",
+		version: "1",
+		nonces: nonces
 	});
 });
 
