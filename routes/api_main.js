@@ -30,7 +30,7 @@ router.get('/csrfPool', function(req, res, next) { // DO NOT PUT global.apiCall 
 	var nonces = [];
 	var toGenerate = 20;
 	for (var i = 0; i < toGenerate; i++) {
-		nonces.push(req.session.nonce);
+		nonces.push({ nonce: req.session.nonce });
 	}
 
 	res.json({
