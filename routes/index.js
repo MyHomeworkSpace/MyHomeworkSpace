@@ -82,21 +82,15 @@ router.post('/login', global.getOptionalUserRecord, function(req, res, next) {
 	username = req.body.username.split("\\")[0];
 	password = req.body.password;
 
-	var rouxRequest = "";
-	rouxRequest += "<request><key></key><action>authenticate</action><credentials><username>";
-	rouxRequest += username.encodeHTML();
-	rouxRequest += "</username><password type=\"plaintext\">";
-	rouxRequest += password.encodeHTML();
-	rouxRequest += "</password></credentials></request>";
-
 	var post_data = querystring.stringify({
-		'rouxRequest': rouxRequest
+		"username": username,
+		"password": password
 	});
 
 	var post_options = {
-		host: 'schedules.dalton.org',
+		host: 'hsregistration.dalton.org',
 		port: '443',
-		path: '/roux/index.php',
+		path: '/src/server/index.phplogin', // yes, there is in fact no slash between the php and login
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
@@ -107,74 +101,47 @@ router.post('/login', global.getOptionalUserRecord, function(req, res, next) {
 	var post_req = https.request(post_options, function(hRes) {
 		hRes.setEncoding('utf8');
 		hRes.on('data', function (chunk) {
-			parseXmlString(chunk, function(err, data) {
-				if (err) {
-					res.json({err:err});
-					return;
-				}
-				if (data["response"]["result"][0]["$"]["status"] != 200) {
-					// TODO: Check for errors that aren't "invalid credentials"
-					res.render('login', { title: 'Log in', error: 'The username or password was incorrect.' });
-					return;
-				}
-				var key = data["response"]["result"][0]["key"][0]["_"];
-				var owner = data["response"]["result"][0]["key"][0]["$"]["owner"];
+			var data = JSON.parse(chunk);
+			if (!data["loggedIn"]) {
+				// TODO: Check for errors that aren't "invalid credentials"
+				// TODO: how does hsregistration handle these?
+				res.render('login', { title: 'Log in', error: 'The username or password was incorrect.' });
+				return;
+			}
 
-				rouxRequest = "";
-				rouxRequest += "<request><key>";
-				rouxRequest += key.encodeHTML();
-				rouxRequest += "</key><action>selectUser</action><ID>";
-				rouxRequest += owner.encodeHTML();
-				rouxRequest += "</ID></request>";
+			// username is defined
+			var email = username + "@dalton.org"; // guess the email!
+			var user_type = data["roles"][0];
+			var name = data["fullname"];
 
-				post_data = querystring.stringify({
-					'rouxRequest': rouxRequest
-				});
-				post_options.headers["Content-Length"] = post_data.length;
-				post_req = https.request(post_options, function(hUserRes) {
-					hUserRes.setEncoding('utf8');
-					hUserRes.on('data', function (chunk) {
-						parseXmlString(chunk, function(err, data) {
-							// username is defined
-							var email = username + "@dalton.org"; // guess the email!
-							var user_type = data["response"]["result"][0]["user"][0]["$"]["type"];
-							var name = data["response"]["result"][0]["user"][0]["name"][0];
-
-							knex.select('*').from('users').limit(1).where({
-								username: username
-							}).then(function(obj) {
-								if (obj.length == 0) {
-									// not created
-									// insert it
-									knex("users").insert({
-										name: name,
-										username: username,
-										email: email,
-										type: user_type
-									}).then(function() {
-										req.session.loggedIn = true;
-										req.session.username = username;
-										res.redirect(global.basePath + "/app");
-									}).catch(function(e) {
-										res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later.", error: e }); // give up
-										return;
-									});
-								} else {
-									// not created, just sign them in.
-									req.session.loggedIn = true;
-									req.session.username = username;
-									res.redirect(global.basePath + "/app");
-								}
-							}).catch(function(e) {
-								res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later." }); // give up
-								return;
-							});
-						});
+			knex.select('*').from('users').limit(1).where({
+				username: username
+			}).then(function(obj) {
+				if (obj.length == 0) {
+					// not created
+					// insert it
+					knex("users").insert({
+						name: name,
+						username: username,
+						email: email,
+						type: user_type
+					}).then(function() {
+						req.session.loggedIn = true;
+						req.session.username = username;
+						res.redirect(global.basePath + "/app");
+					}).catch(function(e) {
+						res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later.", error: e }); // give up
+						return;
 					});
-				});
-
-				post_req.write(post_data);
-				post_req.end();
+				} else {
+					// not created, just sign them in.
+					req.session.loggedIn = true;
+					req.session.username = username;
+					res.redirect(global.basePath + "/app");
+				}
+			}).catch(function(e) {
+				res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later." }); // give up
+				return;
 			});
 		});
 	});
