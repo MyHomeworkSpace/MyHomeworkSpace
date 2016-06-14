@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require("request");
 
 var querystring = require('querystring');
 var https = require('https');
@@ -68,12 +69,14 @@ router.post('/login', global.getOptionalUserRecord, function(req, res, next) {
 		req.session.loggedIn = true;
 		req.session.username = "zomg_testUser";
 		res.redirect(global.basePath + "/app");
+		return;
 	}
 	if (req.body.username == "zomg_testTeacher" && req.body.password == "hexrSecret!") {
 		// activate testing teacher
 		req.session.loggedIn = true;
 		req.session.username = "zomg_testTeacher";
 		res.redirect(global.basePath + "/app");
+		return;
 	}
 	/*if (!(req.body.username == "c19as3" || req.body.username == "c19ww" || req.body.username == "c19em" || req.body.username == "c19jf" || req.body.username == "c20wb" || req.body.username == "c21ys" || req.body.username == "c21as2" || req.body.username == "c21lw")) {
 		res.render('login', { title: 'Log in', error: 'You do not have permission to access this site.' });
@@ -82,72 +85,55 @@ router.post('/login', global.getOptionalUserRecord, function(req, res, next) {
 	username = req.body.username.split("\\")[0];
 	password = req.body.password;
 
-	var post_data = querystring.stringify({
-		"username": username,
-		"password": password
-	});
-
-	var post_options = {
-		host: 'hsregistration.dalton.org',
-		port: '443',
-		path: '/src/server/index.phplogin', // yes, there is in fact no slash between the php and login
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': post_data.length
+	var jar = request.jar();
+	request.post("https://hsregistration.dalton.org/src/server/index.phplogin", {jar: jar, headers: { "Referer": "https://hsregistration.dalton.org/", "Origin": "https://hsregistration.dalton.org", "User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 7978.74.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.103 Safari/537.36" }, form: { "username": username, "password": password } }, function(err, resp, body) {
+		if (err) {
+			res.json({err: err});
+			return;
 		}
-	};
+		var data = JSON.parse(body);
+		if (!data["logged_in"]) {
+			// TODO: Check for errors that aren't "invalid credentials"
+			// TODO: how does hsregistration handle these?
+			res.render('login', { title: 'Log in', error: 'The username or password was incorrect.' });
+			return;
+		}
 
-	var post_req = https.request(post_options, function(hRes) {
-		hRes.setEncoding('utf8');
-		hRes.on('data', function (chunk) {
-			var data = JSON.parse(chunk);
-			if (!data["loggedIn"]) {
-				// TODO: Check for errors that aren't "invalid credentials"
-				// TODO: how does hsregistration handle these?
-				res.render('login', { title: 'Log in', error: 'The username or password was incorrect.' });
-				return;
-			}
+		// username is defined
+		var email = username + "@dalton.org"; // guess the email!
+		var user_type = data["roles"][0];
+		var name = data["fullname"];
 
-			// username is defined
-			var email = username + "@dalton.org"; // guess the email!
-			var user_type = data["roles"][0];
-			var name = data["fullname"];
-
-			knex.select('*').from('users').limit(1).where({
-				username: username
-			}).then(function(obj) {
-				if (obj.length == 0) {
-					// not created
-					// insert it
-					knex("users").insert({
-						name: name,
-						username: username,
-						email: email,
-						type: user_type
-					}).then(function() {
-						req.session.loggedIn = true;
-						req.session.username = username;
-						res.redirect(global.basePath + "/app");
-					}).catch(function(e) {
-						res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later.", error: e }); // give up
-						return;
-					});
-				} else {
-					// not created, just sign them in.
+		knex.select('*').from('users').limit(1).where({
+			username: username
+		}).then(function(obj) {
+			if (obj.length == 0) {
+				// not created
+				// insert it
+				knex("users").insert({
+					name: name,
+					username: username,
+					email: email,
+					type: user_type
+				}).then(function() {
 					req.session.loggedIn = true;
 					req.session.username = username;
 					res.redirect(global.basePath + "/app");
-				}
-			}).catch(function(e) {
-				res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later." }); // give up
-				return;
-			});
+				}).catch(function(e) {
+					res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later.", error: e }); // give up
+					return;
+				});
+			} else {
+				// not created, just sign them in.
+				req.session.loggedIn = true;
+				req.session.username = username;
+				res.redirect(global.basePath + "/app");
+			}
+		}).catch(function(e) {
+			res.render("error", { title: "Error", msg: "There was an unexpected database error. Please try again later." }); // give up
+			return;
 		});
 	});
-
-	post_req.write(post_data);
-	post_req.end();
 });
 
 module.exports = router;
