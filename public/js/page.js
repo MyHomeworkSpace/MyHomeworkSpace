@@ -64,6 +64,9 @@ window.page.getStaticPath = function() {
 };
 
 window.page.showLoading = function() {
+	if (window.page.loadTimeout || $(".loadOverlay").hasClass("showLoadOverlay")) {
+		return;
+	}
 	window.page.loadTimeout = setTimeout(function() {
 		$(".loadOverlay").addClass("showLoadOverlay");
 		$(".loadWarn").removeClass("showingLoadWarn");
