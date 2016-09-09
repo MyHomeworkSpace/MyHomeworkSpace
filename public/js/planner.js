@@ -494,7 +494,7 @@ window.planner.loadWeek = function(startDate) {
 	// get friday
 	currentDate.setDate(currentDate.getDate() - 1);
 	window.api.get("planner/fridays/get/" + window.utils.formatDate_api(currentDate), function(data) {
-		if (data.friday !== null) {
+		if (data.friday) {
 			$(".planner-dow-friday").text("Friday " + data.friday.index);
 		}
 		window.planner.loadStep();

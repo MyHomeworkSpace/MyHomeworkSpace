@@ -39,9 +39,10 @@ window.prefs.openModal = function(feature) {
 };
 
 window.prefs.get = function(name, callback) {
+	callback(undefined);/*
 	window.api.get("prefs/get/" + name, function(data) {
 		callback(data.val);
-	});
+	});*/
 };
 
 window.prefs.getBatch = function(names, callback) {
