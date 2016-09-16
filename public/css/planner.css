@@ -98,7 +98,7 @@
 	left: 130px;
 	width: 16px;
 	height: 16px;
-	transition: opacity 0.3s;
+	/*transition: opacity 0.3s;*/
 }
 .editCell {
 	position: relative;
