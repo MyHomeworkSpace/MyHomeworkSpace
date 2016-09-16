@@ -98,7 +98,7 @@
 	left: 130px;
 	width: 16px;
 	height: 16px;
-	transition: opacity 0.3s;
+	/*transition: opacity 0.3s; - this breaks chrome 53 for some strange reason. disable it for now */
 }
 .editCell {
 	position: relative;
